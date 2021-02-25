@@ -10944,3 +10944,32 @@ a.text-dark:focus {
   }
 }
 
+section#becomePartner a,
+nav li:last-child {
+  background-color: #b3f5fd;
+  border-radius: 20px;
+  padding: 10px;
+  color: #000;
+}
+
+nav li:last-child {
+  background-color: #000;
+  color: #fff;
+}
+
+.oval-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #000;
+  width: 70px;
+  height: 100px;
+  border-radius: 30px;
+}
+
+ul {
+  list-style: none;
+}
+
