@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Restaurateur;
-class restaurateurs_seed extends Seeder
+use App\Order;
+class orders_seeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class restaurateurs_seed extends Seeder
      */
     public function run()
     {
-        factory(Restaurateur::class,10)->create();
+        factory(Order::class,100)->create();
     }
 }

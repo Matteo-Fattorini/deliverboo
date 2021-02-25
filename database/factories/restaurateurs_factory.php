@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Hash;
 
 $factory->define(Restaurateur::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'surname' => $faker->name,
+        'name' => $faker->firstName(),
+        'surname' => $faker->lastName(),
         'email' => $faker->unique()->safeEmail,
         'password' => Hash::make('ciao'),
         

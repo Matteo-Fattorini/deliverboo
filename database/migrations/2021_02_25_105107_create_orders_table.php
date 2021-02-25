@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string("client_surname",50);
             $table->string("client_email",50);
             $table->string("client_phone",50);
-            $table->string("client_address",50);
+            $table->string("client_address",512);
             $table->boolean("is_payed");
         });
     }
