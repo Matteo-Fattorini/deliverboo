@@ -12,10 +12,11 @@ return [
     | as required, but they're a perfect start for most applications.
     |
     */
+    'table' => 'restaurateurs',
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'restaurateurs',
     ],
 
     /*
@@ -38,7 +39,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'restaurateurs',
         ],
 
         'api' => [
@@ -65,12 +66,13 @@ return [
     |
     */
 
+
     'providers' => [
-        'users' => [
+        'restaurateurs' => [
             'driver' => 'eloquent',
             'model' => App\Restaurateur::class,
         ],
-       
+
 
         // 'users' => [
         //     'driver' => 'database',
@@ -94,11 +96,16 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        // 'users' => [
+        //     'provider' => 'restaurateurs',
+        //     'table' => 'password_resets',
+        //     'expire' => 60,
+        //     'throttle' => 60,
+        // ],
+        'restaurateurs' => [
+            'provider' => 'restaurateurs',
             'table' => 'password_resets',
             'expire' => 60,
-            'throttle' => 60,
         ],
     ],
 

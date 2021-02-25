@@ -17,7 +17,7 @@ class CreateRestaurateursTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string("name",50);
-            $table->string("surname",50);
+            $table->string("surname",50)->nullable();
             $table->string("email",50);
             $table->string("password",1000);
             
