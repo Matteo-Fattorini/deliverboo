@@ -23,6 +23,8 @@ class CreateOrdersTable extends Migration
             $table->string("client_phone",50);
             $table->string("client_address",512);
             $table->boolean("is_payed");
+            $table->unsignedBigInteger("restaurant_id");
+            $table->foreign("restaurant_id")->references("id")->on("restaurants");
         });
     }
 

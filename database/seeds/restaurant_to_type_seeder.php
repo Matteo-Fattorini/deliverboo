@@ -19,7 +19,7 @@ class restaurant_to_type_seeder extends Seeder
         $restaurants = Restaurant::all();
 
         foreach ($restaurants as $restaurant) {
-            for ($i = 1; $i <= $faker->numberBetween(1, ($types->count())/2); $i++) {
+            for ($i = 1; $i <= $faker->numberBetween(1, ($types->count())); $i++) {
 
                 DB::table("restaurant_type")->insert([
                     "restaurant_id" => $restaurant->id,

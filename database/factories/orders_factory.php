@@ -6,6 +6,7 @@ use App\Order;
 use Faker\Generator as Faker;
 
 $factory->define(Order::class, function (Faker $faker) {
+    
     return [
         "total" => strval($faker->numberBetween(5,1000)),
         "is_payed"=> $faker->numberBetween(0, 1),
@@ -14,6 +15,7 @@ $factory->define(Order::class, function (Faker $faker) {
         "client_email" => $faker->safeEmail(),
         "client_phone"=>$faker->phoneNumber(),
         "client_address" => $faker->address(),
+        "restaurant_id" => $faker->numberBetween(1,10),
 
     ];
 });

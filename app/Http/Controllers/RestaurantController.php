@@ -1,7 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Restaurant;
+use App\Dish;
+use App\Order;
+use App\Restaurateur;
+use App\Type;
+use App\Genre;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
@@ -13,7 +18,11 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        $restaurants = Restaurant::find(1);
+        $dishes = Dish::all();
+        $orders = Order::all();
+        $type = Order::all();
+        return view("test", compact("restaurants","dishes","orders"));
     }
 
     /**
