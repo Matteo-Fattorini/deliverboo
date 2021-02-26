@@ -24,3 +24,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+// LATO CLIENTE
+// Route home che contiene l'elenco dei ristoranti
+
+// route ristorante id oppure nome ristorante 
+
+// nel checkout: al click del bottone 'paga' -> route per pushare l'ordine nel db, serve una resource che prende i dati del cliente, e invia l'ordine al ristoratore 

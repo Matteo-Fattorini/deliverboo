@@ -14,7 +14,7 @@ class Restaurateur extends Authenticatable
         return $this->hasOne("App\Restaurant");
     }
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'surname', 'email', 'password',
     ];
 
     protected $hidden = [
