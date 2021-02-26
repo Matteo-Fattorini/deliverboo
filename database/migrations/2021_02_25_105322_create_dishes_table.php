@@ -20,7 +20,7 @@ class CreateDishesTable extends Migration
             $table->foreign("restaurant_id")->references("id")->on("restaurants");
             $table->unsignedBigInteger("genre_id");
             $table->foreign("genre_id")->references("id")->on("genres");
-            $table->string("name",50);
+            $table->string("name", 128);
             $table->string("price",50);
             $table->boolean("visibility",true);
             $table->text("description");

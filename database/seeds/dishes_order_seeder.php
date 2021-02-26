@@ -20,7 +20,7 @@ class dishes_order_seeder extends Seeder
         $orders = Order::all();
 
         foreach ($orders as $order) {
-            for ($i = 1; $i <= $faker->numberBetween(1, 10); $i++) {
+            for ($i = 1; $i <= $faker->numberBetween(1, count($dishes)); $i++) {
 
                 DB::table("dish_order")->insert([
                     "order_id" => $order->id,

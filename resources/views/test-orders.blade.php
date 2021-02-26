@@ -5,30 +5,45 @@
 
 
     <div class="container">
+        <a class="btn btn-secondary"href="{{ route("restaurant.index") }}">Torna Indietro</a>
         <div class="row ">
             <div class="col-8 offset-2 mt-5 d-flex flex-wrap justify-content-center ">
-                @foreach ($restaurants as $restaurant)
+                @foreach ($restaurant->getOrders as $order)
 
 
                     <div class="card mr-3 mb-3" style="width: 35rem;">
                         <div class="card-body">
                             
-                            <h5 class="card-title">Nome Ristorante: {{ $restaurant->name }}</h5>
+                            <h5 class="card-title">ID ordine: {{ $order->id }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">
-                                Indirizzo: {{ $restaurant->address }}
+                                Ordine del: {{ $order->created_at }} 
                             </h6>
                             <h6 class="card-subtitle mb-2 text-muted">
-                                P-iva: {{ $restaurant->p_iva }}
+                                Totale: {{ $order->total }} €
                             </h6>
-                            <p class="card-text">Titolare: {{ $restaurant->getRestaurateur->name }}</p>
-                            <h4>Cosa Serviamo:</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Nome Cliente: {{ $order->client_name }} {{ $order->client_surname }}
+                            </h6>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Email: {{ $order->client_email }}
+                            </h6>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Telefono: {{ $order->client_phone }}
+                            </h6>
+                            
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Indirizzo: {{ $order->client_address }}
+                            </h6>
+                            
+                            <h4>Scontrino:</h4>
                             <ul>
-                                @foreach ($restaurant->getTypes as $type) 
-                                <li>{{ $type->name }}</li>     
+                                @foreach ($order->getDishes as $dish) 
+                                <li>{{ $dish->name }} --- {{ $dish->price }}€</li>     
                                 @endforeach
                             </ul>
 
-                            <a class="btn btn-primary" href="{{ route("restaurant.show",$restaurant->id) }}">Mostra Ordini</a>
+                            
+                          
 
                             
 

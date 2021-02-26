@@ -10,8 +10,8 @@ $factory->define(Restaurant::class, function (Faker $faker) {
     static $num = 1;
     return [
         'name' => $faker->name,
-        'address' => $faker->word(),
-        'p_iva' => $faker->word(),
+        'address' => $faker->address(),
+        'p_iva' => $faker->iban("IT"),
         'restaurateur_id' => $num ++,
         'image_url' => $faker->word(),
         

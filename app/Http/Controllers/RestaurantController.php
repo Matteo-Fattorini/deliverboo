@@ -18,11 +18,9 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::find(1);
-        $dishes = Dish::all();
-        $orders = Order::all();
-        $type = Order::all();
-        return view("test", compact("restaurants","dishes","orders"));
+        $restaurants = Restaurant::all();
+        
+        return view("test", compact("restaurants"));
     }
 
     /**
@@ -54,7 +52,8 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        //
+        $restaurant = Restaurant::find($id);
+        return view("test-orders",compact("restaurant"));
     }
 
     /**
@@ -65,7 +64,7 @@ class RestaurantController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

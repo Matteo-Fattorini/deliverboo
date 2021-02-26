@@ -15,6 +15,6 @@ class Dish extends Model
 
     public function getOrders()
     {
-        return $this->belongsToMany("App\Order", `dish_order`,"order_id","dish_id");
+        return $this->belongsToMany("App\Order", `dish_order`,"dish_id","order_id");
     }
 }

@@ -17,10 +17,10 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string("total",50);
-            $table->string("client_name",50);
-            $table->string("client_surname",50);
-            $table->string("client_email",50);
-            $table->string("client_phone",50);
+            $table->string("client_name", 128);
+            $table->string("client_surname", 128);
+            $table->string("client_email", 128);
+            $table->string("client_phone", 128);
             $table->string("client_address",512);
             $table->boolean("is_payed");
             $table->unsignedBigInteger("restaurant_id");
