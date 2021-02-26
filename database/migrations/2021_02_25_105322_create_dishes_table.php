@@ -24,7 +24,7 @@ class CreateDishesTable extends Migration
             $table->string("price",50);
             $table->boolean("visibility",true);
             $table->text("description");
-            $table->string("image_url",50);
+            $table->string("image_url",512);
 
         });
     }

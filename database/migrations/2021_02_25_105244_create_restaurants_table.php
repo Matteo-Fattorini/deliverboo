@@ -19,7 +19,7 @@ class CreateRestaurantsTable extends Migration
             $table->string("name",50);
             $table->string("address",50);
             $table->string("p_iva",50);
-            $table->string("img_url",50);
+            $table->string("image_url",256);
             $table->unsignedBigInteger("restaurateur_id");
             $table->foreign("restaurateur_id")->references("id")->on("restaurateurs");
         });

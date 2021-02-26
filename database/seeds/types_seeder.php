@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Type;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-class types_seed extends Seeder
+class types_seeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class types_seed extends Seeder
         $types = ["pizza","pesce","carne","sushi","pasta"];
 
         foreach($types as $type){
-            DB::table("types")->insert(["name"=>$type,"slug"=>"slug_prova", 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            DB::table("types")->insert(["name"=>$type, "image_url"=>"slug_prova", 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')]);
         }
         

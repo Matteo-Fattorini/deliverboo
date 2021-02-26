@@ -13,7 +13,7 @@ $factory->define(Restaurant::class, function (Faker $faker) {
         'address' => $faker->word(),
         'p_iva' => $faker->word(),
         'restaurateur_id' => $num ++,
-        'img_url' => $faker->word(),
+        'image_url' => $faker->word(),
         
 
     ];

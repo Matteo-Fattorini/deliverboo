@@ -18,7 +18,7 @@ class genres_seeder extends Seeder
 
         foreach ($genres as $genre) {
             DB::table("genres")->insert([
-                "name" => $genre, "slug" => "slug_prova", 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                "name" => $genre, "image_url" => "slug_prova", 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]);
         }

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Restaurateur;
-class restaurateurs_seed extends Seeder
+class restaurateurs_seeder extends Seeder
 {
     /**
      * Run the database seeds.
