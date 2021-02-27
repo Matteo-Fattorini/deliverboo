@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 use App\Restaurant;
 use App\Dish;
 use App\Order;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Restaurateur;
 use App\Type;
 use App\Genre;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
@@ -29,8 +32,9 @@ class RestaurantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $types = Type::all();
+        return view("test-create", compact("types"));
     }
 
     /**
@@ -41,7 +45,35 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $item = "un ristorante a tuo nome!";
+        $exists = (Restaurant::where("restaurateur_id",Auth::User()->id)->exists());
+        $data = $request->all();
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        Storage::disk('public')->put($file->getFilename() . '.' . $extension,  File::get($file));
+        if(!$exists){
+            $restaurant = Restaurant::firstOrCreate([
+            "name" => $data["name"],
+            "address" => $data["address"],
+            "p_iva" => $data["p_iva"],
+            "image_url" => $file->getFilename() . '.' . $extension,
+            "restaurateur_id" => Auth::User()->id
+            
+        ]);
+
+        $restaurant->getTypes()->sync($data["types"]);
+        return view("success");
+        
+    } else {
+            return view("failed", compact("item"));
+    }
+
+        
+        
+
+   
+        
     }
 
     /**

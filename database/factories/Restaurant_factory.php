@@ -13,7 +13,7 @@ $factory->define(Restaurant::class, function (Faker $faker) {
         'address' => $faker->address(),
         'p_iva' => $faker->iban("IT"),
         'restaurateur_id' => $num ++,
-        'image_url' => $faker->word(),
+        'image_url' => "https://picsum.photos/200/300?random",
         
 
     ];

@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Restaurant extends Model
 {
+
+    protected $fillable = [
+        'name', 'address', 'p_iva', "image_url", "restaurateur_id"
+    ];
     public function getRestaurateur(){
         return $this->belongsTo("App\Restaurateur","restaurateur_id");
     }

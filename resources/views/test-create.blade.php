@@ -6,46 +6,51 @@
 
     <div class="container">
         <div class="row ">
-            <div class="col-8 offset-2 mt-5 d-flex flex-wrap justify-content-center ">
-                @foreach ($restaurants as $restaurant)
+            <div class="col-10  mt-5 d-flex flex-wrap justify-content-center ">
+                <form action ="{{ route("restaurant.store") }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method("PUT")
+                    <input type="hidden" name="_method" value ="POST">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nome Ristorante</label>
+                        <input name="name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                       
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Indirizzo</label>
+                        <input name="address" type="text" class="form-control" id="address" aria-describedby="emailHelp">
+                       
+                    </div>
+                    <div class="mb-3">
+                        <label for="p_iva" class="form-label">Partita IVA</label>
+                        <input name="p_iva" type="text" class="form-control" id="p_iva" aria-describedby="emailHelp">
+                    </div>
+                    
 
                     
-                    <div class="card mr-3 mb-3" style="width: 35rem;">
-                        <div class="card-body">
-                            <img width="50%" alt="image" src="{{asset('/storage/' . $restaurant->image_url)}}">
-                            
-                            <h5 class="card-title">Nome Ristorante: {{ $restaurant->name }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                Indirizzo: {{ $restaurant->address }}
-                            </h6>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                P-iva: {{ $restaurant->p_iva }}
-                            </h6>
-                            <p class="card-text">Titolare: {{ $restaurant->getRestaurateur->name }}</p>
-                            <h4>Cosa Serviamo:</h4>
-                            <ul>
-                                @foreach ($restaurant->getTypes as $type) 
-                                <li>{{ $type->name }}</li>     
-                                @endforeach
-                            </ul>
-                            <ul>
-                                @foreach ($restaurant->getDishes as $dish) 
-                                <li>{{ $dish->name }}</li>     
-                                @endforeach
-                            </ul>
-
-                            <a class="btn btn-primary" href="{{ route("restaurant.show",$restaurant->id) }}">Mostra Ordini</a>
-                            @if(Auth::User()->id == $restaurant->getRestaurateur->id)
-                                <a class="btn btn-primary" href="{{ route("dishes.create") }}">Aggiungi piatto</a>
-                            @endif
-
-                            
-
-
-
-                        </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">image</label>
+                        <input name="image" type="file" class="form-control" id="image" >
+                        
                     </div>
-                @endforeach
+
+                    
+                    <div class="mb-3 form-check">
+                        @foreach ($types as $type )
+                            
+                                    
+                                <div class="form-check ">
+                                    <input class="form-check-input" name="types[]" type="checkbox" value="{{ $type["id"] }}" id="type">
+                                    <label class="form-check-label" for="type">
+                                    {{ $type['name'] }}
+                                    </label>
+                                </div>
+                                
+                        @endforeach
+                        
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         </div>
     </div>

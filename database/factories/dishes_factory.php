@@ -15,7 +15,7 @@ $factory->define(Dish::class, function (Faker $faker) {
     return [
         "visibility" => $faker->numberBetween(0, 1),
         'name' => $names[$faker->numberBetween(0, count($names)-1)],
-        'image_url' => $faker->word(),
+        'image_url' => "https://picsum.photos/200/300?random",
         "description" => $faker->text(),
         "price"=> strval($faker->numberBetween(1,100)),
         "genre_id" =>$faker->numberBetween(1,$genres->count()),

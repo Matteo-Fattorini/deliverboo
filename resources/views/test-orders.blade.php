@@ -41,9 +41,13 @@
                                 <li>{{ $dish->name }} --- {{ $dish->price }}€</li>     
                                 @endforeach
                             </ul>
-
-                            
-                          
+                            @if ($order->is_payed == 0)
+                                <div class="btn btn-danger">DA PAGARE</div>
+                                
+                            @endif
+                            @if ($order->is_payed == 1)
+                                <div class="btn btn-success">PAGATO</div>
+                            @endif                                                                         
 
                             
 

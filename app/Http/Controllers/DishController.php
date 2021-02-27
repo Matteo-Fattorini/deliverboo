@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\PostValidator;
-use App\Dish;
-use App\Genre;
-use App\Order;
 use App\Restaurant;
+use App\Dish;
+use App\Order;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use App\Restaurateur;
+use App\Type;
+use App\Genre;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class DishController extends Controller
 {
@@ -30,7 +32,8 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view("dishes-create");
     }
 
     /**
@@ -41,7 +44,29 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exists = Dish::where("name",$request["name"])->exists();
+        $item = "piatto con questo nome!";
+        $data = $request->all();
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        Storage::disk('public')->put($file->getFilename() . '.' . $extension,  File::get($file));
+        if (!$exists) {
+            Dish::firstOrCreate([
+                "name" => $data["name"],
+                "description" => $data["description"],
+                "price" => $data["price"],
+                "visibility" => $data["visibility"],
+                "image_url" => $file->getFilename() . '.' . $extension,
+                "restaurant_id" => Auth::User()->getRestaurant->id,
+                "genre_id" => "1"
+
+            ]);
+
+            
+            return view("success",compact("item"));
+        } else {
+            return view("failed", compact("item"));
+        }
     }
 
     /**

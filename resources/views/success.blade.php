@@ -6,46 +6,8 @@
 
     <div class="container">
         <div class="row ">
-            <div class="col-8 offset-2 mt-5 d-flex flex-wrap justify-content-center ">
-                @foreach ($restaurants as $restaurant)
-
-                    
-                    <div class="card mr-3 mb-3" style="width: 35rem;">
-                        <div class="card-body">
-                            <img width="50%" alt="image" src="{{asset('/storage/' . $restaurant->image_url)}}">
-                            
-                            <h5 class="card-title">Nome Ristorante: {{ $restaurant->name }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                Indirizzo: {{ $restaurant->address }}
-                            </h6>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                P-iva: {{ $restaurant->p_iva }}
-                            </h6>
-                            <p class="card-text">Titolare: {{ $restaurant->getRestaurateur->name }}</p>
-                            <h4>Cosa Serviamo:</h4>
-                            <ul>
-                                @foreach ($restaurant->getTypes as $type) 
-                                <li>{{ $type->name }}</li>     
-                                @endforeach
-                            </ul>
-                            <ul>
-                                @foreach ($restaurant->getDishes as $dish) 
-                                <li>{{ $dish->name }}</li>     
-                                @endforeach
-                            </ul>
-
-                            <a class="btn btn-primary" href="{{ route("restaurant.show",$restaurant->id) }}">Mostra Ordini</a>
-                            @if(Auth::User()->id == $restaurant->getRestaurateur->id)
-                                <a class="btn btn-primary" href="{{ route("dishes.create") }}">Aggiungi piatto</a>
-                            @endif
-
-                            
-
-
-
-                        </div>
-                    </div>
-                @endforeach
+            <div class="col-10  mt-5 d-flex flex-wrap justify-content-center ">
+                <h1>Hai creato il tuo ristorante!</h1>
             </div>
         </div>
     </div>

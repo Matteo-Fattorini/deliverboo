@@ -14,14 +14,14 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', "RestaurantController@index");
+Route::get('/home', "RestaurantController@index");
 
 Route::resource("restaurant", "RestaurantController");
+Route::resource("dishes", "DishController")->middleware("auth");;
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 
 
 // LATO CLIENTE
