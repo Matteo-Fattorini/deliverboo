@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Restaurant;
 use App\Dish;
 use App\Order;
@@ -22,7 +23,7 @@ class RestaurantController extends Controller
     public function index()
     {
         $restaurants = Restaurant::all();
-        
+
         return view("test", compact("restaurants"));
     }
 
@@ -32,7 +33,7 @@ class RestaurantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $types = Type::all();
         return view("test-create", compact("types"));
     }
@@ -46,34 +47,28 @@ class RestaurantController extends Controller
     public function store(Request $request)
     {
 
-        $item = "un ristorante a tuo nome!";
-        $exists = (Restaurant::where("restaurateur_id",Auth::User()->id)->exists());
+
+        $exists = (Restaurant::where("restaurateur_id", Auth::User()->id)->exists());
         $data = $request->all();
         $file = $request->file('image');
         $extension = $file->getClientOriginalExtension();
         Storage::disk('public')->put($file->getFilename() . '.' . $extension,  File::get($file));
-        if(!$exists){
+        if (!$exists) {
             $restaurant = Restaurant::firstOrCreate([
-            "name" => $data["name"],
-            "address" => $data["address"],
-            "p_iva" => $data["p_iva"],
-            "image_url" => $file->getFilename() . '.' . $extension,
-            "restaurateur_id" => Auth::User()->id
-            
-        ]);
+                "name" => $data["name"],
+                "address" => $data["address"],
+                "p_iva" => $data["p_iva"],
+                "image_url" => $file->getFilename() . '.' . $extension,
+                "restaurateur_id" => Auth::User()->id
 
-        $restaurant->getTypes()->sync($data["types"]);
-        return view("success");
-        
-    } else {
+            ]);
+            $item = "Hai creato un ristorante!";
+            $restaurant->getTypes()->sync($data["types"]);
+            return view("success", compact("item"));
+        } else {
+            $item = "un ristorante a tuo nome!";
             return view("failed", compact("item"));
-    }
-
-        
-        
-
-   
-        
+        }
     }
 
     /**
@@ -85,7 +80,7 @@ class RestaurantController extends Controller
     public function show($id)
     {
         $restaurant = Restaurant::find($id);
-        return view("test-orders",compact("restaurant"));
+        return view("test-orders", compact("restaurant"));
     }
 
     /**
@@ -96,7 +91,6 @@ class RestaurantController extends Controller
      */
     public function edit($id)
     {
-        
     }
 
     /**

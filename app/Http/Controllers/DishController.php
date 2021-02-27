@@ -32,8 +32,8 @@ class DishController extends Controller
      */
     public function create()
     {
-        
-        return view("dishes-create");
+        $genres = Genre::all();
+        return view("dishes-create",compact("genres"));
     }
 
     /**
@@ -45,26 +45,28 @@ class DishController extends Controller
     public function store(Request $request)
     {
         $exists = Dish::where("name",$request["name"])->exists();
-        $item = "piatto con questo nome!";
+        
         $data = $request->all();
+        
         $file = $request->file('image');
         $extension = $file->getClientOriginalExtension();
         Storage::disk('public')->put($file->getFilename() . '.' . $extension,  File::get($file));
         if (!$exists) {
-            Dish::firstOrCreate([
-                "name" => $data["name"],
-                "description" => $data["description"],
-                "price" => $data["price"],
-                "visibility" => $data["visibility"],
-                "image_url" => $file->getFilename() . '.' . $extension,
-                "restaurant_id" => Auth::User()->getRestaurant->id,
-                "genre_id" => "1"
-
-            ]);
-
+            $dish = new Dish;
+            $dish["name"] = $data["name"];
+            $dish["description"] = $data["description"];
+            $dish["price"] = $data["price"];
+            $dish["visibility"] = $data["visibility"];
+            $dish["image_url"] = $file->getFilename() . '.' . $extension;
             
+            $dish->getRestaurant()->associate(Auth::User()->getRestaurant->id);
+            $dish->getGenre()->associate($data["genre"]);
+            $dish->save();
+
+            $item = "Hai creato un nuovo piatto con successo!";
             return view("success",compact("item"));
         } else {
+            $item = "Esiste già piatto con questo nome nel tuo ristorante";
             return view("failed", compact("item"));
         }
     }
@@ -77,7 +79,8 @@ class DishController extends Controller
      */
     public function show($id)
     {
-        //
+        $dish = Dish::find($id);
+        return view("test-dish-detail",compact("dish"));
     }
 
     /**
@@ -88,7 +91,9 @@ class DishController extends Controller
      */
     public function edit($id)
     {
-        //
+        $genres = Genre::all();
+        $dish = Dish::find($id);
+        return view("test-dish-edit", compact("dish","genres"));
     }
 
     /**
@@ -100,7 +105,26 @@ class DishController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        Storage::disk('public')->put($file->getFilename() . '.' . $extension,  File::get($file));
+        $dish = Dish::find($id);
+        $data = $request->all();
+        
+        $dish->update([
+            "name" => $data["name"],
+            "description" => $data["description"],
+            "price" => $data["price"],
+            "visibility" => $data["visibility"],
+            "image_url" => $file->getFilename() . '.' . $extension,
+            
+        ]);
+        Dish::find($id)->getGenre()->associate($data["genre"])->save();
+        
+       
+        $item = "ok hai modificato con successo";
+
+        return view("success",compact("item"));
     }
 
     /**

@@ -12,7 +12,7 @@
                     
                     <div class="card mr-3 mb-3" style="width: 35rem;">
                         <div class="card-body">
-                            <img width="50%" alt="image" src="{{asset('/storage/' . $restaurant->image_url)}}">
+                            <img width="50%" alt="{{ $restaurant->name }}" src="{{asset('/storage/' . $restaurant->image_url)}}">
                             
                             <h5 class="card-title">Nome Ristorante: {{ $restaurant->name }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">
@@ -28,15 +28,19 @@
                                 <li>{{ $type->name }}</li>     
                                 @endforeach
                             </ul>
+                            <h4>I Nostri Piatti:</h4>
                             <ul>
                                 @foreach ($restaurant->getDishes as $dish) 
-                                <li>{{ $dish->name }}</li>     
+                                <li><a href="{{ route("dishes.show",$dish->id) }}">{{ $dish->name }}</a></li>
+                                <h5>{{ $dish->price }} euro</h5>     
                                 @endforeach
                             </ul>
 
                             <a class="btn btn-primary" href="{{ route("restaurant.show",$restaurant->id) }}">Mostra Ordini</a>
+                            @if(Auth::check())
                             @if(Auth::User()->id == $restaurant->getRestaurateur->id)
                                 <a class="btn btn-primary" href="{{ route("dishes.create") }}">Aggiungi piatto</a>
+                            @endif
                             @endif
 
                             

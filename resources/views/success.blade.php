@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row ">
             <div class="col-10  mt-5 d-flex flex-wrap justify-content-center ">
-                <h1>Hai creato il tuo ristorante!</h1>
+                <h1>{{ $item }}</h1>
             </div>
         </div>
     </div>
