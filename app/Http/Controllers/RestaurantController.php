@@ -54,19 +54,21 @@ class RestaurantController extends Controller
         $extension = $file->getClientOriginalExtension();
         Storage::disk('public')->put($file->getFilename() . '.' . $extension,  File::get($file));
         if (!$exists) {
-            $restaurant = Restaurant::firstOrCreate([
-                "name" => $data["name"],
-                "address" => $data["address"],
-                "p_iva" => $data["p_iva"],
-                "image_url" => $file->getFilename() . '.' . $extension,
-                "restaurateur_id" => Auth::User()->id
 
-            ]);
-            $item = "Hai creato un ristorante!";
+            $restaurant = new Restaurant();
+            $restaurant["name"] = $data["name"];
+            $restaurant["address"] = $data["address"];
+            $restaurant["p_iva"] = $data["p_iva"];
+            $restaurant["image_url"] = $file->getFilename() . '.' . $extension;
+            $restaurant->getRestaurateur()->associate(Auth::User()->id);
+            $restaurant->save();
+
             $restaurant->getTypes()->sync($data["types"]);
+
+            $item = "Hai creato un ristorante!";
             return view("success", compact("item"));
         } else {
-            $item = "un ristorante a tuo nome!";
+            $item = "Esiste già un ristorante a tuo nome!";
             return view("failed", compact("item"));
         }
     }
@@ -91,6 +93,9 @@ class RestaurantController extends Controller
      */
     public function edit($id)
     {
+        $restaurant = Restaurant::find($id);
+        $types = Type::all();
+        return view("test-restaurant-edit",compact("restaurant","types"));
     }
 
     /**
@@ -102,7 +107,27 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        Storage::disk('public')->put($file->getFilename() . '.' . $extension,  File::get($file));
+        $restaurant = Restaurant::find($id);
+        $data = $request->all();
+
+        $restaurant->update([
+            "name" => $data["name"],
+            "address" => $data["address"],
+            "p_iva" => $data["p_iva"],
+            "image_url" => $file->getFilename() . '.' . $extension,
+
+        ]);
+        $restaurant->getRestaurateur()->associate(Auth::User()->id)->save();
+        $restaurant->getTypes()->sync($data["types"]);
+
+        
+        $item = "ok hai modificato con successo il tuo ristorante";
+
+        return view("success", compact("item"));
     }
 
     /**
@@ -113,6 +138,18 @@ class RestaurantController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        if (Auth::User()->getRestaurant->id == $id) {
+            $restaurant = Restaurant::find($id);
+            $restaurant->getTypes()->detach();
+            $restaurant->delete();
+            $item = "Hai rimosso con successo il tuo ristorante";
+
+
+            return view("success", compact("item"));
+        } else {
+            $item = "Non sei autorizzato a questa operazione";
+            return view("failed", compact("item"));
+        }
     }
 }

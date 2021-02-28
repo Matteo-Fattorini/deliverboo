@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Restaurant;
 use App\Dish;
 use App\Order;
@@ -33,7 +34,7 @@ class DishController extends Controller
     public function create()
     {
         $genres = Genre::all();
-        return view("dishes-create",compact("genres"));
+        return view("dishes-create", compact("genres"));
     }
 
     /**
@@ -44,10 +45,10 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        $exists = Dish::where("name",$request["name"])->exists();
-        
+        $exists = Dish::where("name", $request["name"])->exists();
+
         $data = $request->all();
-        
+
         $file = $request->file('image');
         $extension = $file->getClientOriginalExtension();
         Storage::disk('public')->put($file->getFilename() . '.' . $extension,  File::get($file));
@@ -58,13 +59,13 @@ class DishController extends Controller
             $dish["price"] = $data["price"];
             $dish["visibility"] = $data["visibility"];
             $dish["image_url"] = $file->getFilename() . '.' . $extension;
-            
+
             $dish->getRestaurant()->associate(Auth::User()->getRestaurant->id);
             $dish->getGenre()->associate($data["genre"]);
             $dish->save();
 
             $item = "Hai creato un nuovo piatto con successo!";
-            return view("success",compact("item"));
+            return view("success", compact("item"));
         } else {
             $item = "Esiste già piatto con questo nome nel tuo ristorante";
             return view("failed", compact("item"));
@@ -80,7 +81,7 @@ class DishController extends Controller
     public function show($id)
     {
         $dish = Dish::find($id);
-        return view("test-dish-detail",compact("dish"));
+        return view("test-dish-detail", compact("dish"));
     }
 
     /**
@@ -93,7 +94,7 @@ class DishController extends Controller
     {
         $genres = Genre::all();
         $dish = Dish::find($id);
-        return view("test-dish-edit", compact("dish","genres"));
+        return view("test-dish-edit", compact("dish", "genres"));
     }
 
     /**
@@ -110,21 +111,21 @@ class DishController extends Controller
         Storage::disk('public')->put($file->getFilename() . '.' . $extension,  File::get($file));
         $dish = Dish::find($id);
         $data = $request->all();
-        
+
         $dish->update([
             "name" => $data["name"],
             "description" => $data["description"],
             "price" => $data["price"],
             "visibility" => $data["visibility"],
             "image_url" => $file->getFilename() . '.' . $extension,
-            
+
         ]);
         Dish::find($id)->getGenre()->associate($data["genre"])->save();
-        
-       
+
+
         $item = "ok hai modificato con successo";
 
-        return view("success",compact("item"));
+        return view("success", compact("item"));
     }
 
     /**

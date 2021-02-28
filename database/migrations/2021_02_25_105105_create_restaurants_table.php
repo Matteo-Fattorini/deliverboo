@@ -19,9 +19,9 @@ class CreateRestaurantsTable extends Migration
             $table->string("name", 128);
             $table->string("address", 512);
             $table->string("p_iva", 128);
-            $table->string("image_url",256);
+            $table->string("image_url", 256);
             $table->unsignedBigInteger("restaurateur_id");
-            $table->foreign("restaurateur_id")->references("id")->on("restaurateurs");
+            $table->foreign("restaurateur_id")->references("id")->on("restaurateurs")->onDelete('cascade');;
         });
     }
 
