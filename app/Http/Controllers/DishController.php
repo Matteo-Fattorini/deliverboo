@@ -135,6 +135,9 @@ class DishController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dish = Dish::find($id);
+        $dish->delete();
+        $item = "Hai cancellato l'elemento con successo!!";
+        return view("success", compact("item"));
     }
 }

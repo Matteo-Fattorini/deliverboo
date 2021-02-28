@@ -10,7 +10,7 @@
                 @foreach ($restaurants as $restaurant)
 
                     
-                    <div class="card mr-3 mb-3" style="width: 35rem;">
+                    <div  class="card mr-3 mb-3" style="width: 35rem;">
                         <div class="card-body">
                             <img width="50%" alt="{{ $restaurant->name }}" src="{{asset('/storage/' . $restaurant->image_url)}}">
                             

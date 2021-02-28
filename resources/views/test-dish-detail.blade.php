@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row ">
             <div class="col-10  mt-5 d-flex flex-wrap justify-content-center ">
-                <div class="card" style="width: 18rem;">
+                <div class="card"  style="width: 18rem;">
                     <img src="{{ asset('/storage/' . $dish->image_url) }}" class="card-img-top" alt="{{ $dish->name }}">
                     <div class="card-body">
                         <h5>{{ $dish->getGenre->name }}</h5>
@@ -23,8 +23,17 @@
                         @endif
 
                         @if($dish->getRestaurant->id == Auth::User()->getRestaurant->id)
-                        <a class=" mt-5 btn btn-danger"href="{{ route("dishes.edit",$dish->id) }}">MODIFICA PIATTO</a>
+                        <a class=" mt-5 btn btn-warning"href="{{ route("dishes.edit",$dish->id) }}">MODIFICA PIATTO</a>
                         @endif
+
+                        @if($dish->getRestaurant->id == Auth::User()->getRestaurant->id)
+                        <form method="POST" action="{{ route("dishes.destroy",$dish->id) }}">
+                        @csrf
+                        @method("DELETE")
+                        <button type="submit" class="btn btn-danger mt-2">ELIMINA</button>
+                        </form>
+                        @endif
+
                     </div>
                 </div>
             </div>
