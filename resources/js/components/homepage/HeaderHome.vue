@@ -21,6 +21,5 @@ header {
 }
 div {
   height: calc(100% - 100px);
-  border: 1px solid red;
 }
 </style>

@@ -22,10 +22,15 @@ window.Vue = require('vue');
 
 Vue.component('navcomponent', require('./components/NavComponent.vue').default);
 Vue.component('footercomponent', require('./components/FooterComponent.vue').default);
-Vue.component('headerhome', require('./components/HeaderHome.vue').default);
-Vue.component('resturantsectionhome', require('./components/ResturantSectionHome.vue').default);
-Vue.component('partnersectionhome', require('./components/PartnerSectionHome.vue').default);
-Vue.component('infosectionhome', require('./components/InfosectionHome.vue').default);
+
+//HOMEPAGE
+Vue.component('headerhome', require('./components/homepage/HeaderHome.vue').default);
+Vue.component('resturantsectionhome', require('./components/homepage/ResturantSectionHome.vue').default);
+Vue.component('partnersectionhome', require('./components/homepage/PartnerSectionHome.vue').default);
+Vue.component('infosectionhome', require('./components/homepage/InfosectionHome.vue').default);
+
+//SUCCESS PAGE
+Vue.component('successpage', require('./components/success/SuccessPage.vue').default);
 
 
 

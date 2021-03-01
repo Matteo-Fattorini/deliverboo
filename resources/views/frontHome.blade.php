@@ -4,6 +4,6 @@
     <NavComponent slot="navbar"></NavComponent>
 </HeaderHome>
 <ResturantSectionHome></ResturantSectionHome>
-<PartnerSectionHome></PartnerSectionHome>
+<PartnerSectionHome style="background-image: url({{asset('img/homepage/rider.jpg')}})"></PartnerSectionHome>
 <InfoSectionHome></InfoSectionHome>
 @endsection

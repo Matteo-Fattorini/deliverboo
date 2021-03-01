@@ -1,12 +1,12 @@
 <template>
   <section id="resturant-type">
     <div class="container mt-5 mb-5">
-      <div class="row">
+      <div class="row m-4">
         <div class="col-12">
           <h1>Seleziona una tipologia di ristorante</h1>
         </div>
       </div>
-      <div class="row">
+      <div class="row m-4">
         <div class="col-12">
           <ul>
             <li
@@ -20,25 +20,27 @@
           </ul>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div
-        class="col-6 d-flex justify-content-between align-items-center mb-3"
-        v-for="(resturant, index) in resturants"
-        :key="index"
-      >
+      <div class="row m-4">
         <div
-          class="d-flex justify-content-center align-items-center resturantImage"
+          class="col-6 d-flex justify-content-between align-items-center mb-3"
+          v-for="(resturant, index) in resturants"
+          :key="index"
         >
-          <img :src="resturant.imgUrl" alt="" />
+          <div class="d-flex justify-content-start align-items-center">
+            <div
+              class="d-flex justify-content-center align-items-center resturantImage m-3"
+            >
+              <img :src="resturant.imgUrl" alt="" />
+            </div>
+            <div
+              class="d-flex flex-column justify-content-center align-items-start"
+            >
+              <h4 class="m-0 p-0">{{ resturant.name }}</h4>
+              <p class="m-0 p-0">{{ resturant.indirizzo }}</p>
+            </div>
+          </div>
+          <img class="icon" src="img/homepage/icon/menu.png" alt="" />
         </div>
-        <div
-          class="d-flex flex-column justify-content-center align-items-start"
-        >
-          <h4 class="m-0 p-0">{{ resturant.name }}</h4>
-          <p class="m-0 p-0">{{ resturant.indirizzo }}</p>
-        </div>
-        <img class="icon" src="img/homepage/icon/menu.png" alt="" />
       </div>
     </div>
   </section>
@@ -136,7 +138,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 ul {
   display: flex;
   justify-content: space-between;
