@@ -13,4 +13,7 @@ class FrontEndTestController extends Controller
         return view('frontSuccess');
 
     }
+    public function register(){
+        return view('frontRegister');
+    }
 }

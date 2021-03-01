@@ -10989,3 +10989,11 @@ ul {
      object-position: 50% 50%;
 }
 
+.custom-input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0px;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+
