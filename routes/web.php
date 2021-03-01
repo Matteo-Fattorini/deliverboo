@@ -25,3 +25,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //ROTTE DI TEST PER IL FRONTEND
 Route::get('/frontHome', 'FrontEndTestController@home' )->name('homePage');
+Route::get('/menu', 'FrontEndTestController@home' )->name('restaurant-menu');

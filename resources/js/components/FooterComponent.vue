@@ -1,13 +1,13 @@
 <template>
   <footer>
-    <div class="container mt-5">
+    <div class="container  ">
       <div class="row">
         <div
-          class="col-3 d-flex flex-column justify-content-center align-items-start"
+          class="col-3 d-flex flex-column justify-content-start align-items-start  "
         >
-          <ul>
+          <ul >
             <li>
-              <h5>LAVORA CON NOI</h5>
+              <h6>LAVORA CON NOI</h6>
             </li>
             <li v-for="(link, index) in work" :key="index">
               <a href="#">{{ link }}</a>
@@ -34,7 +34,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-3 d-flex flex-column">
+        <div class="col-3 d-flex flex-column  justify-content-start align-items-start">
           <h6>SEGUICI SUI SOCIAL</h6>
         </div>
       </div>
@@ -56,4 +56,41 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    .container{
+     height: 500px;
+     width: 100vw;
+     
+     .row{
+        padding-top: 50px;
+        .col-3{
+          padding-left: 15px;
+          h6{
+              color: white;
+              font-weight:600;
+            }
+          ul{
+            margin: 0;
+            padding:0;
+             h6{
+                 color: white;
+                 font-weight:600;
+               }
+            li{
+                  }
+                  a{
+                    color: white;
+                    font-weight: 300;
+                    font-size:11pt ;
+                    line-height: 40px;
+                     &:hover{
+                     color:#0F84FF;
+                     text-decoration-line:none ;
+                     }
+              }
+          }
+        }
+     }
+
+     
+   }
 </style>
