@@ -22,6 +22,7 @@
 
                         @endif
 
+                        @if(Auth::check())
                         @if($dish->getRestaurant->id == Auth::User()->getRestaurant->id)
                         <a class=" mt-5 btn btn-warning"href="{{ route("dishes.edit",$dish->id) }}">MODIFICA PIATTO</a>
                         @endif
@@ -32,6 +33,7 @@
                         @method("DELETE")
                         <button type="submit" class="btn btn-danger mt-2">ELIMINA</button>
                         </form>
+                        @endif
                         @endif
 
                     </div>

@@ -18,8 +18,8 @@ class CreateRestaurantTypeTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger("restaurant_id");
             $table->unsignedBigInteger("type_id");
-            $table->foreign("type_id")->references("id")->on("types");
-            $table->foreign("restaurant_id")->references("id")->on("restaurants");
+            $table->foreign("type_id")->references("id")->on("types")->onDelete('cascade');
+            $table->foreign("restaurant_id")->references("id")->on("restaurants")->onDelete('cascade');
         });
     }
 

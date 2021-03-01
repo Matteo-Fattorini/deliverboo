@@ -19,7 +19,7 @@ Route::get('/home', "RestaurantController@index");
 
 Route::resource("restaurant", "RestaurantController");
 Route::resource("orders", "OrderController");
-Route::resource("dishes", "DishController")->middleware("auth");;
+Route::resource("dishes", "DishController");
 Auth::routes();
 
 

@@ -141,6 +141,8 @@ class RestaurantController extends Controller
 
         if (Auth::User()->getRestaurant->id == $id) {
             $restaurant = Restaurant::find($id);
+            $restaurant->getDishes()->delete();
+            // $restaurant->getRestaurateur()->delete();
             $restaurant->getTypes()->detach();
             $restaurant->delete();
             $item = "Hai rimosso con successo il tuo ristorante";

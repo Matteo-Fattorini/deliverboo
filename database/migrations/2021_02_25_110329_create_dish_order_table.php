@@ -17,9 +17,9 @@ class CreateDishOrderTable extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger("dish_id");
-            $table->foreign("dish_id")->references("id")->on("dishes");
+            $table->foreign("dish_id")->references("id")->on("dishes")->onDelete('cascade');
             $table->unsignedBigInteger("order_id");
-            $table->foreign("order_id")->references("id")->on("orders");
+            $table->foreign("order_id")->references("id")->on("orders")->onDelete('cascade');
         });
     }
 
