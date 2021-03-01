@@ -2174,29 +2174,83 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ResturantSectionHome",
   data: function data() {
     return {
-      categories: ["Vegan", "Pizza", "Burger", "Orientale", "Italiano", "Bbq", "Brasiliano", "Pesce", "Carne", "Fritto", "Dessert", "Pane"],
+      categories: [{
+        name: "Vegan",
+        imgUrl: "img/homepage/icon/Vegan.png"
+      }, {
+        name: "Pizza",
+        imgUrl: "img/homepage/icon/Pizza.png"
+      }, {
+        name: "Burger",
+        imgUrl: "img/homepage/icon/Burger.png"
+      }, {
+        name: "Orientale",
+        imgUrl: "img/homepage/icon/Orientale.png"
+      }, {
+        name: "Italiano",
+        imgUrl: "img/homepage/icon/Italiano.png"
+      }, {
+        name: "Bbq",
+        imgUrl: "img/homepage/icon/Bbq.png"
+      }, {
+        name: "Brasiliano",
+        imgUrl: "img/homepage/icon/Brasiliano.png"
+      }, {
+        name: "Pesce",
+        imgUrl: "img/homepage/icon/Pesce.png"
+      }, {
+        name: "Carne",
+        imgUrl: "img/homepage/icon/Carne.png"
+      }, {
+        name: "Fritto",
+        imgUrl: "img/homepage/icon/Fritto.png"
+      }, {
+        name: "Dessert",
+        imgUrl: "img/homepage/icon/Dessert.png"
+      }, {
+        name: "Pane",
+        imgUrl: "img/homepage/icon/Pane.png"
+      }],
       resturants: [{
         name: "Pizzeria da Gennaro",
-        indirizzo: "Via Europa, 23 Milano"
+        indirizzo: "Via Europa, 23 Milano",
+        imgUrl: "img/restourant/pizza-Bufalina.jpg"
       }, {
         name: "Pizzeria da Gennaro",
-        indirizzo: "Via Europa, 23 Milano"
+        indirizzo: "Via Europa, 23 Milano",
+        imgUrl: "img/restourant/pizza-Bufalina.jpg"
       }, {
         name: "Pizzeria da Gennaro",
-        indirizzo: "Via Europa, 23 Milano"
+        indirizzo: "Via Europa, 23 Milano",
+        imgUrl: "img/restourant/pizza-Bufalina.jpg"
       }, {
         name: "Pizzeria da Gennaro",
-        indirizzo: "Via Europa, 23 Milano"
+        indirizzo: "Via Europa, 23 Milano",
+        imgUrl: "img/restourant/pizza-Bufalina.jpg"
       }, {
         name: "Pizzeria da Gennaro",
-        indirizzo: "Via Europa, 23 Milano"
+        indirizzo: "Via Europa, 23 Milano",
+        imgUrl: "img/restourant/pizza-Bufalina.jpg"
       }, {
         name: "Pizzeria da Gennaro",
-        indirizzo: "Via Europa, 23 Milano"
+        indirizzo: "Via Europa, 23 Milano",
+        imgUrl: "img/restourant/pizza-Bufalina.jpg"
       }]
     };
   }
@@ -6688,7 +6742,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "header[data-v-6d34f892] {\n  height: 100vh;\n}\ndiv[data-v-6d34f892] {\n  height: calc(100% - 100px);\n  border: 1px solid red;\n}", ""]);
+exports.push([module.i, "header[data-v-6d34f892] {\n  height: 100vh;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\ndiv[data-v-6d34f892] {\n  height: calc(100% - 100px);\n  border: 1px solid red;\n}", ""]);
 
 // exports
 
@@ -6745,7 +6799,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nul[data-v-793e0a99] {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  margin: 0;\r\n  padding: 0;\r\n  width: 100%;\n}\r\n", ""]);
+exports.push([module.i, "\nul[data-v-793e0a99] {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  margin: 0;\r\n  padding: 0;\r\n  width: 100%;\n}\n.icon[data-v-793e0a99] {\r\n  height: 30px;\n}\r\n", ""]);
 
 // exports
 
@@ -38993,7 +39047,13 @@ var render = function() {
             "ul",
             _vm._l(_vm.categories, function(category, index) {
               return _c("li", { key: index, staticClass: "oval-button" }, [
-                _vm._v("\n            " + _vm._s(category) + "\n          ")
+                _c("img", {
+                  staticClass: "icon",
+                  attrs: { src: category.imgUrl, alt: "" }
+                }),
+                _vm._v(
+                  "\n            " + _vm._s(category.name) + "\n          "
+                )
               ])
             }),
             0
@@ -39011,16 +39071,39 @@ var render = function() {
           {
             key: index,
             staticClass:
-              "col-6 d-flex justify-content-around align-items-center"
+              "col-6 d-flex justify-content-between align-items-center mb-3"
           },
           [
-            _c("div", [
-              _c("h4", [_vm._v(_vm._s(resturant.name))]),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(resturant.indirizzo))])
-            ]),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "d-flex justify-content-center align-items-center resturantImage"
+              },
+              [_c("img", { attrs: { src: resturant.imgUrl, alt: "" } })]
+            ),
             _vm._v(" "),
-            _c("span", [_vm._v("Menù")])
+            _c(
+              "div",
+              {
+                staticClass:
+                  "d-flex flex-column justify-content-center align-items-start"
+              },
+              [
+                _c("h4", { staticClass: "m-0 p-0" }, [
+                  _vm._v(_vm._s(resturant.name))
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "m-0 p-0" }, [
+                  _vm._v(_vm._s(resturant.indirizzo))
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("img", {
+              staticClass: "icon",
+              attrs: { src: "img/homepage/icon/menu.png", alt: "" }
+            })
           ]
         )
       }),

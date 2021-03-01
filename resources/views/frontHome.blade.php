@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-<HeaderHome>
+<HeaderHome style="background-image: url({{asset('img/homepage/background_header.png')}})">
     <NavComponent slot="navbar"></NavComponent>
 </HeaderHome>
 <ResturantSectionHome></ResturantSectionHome>
