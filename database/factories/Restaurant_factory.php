@@ -9,7 +9,7 @@ use Faker\Generator as Faker;
 $factory->define(Restaurant::class, function (Faker $faker) {
     static $num = 1;
     return [
-        'name' => $faker->name,
+        'name' => $faker->word,
         'address' => $faker->address(),
         'p_iva' => $faker->iban("IT"),
         'restaurateur_id' => $num ++,

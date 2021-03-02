@@ -12,34 +12,7 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {{-- @foreach ($restaurants->getTypes as $type)
+{{-- @foreach ($restaurants->getTypes as $type)
     @dd($type->getRestaurants)
     
 @endforeach

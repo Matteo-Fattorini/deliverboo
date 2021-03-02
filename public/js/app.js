@@ -1971,9 +1971,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      query: '',
+      restaurants: []
+    };
+  },
+  methods: {
+    autoComplete: function autoComplete() {
+      var _this = this;
+
+      this.restaurants = [];
+      axios.get('/api/restaurants', {
+        params: {
+          query: this.query
+        }
+      }).then(function (response) {
+        _this.restaurants = response.data;
+      });
+    }
   }
 });
 
@@ -37631,32 +37654,75 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-8" },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.query,
+                expression: "query"
+              }
+            ],
+            staticClass: "mb-5",
+            attrs: { placeholder: "Cosa vuoi mangiare oggi?", type: "text" },
+            domProps: { value: _vm.query },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.query = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.autoComplete()
+                }
+              }
+            },
+            [_vm._v("CERCA")]
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.restaurants, function(item) {
+            return _c("div", { key: item.id, staticClass: "card mb-5" }, [
+              _c("h5", { staticClass: "card-title" }, [
+                _vm._v("Nome Ristorante: " + _vm._s(item.name))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-header" }, [
+                _vm._v("Indirizzo: " + _vm._s(item.address))
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                _vm._l(item.get_types, function(type) {
+                  return _c("div", { key: type.id, staticClass: "type" }, [
+                    _vm._v(_vm._s(type.name))
+                  ])
+                }),
+                0
               )
             ])
-          ])
-        ])
-      ])
+          })
+        ],
+        2
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49858,7 +49924,7 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  */
 
 var app = new Vue({
-  el: '#app'
+  el: "#app"
 });
 
 /***/ }),
