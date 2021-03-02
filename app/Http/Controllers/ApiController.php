@@ -16,19 +16,25 @@ class ApiController extends Controller
      */
     public function restaurants(Request $request)
     {
-        $ricerca = $request->input('query');
+        $query = $request->input('query');
+
+        $data = Restaurant::with("getTypes","getDishes","getRestaurateur")->whereHas('getTypes', function ($q) use ($query) {
+            $q->where('name', '=', $query);
+        })->get();
+
+       
 
         // $users = Restaurant::with(array('getTypes' => function ($query) use ($ricerca) {
 
         //     $query->where('name', "LIKE", "%" . $ricerca . "%");
         // }))->get();
 
-        $users = Restaurant::with("getTypes","getRestaurateur","getDishes")
-        ->get();
+        // $users = Restaurant::with("getTypes","getRestaurateur","getDishes")
+        // ->get();
 
        
 
-        return response()->json($users);
+        return response()->json($data);
     }
 
 
