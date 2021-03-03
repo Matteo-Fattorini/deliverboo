@@ -68,6 +68,12 @@ export default {
 footer {
   background-color: black;
   color: white;
+  .container{
+    height: 500px;
+  }
+  .row{
+    padding-top: 50px;
+  }
 
   a {
     color: #fff;
