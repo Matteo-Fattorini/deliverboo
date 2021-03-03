@@ -2211,22 +2211,19 @@ __webpack_require__.r(__webpack_exports__);
   name: 'TypeMenu',
   data: function data() {
     return {
-      ncounter: "0",
+      ncounter: 0,
       mincounter: 0,
       maxcounter: 10,
       categorySelect: '',
       dCategories: [{
         name: "Pizza",
-        imgUrl: "img/homepage/icon/Pizza.png",
-        activeClass: false
+        imgUrl: "img/homepage/icon/Pizza.png"
       }, {
         name: "Fritto",
-        imgUrl: "img/homepage/icon/Fritto.png",
-        activeClass: false
+        imgUrl: "img/homepage/icon/Fritto.png"
       }, {
         name: "Dessert",
-        imgUrl: "img/homepage/icon/Dessert.png",
-        activeClass: false
+        imgUrl: "img/homepage/icon/Dessert.png"
       }],
       dishes: [{
         name: "Margherita",
@@ -2301,22 +2298,11 @@ __webpack_require__.r(__webpack_exports__);
       if (direction === '+') {
         this.ncounter++;
       } else if (direction === '-') {
-        if (this.counter > this.mincounter) {
-          this.ncounter--;
-        }
+        this.ncounter--;
       }
     },
     selectCategory: function selectCategory(category) {
       return this.categorySelect = category, console.log(this.categorySelect);
-    },
-    changeClass: function changeClass(category, index) {
-      console.log('changeClass : ' + category + index);
-
-      if (category === false) {
-        category.activeClass = true;
-      } else {
-        category.activeClass = false;
-      }
     }
   }
 });
@@ -39380,12 +39366,13 @@ var render = function() {
                 "li",
                 {
                   key: index,
-                  staticClass: "notselected",
-                  class: "selected" ? category.activeClass : undefined,
+                  class: {
+                    selected: category.name === _vm.categorySelect,
+                    notselected: category.name != _vm.categorySelect
+                  },
                   on: {
                     click: function($event) {
-                      _vm.selectCategory(category.name),
-                        _vm.changeClass(category.activeClass, index)
+                      return _vm.selectCategory(category.name)
                     }
                   }
                 },

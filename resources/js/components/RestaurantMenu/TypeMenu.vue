@@ -12,8 +12,8 @@
                   <li 
                      v-for="( category, index) in dCategories"
                      :key='index'
-                     @click='selectCategory(category.name), changeClass(category.activeClass,index)'
-                     :class=" 'selected' ? category.activeClass :'' " class="notselected"> 
+                     @click='selectCategory(category.name)'
+                     :class="{'selected' : category.name === categorySelect, 'notselected': category.name != categorySelect}"> 
                      
                     <img class="icon" :src="category.imgUrl" alt="" />
                     <!-- ondragstart="return false" 
@@ -54,9 +54,9 @@
                         </div>
                         <div class="counter-box  d-flex   justify-content-end align-items-center ">
                             <div class="counter  d-flex justify-content-between ">
-                                <div class=" bt " v-on:click="changeCounter('-')" ><span>-</span></div>
+                                <div class=" bt " @click="changeCounter('-')" ><span>-</span></div>
                                 <div class=" "><span>{{ $data.ncounter}}</span></div>
-                                <div class=" bt " v-on:click="changeCounter('+')" ><span>+</span></div>
+                                <div class=" bt " @click="changeCounter('+')" ><span>+</span></div>
                             </div>
                         </div>
 
@@ -77,7 +77,7 @@ export default {
     name:'TypeMenu',
     data() {
     return {
-      ncounter: `0`,
+      ncounter: 0,
       mincounter: 0,
       maxcounter: 10,
       categorySelect:'',
@@ -85,17 +85,14 @@ export default {
           {
               name:"Pizza",
               imgUrl: "img/homepage/icon/Pizza.png",
-              activeClass: false,
           },
           {
               name: "Fritto",
               imgUrl: "img/homepage/icon/Fritto.png",
-              activeClass: false,
           },
           {
               name: "Dessert",
               imgUrl: "img/homepage/icon/Dessert.png",
-              activeClass: false,
           },
       ],
 
@@ -191,12 +188,9 @@ export default {
         
            console.log('changeCounter :' + direction);
           if(direction === '+'){
-              this.ncounter ++ ;
-             
+              this.ncounter++ ;     
              } else if(direction === '-'){
-               if(this.counter > this.mincounter){
-                  this.ncounter -- ;
-                }
+                  this.ncounter--;
           }
       },
 
@@ -204,15 +198,6 @@ export default {
                return this.categorySelect = category,
                console.log(this.categorySelect)
             },
-
-      changeClass(category,index){
-          console.log('changeClass : ' + category + index);
-           if(category === false){
-               category.activeClass = true;
-           }else{
-               category.activeClass = false;
-           }
-      },
          
 
 
