@@ -7,14 +7,14 @@
     <div class="container">
         <div class="row ">
             <div class="col-10  mt-5 d-flex flex-wrap justify-content-center ">
-                <form action="{{ route('dishes.update',$dish->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('dishes.update', $dish->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
                     <input type="hidden" name="_method" value="PUT">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome Piatto</label>
                         <input name="name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
-                    
+
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Descrizione</label>
@@ -62,6 +62,15 @@
 
 
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    @if ($errors->any())
+                        <div class="alert alert-danger mt-5">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </form>
             </div>
         </div>

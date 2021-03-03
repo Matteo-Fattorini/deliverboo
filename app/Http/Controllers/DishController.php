@@ -103,13 +103,13 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(dishValidate $request, $id)
     {
         $file = $request->file('image');
         $extension = $file->getClientOriginalExtension();
         Storage::disk('public')->put($file->getFilename() . '.' . $extension,  File::get($file));
         $dish = Dish::find($id);
-        $data = $request->all();
+        $data = $request->validated();
 
         $dish->update([
             "name" => $data["name"],

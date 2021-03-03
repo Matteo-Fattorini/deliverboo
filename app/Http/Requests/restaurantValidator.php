@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class dishValidate extends FormRequest
+class restaurantValidator extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,11 @@ class dishValidate extends FormRequest
     public function rules()
     {
         return [
-            "name" => "required|min:3|max:50|string",
-            "price" => "required|numeric",
-            "visibility" => "required",
-            "description" => "required|string|min:10|max:50",
+            "name" => "required|min:3|max:50",
+            "address" => "required|min:3|max:100",
+            "p_iva" => "required",
             "image" => 'image|mimes:jpeg,png,jpg,gif,svg,jfif|max:2048|required',
-            "genre" => "required"
-            
+            "types" => "required"
         ];
     }
 }

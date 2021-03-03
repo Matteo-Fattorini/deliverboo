@@ -7,49 +7,61 @@
     <div class="container">
         <div class="row ">
             <div class="col-10  mt-5 d-flex flex-wrap justify-content-center ">
-                <form action ="{{ route("restaurant.update",$restaurant->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('restaurant.update', $restaurant->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
-                    <input type="hidden" name="_method" value ="PUT">
+                    <input type="hidden" name="_method" value="PUT">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome Ristorante</label>
                         <input name="name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
-                       
+
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Indirizzo</label>
                         <input name="address" type="text" class="form-control" id="address" aria-describedby="emailHelp">
-                       
+
                     </div>
                     <div class="mb-3">
                         <label for="p_iva" class="form-label">Partita IVA</label>
                         <input name="p_iva" type="text" class="form-control" id="p_iva" aria-describedby="emailHelp">
                     </div>
-                    
 
-                    
+
+
                     <div class="mb-3">
                         <label for="image" class="form-label">image</label>
-                        <input name="image" type="file" class="form-control" id="image" >
-                        
+                        <input name="image" type="file" class="form-control" id="image">
+
                     </div>
 
-                    
+
                     <div class="mb-3 form-check">
-                        @foreach ($types as $type )
-                            
-                                    
-                                <div class="form-check ">
-                                    <input class="form-check-input" name="types[]" type="checkbox" value="{{ $type["id"] }}" id="type">
-                                    <label class="form-check-label" for="type">
+                        @foreach ($types as $type)
+
+
+                            <div class="form-check ">
+                                <input class="form-check-input" name="types[]" type="checkbox" value="{{ $type['id'] }}"
+                                    id="type">
+                                <label class="form-check-label" for="type">
                                     {{ $type['name'] }}
-                                    </label>
-                                </div>
-                                
+                                </label>
+                            </div>
+
                         @endforeach
-                        
+
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger mt-5">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </form>
             </div>
         </div>

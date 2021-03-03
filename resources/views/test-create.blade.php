@@ -7,23 +7,15 @@
     <div class="container">
         <div class="row ">
             <div class="col-10  mt-5 d-flex flex-wrap justify-content-center ">
-                      @if ($errors->any())
-                <div class="alert alert-danger">
-                        <ul>
-                    @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                    @endforeach
                 <form action="{{ route('restaurant.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method("PUT")
+                    @method("POST")
                     <input type="hidden" name="_method" value="POST">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome Ristorante</label>
-                        <input  name="name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
-                        
-                    
+                        <input name="name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
+
                     </div>
-                 
                     <div class="mb-3">
                         <label for="address" class="form-label">Indirizzo</label>
                         <input name="address" type="text" class="form-control" id="address" aria-describedby="emailHelp">
@@ -41,10 +33,6 @@
                         <input name="image" type="file" class="form-control" id="image">
 
                     </div>
-                
-        </ul>
-    </div>
-@endif
 
 
                     <div class="mb-3 form-check">
@@ -63,15 +51,19 @@
 
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                  
+                    @if ($errors->any())
+                        <div class="alert alert-danger mt-5">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </form>
             </div>
         </div>
     </div>
-
-
-
-
 
 
 

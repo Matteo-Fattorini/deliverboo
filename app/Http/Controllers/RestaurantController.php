@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Restaurant;
 use App\Dish;
 use App\Order;
+use App\Http\Requests\restaurantValidator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Restaurateur;
@@ -44,12 +45,12 @@ class RestaurantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(restaurantValidator $request)
     {
 
-
+        
         $exists = (Restaurant::where("restaurateur_id", Auth::User()->id)->exists());
-        $data = $request->all();
+        $data = $request->validated();
         $file = $request->file('image');
         $extension = $file->getClientOriginalExtension();
         Storage::disk('public')->put($file->getFilename() . '.' . $extension,  File::get($file));
@@ -105,14 +106,14 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(restaurantValidator $request, $id)
     {
         
         $file = $request->file('image');
         $extension = $file->getClientOriginalExtension();
         Storage::disk('public')->put($file->getFilename() . '.' . $extension,  File::get($file));
         $restaurant = Restaurant::find($id);
-        $data = $request->all();
+        $data = $request->validated();
 
         $restaurant->update([
             "name" => $data["name"],
