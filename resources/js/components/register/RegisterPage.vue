@@ -1,7 +1,7 @@
 <template>
   <header>
     <slot name="navbar"></slot>
-    <div class="container">
+    <div class="container p-5">
       <div class="row">
         <div class="col">
           <h1>Registrazione nuovo ristorante</h1>
@@ -72,10 +72,10 @@
         <div class="col-12" v-if="passwordHint">
           <p>La password deve rispettare i seguenti criteri:</p>
           <ul>
-            <li>Contenere minimo 8 caratteri.</li>
-            <li>Contenere una lettera maiuscola.</li>
-            <li>Contenere un numero.</li>
-            <li>Contenere un carattere speciale.</li>
+            <li :class="{'green' : password.length >= 8, 'red' : password.length < 8}">Contenere minimo 8 caratteri.</li>
+            <li :class="{'green' : password.match(/[A-Z]/g), 'red' : !password.match(/[A-Z]/g)}">Contenere una lettera maiuscola.</li>
+            <li :class="{'green' : password.match(/[0-9]/g), 'red' : !password.match(/[0-9]/g)}">Contenere un numero.</li>
+            <li :class="{'green' : password.match(/[!@#$%^&*+=-]/), 'red' : !password.match(/[!@#$%^&*+=-]/)}">Contenere un carattere speciale.</li>
           </ul>
         </div>
       </div>
@@ -186,10 +186,12 @@ export default {
 
 <style lang="scss" scoped>
 div.container {
-  height: 100vh;
+  height: auto;
 }
-ul {
-  list-style: initial;
-  list-style-type: disc;
+.green{
+  color: green;
+}
+.red{
+  color: red;
 }
 </style>

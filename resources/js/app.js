@@ -32,8 +32,6 @@ Vue.component('infosectionhome', require('./components/homepage/InfosectionHome.
 //SUCCESS PAGE
 Vue.component('successpage', require('./components/success/SuccessPage.vue').default);
 
-//REGISTER PAGE
-Vue.component('registerpage', require('./components/register/RegisterPage.vue').default);
 
 
 
