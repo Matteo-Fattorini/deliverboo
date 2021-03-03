@@ -30,6 +30,23 @@ Vue.use(VueRouter);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('navcomponent', require('./components/NavComponent.vue').default);
+Vue.component('footercomponent', require('./components/FooterComponent.vue').default);
+
+//HOMEPAGE
+Vue.component('headerhome', require('./components/homepage/HeaderHome.vue').default);
+Vue.component('resturantsectionhome', require('./components/homepage/ResturantSectionHome.vue').default);
+Vue.component('partnersectionhome', require('./components/homepage/PartnerSectionHome.vue').default);
+Vue.component('infosectionhome', require('./components/homepage/InfosectionHome.vue').default);
+
+//SUCCESS PAGE
+Vue.component('successpage', require('./components/success/SuccessPage.vue').default);
+
+
+
+Vue.component('inforestaurant', require('./components/RestaurantMenu/InfoRestaurant.vue').default);
+Vue.component('typemenu', require('./components/RestaurantMenu/TypeMenu.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

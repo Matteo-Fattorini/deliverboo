@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito%22);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
@@ -10942,5 +10942,133 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+.debug {
+  border: 1px solid black;
+}
+
+section#becomePartner a,
+nav li:last-child {
+  background-color: #b3f5fd;
+  border-radius: 20px;
+  padding: 10px;
+  color: #000;
+}
+
+nav li:last-child {
+  background-color: #000;
+  color: #fff;
+}
+
+.oval-button {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.oval-button .notselected {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  margin: 0 15px 0 0;
+  border: 1px solid #BBBBBB;
+  width: 70px;
+  height: 120px;
+  border-radius: 60px;
+}
+
+.oval-button .notselected:hover {
+  background-color: #b3f5fd;
+  border: 0;
+}
+
+.oval-button .notselected .icon {
+  height: 30px;
+  margin: 5px 0;
+}
+
+.oval-button .notselected span {
+  font-size: 14px;
+  font-weight: 900;
+  margin: 5px 0;
+}
+
+.oval-button .selected {
+  background-color: #b3f5fd;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  margin: 0 15px 0 0;
+  width: 70px;
+  height: 120px;
+  border-radius: 60px;
+}
+
+.oval-button .selected:hover {
+  background-color: #b3f5fd;
+  border: 0;
+}
+
+.oval-button .selected .icon {
+  height: 30px;
+  margin: 5px 0;
+}
+
+.oval-button .selected span {
+  font-size: 14px;
+  font-weight: 900;
+  margin: 5px 0;
+}
+
+ul {
+  list-style: none;
+}
+
+.resturantImage {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 100%;
+}
+
+.resturantImage img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 50%;
+     object-position: 50% 50%;
+}
+
+.listImage {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 100%;
+}
+
+.listImage img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 50%;
+     object-position: 50% 50%;
+}
+
+.custom-input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0px;
+  border-radius: 20px;
+  border: 1px solid black;
 }
 
