@@ -27,6 +27,7 @@ Vue.component('infosectionhome', require('./components/homepage/InfosectionHome.
 Vue.component('navcomponent', require('./components/NavComponent.vue').default);
 Vue.component('footercomponent', require('./components/FooterComponent.vue').default);
 Vue.component('inforestaurant', require('./components/RestaurantMenu/InfoRestaurant.vue').default);
+Vue.component('typemenu', require('./components/RestaurantMenu/TypeMenu.vue').default);
 
 
 /**

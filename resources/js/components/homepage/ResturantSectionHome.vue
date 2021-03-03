@@ -103,32 +103,32 @@ export default {
         {
           name: "Pizzeria da Gennaro",
           indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restourant/pizza-Bufalina.jpg",
+          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
         },
         {
           name: "Pizzeria da Gennaro",
           indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restourant/pizza-Bufalina.jpg",
+          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
         },
         {
           name: "Pizzeria da Gennaro",
           indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restourant/pizza-Bufalina.jpg",
+          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
         },
         {
           name: "Pizzeria da Gennaro",
           indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restourant/pizza-Bufalina.jpg",
+          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
         },
         {
           name: "Pizzeria da Gennaro",
           indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restourant/pizza-Bufalina.jpg",
+          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
         },
         {
           name: "Pizzeria da Gennaro",
           indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restourant/pizza-Bufalina.jpg",
+          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
         },
       ],
     };
