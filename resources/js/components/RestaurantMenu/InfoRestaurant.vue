@@ -44,9 +44,13 @@ export default {
             .col-8{
                 margin:0;
                 padding:0;
+                position: absolute;
+                top:120px;
+                right:0;
+                z-index:2;
                 .resturantImage {
-                    min-width: 250px;
-                    height: 250px;
+                    min-width: 450px;
+                    height: 450px;
                     overflow: hidden;
                     border-radius: 100%;
                     img {
