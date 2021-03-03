@@ -19,7 +19,7 @@ class ApiController extends Controller
         $query = $request->input('query');
 
         $data = Restaurant::with("getTypes","getDishes","getRestaurateur")->whereHas('getTypes', function ($q) use ($query) {
-            $q->where('name', '=', $query);
+            $q->where('name', 'LIKE', "%".$query."%");
         })->get();
 
        

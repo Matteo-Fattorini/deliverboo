@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Restaurant;
 use App\Dish;
 use App\Order;
+use App\Http\Requests\dishValidate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Restaurateur;
@@ -13,6 +14,8 @@ use App\Type;
 use App\Genre;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
+
 
 class DishController extends Controller
 {
@@ -43,33 +46,28 @@ class DishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(dishValidate $request)
     {
-        $exists = Dish::where("name", $request["name"])->exists();
-
-        $data = $request->all();
+        $data = $request->validated();
 
         $file = $request->file('image');
         $extension = $file->getClientOriginalExtension();
         Storage::disk('public')->put($file->getFilename() . '.' . $extension,  File::get($file));
-        if (!$exists) {
-            $dish = new Dish;
-            $dish["name"] = $data["name"];
-            $dish["description"] = $data["description"];
-            $dish["price"] = $data["price"];
-            $dish["visibility"] = $data["visibility"];
-            $dish["image_url"] = $file->getFilename() . '.' . $extension;
 
-            $dish->getRestaurant()->associate(Auth::User()->getRestaurant->id);
-            $dish->getGenre()->associate($data["genre"]);
-            $dish->save();
+        $dish = new Dish;
+        $dish["name"] = $data["name"];
+        $dish["description"] = $data["description"];
+        $dish["price"] = $data["price"];
+        $dish["visibility"] = $data["visibility"];
+        $dish["image_url"] = $file->getFilename() . '.' . $extension;
 
-            $item = "Hai creato un nuovo piatto con successo!";
-            return view("success", compact("item"));
-        } else {
-            $item = "Esiste già piatto con questo nome nel tuo ristorante";
-            return view("failed", compact("item"));
-        }
+        $dish->getRestaurant()->associate(Auth::User()->getRestaurant->id);
+        $dish->getGenre()->associate($data["genre"]);
+        $dish->save();
+        
+        $item = "Hai creato un nuovo piatto con successo!";
+        return route("success", compact("item"));
+        
     }
 
     /**
@@ -80,6 +78,7 @@ class DishController extends Controller
      */
     public function show($id)
     {
+
         $dish = Dish::find($id);
         return view("test-dish-detail", compact("dish"));
     }
