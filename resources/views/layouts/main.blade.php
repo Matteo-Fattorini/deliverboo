@@ -12,7 +12,7 @@
         <main>
             @yield('content')
         </main>
-        <FooterComponent></FooterComponent>
+        <FooterComponent style="background-color: #000"></FooterComponent>
     </div>
     <script src="{{asset('js/app.js')}}"></script>
 </body>

@@ -5,7 +5,7 @@
         <div class="col-3">
           <ul>
             <li>
-              <h5>LAVORA CON NOI</h5>
+              <h6>LAVORA CON NOI</h6>
             </li>
             <li v-for="(link, index) in work" :key="index">
               <a href="#">{{ link }}</a>
@@ -66,8 +66,16 @@ export default {
 
 <style lang="scss" scoped>
 footer {
+
   background-color: black;
   color: white;
+  .container{
+    height: 500px;
+  }
+
+  .row{
+    padding-top: 50px;
+  }
 
   a {
     color: #fff;

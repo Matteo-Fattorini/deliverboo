@@ -27,5 +27,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/frontHome', 'FrontEndTestController@home' )->name('homePage');
 Route::get('/frontSuccess', 'FrontEndTestController@success')->name('success');
 Route::get('/frontRegister', 'FrontEndTestController@register')->name('register');
-
+Route::get('/menu', 'FrontEndTestController@menu' )->name('restaurant-menu');
 

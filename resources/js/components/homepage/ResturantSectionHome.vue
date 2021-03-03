@@ -8,9 +8,9 @@
       </div>
       <div class="row m-4">
         <div class="col-12">
-          <ul>
+          <ul class="oval-button">
             <li
-              class="oval-button"
+              class="notselected"
               v-for="(category, index) in categories"
               :key="index"
             >
@@ -28,7 +28,7 @@
         >
           <div class="d-flex justify-content-start align-items-center">
             <div
-              class="d-flex justify-content-center align-items-center resturantImage m-3"
+              class="d-flex justify-content-center align-items-center listImage m-3"
             >
               <img :src="resturant.imgUrl" alt="" />
             </div>
@@ -105,32 +105,32 @@ export default {
         {
           name: "Pizzeria da Gennaro",
           indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restourant/pizza-Bufalina.jpg",
+          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
         },
         {
           name: "Pizzeria da Gennaro",
           indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restourant/pizza-Bufalina.jpg",
+          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
         },
         {
           name: "Pizzeria da Gennaro",
           indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restourant/pizza-Bufalina.jpg",
+          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
         },
         {
           name: "Pizzeria da Gennaro",
           indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restourant/pizza-Bufalina.jpg",
+          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
         },
         {
           name: "Pizzeria da Gennaro",
           indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restourant/pizza-Bufalina.jpg",
+          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
         },
         {
           name: "Pizzeria da Gennaro",
           indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restourant/pizza-Bufalina.jpg",
+          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
         },
       ],
     };

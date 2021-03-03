@@ -16,4 +16,8 @@ class FrontEndTestController extends Controller
     public function register(){
         return view('frontRegister');
     }
+    public function menu(){
+        return view('menu');
+    }
 }
+
