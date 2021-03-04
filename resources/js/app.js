@@ -8,14 +8,9 @@
 require('./bootstrap');
 
 
-import VueRouter from "vue-router";
-
 
 
 window.Vue = require('vue');
-Vue.use(VueRouter);
-
-
 
 
 /**
