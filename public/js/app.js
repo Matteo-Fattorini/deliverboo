@@ -1955,6 +1955,19 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var _methods;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1996,22 +2009,58 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       query: '',
-      restaurants: []
+      genres: [],
+      restaurants: [],
+      checked: []
     };
   },
-  methods: {
-    autoComplete: function autoComplete() {
+  methods: (_methods = {
+    getRestaurants: function getRestaurants() {
       var _this = this;
 
+      var query = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.query;
       this.restaurants = [];
       axios.get('/api/restaurants', {
         params: {
-          query: this.query
+          query: query
         }
       }).then(function (response) {
         _this.restaurants = response.data;
       });
     }
+  }, _defineProperty(_methods, "getRestaurants", function getRestaurants() {
+    var _this2 = this;
+
+    var query = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.query;
+    this.restaurants = [];
+    axios.get('/api/restaurants', {
+      params: {
+        query: query
+      }
+    }).then(function (response) {
+      _this2.restaurants = response.data;
+    });
+  }), _defineProperty(_methods, "check", function check(e) {
+    var _this3 = this;
+
+    this.restaurants = [];
+    axios.get('/api/checked', {
+      params: {
+        query: this.checked
+      }
+    }).then(function (response) {
+      _this3.restaurants = response.data;
+    });
+  }), _defineProperty(_methods, "getGenres", function getGenres() {
+    var _this4 = this;
+
+    this.genres = [];
+    axios.get('/api/genres').then(function (response) {
+      _this4.genres = response.data;
+    });
+  }), _methods),
+  mounted: function mounted() {
+    this.getGenres();
   }
 });
 
@@ -39320,6 +39369,15 @@ var render = function() {
             attrs: { placeholder: "Cosa vuoi mangiare oggi?", type: "text" },
             domProps: { value: _vm.query },
             on: {
+              keydown: function($event) {
+                if (
+                  !$event.type.indexOf("key") &&
+                  _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                ) {
+                  return null
+                }
+                return _vm.getRestaurants()
+              },
               input: function($event) {
                 if ($event.target.composing) {
                   return
@@ -39330,15 +39388,56 @@ var render = function() {
           }),
           _vm._v(" "),
           _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.autoComplete()
-                }
-              }
-            },
-            [_vm._v("CERCA")]
+            "ul",
+            _vm._l(_vm.genres, function(mainCat) {
+              return _c("li", { key: mainCat.id }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checked,
+                      expression: "checked"
+                    }
+                  ],
+                  attrs: { type: "checkbox", id: "mainCat.merchantId" },
+                  domProps: {
+                    value: mainCat.name,
+                    checked: Array.isArray(_vm.checked)
+                      ? _vm._i(_vm.checked, mainCat.name) > -1
+                      : _vm.checked
+                  },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$a = _vm.checked,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = mainCat.name,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.checked = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.checked = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.checked = $$c
+                        }
+                      },
+                      function($event) {
+                        return _vm.check($event)
+                      }
+                    ]
+                  }
+                }),
+                _vm._v(" " + _vm._s(mainCat.name) + "\n\n                ")
+              ])
+            }),
+            0
           ),
           _vm._v(" "),
           _vm._l(_vm.restaurants, function(item) {

@@ -27,9 +27,8 @@ Auth::routes();
 
 
 
-//ROTTE DI TEST PER IL FRONTEND
-// Route::get('/frontHome', 'FrontEndTestController@home' )->name('homePage');
-// Route::get('/frontSuccess', 'FrontEndTestController@success')->name('success');
-// Route::get('/frontRegister', 'FrontEndTestController@register')->name('register');
-// Route::get('/menu', 'FrontEndTestController@menu' )->name('restaurant-menu');
+Route::get('/frontHome', 'FrontEndTestController@home' )->name('homePage');
+Route::get('/frontSuccess', 'FrontEndTestController@success')->name('success');
+Route::get('/frontRegister', 'FrontEndTestController@register')->name('register');
+Route::get('/menu', 'FrontEndTestController@menu' )->name('restaurant-menu');
 

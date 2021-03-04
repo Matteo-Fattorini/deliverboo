@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Restaurant;
 use Illuminate\Support\Facades\DB;
 use App\Type;
+use App\Genre;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -17,24 +18,29 @@ class ApiController extends Controller
     public function restaurants(Request $request)
     {
         $query = $request->input('query');
-
         $data = Restaurant::with("getTypes","getDishes","getRestaurateur")->whereHas('getTypes', function ($q) use ($query) {
-            $q->where('name', 'LIKE', "%".$query."%");
+            $q->where('name', 'LIKE', '%' . $query . '%');
         })->get();
 
-       
+        return response()->json($data);
+    }
 
-        // $users = Restaurant::with(array('getTypes' => function ($query) use ($ricerca) {
 
-        //     $query->where('name', "LIKE", "%" . $ricerca . "%");
-        // }))->get();
-
-        // $users = Restaurant::with("getTypes","getRestaurateur","getDishes")
-        // ->get();
-
-       
+    public function checked(Request $request)
+    {
+        $query = $request->input('query');
+               
+        
+        $data = Restaurant::with("getTypes","getDishes","getRestaurateur")->whereHas('getTypes', function ($q) use ($query) {
+            $q->whereIn('name',$query );
+        })->get();
 
         return response()->json($data);
+    }
+
+    public function genres(){
+        $genres  = Type::all();
+        return response()->json($genres);
     }
 
 
