@@ -27,6 +27,8 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('navcomponent', require('./components/NavComponent.vue').default);
 Vue.component('footercomponent', require('./components/FooterComponent.vue').default);
+Vue.component('homepage', require('./components/homepage/Homepage.vue').default);
+
 
 //HOMEPAGE
 Vue.component('headerhome', require('./components/homepage/HeaderHome.vue').default);

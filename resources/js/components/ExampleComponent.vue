@@ -52,6 +52,7 @@
                     axios.get('/api/restaurants', {params: {query:this.query}}).then(response => {
                         this.restaurants = response.data;
                     });
+                    console.log(this.restaurants)
             },
 
 
