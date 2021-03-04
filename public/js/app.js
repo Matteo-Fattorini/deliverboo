@@ -2180,6 +2180,24 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2254,80 +2272,125 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var dishes = [{
+  name: "Margherita",
+  description: "Pomodoro, Mozzarella, basilico, olio EVO",
+  price: 6,
+  imgUrl: "img/restaurant/pizza-margherita.jpg",
+  category: "Pizza"
+}, {
+  name: "Margherita",
+  description: "Pomodoro, Mozzarella, basilico, olio EVO",
+  price: 6,
+  imgUrl: "img/restaurant/pizza-margherita.jpg",
+  category: "Pizza"
+}, {
+  name: "Margherita",
+  description: "Pomodoro, Mozzarella, basilico, olio EVO",
+  price: 6,
+  imgUrl: "img/restaurant/pizza-margherita.jpg",
+  category: "Pizza"
+}, {
+  name: "Fritto Misto",
+  description: "Arancino, Suppli, Frittatina di pasta, Verdure in pastella, pane fritto",
+  price: 11,
+  imgUrl: "img/restaurant/fritto-misto.jpg",
+  category: "Fritto"
+}, {
+  name: "Fritto Misto",
+  description: "Arancino, Suppli, Frittatina di pasta, Verdure in pastella, pane fritto",
+  price: 11,
+  imgUrl: "img/restaurant/fritto-misto.jpg",
+  category: "Fritto"
+}, {
+  name: "Fritto Misto",
+  description: "Arancino, Suppli, Frittatina di pasta, Verdure in pastella, pane fritto",
+  price: 11,
+  imgUrl: "img/restaurant/fritto-misto.jpg",
+  category: "Fritto"
+}, {
+  name: "Tiramisù",
+  description: "Savoiardi, Crema al mascarpone, Caffè, Cacao",
+  price: 5,
+  imgUrl: "img/restaurant/dessert-tiramisu.jpg",
+  category: "Dessert"
+}, {
+  name: "Tiramisù",
+  description: "Savoiardi, Crema al mascarpone, Caffè, Cacao",
+  price: 5,
+  imgUrl: "img/restaurant/dessert-tiramisu.jpg",
+  category: "Dessert"
+}, {
+  name: "Tiramisù",
+  description: "Savoiardi, Crema al mascarpone, Caffè, Cacao",
+  price: 5,
+  imgUrl: "img/restaurant/dessert-tiramisu.jpg",
+  category: "Dessert"
+}];
+var dishesCopy = dishes.map(function (element) {
+  var elementUpgrade = _objectSpread(_objectSpread({}, element), {}, {
+    counter: 0
+  });
+
+  return elementUpgrade;
+});
+console.log(dishesCopy);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'TypeMenu',
   data: function data() {
-    return {
-      ncounter: 0,
-      mincounter: 0,
-      maxcounter: 10,
+    var _ref;
+
+    return _ref = {
+      cartActive: false,
       categorySelect: '',
-      dCategories: [{
-        name: "Pizza",
-        imgUrl: "img/homepage/icon/Pizza.png"
-      }, {
-        name: "Fritto",
-        imgUrl: "img/homepage/icon/Fritto.png"
-      }, {
-        name: "Dessert",
-        imgUrl: "img/homepage/icon/Dessert.png"
-      }],
-      dishes: [{
-        name: "Margherita",
-        description: "Pomodoro, Mozzarella, basilico, olio EVO",
-        price: 6,
-        imgUrl: "img/restaurant/pizza-margherita.jpg",
-        category: "Pizza"
-      }, {
-        name: "Margherita",
-        description: "Pomodoro, Mozzarella, basilico, olio EVO",
-        price: 6,
-        imgUrl: "img/restaurant/pizza-margherita.jpg",
-        category: "Pizza"
-      }, {
-        name: "Margherita",
-        description: "Pomodoro, Mozzarella, basilico, olio EVO",
-        price: 6,
-        imgUrl: "img/restaurant/pizza-margherita.jpg",
-        category: "Pizza"
-      }, {
-        name: "Fritto Misto",
-        description: "Arancino, Suppli, Frittatina di pasta, Verdure in pastella, pane fritto",
-        price: 11,
-        imgUrl: "img/restaurant/fritto-misto.jpg",
-        category: "Fritto"
-      }, {
-        name: "Fritto Misto",
-        description: "Arancino, Suppli, Frittatina di pasta, Verdure in pastella, pane fritto",
-        price: 11,
-        imgUrl: "img/restaurant/fritto-misto.jpg",
-        category: "Fritto"
-      }, {
-        name: "Fritto Misto",
-        description: "Arancino, Suppli, Frittatina di pasta, Verdure in pastella, pane fritto",
-        price: 11,
-        imgUrl: "img/restaurant/fritto-misto.jpg",
-        category: "Fritto"
-      }, {
-        name: "Tiramisù",
-        description: "Savoiardi, Crema al mascarpone, Caffè, Cacao",
-        price: 5,
-        imgUrl: "img/restaurant/dessert-tiramisu.jpg",
-        category: "Dessert"
-      }, {
-        name: "Tiramisù",
-        description: "Savoiardi, Crema al mascarpone, Caffè, Cacao",
-        price: 5,
-        imgUrl: "img/restaurant/dessert-tiramisu.jpg",
-        category: "Dessert"
-      }, {
-        name: "Tiramisù",
-        description: "Savoiardi, Crema al mascarpone, Caffè, Cacao",
-        price: 5,
-        imgUrl: "img/restaurant/dessert-tiramisu.jpg",
-        category: "Dessert"
-      }]
-    };
+      nCounter: [],
+      cart: []
+    }, _defineProperty(_ref, "cartActive", false), _defineProperty(_ref, "dishes", _toConsumableArray(dishesCopy)), _defineProperty(_ref, "dCategories", [{
+      name: "Pizza",
+      imgUrl: "img/homepage/icon/Pizza.png"
+    }, {
+      name: "Fritto",
+      imgUrl: "img/homepage/icon/Fritto.png"
+    }, {
+      name: "Dessert",
+      imgUrl: "img/homepage/icon/Dessert.png"
+    }]), _ref;
   },
   computed: {
     filtered: function filtered() {
@@ -2339,17 +2402,50 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    changeCounter: function changeCounter(direction) {
-      console.log('changeCounter :' + direction);
-
-      if (direction === '+') {
-        this.ncounter++;
-      } else if (direction === '-') {
-        this.ncounter--;
-      }
+    changeCounter: function changeCounter(direction, index) {
+      console.log(direction + ' ' + index);
+      this.dishes.forEach(function (dish, i) {
+        if (direction == '+' && i === index) {
+          dish.counter++;
+        } else if (direction == '-' && i === index) {
+          if (dish.counter === 0) {
+            dish.counter = 0;
+          } else {
+            dish.counter--;
+          }
+        }
+      });
     },
     selectCategory: function selectCategory(category) {
-      return this.categorySelect = category, console.log(this.categorySelect);
+      return this.categorySelect = category, console.log('Cosa ci fa qui? Hai voglia di ' + this.categorySelect + ' ? Scegli Deliveboo ;)');
+    },
+    putInCart: function putInCart(index) {
+      var _this2 = this;
+
+      console.log(this.cart);
+      console.log(index);
+      this.dishes.forEach(function (dish, i) {
+        if (index === i) {
+          _this2.cart.push({
+            active: true,
+            quantity: dish.counter,
+            dishName: dish.name,
+            dishImgUrl: dish.imgUrl,
+            dishPrice: dish.price,
+            totalPrice: dish.price * dish.counter
+          });
+        } else {//carrello vuoto
+        }
+      });
+    },
+    activeCart: function activeCart() {
+      console.log(this.cartActive);
+
+      if (this.cart.length != 0) {
+        this.cartActive = true;
+      } else {
+        this.cartActive = false;
+      }
     }
   }
 });
@@ -7104,7 +7200,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".container[data-v-007e6d83] {\n  margin-top: 30px;\n  margin-bottom: 50px;\n}\n.container .row .col-8[data-v-007e6d83] {\n  margin: 0;\n  padding: 0;\n  position: absolute;\n  top: 120px;\n  right: 0;\n  z-index: 2;\n}\n.container .row .col-8 .resturantImage[data-v-007e6d83] {\n  min-width: 450px;\n  height: 450px;\n  overflow: hidden;\n  border-radius: 100%;\n}\n.container .row .col-8 .resturantImage img[data-v-007e6d83] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: 50% 50%;\n     object-position: 50% 50%;\n}\n.container .row .col-4 .rst-info[data-v-007e6d83] {\n  margin: 20px 0 0 20px;\n  padding: 0;\n}\n.container .row .col-4 .rst-info h1[data-v-007e6d83] {\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n.container .row .col-4 .rst-info h5[data-v-007e6d83] {\n  font-size: 18px;\n  font-weight: 400;\n}\n.container .row .col-4 .rst-info .dist[data-v-007e6d83] {\n  margin: 30px 0;\n}", ""]);
+exports.push([module.i, ".container[data-v-007e6d83] {\n  margin-top: 30px;\n  margin-bottom: 50px;\n}\n.container .row .col-8[data-v-007e6d83] {\n  margin: 0;\n  padding: 0;\n  position: absolute;\n  top: 140px;\n  right: 0;\n  z-index: 2;\n}\n.container .row .col-8 .resturantImage[data-v-007e6d83] {\n  min-width: 450px;\n  height: 450px;\n  overflow: hidden;\n  border-radius: 100%;\n  border: 6px solid black;\n}\n.container .row .col-8 .resturantImage img[data-v-007e6d83] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: 50% 50%;\n     object-position: 50% 50%;\n}\n.container .row .col-4 .rst-info[data-v-007e6d83] {\n  margin: 20px 0 0 20px;\n  padding: 0;\n}\n.container .row .col-4 .rst-info h1[data-v-007e6d83] {\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n.container .row .col-4 .rst-info h5[data-v-007e6d83] {\n  font-size: 18px;\n  font-weight: 400;\n}\n.container .row .col-4 .rst-info .dist[data-v-007e6d83] {\n  margin: 30px 0;\n}", ""]);
 
 // exports
 
@@ -7123,7 +7219,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".restaurant[data-v-2478efb1] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n.restaurant .row .col-12 h1[data-v-2478efb1] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n.menu[data-v-2478efb1] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n.menu .row .col-12[data-v-2478efb1] {\n  margin: 20px 0px;\n}\n.menu .row .col-12 .dish[data-v-2478efb1] {\n  padding: 20px 0;\n}\n.menu .row .col-12 .dish .dishImage[data-v-2478efb1] {\n  width: 10%;\n}\n.menu .row .col-12 .dish .dishtext[data-v-2478efb1] {\n  margin: 0 15px;\n  width: 30%;\n}\n.menu .row .col-12 .dish .dishtext h3[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 700;\n  margin-bottom: 0;\n}\n.menu .row .col-12 .dish .dishtext h5[data-v-2478efb1] {\n  font-size: 15px;\n  font-weight: 400;\n  color: #5F5C5C;\n}\n.menu .row .col-12 .dish .price[data-v-2478efb1] {\n  width: 15%;\n  margin: 0 15px;\n}\n.menu .row .col-12 .dish .price h1[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 900;\n  color: #2DCCBC;\n}\n.menu .row .col-12 .dish .counter-box[data-v-2478efb1] {\n  margin: 0 50px;\n  height: 40px;\n  width: 25%;\n  border: 1px solid black;\n  border-radius: 30px;\n}\n.menu .row .col-12 .dish .counter-box[data-v-2478efb1]:hover {\n  border: none;\n}\n.menu .row .col-12 .dish .counter-box .counter[data-v-2478efb1] {\n  width: 100%;\n}\n.menu .row .col-12 .dish .counter-box .counter div[data-v-2478efb1] {\n  width: 70px;\n  text-align: center;\n}\n.menu .row .col-12 .dish .counter-box .counter div span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n.menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n.menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n.menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n.menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n.menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n.menu .row .col-12 .dish .btn-black[data-v-2478efb1] {\n  background-color: black;\n  height: 40px;\n  width: 20%;\n  border-radius: 30px;\n}\n.menu .row .col-12 .dish .btn-black a[data-v-2478efb1] {\n  color: white;\n}", ""]);
+exports.push([module.i, ".restaurant[data-v-2478efb1] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n.restaurant .row .col-12 h1[data-v-2478efb1] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n.menu[data-v-2478efb1] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n.menu .row .col-12[data-v-2478efb1] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n.menu .row .col-12 .dish[data-v-2478efb1] {\n  padding: 20px 0;\n}\n.menu .row .col-12 .dish .dishinfo[data-v-2478efb1] {\n  width: 50%;\n}\n.menu .row .col-12 .dish .dishinfo .dishImg[data-v-2478efb1] {\n  width: 100px;\n  height: 100px;\n}\n.menu .row .col-12 .dish .dishinfo .dishtext[data-v-2478efb1] {\n  margin: 0 15px;\n}\n.menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 700;\n  margin-bottom: 0;\n}\n.menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2478efb1] {\n  font-size: 15px;\n  font-weight: 400;\n  color: #5F5C5C;\n}\n.menu .row .col-12 .dish .price[data-v-2478efb1] {\n  width: 10%;\n  margin: 0 15px;\n}\n.menu .row .col-12 .dish .price h1[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 900;\n  color: #2DCCBC;\n}\n.menu .row .col-12 .dish .counter-box[data-v-2478efb1] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  border: 1px solid black;\n  border-radius: 30px;\n}\n.menu .row .col-12 .dish .counter-box[data-v-2478efb1]:hover {\n  border: none;\n}\n.menu .row .col-12 .dish .counter-box .counter[data-v-2478efb1] {\n  width: 100%;\n}\n.menu .row .col-12 .dish .counter-box .counter div[data-v-2478efb1] {\n  width: 70px;\n  text-align: center;\n}\n.menu .row .col-12 .dish .counter-box .counter div span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n.menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n.menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n.menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n.menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n.menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n.menu .row .col-12 .dish .btn-black[data-v-2478efb1] {\n  background-color: black;\n  height: 40px;\n  width: 20%;\n  border-radius: 30px;\n}\n.menu .row .col-12 .dish .btn-black span[data-v-2478efb1] {\n  color: white;\n}\n.menu .row .col-12 .dish .btn-black span[data-v-2478efb1]:hover {\n  text-decoration: none;\n}", ""]);
 
 // exports
 
@@ -39698,49 +39794,221 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { attrs: { id: "menu" } }, [
-    _c("div", { staticClass: "container restaurant" }, [
-      _c("div", { staticClass: "row" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-12" }, [
-          _c(
-            "ul",
-            { staticClass: "oval-button " },
-            _vm._l(_vm.dCategories, function(category, index) {
-              return _c(
-                "li",
-                {
-                  key: index,
-                  class: {
-                    selected: category.name === _vm.categorySelect,
-                    notselected: category.name != _vm.categorySelect
-                  },
-                  on: {
-                    click: function($event) {
-                      return _vm.selectCategory(category.name)
+  return _c(
+    "section",
+    { attrs: { id: "menu" } },
+    [
+      _c("div", { staticClass: "container restaurant" }, [
+        _c("div", { staticClass: "row" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12" }, [
+            _c(
+              "ul",
+              { staticClass: "oval-button " },
+              _vm._l(_vm.dCategories, function(category, index) {
+                return _c(
+                  "li",
+                  {
+                    key: index,
+                    class: {
+                      selected: category.name === _vm.categorySelect,
+                      notselected: category.name != _vm.categorySelect
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.selectCategory(category.name)
+                      }
                     }
-                  }
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "icon",
+                      attrs: { src: category.imgUrl, alt: "" }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        attrs: {
+                          ondragstart: "return false",
+                          onselectstart: "return false"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                   " +
+                            _vm._s(category.name) +
+                            "\n                  "
+                        )
+                      ]
+                    )
+                  ]
+                )
+              }),
+              0
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "container menu " }, [
+        _c("div", { staticClass: "row " }, [
+          _vm.$data.categoryDishes == true
+            ? _c("div", { staticClass: "col-12" }, [
+                _c("h2", [_vm._v("Pizza")])
+              ])
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            { staticClass: "col-12 p-0" },
+            _vm._l(_vm.filtered, function(dish, i) {
+              return _c(
+                "div",
+                {
+                  key: i,
+                  staticClass:
+                    "dish d-flex  justify-content-start align-items-center "
                 },
                 [
-                  _c("img", {
-                    staticClass: "icon",
-                    attrs: { src: category.imgUrl, alt: "" }
-                  }),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "dishinfo d-flex justify-content-start align-items-center"
+                    },
+                    [
+                      _c("div", { staticClass: "dishImg" }, [
+                        _c("div", { staticClass: "listImage dishImg " }, [
+                          _c("img", { attrs: { src: dish.imgUrl, alt: "" } })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "dishtext" }, [
+                        _c("h3", [_vm._v(_vm._s(dish.name))]),
+                        _vm._v(" "),
+                        _c("h5", [_vm._v(_vm._s(dish.description))])
+                      ])
+                    ]
+                  ),
                   _vm._v(" "),
                   _c(
-                    "span",
+                    "div",
                     {
-                      attrs: {
-                        ondragstart: "return false",
-                        onselectstart: "return false"
+                      staticClass:
+                        " price d-flex justify-content-end align-items-center"
+                    },
+                    [_c("h1", [_vm._v(_vm._s(dish.price) + "€")])]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "counter-box  d-flex   justify-content-end align-items-center "
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "counter  d-flex justify-content-between "
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass: " bt ",
+                              on: {
+                                click: function($event) {
+                                  return _vm.changeCounter("-", i)
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "span",
+                                {
+                                  attrs: {
+                                    ondragstart: "return false",
+                                    onselectstart: "return false"
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                        -\n                                  "
+                                  )
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: " " }, [
+                            _c("span", [
+                              _vm._v(" " + _vm._s(dish.counter) + " ")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: " bt ",
+                              on: {
+                                click: function($event) {
+                                  return _vm.changeCounter("+", i)
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "span",
+                                {
+                                  attrs: {
+                                    ondragstart: "return false",
+                                    onselectstart: "return false"
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                        +\n                                  "
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        " btn-black d-flex justify-content-center align-items-center",
+                      on: {
+                        click: function($event) {
+                          _vm.putInCart(i), _vm.activeCart()
+                        }
                       }
                     },
                     [
-                      _vm._v(
-                        "\n                   " +
-                          _vm._s(category.name) +
-                          "\n                  "
+                      _c(
+                        "span",
+                        {
+                          attrs: {
+                            ondragstart: "return false",
+                            onselectstart: "return false"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                           ORDINA\n                          "
+                          )
+                        ]
                       )
                     ]
                   )
@@ -39750,107 +40018,28 @@ var render = function() {
             0
           )
         ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "container menu " }, [
-      _c("div", { staticClass: "row " }, [
-        _vm.$data.categoryDishes == true
-          ? _c("div", { staticClass: "col-12" }, [_c("h2", [_vm._v("Pizza")])])
-          : _vm._e()
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c(
+      _vm._l(_vm.cart, function(order, ind) {
+        return _c(
           "div",
-          { staticClass: "col-12 p-0" },
-          _vm._l(_vm.filtered, function(dish, i) {
-            return _c(
-              "div",
-              {
-                key: i,
-                staticClass:
-                  "dish d-flex  justify-content-start align-items-center"
-              },
-              [
-                _c("div", { staticClass: "listImage" }, [
-                  _c("img", {
-                    staticClass: " img ",
-                    attrs: { src: dish.imgUrl, alt: "" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "dishtext" }, [
-                  _c("h3", [_vm._v(_vm._s(dish.name))]),
-                  _vm._v(" "),
-                  _c("h5", [_vm._v(_vm._s(dish.description))])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      " price d-flex justify-content-end align-items-center"
-                  },
-                  [_c("h1", [_vm._v(_vm._s(dish.price) + "€")])]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "counter-box  d-flex   justify-content-end align-items-center "
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "counter  d-flex justify-content-between "
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: " bt ",
-                            on: {
-                              click: function($event) {
-                                return _vm.changeCounter("-")
-                              }
-                            }
-                          },
-                          [_c("span", [_vm._v("-")])]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: " " }, [
-                          _c("span", [_vm._v(_vm._s(_vm.$data.ncounter))])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: " bt ",
-                            on: {
-                              click: function($event) {
-                                return _vm.changeCounter("+")
-                              }
-                            }
-                          },
-                          [_c("span", [_vm._v("+")])]
-                        )
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _vm._m(1, true)
-              ]
-            )
-          }),
-          0
+          { key: ind, attrs: { "v-if": _vm.cartActive === true } },
+          [
+            _c("span", [_vm._v(_vm._s(order.active))]),
+            _vm._v(" "),
+            _c("span", [_vm._v(_vm._s(order.quantity))]),
+            _vm._v(" "),
+            _c("span", [_vm._v(_vm._s(order.dishName))]),
+            _vm._v(" "),
+            _c("span", [_vm._v(_vm._s(order.dishImgUrl))]),
+            _vm._v(" "),
+            _c("span", [_vm._v(_vm._s(order.totalPrice))])
+          ]
         )
-      ])
-    ])
-  ])
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = [
   function() {
@@ -39858,19 +40047,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-12" }, [_c("h1", [_vm._v(" Menù")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "btn-black d-flex justify-content-center align-items-center"
-      },
-      [_c("a", { attrs: { href: "" } }, [_vm._v("ORDINA")])]
-    )
   }
 ]
 render._withStripped = true
@@ -55568,7 +55744,8 @@ Vue.component('resturantsectionhome', __webpack_require__(/*! ./components/homep
 Vue.component('partnersectionhome', __webpack_require__(/*! ./components/homepage/PartnerSectionHome.vue */ "./resources/js/components/homepage/PartnerSectionHome.vue")["default"]);
 Vue.component('infosectionhome', __webpack_require__(/*! ./components/homepage/InfosectionHome.vue */ "./resources/js/components/homepage/InfosectionHome.vue")["default"]); //SUCCESS PAGE
 
-Vue.component('successpage', __webpack_require__(/*! ./components/success/SuccessPage.vue */ "./resources/js/components/success/SuccessPage.vue")["default"]);
+Vue.component('successpage', __webpack_require__(/*! ./components/success/SuccessPage.vue */ "./resources/js/components/success/SuccessPage.vue")["default"]); //RESTOURANT MENU
+
 Vue.component('inforestaurant', __webpack_require__(/*! ./components/RestaurantMenu/InfoRestaurant.vue */ "./resources/js/components/RestaurantMenu/InfoRestaurant.vue")["default"]);
 Vue.component('typemenu', __webpack_require__(/*! ./components/RestaurantMenu/TypeMenu.vue */ "./resources/js/components/RestaurantMenu/TypeMenu.vue")["default"]);
 /**

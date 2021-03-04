@@ -45,7 +45,7 @@ export default {
                 margin:0;
                 padding:0;
                 position: absolute;
-                top:120px;
+                top:140px;
                 right:0;
                 z-index:2;
                 .resturantImage {
@@ -53,6 +53,7 @@ export default {
                     height: 450px;
                     overflow: hidden;
                     border-radius: 100%;
+                    border:6px solid black;
                     img {
                         width: 100%;
                         height: 100%;

@@ -39,64 +39,78 @@
         </div>
         <div class="row">
             <div class="col-12 p-0">
-                <div class="dish d-flex  justify-content-start align-items-center"
+                <div class="dish d-flex  justify-content-start align-items-center "
                  v-for="(dish, i) in filtered"
                  :key="i">
-                        <div class="listImage">
-                           <img  class=" img " :src="dish.imgUrl" alt="">
-                        </div>
-                        <div class="dishtext">
-                           <h3>{{dish.name}}</h3>
-                           <h5>{{dish.description}}</h5>
+
+                     <div class="dishinfo d-flex justify-content-start align-items-center">
+                             <div class="dishImg">
+                                  <div class="listImage dishImg ">
+                                  <img  class="" :src="dish.imgUrl" alt="">
+                             </div>
+                          </div>
+                          <div class="dishtext">
+                             <h3>{{dish.name}}</h3>
+                             <h5>{{dish.description}}</h5>
+                          </div>
                         </div>
                         <div class=" price d-flex justify-content-end align-items-center">
                             <h1>{{dish.price}}€</h1>
                         </div>
                         <div class="counter-box  d-flex   justify-content-end align-items-center ">
                             <div class="counter  d-flex justify-content-between ">
-                                <div class=" bt " @click="changeCounter('-')" ><span>-</span></div>
-                                <div class=" "><span>{{ $data.ncounter}}</span></div>
-                                <div class=" bt " @click="changeCounter('+')" ><span>+</span></div>
+                                <div class=" bt "  @click="changeCounter('-', i)"  >
+                                    <span ondragstart="return false" 
+                                          onselectstart="return false">
+                                          -
+                                    </span>
+                                </div>
+                                <div class=" "> <span> {{ dish.counter }} </span></div>
+                                <div class=" bt "  @click="changeCounter('+', i)"  >
+                                    <span ondragstart="return false" 
+                                          onselectstart="return false">
+                                          +
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="btn-black d-flex justify-content-center align-items-center">
-                            <a href="">ORDINA</a>
+                        <div class=" btn-black d-flex justify-content-center align-items-center"
+                        @click='putInCart(i), activeCart()'>
+                            <span
+                             ondragstart="return false" 
+                             onselectstart="return false">
+                             ORDINA
+                            </span>
                         </div>
                  </div>
             </div>
         </div>
     </div>
+
+    <!-- carrello -->
+
+    <div
+      :v-if="cartActive === true"
+     v-for="(order,ind) in cart" 
+    :key="ind">
+       <span>{{order.active}}</span>
+       <span>{{order.quantity}}</span>
+       <span>{{order.dishName}}</span>
+       <span>{{order.dishImgUrl}}</span>
+       <span>{{order.totalPrice}}</span>
+    
+    
+    </div>
+    
   </section>
     
 </template>
 
 
 <script>
-export default {
-    name:'TypeMenu',
-    data() {
-    return {
-      ncounter: 0,
-      mincounter: 0,
-      maxcounter: 10,
-      categorySelect:'',
-      dCategories:[
-          {
-              name:"Pizza",
-              imgUrl: "img/homepage/icon/Pizza.png",
-          },
-          {
-              name: "Fritto",
-              imgUrl: "img/homepage/icon/Fritto.png",
-          },
-          {
-              name: "Dessert",
-              imgUrl: "img/homepage/icon/Dessert.png",
-          },
-      ],
 
-      dishes : [
+var dishes = [
         {
           name: "Margherita",
           description: "Pomodoro, Mozzarella, basilico, olio EVO",
@@ -169,7 +183,41 @@ export default {
           category: "Dessert",
           
         },  
+      ];
+
+const dishesCopy = dishes.map((element) => {
+  let elementUpgrade = {...element, counter:0,}
+  return elementUpgrade;
+});
+
+console.log(dishesCopy);
+
+export default {
+    name:'TypeMenu',
+    data() {
+    return {
+      cartActive: false,
+      categorySelect :'',
+      nCounter: [],
+      cart: [],
+      cartActive:false,
+      dishes:[...dishesCopy],
+      dCategories :[
+          {
+              name:"Pizza",
+              imgUrl: "img/homepage/icon/Pizza.png",
+          },
+          {
+              name: "Fritto",
+              imgUrl: "img/homepage/icon/Fritto.png",
+          },
+          {
+              name: "Dessert",
+              imgUrl: "img/homepage/icon/Dessert.png",
+          },
       ],
+
+      
       
     };
   },
@@ -178,44 +226,76 @@ export default {
           return this.dishes.filter( e =>{
               return e.category.includes(this.categorySelect)
           })
-      }
-      
-    
-  },
-  methods:{
-
-      changeCounter(direction){
-        
-           console.log('changeCounter :' + direction);
-          if(direction === '+'){
-              this.ncounter++ ;     
-             } else if(direction === '-'){
-                  this.ncounter--;
-          }
       },
 
-      selectCategory(category){
-               return this.categorySelect = category,
-               console.log(this.categorySelect)
-            },
-         
-
-
       
-
+      
     
-    
-         
-     
-    
-   
-    
-
   },
+  
+  methods:{
+
+
+    changeCounter(direction,index){
+        console.log(direction +' '+ index)
+        this.dishes.forEach((dish,i) =>{
+            if( direction == '+' && i === index){
+                dish.counter++ ;
+            } else if( direction == '-' && i === index){
+                if (dish.counter === 0){
+                    dish.counter = 0;
+                } else {
+                    dish.counter-- ;
+                }
+            }
+        })
+    },
+      
+      
+    selectCategory(category){
+               return this.categorySelect = category,
+               console.log('Cosa ci fa qui? Hai voglia di ' + this.categorySelect + ' ? Scegli Deliveboo ;)')
+     },
+
+
+     putInCart(index){
+         console.log(this.cart);
+         
+         console.log(index);
+         this.dishes.forEach((dish,i) =>{
+             if(index === i  ){
+                 this.cart.push(
+                     {
+                         active: true,
+                         quantity: dish.counter,
+                         dishName: dish.name,
+                         dishImgUrl: dish.imgUrl,
+                         dishPrice: dish.price,
+                         totalPrice: dish.price * dish.counter, 
+                     }
+                 );
+             }else{
+                 //carrello vuoto
+             }
+         })
+      },
+
+      activeCart(){
+         console.log(this.cartActive);
+         if(this.cart.length != 0){
+              this.cartActive = true;
+         }else{
+              this.cartActive = false;
+         }
+      },
+    
+
+
+  }
   
 }
 
-    
+          
 
 </script>
 
@@ -242,29 +322,31 @@ export default {
         .row{
             .col-12{
                     margin:20px 0px;
+                    width: 100vw;
                     .dish{
-                        
                         padding:20px 0;
-                        .dishImage{
-                            width: 10%;
-                        }
-
-                        .dishtext{
-                        margin:0 15px;
-                        width: 30%;
-                           h3{
-                            font-size:30px;
-                            font-weight: 700;
-                            margin-bottom: 0;
-                           }
-                           h5{
-                            font-size:15px;
-                            font-weight: 400;
-                            color: #5F5C5C;
+                        .dishinfo{
+                              width: 50%;
+                          .dishImg{
+                              width: 100px;
+                              height: 100px;
+                             }
+                          .dishtext{
+                               margin:0 15px;
+                              h3{
+                                font-size:30px;
+                                font-weight: 700;
+                                margin-bottom: 0;
+                              }
+                              h5{
+                                font-size:15px;
+                                font-weight: 400;
+                                color: #5F5C5C;
+                               }
                            }
                         }
                         .price{
-                           width: 15%;
+                           width: 10%;
                            margin:0 15px;
                            h1{
                                font-size:30px;
@@ -275,7 +357,7 @@ export default {
                         .counter-box{
                             margin: 0 50px;
                             height: 40px;
-                            width: 25%;
+                            width: 20%;
                             border:1px solid black;
                             border-radius: 30px;
                             &:hover{
@@ -330,15 +412,21 @@ export default {
                             height: 40px;
                             width: 20%;
                             border-radius: 30px;
-                            a{
-                                color:white
-                            }
-    
+                            span{
+                                color:white;  
+                                &:hover{
+                                    text-decoration: none;
+                                } 
+                            }    
                         }
-                }
+                        
+                      }
             }
         }
+
     }
+
+
     
     
  

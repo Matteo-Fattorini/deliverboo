@@ -43,7 +43,7 @@ Vue.component('infosectionhome', require('./components/homepage/InfosectionHome.
 Vue.component('successpage', require('./components/success/SuccessPage.vue').default);
 
 
-
+//RESTOURANT MENU
 Vue.component('inforestaurant', require('./components/RestaurantMenu/InfoRestaurant.vue').default);
 Vue.component('typemenu', require('./components/RestaurantMenu/TypeMenu.vue').default);
 
