@@ -86,6 +86,7 @@ footer {
   }
   img{
     height: 4vh;
+    margin-right: 30px;
   }
   div.social{
     width:50%;

@@ -53,7 +53,6 @@ $primary-color: #b3f5fd;
             border:0;
         }
         
-
         .icon{
             height: 30px;
             margin: 5px 0;  
@@ -93,6 +92,36 @@ $primary-color: #b3f5fd;
     }
 }
 
+%oval-white-button {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    .notselected{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 15px ;
+        margin:0 15px 0 0;
+        border: 1px solid white;
+        width: 35px;
+        height: 50px;
+        border-radius: 60px;
+        
+        span{
+            color: white;
+            font-size: 18px;
+            font-weight:900;
+            margin: 5px 0;
+        }
+    }
+        
+    
+}
+
 .debug{
     @extend %debug;
 }
@@ -110,6 +139,10 @@ nav {
 .oval-button {
     @extend %oval-button;
 }
+.oval-white-button {
+    @extend %oval-white-button;
+}
+
 
 section#becomePartner {
     a {
@@ -145,6 +178,19 @@ section#becomePartner {
         object-position: 50% 50%;
         }
     }
+
+    .cartImage {
+        width: 50px;
+        height: 50px;
+        overflow: hidden;
+        border-radius: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 50%;
+            }
+        }
 
 
 .custom-input{

@@ -2171,6 +2171,31 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'PreFooter'
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RestaurantMenu/TypeMenu.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RestaurantMenu/TypeMenu.vue?vue&type=script&lang=js& ***!
@@ -2180,18 +2205,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2308,69 +2321,53 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-var dishes = [{
-  name: "Margherita",
-  description: "Pomodoro, Mozzarella, basilico, olio EVO",
-  price: 6,
-  imgUrl: "img/restaurant/pizza-margherita.jpg",
-  category: "Pizza"
-}, {
-  name: "Margherita",
-  description: "Pomodoro, Mozzarella, basilico, olio EVO",
-  price: 6,
-  imgUrl: "img/restaurant/pizza-margherita.jpg",
-  category: "Pizza"
-}, {
-  name: "Margherita",
-  description: "Pomodoro, Mozzarella, basilico, olio EVO",
-  price: 6,
-  imgUrl: "img/restaurant/pizza-margherita.jpg",
-  category: "Pizza"
-}, {
-  name: "Fritto Misto",
-  description: "Arancino, Suppli, Frittatina di pasta, Verdure in pastella, pane fritto",
-  price: 11,
-  imgUrl: "img/restaurant/fritto-misto.jpg",
-  category: "Fritto"
-}, {
-  name: "Fritto Misto",
-  description: "Arancino, Suppli, Frittatina di pasta, Verdure in pastella, pane fritto",
-  price: 11,
-  imgUrl: "img/restaurant/fritto-misto.jpg",
-  category: "Fritto"
-}, {
-  name: "Fritto Misto",
-  description: "Arancino, Suppli, Frittatina di pasta, Verdure in pastella, pane fritto",
-  price: 11,
-  imgUrl: "img/restaurant/fritto-misto.jpg",
-  category: "Fritto"
-}, {
-  name: "Tiramisù",
-  description: "Savoiardi, Crema al mascarpone, Caffè, Cacao",
-  price: 5,
-  imgUrl: "img/restaurant/dessert-tiramisu.jpg",
-  category: "Dessert"
-}, {
-  name: "Tiramisù",
-  description: "Savoiardi, Crema al mascarpone, Caffè, Cacao",
-  price: 5,
-  imgUrl: "img/restaurant/dessert-tiramisu.jpg",
-  category: "Dessert"
-}, {
-  name: "Tiramisù",
-  description: "Savoiardi, Crema al mascarpone, Caffè, Cacao",
-  price: 5,
-  imgUrl: "img/restaurant/dessert-tiramisu.jpg",
-  category: "Dessert"
-}];
-var dishesCopy = dishes.map(function (element) {
-  var elementUpgrade = _objectSpread(_objectSpread({}, element), {}, {
-    counter: 0
-  });
-
-  return elementUpgrade;
-});
-console.log(dishesCopy);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'TypeMenu',
   data: function data() {
@@ -2381,7 +2378,61 @@ console.log(dishesCopy);
       categorySelect: '',
       nCounter: [],
       cart: []
-    }, _defineProperty(_ref, "cartActive", false), _defineProperty(_ref, "dishes", _toConsumableArray(dishesCopy)), _defineProperty(_ref, "dCategories", [{
+    }, _defineProperty(_ref, "cartActive", false), _defineProperty(_ref, "dishes", []), _defineProperty(_ref, "dishesImport", [{
+      name: "Margherita",
+      description: "Pomodoro, Mozzarella, basilico, olio EVO",
+      price: "6.00",
+      imgUrl: "img/restaurant/pizza-margherita.jpg",
+      category: "Pizza"
+    }, {
+      name: "Margherita",
+      description: "Pomodoro, Mozzarella, basilico, olio EVO",
+      price: "6.00",
+      imgUrl: "img/restaurant/pizza-margherita.jpg",
+      category: "Pizza"
+    }, {
+      name: "Margherita",
+      description: "Pomodoro, Mozzarella, basilico, olio EVO",
+      price: "6.50",
+      imgUrl: "img/restaurant/pizza-margherita.jpg",
+      category: "Pizza"
+    }, {
+      name: "Fritto Misto",
+      description: "Arancino, Suppli, Frittatina di pasta, Verdure in pastella, pane fritto",
+      price: "11.00",
+      imgUrl: "img/restaurant/fritto-misto.jpg",
+      category: "Fritto"
+    }, {
+      name: "Fritto Misto",
+      description: "Arancino, Suppli, Frittatina di pasta, Verdure in pastella, pane fritto",
+      price: "11.00",
+      imgUrl: "img/restaurant/fritto-misto.jpg",
+      category: "Fritto"
+    }, {
+      name: "Fritto Misto",
+      description: "Arancino, Suppli, Frittatina di pasta, Verdure in pastella, pane fritto",
+      price: "11.00",
+      imgUrl: "img/restaurant/fritto-misto.jpg",
+      category: "Fritto"
+    }, {
+      name: "Tiramisù",
+      description: "Savoiardi, Crema al mascarpone, Caffè, Cacao",
+      price: "5.00",
+      imgUrl: "img/restaurant/dessert-tiramisu.jpg",
+      category: "Dessert"
+    }, {
+      name: "Tiramisù",
+      description: "Savoiardi, Crema al mascarpone, Caffè, Cacao",
+      price: "5.00",
+      imgUrl: "img/restaurant/dessert-tiramisu.jpg",
+      category: "Dessert"
+    }, {
+      name: "Tiramisù",
+      description: "Savoiardi, Crema al mascarpone, Caffè, Cacao",
+      price: "5.00",
+      imgUrl: "img/restaurant/dessert-tiramisu.jpg",
+      category: "Dessert"
+    }]), _defineProperty(_ref, "dCategories", [{
       name: "Pizza",
       imgUrl: "img/homepage/icon/Pizza.png"
     }, {
@@ -2392,19 +2443,30 @@ console.log(dishesCopy);
       imgUrl: "img/homepage/icon/Dessert.png"
     }]), _ref;
   },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.dishes = this.dishesImport.map(function (element) {
+      _this.elementUpgrade = _objectSpread(_objectSpread({}, element), {}, {
+        counter: 0
+      });
+      return _this.elementUpgrade;
+    });
+    console.log(this.dishes);
+  },
   computed: {
     filtered: function filtered() {
-      var _this = this;
+      var _this2 = this;
 
       return this.dishes.filter(function (e) {
-        return e.category.includes(_this.categorySelect);
+        return e.category.includes(_this2.categorySelect);
       });
     }
   },
   methods: {
     changeCounter: function changeCounter(direction, index) {
       console.log(direction + ' ' + index);
-      this.dishes.forEach(function (dish, i) {
+      this.filtered.forEach(function (dish, i) {
         if (direction == '+' && i === index) {
           dish.counter++;
         } else if (direction == '-' && i === index) {
@@ -2420,19 +2482,18 @@ console.log(dishesCopy);
       return this.categorySelect = category, console.log('Cosa ci fa qui? Hai voglia di ' + this.categorySelect + ' ? Scegli Deliveboo ;)');
     },
     putInCart: function putInCart(index) {
-      var _this2 = this;
+      var _this3 = this;
 
       console.log(this.cart);
       console.log(index);
-      this.dishes.forEach(function (dish, i) {
-        if (index === i) {
-          _this2.cart.push({
-            active: true,
+      this.filtered.forEach(function (dish, i) {
+        if (index === i && dish.counter != 0) {
+          _this3.cart.push({
             quantity: dish.counter,
             dishName: dish.name,
             dishImgUrl: dish.imgUrl,
             dishPrice: dish.price,
-            totalPrice: dish.price * dish.counter
+            totalPrice: parseFloat(dish.price) * dish.counter
           });
         } else {//carrello vuoto
         }
@@ -7162,7 +7223,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "footer[data-v-abfbddf2] {\n  background-color: black;\n  color: white;\n}\nfooter .container[data-v-abfbddf2] {\n  height: 500px;\n}\nfooter .row[data-v-abfbddf2] {\n  padding-top: 50px;\n}\nfooter a[data-v-abfbddf2] {\n  color: #fff;\n  text-decoration: none;\n}\nfooter a[data-v-abfbddf2]:hover {\n  text-decoration: underline;\n}\nfooter img[data-v-abfbddf2] {\n  height: 4vh;\n}\nfooter div.social[data-v-abfbddf2] {\n  width: 50%;\n}\nfooter li[data-v-abfbddf2] {\n  line-height: 3rem;\n}", ""]);
+exports.push([module.i, "footer[data-v-abfbddf2] {\n  background-color: black;\n  color: white;\n}\nfooter .container[data-v-abfbddf2] {\n  height: 500px;\n}\nfooter .row[data-v-abfbddf2] {\n  padding-top: 50px;\n}\nfooter a[data-v-abfbddf2] {\n  color: #fff;\n  text-decoration: none;\n}\nfooter a[data-v-abfbddf2]:hover {\n  text-decoration: underline;\n}\nfooter img[data-v-abfbddf2] {\n  height: 4vh;\n  margin-right: 30px;\n}\nfooter div.social[data-v-abfbddf2] {\n  width: 50%;\n}\nfooter li[data-v-abfbddf2] {\n  line-height: 3rem;\n}", ""]);
 
 // exports
 
@@ -7207,6 +7268,25 @@ exports.push([module.i, ".container[data-v-007e6d83] {\n  margin-top: 30px;\n  m
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=style&index=0&lang=scss&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=style&index=0&lang=scss& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "footer {\n  min-width: 100%;\n}\nfooter .container {\n  min-width: 100%;\n  padding: 150px 50px 50px 50px;\n  margin: 0;\n}\nfooter .container img {\n  width: 100%;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RestaurantMenu/TypeMenu.vue?vue&type=style&index=0&id=2478efb1&lang=scss&scoped=true&":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RestaurantMenu/TypeMenu.vue?vue&type=style&index=0&id=2478efb1&lang=scss&scoped=true& ***!
@@ -7219,7 +7299,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".restaurant[data-v-2478efb1] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n.restaurant .row .col-12 h1[data-v-2478efb1] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n.menu[data-v-2478efb1] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n.menu .row .col-12[data-v-2478efb1] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n.menu .row .col-12 .dish[data-v-2478efb1] {\n  padding: 20px 0;\n}\n.menu .row .col-12 .dish .dishinfo[data-v-2478efb1] {\n  width: 50%;\n}\n.menu .row .col-12 .dish .dishinfo .dishImg[data-v-2478efb1] {\n  width: 100px;\n  height: 100px;\n}\n.menu .row .col-12 .dish .dishinfo .dishtext[data-v-2478efb1] {\n  margin: 0 15px;\n}\n.menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 700;\n  margin-bottom: 0;\n}\n.menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2478efb1] {\n  font-size: 15px;\n  font-weight: 400;\n  color: #5F5C5C;\n}\n.menu .row .col-12 .dish .price[data-v-2478efb1] {\n  width: 10%;\n  margin: 0 15px;\n}\n.menu .row .col-12 .dish .price h1[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 900;\n  color: #2DCCBC;\n}\n.menu .row .col-12 .dish .counter-box[data-v-2478efb1] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  border: 1px solid black;\n  border-radius: 30px;\n}\n.menu .row .col-12 .dish .counter-box[data-v-2478efb1]:hover {\n  border: none;\n}\n.menu .row .col-12 .dish .counter-box .counter[data-v-2478efb1] {\n  width: 100%;\n}\n.menu .row .col-12 .dish .counter-box .counter div[data-v-2478efb1] {\n  width: 70px;\n  text-align: center;\n}\n.menu .row .col-12 .dish .counter-box .counter div span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n.menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n.menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n.menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n.menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n.menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n.menu .row .col-12 .dish .btn-black[data-v-2478efb1] {\n  background-color: black;\n  height: 40px;\n  width: 20%;\n  border-radius: 30px;\n}\n.menu .row .col-12 .dish .btn-black span[data-v-2478efb1] {\n  color: white;\n}\n.menu .row .col-12 .dish .btn-black span[data-v-2478efb1]:hover {\n  text-decoration: none;\n}", ""]);
+exports.push([module.i, "#menu .restaurant[data-v-2478efb1] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n#menu .restaurant .row .col-12 h1[data-v-2478efb1] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n#menu .menu[data-v-2478efb1] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n#menu .menu .row .col-12[data-v-2478efb1] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n#menu .menu .row .col-12 .dish[data-v-2478efb1] {\n  padding: 20px 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishImg[data-v-2478efb1] {\n  width: 100px;\n  height: 100px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext[data-v-2478efb1] {\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 700;\n  margin-bottom: 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2478efb1] {\n  font-size: 15px;\n  font-weight: 400;\n  color: #5F5C5C;\n}\n#menu .menu .row .col-12 .dish .price[data-v-2478efb1] {\n  width: 10%;\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .price h1[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 900;\n  color: #2DCCBC;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  border: 1px solid black;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1]:hover {\n  border: none;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter[data-v-2478efb1] {\n  width: 100%;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div[data-v-2478efb1] {\n  width: 70px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n#menu .menu .row .col-12 .dish .btn-black[data-v-2478efb1] {\n  background-color: black;\n  height: 40px;\n  width: 20%;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .btn-black span[data-v-2478efb1] {\n  color: white;\n  font-weight: 900;\n  font-size: 15px;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .btn-black span[data-v-2478efb1]:hover {\n  text-decoration: none;\n}\n#menu .menu .row .col-12 .dish .btn-black img[data-v-2478efb1] {\n  height: 15px;\n  margin-right: 5px;\n}\n#menu .cart[data-v-2478efb1] {\n  box-sizing: border-box;\n  min-width: 100vw;\n  height: 45vh;\n  background-color: black;\n  position: fixed;\n  bottom: 0;\n  overflow-y: scroll;\n  z-index: 3;\n}\n#menu .cart .row[data-v-2478efb1] {\n  padding: 50px 200px;\n}\n#menu .cart .row .col-12 .cartTitle[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .cartTitle h1[data-v-2478efb1] {\n  color: white;\n  font-size: 40px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .close[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .close img[data-v-2478efb1] {\n  height: 30px;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1] {\n  padding: 30px 0px;\n  border-bottom: 1px solid white;\n  flex-basis: 48%;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1]:nth-child(n) {\n  margin-right: 20px;\n}\n#menu .cart .row .col-12 .order .dishes[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext[data-v-2478efb1] {\n  margin-left: 30px;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h3[data-v-2478efb1] {\n  color: white;\n  font-size: 22px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h6[data-v-2478efb1] {\n  color: white;\n  font-size: 15px;\n  font-weight: 300;\n}\n#menu .cart .row .col-12 .price[data-v-2478efb1] {\n  width: 30%;\n  margin: 0 10px;\n}\n#menu .cart .row .col-12 .price h1[data-v-2478efb1] {\n  color: #2FBCAE;\n  font-size: 30px;\n  font-weight: 200;\n  lineheight: 30px;\n}\n#menu .cart .row .col-12 .delete button[data-v-2478efb1] {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 22px;\n  font-weight: 400;\n}\n#menu .col-6[data-v-2478efb1] {\n  margin: 30px 0;\n}\n#menu .col-6 h1[data-v-2478efb1] {\n  color: white;\n  font-size: 30px;\n  font-weight: 900;\n}\n#menu .col-6 .btn-light[data-v-2478efb1] {\n  background-color: #B3F5FD;\n  border: none;\n  height: 40px;\n  border-radius: 30px;\n  padding: 0 85px;\n}\n#menu .col-6 .btn-light[data-v-2478efb1]:hover {\n  background-color: white;\n}\n#menu .col-6 .btn-light span[data-v-2478efb1] {\n  color: black;\n  font-weight: 900;\n  font-size: 22px;\n  line-height: 30px;\n}\n#menu .col-6 .btn-light span[data-v-2478efb1]:hover {\n  text-decoration: none;\n}", ""]);
 
 // exports
 
@@ -38618,6 +38698,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=style&index=0&lang=scss&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=style&index=0&lang=scss& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./PreFooter.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RestaurantMenu/TypeMenu.vue?vue&type=style&index=0&id=2478efb1&lang=scss&scoped=true&":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RestaurantMenu/TypeMenu.vue?vue&type=style&index=0&id=2478efb1&lang=scss&scoped=true& ***!
@@ -39779,6 +39889,41 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=template&id=659ce7d6&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=template&id=659ce7d6& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("footer", [
+      _c("div", { staticClass: "container" }, [
+        _c("img", { attrs: { src: "img/restaurant/food_short.png", alt: "" } })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RestaurantMenu/TypeMenu.vue?vue&type=template&id=2478efb1&scoped=true&":
 /*!**************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RestaurantMenu/TypeMenu.vue?vue&type=template&id=2478efb1&scoped=true& ***!
@@ -39794,37 +39939,202 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    { attrs: { id: "menu" } },
-    [
-      _c("div", { staticClass: "container restaurant" }, [
-        _c("div", { staticClass: "row" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-12" }, [
-            _c(
-              "ul",
-              { staticClass: "oval-button " },
-              _vm._l(_vm.dCategories, function(category, index) {
-                return _c(
-                  "li",
-                  {
-                    key: index,
-                    class: {
-                      selected: category.name === _vm.categorySelect,
-                      notselected: category.name != _vm.categorySelect
+  return _c("div", { attrs: { id: "menu" } }, [
+    _c("div", { staticClass: "container restaurant" }, [
+      _c("div", { staticClass: "row" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-12" }, [
+          _c(
+            "ul",
+            { staticClass: "oval-button " },
+            _vm._l(_vm.dCategories, function(category, index) {
+              return _c(
+                "li",
+                {
+                  key: index,
+                  class: {
+                    selected: category.name === _vm.categorySelect,
+                    notselected: category.name != _vm.categorySelect
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.selectCategory(category.name)
+                    }
+                  }
+                },
+                [
+                  _c("img", {
+                    staticClass: "icon",
+                    attrs: { src: category.imgUrl, alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      attrs: {
+                        ondragstart: "return false",
+                        onselectstart: "return false"
+                      }
                     },
+                    [
+                      _vm._v(
+                        "\n                   " +
+                          _vm._s(category.name) +
+                          "\n                  "
+                      )
+                    ]
+                  )
+                ]
+              )
+            }),
+            0
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "container menu " }, [
+      _c("div", { staticClass: "row " }, [
+        _vm.$data.categoryDishes == true
+          ? _c("div", { staticClass: "col-12" }, [_c("h2", [_vm._v("Pizza")])])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "col-12 p-0" },
+          _vm._l(_vm.filtered, function(dish, i) {
+            return _c(
+              "div",
+              {
+                key: i,
+                staticClass:
+                  "dish d-flex  justify-content-start align-items-center "
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "dishinfo d-flex justify-content-start align-items-center"
+                  },
+                  [
+                    _c("div", { staticClass: "dishImg" }, [
+                      _c("div", { staticClass: "listImage dishImg " }, [
+                        _c("img", { attrs: { src: dish.imgUrl, alt: "" } })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "dishtext" }, [
+                      _c("h3", [_vm._v(_vm._s(dish.name))]),
+                      _vm._v(" "),
+                      _c("h5", [_vm._v(_vm._s(dish.description))])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      " price d-flex justify-content-end align-items-center"
+                  },
+                  [_c("h1", [_vm._v(_vm._s(dish.price) + "€")])]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "counter-box  d-flex   justify-content-end align-items-center "
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "counter  d-flex justify-content-between "
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: " bt ",
+                            on: {
+                              click: function($event) {
+                                return _vm.changeCounter("-", i)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "span",
+                              {
+                                attrs: {
+                                  ondragstart: "return false",
+                                  onselectstart: "return false"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        -\n                                  "
+                                )
+                              ]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: " " }, [
+                          _c("span", [_vm._v(" " + _vm._s(dish.counter) + " ")])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: " bt ",
+                            on: {
+                              click: function($event) {
+                                return _vm.changeCounter("+", i)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "span",
+                              {
+                                attrs: {
+                                  ondragstart: "return false",
+                                  onselectstart: "return false"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        +\n                                  "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      " btn-black d-flex justify-content-center align-items-center",
                     on: {
                       click: function($event) {
-                        return _vm.selectCategory(category.name)
+                        _vm.putInCart(i), _vm.activeCart()
                       }
                     }
                   },
                   [
                     _c("img", {
-                      staticClass: "icon",
-                      attrs: { src: category.imgUrl, alt: "" }
+                      attrs: { src: "img/dashboard/icon/cart.png", alt: "" }
                     }),
                     _vm._v(" "),
                     _c(
@@ -39837,60 +40147,58 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                   " +
-                            _vm._s(category.name) +
-                            "\n                  "
+                          "\n                            Aggiungi +\n                          "
                         )
                       ]
                     )
                   ]
                 )
-              }),
-              0
+              ]
             )
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "container menu " }, [
-        _c("div", { staticClass: "row " }, [
-          _vm.$data.categoryDishes == true
-            ? _c("div", { staticClass: "col-12" }, [
-                _c("h2", [_vm._v("Pizza")])
-              ])
-            : _vm._e()
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c(
-            "div",
-            { staticClass: "col-12 p-0" },
-            _vm._l(_vm.filtered, function(dish, i) {
-              return _c(
-                "div",
-                {
-                  key: i,
-                  staticClass:
-                    "dish d-flex  justify-content-start align-items-center "
-                },
-                [
+          }),
+          0
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.cartActive === true
+      ? _c("div", { staticClass: "container cart" }, [
+          _c("div", { staticClass: "row " }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-12 d-flex flex-row flex-wrap" },
+              _vm._l(_vm.cart, function(order, ind) {
+                return _c("div", { key: ind, staticClass: "order d-flex " }, [
                   _c(
                     "div",
                     {
                       staticClass:
-                        "dishinfo d-flex justify-content-start align-items-center"
+                        "quantity  d-flex justify-content-start align-items-center"
                     },
                     [
-                      _c("div", { staticClass: "dishImg" }, [
-                        _c("div", { staticClass: "listImage dishImg " }, [
-                          _c("img", { attrs: { src: dish.imgUrl, alt: "" } })
+                      _c("ul", { staticClass: "oval-white-button " }, [
+                        _c("li", { staticClass: "notselected" }, [
+                          _c("img", { attrs: { src: "", alt: "" } }),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              attrs: {
+                                ondragstart: "return false",
+                                onselectstart: "return false"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                     x" +
+                                  _vm._s(order.quantity) +
+                                  "\n                                    "
+                              )
+                            ]
+                          )
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "dishtext" }, [
-                        _c("h3", [_vm._v(_vm._s(dish.name))]),
-                        _vm._v(" "),
-                        _c("h5", [_vm._v(_vm._s(dish.description))])
                       ])
                     ]
                   ),
@@ -39899,147 +40207,54 @@ var render = function() {
                     "div",
                     {
                       staticClass:
-                        " price d-flex justify-content-end align-items-center"
-                    },
-                    [_c("h1", [_vm._v(_vm._s(dish.price) + "€")])]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "counter-box  d-flex   justify-content-end align-items-center "
+                        "dishes  d-flex justify-content-start align-items-center"
                     },
                     [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "counter  d-flex justify-content-between "
-                        },
-                        [
-                          _c(
-                            "div",
-                            {
-                              staticClass: " bt ",
-                              on: {
-                                click: function($event) {
-                                  return _vm.changeCounter("-", i)
-                                }
-                              }
-                            },
-                            [
-                              _c(
-                                "span",
-                                {
-                                  attrs: {
-                                    ondragstart: "return false",
-                                    onselectstart: "return false"
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                        -\n                                  "
-                                  )
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: " " }, [
-                            _c("span", [
-                              _vm._v(" " + _vm._s(dish.counter) + " ")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: " bt ",
-                              on: {
-                                click: function($event) {
-                                  return _vm.changeCounter("+", i)
-                                }
-                              }
-                            },
-                            [
-                              _c(
-                                "span",
-                                {
-                                  attrs: {
-                                    ondragstart: "return false",
-                                    onselectstart: "return false"
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                        +\n                                  "
-                                  )
-                                ]
-                              )
-                            ]
-                          )
-                        ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        " btn-black d-flex justify-content-center align-items-center",
-                      on: {
-                        click: function($event) {
-                          _vm.putInCart(i), _vm.activeCart()
-                        }
-                      }
-                    },
-                    [
-                      _c(
-                        "span",
-                        {
-                          attrs: {
-                            ondragstart: "return false",
-                            onselectstart: "return false"
-                          }
-                        },
-                        [
+                      _c("div", { staticClass: "dishImg" }, [
+                        _c("div", { staticClass: "cartImage" }, [
+                          _c("img", {
+                            attrs: { src: order.dishImgUrl, alt: "" }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "dishtext" }, [
+                        _c("h3", [_vm._v(_vm._s(order.dishName))]),
+                        _vm._v(" "),
+                        _c("h6", [
                           _vm._v(
-                            "\n                           ORDINA\n                          "
+                            _vm._s(order.dishPrice) +
+                              " € x  " +
+                              _vm._s(order.quantity) +
+                              " ="
                           )
-                        ]
-                      )
+                        ])
+                      ])
                     ]
-                  )
-                ]
-              )
-            }),
-            0
-          )
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "price d-flex justify-content-end align-items-center"
+                    },
+                    [_c("h1", [_vm._v(_vm._s(order.totalPrice) + " €")])]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(2, true)
+                ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _vm._m(4)
+          ])
         ])
-      ]),
-      _vm._v(" "),
-      _vm._l(_vm.cart, function(order, ind) {
-        return _c(
-          "div",
-          { key: ind, attrs: { "v-if": _vm.cartActive === true } },
-          [
-            _c("span", [_vm._v(_vm._s(order.active))]),
-            _vm._v(" "),
-            _c("span", [_vm._v(_vm._s(order.quantity))]),
-            _vm._v(" "),
-            _c("span", [_vm._v(_vm._s(order.dishName))]),
-            _vm._v(" "),
-            _c("span", [_vm._v(_vm._s(order.dishImgUrl))]),
-            _vm._v(" "),
-            _c("span", [_vm._v(_vm._s(order.totalPrice))])
-          ]
-        )
-      })
-    ],
-    2
-  )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -40047,6 +40262,72 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-12" }, [_c("h1", [_vm._v(" Menù")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 d-flex" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "cartTitle d-flex justify-content-start align-items-center"
+        },
+        [_c("h1", [_vm._v("Carrello")])]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "close d-flex justify-content-end align-items-start" },
+        [
+          _c("img", {
+            attrs: { src: "img/restaurant/close_white.png", alt: "" }
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "delete d-flex justify-content-end align-items-center" },
+      [_c("button", [_vm._v(" X ")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "col-6 d-flex flex-column justify-content-center align-items-start"
+      },
+      [
+        _c("h1", [_vm._v("Totale ordine")]),
+        _vm._v(" "),
+        _c("h1", [_vm._v(" xxxxx€ ")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "col-6 d-flex justify-content-end align-items-center" },
+      [
+        _c("button", { staticClass: "btn-light" }, [
+          _c("span", [_vm._v("VAI AL PAGAMENTO ")])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -52592,6 +52873,7 @@ Vue.component('successpage', __webpack_require__(/*! ./components/success/Succes
 
 Vue.component('inforestaurant', __webpack_require__(/*! ./components/RestaurantMenu/InfoRestaurant.vue */ "./resources/js/components/RestaurantMenu/InfoRestaurant.vue")["default"]);
 Vue.component('typemenu', __webpack_require__(/*! ./components/RestaurantMenu/TypeMenu.vue */ "./resources/js/components/RestaurantMenu/TypeMenu.vue")["default"]);
+Vue.component('prefooter', __webpack_require__(/*! ./components/RestaurantMenu/PreFooter.vue */ "./resources/js/components/RestaurantMenu/PreFooter.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -52974,6 +53256,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InfoRestaurant_vue_vue_type_template_id_007e6d83_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InfoRestaurant_vue_vue_type_template_id_007e6d83_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/RestaurantMenu/PreFooter.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/RestaurantMenu/PreFooter.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PreFooter_vue_vue_type_template_id_659ce7d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PreFooter.vue?vue&type=template&id=659ce7d6& */ "./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=template&id=659ce7d6&");
+/* harmony import */ var _PreFooter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PreFooter.vue?vue&type=script&lang=js& */ "./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _PreFooter_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PreFooter.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _PreFooter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PreFooter_vue_vue_type_template_id_659ce7d6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PreFooter_vue_vue_type_template_id_659ce7d6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/RestaurantMenu/PreFooter.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PreFooter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./PreFooter.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PreFooter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=style&index=0&lang=scss&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=style&index=0&lang=scss& ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PreFooter_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./PreFooter.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PreFooter_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PreFooter_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PreFooter_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PreFooter_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=template&id=659ce7d6&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=template&id=659ce7d6& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PreFooter_vue_vue_type_template_id_659ce7d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./PreFooter.vue?vue&type=template&id=659ce7d6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RestaurantMenu/PreFooter.vue?vue&type=template&id=659ce7d6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PreFooter_vue_vue_type_template_id_659ce7d6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PreFooter_vue_vue_type_template_id_659ce7d6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

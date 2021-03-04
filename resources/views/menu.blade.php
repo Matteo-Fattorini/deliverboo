@@ -3,5 +3,6 @@
 <NavComponent slot="navbar"></NavComponent>
 <InfoRestaurant></InfoRestaurant>
 <TypeMenu></TypeMenu>
+<PreFooter></PreFooter>
 
 @endsection
