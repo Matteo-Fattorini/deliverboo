@@ -77,7 +77,7 @@
 
                         <div class=" btn-black d-flex justify-content-center align-items-center"
                         @click='putInCart(i), activeCart()'>
-                            <img src="img/dashboard/icon/cart.png" alt="">
+                            <img src="img/dashboard/icon/cart.png" alt="" >
                             <span
                              ondragstart="return false" 
                              onselectstart="return false">
