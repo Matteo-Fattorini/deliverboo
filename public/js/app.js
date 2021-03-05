@@ -2368,6 +2368,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'TypeMenu',
   data: function data() {
@@ -2378,7 +2393,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       categorySelect: '',
       nCounter: [],
       cart: []
-    }, _defineProperty(_ref, "cartActive", false), _defineProperty(_ref, "dishes", []), _defineProperty(_ref, "dishesImport", [{
+    }, _defineProperty(_ref, "cartActive", false), _defineProperty(_ref, "totalPay", 0), _defineProperty(_ref, "dishes", []), _defineProperty(_ref, "dishesImport", [{
       name: "Margherita",
       description: "Pomodoro, Mozzarella, basilico, olio EVO",
       price: "6.00",
@@ -2446,13 +2461,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var _this = this;
 
+    //chiamata dati
+    axios.get('http://localhost8000://').then(function (response) {
+      var picsumImages = response.data; // Handling the images here by using picsumImages
+    })["catch"](function (err) {// Error happened
+    }); //aggiungi quantità dal counter
+
     this.dishes = this.dishesImport.map(function (element) {
       _this.elementUpgrade = _objectSpread(_objectSpread({}, element), {}, {
         counter: 0
       });
       return _this.elementUpgrade;
     });
-    console.log(this.dishes);
   },
   computed: {
     filtered: function filtered() {
@@ -2461,11 +2481,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.dishes.filter(function (e) {
         return e.category.includes(_this2.categorySelect);
       });
+    },
+    // calcola il totale del pagamento del carrello
+    totalPrice: function totalPrice() {
+      var total = this.cart.reduce(function (total, order) {
+        return total + order.totalPrice;
+      }, 0);
+      return new Intl.NumberFormat('it-IT', {
+        style: 'currency',
+        currency: 'EUR'
+      }).format(total);
     }
   },
   methods: {
+    //contatore 
     changeCounter: function changeCounter(direction, index) {
-      console.log(direction + ' ' + index);
       this.filtered.forEach(function (dish, i) {
         if (direction == '+' && i === index) {
           dish.counter++;
@@ -2478,14 +2508,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       });
     },
+    //ritona una categoria
     selectCategory: function selectCategory(category) {
       return this.categorySelect = category, console.log('Cosa ci fa qui? Hai voglia di ' + this.categorySelect + ' ? Scegli Deliveboo ;)');
     },
+    // inserimento e cancellazione ordini
     putInCart: function putInCart(index) {
       var _this3 = this;
 
-      console.log(this.cart);
-      console.log(index);
       this.filtered.forEach(function (dish, i) {
         if (index === i && dish.counter != 0) {
           _this3.cart.push({
@@ -2495,18 +2525,53 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             dishPrice: dish.price,
             totalPrice: parseFloat(dish.price) * dish.counter
           });
+
+          console.log(_this3.cart);
         } else {//carrello vuoto
         }
       });
     },
-    activeCart: function activeCart() {
-      console.log(this.cartActive);
+    // cancella un ordine se non ci sono ordini chiude il carrello
+    deleteOrder: function deleteOrder(delIndex) {
+      this.cart.splice(delIndex, 1);
 
       if (this.cart.length != 0) {
         this.cartActive = true;
       } else {
         this.cartActive = false;
       }
+
+      ;
+    },
+    // attivare o disattivare carrello
+    // attivazione per riempimento
+    activeCart: function activeCart() {
+      if (this.cart.length != 0) {
+        this.cartActive = true;
+      } else {
+        this.cartActive = false;
+      }
+    },
+    // attivazione e disattivazione per click
+    openAndClose: function openAndClose() {
+      if (this.cartActive === false) {
+        this.cartActive = true;
+      } else if (this.cartActive === true) {
+        this.cartActive = false;
+      }
+
+      ;
+    },
+    // vai al pagamento
+    payment: function payment() {
+      var data = {
+        cart: this.cart
+      };
+      console.log('sono dati', data);
+      axios.get('/checkout', data).then(function (response) {
+        console.log(response);
+        location.replace('/checkout');
+      });
     }
   }
 });
@@ -7299,7 +7364,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#menu .restaurant[data-v-2478efb1] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n#menu .restaurant .row .col-12 h1[data-v-2478efb1] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n#menu .menu[data-v-2478efb1] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n#menu .menu .row .col-12[data-v-2478efb1] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n#menu .menu .row .col-12 .dish[data-v-2478efb1] {\n  padding: 20px 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishImg[data-v-2478efb1] {\n  width: 100px;\n  height: 100px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext[data-v-2478efb1] {\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 700;\n  margin-bottom: 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2478efb1] {\n  font-size: 15px;\n  font-weight: 400;\n  color: #5F5C5C;\n}\n#menu .menu .row .col-12 .dish .price[data-v-2478efb1] {\n  width: 10%;\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .price h1[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 900;\n  color: #2DCCBC;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  border: 1px solid black;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1]:hover {\n  border: none;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter[data-v-2478efb1] {\n  width: 100%;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div[data-v-2478efb1] {\n  width: 70px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n#menu .menu .row .col-12 .dish .btn-black[data-v-2478efb1] {\n  background-color: black;\n  height: 40px;\n  width: 20%;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .btn-black span[data-v-2478efb1] {\n  color: white;\n  font-weight: 900;\n  font-size: 15px;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .btn-black span[data-v-2478efb1]:hover {\n  text-decoration: none;\n}\n#menu .menu .row .col-12 .dish .btn-black img[data-v-2478efb1] {\n  height: 15px;\n  margin-right: 5px;\n}\n#menu .cart[data-v-2478efb1] {\n  box-sizing: border-box;\n  min-width: 100vw;\n  height: 45vh;\n  background-color: black;\n  position: fixed;\n  bottom: 0;\n  overflow-y: scroll;\n  z-index: 3;\n}\n#menu .cart .row[data-v-2478efb1] {\n  padding: 50px 200px;\n}\n#menu .cart .row .col-12 .cartTitle[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .cartTitle h1[data-v-2478efb1] {\n  color: white;\n  font-size: 40px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .close[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .close img[data-v-2478efb1] {\n  height: 30px;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1] {\n  padding: 30px 0px;\n  border-bottom: 1px solid white;\n  flex-basis: 48%;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1]:nth-child(n) {\n  margin-right: 20px;\n}\n#menu .cart .row .col-12 .order .dishes[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext[data-v-2478efb1] {\n  margin-left: 30px;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h3[data-v-2478efb1] {\n  color: white;\n  font-size: 22px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h6[data-v-2478efb1] {\n  color: white;\n  font-size: 15px;\n  font-weight: 300;\n}\n#menu .cart .row .col-12 .price[data-v-2478efb1] {\n  width: 30%;\n  margin: 0 10px;\n}\n#menu .cart .row .col-12 .price h1[data-v-2478efb1] {\n  color: #2FBCAE;\n  font-size: 30px;\n  font-weight: 200;\n  lineheight: 30px;\n}\n#menu .cart .row .col-12 .delete button[data-v-2478efb1] {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 22px;\n  font-weight: 400;\n}\n#menu .col-6[data-v-2478efb1] {\n  margin: 30px 0;\n}\n#menu .col-6 h1[data-v-2478efb1] {\n  color: white;\n  font-size: 30px;\n  font-weight: 900;\n}\n#menu .col-6 .btn-light[data-v-2478efb1] {\n  background-color: #B3F5FD;\n  border: none;\n  height: 40px;\n  border-radius: 30px;\n  padding: 0 85px;\n}\n#menu .col-6 .btn-light[data-v-2478efb1]:hover {\n  background-color: white;\n}\n#menu .col-6 .btn-light span[data-v-2478efb1] {\n  color: black;\n  font-weight: 900;\n  font-size: 22px;\n  line-height: 30px;\n}\n#menu .col-6 .btn-light span[data-v-2478efb1]:hover {\n  text-decoration: none;\n}", ""]);
+exports.push([module.i, "#menu .restaurant[data-v-2478efb1] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n#menu .restaurant .row .col-12 h1[data-v-2478efb1] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n#menu .menu[data-v-2478efb1] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n#menu .menu .row .col-12[data-v-2478efb1] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n#menu .menu .row .col-12 .dish[data-v-2478efb1] {\n  padding: 20px 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishImg[data-v-2478efb1] {\n  width: 100px;\n  height: 100px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext[data-v-2478efb1] {\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 700;\n  margin-bottom: 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2478efb1] {\n  font-size: 15px;\n  font-weight: 400;\n  color: #5F5C5C;\n}\n#menu .menu .row .col-12 .dish .price[data-v-2478efb1] {\n  width: 10%;\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .price h1[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 900;\n  color: #2DCCBC;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  border: 1px solid black;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1]:hover {\n  border: none;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter[data-v-2478efb1] {\n  width: 100%;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div[data-v-2478efb1] {\n  width: 70px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n#menu .menu .row .col-12 .dish .btn-black[data-v-2478efb1] {\n  background-color: black;\n  height: 40px;\n  width: 20%;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .btn-black span[data-v-2478efb1] {\n  color: white;\n  font-weight: 900;\n  font-size: 15px;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .btn-black span[data-v-2478efb1]:hover {\n  text-decoration: none;\n}\n#menu .menu .row .col-12 .dish .btn-black img[data-v-2478efb1] {\n  height: 15px;\n  margin-right: 5px;\n}\n#menu .cart[data-v-2478efb1] {\n  box-sizing: border-box;\n  min-width: 100vw;\n  height: 45vh;\n  background-color: black;\n  position: fixed;\n  bottom: 0;\n  overflow-y: scroll;\n  z-index: 3;\n}\n#menu .cart .row[data-v-2478efb1] {\n  padding: 50px 200px;\n}\n#menu .cart .row .col-12 .cartTitle[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .cartTitle h1[data-v-2478efb1] {\n  color: white;\n  font-size: 40px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .close[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .close img[data-v-2478efb1] {\n  height: 30px;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1] {\n  padding: 30px 0px;\n  border-bottom: 1px solid white;\n  flex-basis: 47%;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1]:nth-child(n) {\n  margin-right: 20px;\n}\n#menu .cart .row .col-12 .order .dishes[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext[data-v-2478efb1] {\n  margin-left: 30px;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h3[data-v-2478efb1] {\n  color: white;\n  font-size: 22px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h6[data-v-2478efb1] {\n  color: white;\n  font-size: 15px;\n  font-weight: 300;\n}\n#menu .cart .row .col-12 .price[data-v-2478efb1] {\n  width: 30%;\n  margin: 0 10px;\n}\n#menu .cart .row .col-12 .price h1[data-v-2478efb1] {\n  color: #2FBCAE;\n  font-size: 30px;\n  font-weight: 200;\n  line-height: 30px;\n}\n#menu .cart .row .col-12 .delete button[data-v-2478efb1] {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 22px;\n  font-weight: 400;\n}\n#menu .cart .col-6[data-v-2478efb1] {\n  margin: 30px 0;\n}\n#menu .cart .col-6 h1[data-v-2478efb1] {\n  color: white;\n  font-size: 40px;\n  font-weight: 900;\n}\n#menu .cart .col-6 .btn-light[data-v-2478efb1] {\n  background-color: #B3F5FD;\n  border: none;\n  height: 40px;\n  border-radius: 30px;\n  padding: 0 85px;\n}\n#menu .cart .col-6 .btn-light[data-v-2478efb1]:hover {\n  background-color: white;\n}\n#menu .cart .col-6 .btn-light span[data-v-2478efb1] {\n  color: black;\n  font-weight: 900;\n  font-size: 22px;\n  line-height: 30px;\n}\n#menu .cart .col-6 .btn-light span[data-v-2478efb1]:hover {\n  text-decoration: none;\n}\n#menu .cartButton[data-v-2478efb1] {\n  box-sizing: border-box;\n  min-width: 100vw;\n  position: fixed;\n  top: 20px;\n  right: 10px;\n  z-index: 2;\n}\n#menu .cartButton .row .col-12 .roundedCart[data-v-2478efb1] {\n  height: 60px;\n  width: 60px;\n  border: 4px solid black;\n  border-radius: 50%;\n  background-color: white;\n}\n#menu .cartButton .row .col-12 .roundedCart img[data-v-2478efb1] {\n  height: 30px;\n  width: 30px;\n}\n#menu .cartButton .row .col-12 .roundedCart[data-v-2478efb1]:hover {\n  background-color: #B3F5FD;\n  border: none;\n}", ""]);
 
 // exports
 
@@ -40134,7 +40199,10 @@ var render = function() {
                   },
                   [
                     _c("img", {
-                      attrs: { src: "img/dashboard/icon/cart.png", alt: "" }
+                      attrs: {
+                        src: "img/dashboard/icon/cart-white.svg",
+                        alt: ""
+                      }
                     }),
                     _vm._v(" "),
                     _c(
@@ -40164,7 +40232,27 @@ var render = function() {
     _vm.cartActive === true
       ? _c("div", { staticClass: "container cart" }, [
           _c("div", { staticClass: "row " }, [
-            _vm._m(1),
+            _c("div", { staticClass: "col-12 d-flex" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "close d-flex justify-content-end align-items-start",
+                  on: {
+                    click: function($event) {
+                      return _vm.openAndClose()
+                    }
+                  }
+                },
+                [
+                  _c("img", {
+                    attrs: { src: "img/restaurant/close_white.png", alt: "" }
+                  })
+                ]
+              )
+            ]),
             _vm._v(" "),
             _c(
               "div",
@@ -40242,18 +40330,99 @@ var render = function() {
                     [_c("h1", [_vm._v(_vm._s(order.totalPrice) + " €")])]
                   ),
                   _vm._v(" "),
-                  _vm._m(2, true)
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "delete d-flex justify-content-end align-items-center"
+                    },
+                    [
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              $event.stopPropagation()
+                              return _vm.deleteOrder(ind)
+                            }
+                          }
+                        },
+                        [_vm._v(" X ")]
+                      )
+                    ]
+                  )
                 ])
               }),
               0
             ),
             _vm._v(" "),
-            _vm._m(3),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "col-6 d-flex flex-column justify-content-center align-items-start"
+              },
+              [
+                _c("h1", [_vm._v("Totale ordine")]),
+                _vm._v(" "),
+                _c("h1", [_vm._v(" " + _vm._s(_vm.totalPrice) + " ")])
+              ]
+            ),
             _vm._v(" "),
-            _vm._m(4)
+            _c(
+              "div",
+              {
+                staticClass:
+                  "col-6 d-flex justify-content-end align-items-center"
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn-light",
+                    on: {
+                      click: function($event) {
+                        return _vm.payment()
+                      }
+                    }
+                  },
+                  [_c("span", [_vm._v("VAI AL PAGAMENTO ")])]
+                )
+              ]
+            )
           ])
         ])
-      : _vm._e()
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "container cartButton" }, [
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          {
+            staticClass: "col-12  d-flex justify-content-end align-items-center"
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "roundedCart d-flex justify-content-center align-items-center",
+                on: {
+                  click: function($event) {
+                    return _vm.openAndClose()
+                  }
+                }
+              },
+              [
+                _c("img", {
+                  attrs: { src: "img/dashboard/icon/cart.svg", alt: "" }
+                })
+              ]
+            )
+          ]
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -40267,66 +40436,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 d-flex" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "cartTitle d-flex justify-content-start align-items-center"
-        },
-        [_c("h1", [_vm._v("Carrello")])]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "close d-flex justify-content-end align-items-start" },
-        [
-          _c("img", {
-            attrs: { src: "img/restaurant/close_white.png", alt: "" }
-          })
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "delete d-flex justify-content-end align-items-center" },
-      [_c("button", [_vm._v(" X ")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c(
       "div",
       {
-        staticClass:
-          "col-6 d-flex flex-column justify-content-center align-items-start"
+        staticClass: "cartTitle d-flex justify-content-start align-items-center"
       },
-      [
-        _c("h1", [_vm._v("Totale ordine")]),
-        _vm._v(" "),
-        _c("h1", [_vm._v(" xxxxx€ ")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "col-6 d-flex justify-content-end align-items-center" },
-      [
-        _c("button", { staticClass: "btn-light" }, [
-          _c("span", [_vm._v("VAI AL PAGAMENTO ")])
-        ])
-      ]
+      [_c("h1", [_vm._v("Carrello")])]
     )
   }
 ]

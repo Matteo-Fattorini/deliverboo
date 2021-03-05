@@ -19,5 +19,10 @@ class FrontEndTestController extends Controller
     public function menu(){
         return view('menu');
     }
+
+    public function checkout(Request $rec){
+        $data = $rec -> all();
+        return view('checkout', compact('data'));
+    }
 }
 
