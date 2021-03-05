@@ -354,7 +354,7 @@ export default {
                console.log('Cosa ci fa qui? Hai voglia di ' + this.categorySelect + ' ? Scegli Deliveboo ;)')
      },
 
-// inserimento e cancellazione ordini
+// inserimento e cancellazione ordini nel carrello
      putInCart(index){
          this.filtered.forEach((dish,i) =>{
              if(index === i &&  dish.counter !=0 ){

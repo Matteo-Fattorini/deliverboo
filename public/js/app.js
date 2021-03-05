@@ -2512,7 +2512,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectCategory: function selectCategory(category) {
       return this.categorySelect = category, console.log('Cosa ci fa qui? Hai voglia di ' + this.categorySelect + ' ? Scegli Deliveboo ;)');
     },
-    // inserimento e cancellazione ordini
+    // inserimento e cancellazione ordini nel carrello
     putInCart: function putInCart(index) {
       var _this3 = this;
 
