@@ -2461,12 +2461,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var _this = this;
 
-    //chiamata dati
-    axios.get('http://localhost8000://').then(function (response) {
-      var picsumImages = response.data; // Handling the images here by using picsumImages
-    })["catch"](function (err) {// Error happened
-    }); //aggiungi quantità dal counter
-
+    //aggiungi quantità dal counter
     this.dishes = this.dishesImport.map(function (element) {
       _this.elementUpgrade = _objectSpread(_objectSpread({}, element), {}, {
         counter: 0
@@ -2512,7 +2507,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectCategory: function selectCategory(category) {
       return this.categorySelect = category, console.log('Cosa ci fa qui? Hai voglia di ' + this.categorySelect + ' ? Scegli Deliveboo ;)');
     },
-    // inserimento e cancellazione ordini
+    // inserimento e cancellazione ordini nel carrello
     putInCart: function putInCart(index) {
       var _this3 = this;
 
@@ -2563,12 +2558,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       ;
     },
     // vai al pagamento
-    payment: function payment() {
+    goTopayment: function goTopayment() {
       var data = {
         cart: this.cart
       };
       console.log('sono dati', data);
-      axios.get('/checkout', data).then(function (response) {
+      axios.post('/checkout', data).then(function (response) {
         console.log(response);
         location.replace('/checkout');
       });
@@ -7288,7 +7283,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "footer[data-v-abfbddf2] {\n  background-color: black;\n  color: white;\n}\nfooter .container[data-v-abfbddf2] {\n  height: 500px;\n}\nfooter .row[data-v-abfbddf2] {\n  padding-top: 50px;\n}\nfooter a[data-v-abfbddf2] {\n  color: #fff;\n  text-decoration: none;\n}\nfooter a[data-v-abfbddf2]:hover {\n  text-decoration: underline;\n}\nfooter img[data-v-abfbddf2] {\n  height: 4vh;\n  margin-right: 30px;\n}\nfooter div.social[data-v-abfbddf2] {\n  width: 50%;\n}\nfooter li[data-v-abfbddf2] {\n  line-height: 3rem;\n}", ""]);
+exports.push([module.i, "footer[data-v-abfbddf2] {\n  background-color: black;\n  color: white;\n}\nfooter .container[data-v-abfbddf2] {\n  height: 500px;\n}\nfooter .row[data-v-abfbddf2] {\n  padding-top: 50px;\n}\nfooter a[data-v-abfbddf2] {\n  color: #fff;\n  text-decoration: none;\n}\nfooter a[data-v-abfbddf2]:hover {\n  text-decoration: underline;\n}\nfooter div.social[data-v-abfbddf2] {\n  width: 70%;\n}\nfooter div.social img[data-v-abfbddf2] {\n  width: 30px;\n  margin-right: 30px;\n}\nfooter li[data-v-abfbddf2] {\n  line-height: 3rem;\n}", ""]);
 
 // exports
 
@@ -40382,7 +40377,7 @@ var render = function() {
                     staticClass: "btn-light",
                     on: {
                       click: function($event) {
-                        return _vm.payment()
+                        return _vm.goTopayment()
                       }
                     }
                   },

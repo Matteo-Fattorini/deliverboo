@@ -30,7 +30,8 @@ export default {
                              imgUrl: "img/restaurant/pizza-Bufalina.jpg",
                            },
         }
-    }   
+    },
+    
 }
 </script>
 

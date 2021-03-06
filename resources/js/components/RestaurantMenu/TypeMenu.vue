@@ -147,7 +147,7 @@
             </div>
             <div class="col-6 d-flex justify-content-end align-items-center">
                 <button class="btn-light"
-                @click="payment()"> <span>VAI AL PAGAMENTO </span> </button>
+                @click="goTopayment()"> <span>VAI AL PAGAMENTO </span> </button>
             </div>
         </div>
     </div>
@@ -282,17 +282,6 @@ export default {
 
   mounted:function(){
 
-      //chiamata dati
-
-      axios.get('http://localhost8000://')
-          .then(function (response) {
-              var picsumImages = response.data;
-              // Handling the images here by using picsumImages
-          })
-          .catch(function (err) {
-              // Error happened
-          });
-
       //aggiungi quantità dal counter
 
       this.dishes = this.dishesImport.map((element) => {
@@ -354,7 +343,7 @@ export default {
                console.log('Cosa ci fa qui? Hai voglia di ' + this.categorySelect + ' ? Scegli Deliveboo ;)')
      },
 
-// inserimento e cancellazione ordini
+// inserimento e cancellazione ordini nel carrello
      putInCart(index){
          this.filtered.forEach((dish,i) =>{
              if(index === i &&  dish.counter !=0 ){
@@ -414,13 +403,13 @@ export default {
 
   // vai al pagamento
 
-  payment(){
+  goTopayment(){
       const data = {
           cart: this.cart
       }
       console.log('sono dati', data)
-      axios.get('/checkout', data)
-          .then(function (response) {
+      axios.post('/checkout', data)
+          .then(function (response ) {
                console.log(response);
                location.replace('/checkout');  
           })
