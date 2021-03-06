@@ -2461,12 +2461,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var _this = this;
 
-    //chiamata dati
-    axios.get('http://localhost8000://').then(function (response) {
-      var picsumImages = response.data; // Handling the images here by using picsumImages
-    })["catch"](function (err) {// Error happened
-    }); //aggiungi quantità dal counter
-
+    //aggiungi quantità dal counter
     this.dishes = this.dishesImport.map(function (element) {
       _this.elementUpgrade = _objectSpread(_objectSpread({}, element), {}, {
         counter: 0
@@ -2563,12 +2558,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       ;
     },
     // vai al pagamento
-    payment: function payment() {
+    goTopayment: function goTopayment() {
       var data = {
         cart: this.cart
       };
       console.log('sono dati', data);
-      axios.get('/checkout', data).then(function (response) {
+      axios.post('/checkout', data).then(function (response) {
         console.log(response);
         location.replace('/checkout');
       });
@@ -40382,7 +40377,7 @@ var render = function() {
                     staticClass: "btn-light",
                     on: {
                       click: function($event) {
-                        return _vm.payment()
+                        return _vm.goTopayment()
                       }
                     }
                   },

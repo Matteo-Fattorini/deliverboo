@@ -1,1 +1,1 @@
-<h1>  @dd($data->cart) </h1>
+<h1>  @dd($data) </h1>
