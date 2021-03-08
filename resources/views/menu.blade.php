@@ -2,7 +2,7 @@
 @section('content')
 <NavComponent slot="navbar"></NavComponent>
 <InfoRestaurant> </InfoRestaurant>
-<TypeMenu> </TypeMenu>
+<TypeMenu data="{{$restaurant}}"> </TypeMenu>
 <PreFooter></PreFooter>
 
 @endsection

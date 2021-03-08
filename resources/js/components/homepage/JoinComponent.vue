@@ -1,17 +1,19 @@
 <template>
   <div>
-    <header id="bg">
-      <NavComponent></NavComponent>
-      <div class="d-flex justify-content-center align-items-center">
-        <input
-          v-model="query"
-          class="custom-input"
-          type="text"
-          name=""
-          id=""
-          placeholder="Cosa vuoi mangiare?"
-        />
-        <button @click="search()">Cerca</button>
+    <header>
+      <div id="bg">
+        <NavComponent></NavComponent>
+        <div class="d-flex justify-content-center align-items-center">
+          <input
+            v-model="query"
+            class="custom-input"
+            type="text"
+            name=""
+            id=""
+            placeholder="Cosa vuoi mangiare?"
+          />
+          <button @click="search()">Cerca</button>
+        </div>
       </div>
     </header>
     <ResturantSectionHome>
@@ -29,6 +31,7 @@
         :resturantName="restaurant.name"
         :resturantImg="restaurant.image_url"
         :resturantAddress="restaurant.address"
+        :link="'/restaurant/' + restaurant.id"
       />
     </ResturantSectionHome>
   </div>
@@ -114,10 +117,10 @@ export default {
             query: this.query,
           },
         })
-        .then(response =>{
+        .then((response) => {
           const array = response.data;
           this.restaurants = array;
-        })
+        });
       console.log(this.restaurants);
     },
   },
@@ -131,6 +134,7 @@ div {
 .custom-input {
   width: 50%;
 }
+
 </style>
 
 

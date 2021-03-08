@@ -30,7 +30,6 @@
             <ul>
               <li v-bind:key="dish.id" v-for="dish in item.get_dishes">
                 <a :href="'dishes/' + dish.id">{{ dish.name }}</a>
-
                 <form method="PUT" :action="'dishes/' + dish.id + '/edit'">
                   <button type="submit">EDIT</button>
                 </form>
