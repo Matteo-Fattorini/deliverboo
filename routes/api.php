@@ -21,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get("restaurants","ApiController@restaurants");
 Route::get("genres","ApiController@genres");
 Route::get("checked","ApiController@checked");
+
+Route::get("testpay", "ApiController@payment");

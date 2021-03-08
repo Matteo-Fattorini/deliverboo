@@ -82,8 +82,8 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        $restaurant = Restaurant::find($id);
-        return view("test-orders", compact("restaurant"));
+        $restaurant = Restaurant::where("id", $id)->with("getTypes","getDishes","getRestaurateur")->get();
+        return view("menu", compact("restaurant"));
     }
 
     /**

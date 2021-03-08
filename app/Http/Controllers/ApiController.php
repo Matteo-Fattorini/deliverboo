@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
+
+use Braintree\Gateway as Gateway;
+use Braintree\Transaction;
 use App\Restaurant;
 use Illuminate\Support\Facades\DB;
 use App\Type;
@@ -86,6 +90,27 @@ class ApiController extends Controller
     {
         //
     }
+    public function payment()
+    {
+        $gateway = new Gateway([
+            'environment' => 'sandbox',
+            'merchantId' => 'rbhzcjjb2rtjsx4j',
+            'publicKey' => '8hsqrm2vqx9twkpw',
+            'privateKey' => '1971b9924ee94d6d0320bc61d1ccb6be'
+        ]);
+        $clientToken = $gateway->clientToken()->generate();
+        $nonceFromTheClient = $_POST["payment_method_nonce"];
+        $result = $gateway->transaction()->sale([
+            'amount' => '10.00',
+            'paymentMethodNonce' => $nonceFromTheClient,
+            // 'deviceData' => $deviceDataFromTheClient,
+            'options' => [
+                'submitForSettlement' => True
+            ]
+        ]);
+
+        dd($clientToken);
+    }
 
     /**
      * Update the specified resource in storage.
@@ -109,4 +134,7 @@ class ApiController extends Controller
     {
         //
     }
+
+
+    
 }
