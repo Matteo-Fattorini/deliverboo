@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+// Route::get('/', "RestaurantController@index");
 Route::get('/', "RestaurantController@index");
 Route::get('/home', "RestaurantController@index");
 
@@ -22,13 +25,24 @@ Route::resource("orders", "OrderController");
 Route::resource("dishes", "DishController");
 Auth::routes();
 
-
-
-
-
-
 Route::get('/frontHome', 'FrontEndTestController@home' )->name('homePage');
 Route::get('/frontSuccess', 'FrontEndTestController@success')->name('success');
 Route::get('/frontRegister', 'FrontEndTestController@register')->name('register');
 Route::get('/menu', 'FrontEndTestController@menu' )->name('restaurant-menu');
 
+
+
+
+Route::get("/payment", function(){
+    $gateway = new Braintree\Gateway([
+        'environment' => "sandbox",
+        'merchantId' => "rbhzcjjb2rtjsx4j",
+        'publicKey' => "8hsqrm2vqx9twkpw",
+        'privateKey' => "1971b9924ee94d6d0320bc61d1ccb6be"
+    ]);
+    $token = $gateway->ClientToken()->generate();
+    return view("payment", ["token" => $token]);
+});
+
+
+Route::post("/checkout", "PaymentsController@checkout");
