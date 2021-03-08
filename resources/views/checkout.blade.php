@@ -1,1 +1,8 @@
-<h1>  @dd($data) </h1>
+
+
+@extends('layouts.main')
+@section('content')
+
+@dd($data)
+
+@endsection

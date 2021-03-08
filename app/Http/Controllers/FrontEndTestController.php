@@ -21,8 +21,9 @@ class FrontEndTestController extends Controller
     }
 
     public function checkout(Request $rec){
-        $data = $rec -> all();
+        $data = json_encode($rec) ;
         return view('checkout', compact('data'));
+        
     }
 }
 

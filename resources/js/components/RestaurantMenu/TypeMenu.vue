@@ -406,17 +406,27 @@ export default {
   goTopayment(){
       const data = {
           cart: this.cart
-      }
-      console.log('sono dati', data)
-      axios.post('/checkout', data)
-          .then(function (response ) {
-               console.log(response);
-               location.replace('/checkout');  
-          })
+       }
+    //   console.log('sono dati', data)
+    //   axios.get('/checkout', data)
+    //       .then(function (result ) {
+    //            console.log(result.data.response);
+    //            location.replace('/checkout');  
+    //       })
+
+     axios.get('/checkout', data)
+        .then((response) => {
+         console.log(response);
+         location.replace('/checkout');  
+      });
    }
 
     
-  }
+  },
+//   props:{
+//       dishesImport : Object,
+//       dCategory: Object,
+//   }  
   
 }
 

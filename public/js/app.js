@@ -2561,14 +2561,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     goTopayment: function goTopayment() {
       var data = {
         cart: this.cart
-      };
-      console.log('sono dati', data);
-      axios.post('/checkout', data).then(function (response) {
+      }; //   console.log('sono dati', data)
+      //   axios.get('/checkout', data)
+      //       .then(function (result ) {
+      //            console.log(result.data.response);
+      //            location.replace('/checkout');  
+      //       })
+
+      axios.get('/checkout', data).then(function (response) {
         console.log(response);
         location.replace('/checkout');
       });
     }
-  }
+  } //   props:{
+  //       dishesImport : Object,
+  //       dCategory: Object,
+  //   }  
+
 });
 
 /***/ }),
