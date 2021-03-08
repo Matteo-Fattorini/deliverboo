@@ -1,8 +1,19 @@
 <template>
   <div>
-    <HeaderHome>
-      <NavComponent slot="navbar"></NavComponent>
-    </HeaderHome>
+    <header id="bg">
+      <NavComponent></NavComponent>
+      <div class="d-flex justify-content-center align-items-center">
+        <input
+          v-model="query"
+          class="custom-input"
+          type="text"
+          name=""
+          id=""
+          placeholder="Cosa vuoi mangiare?"
+        />
+        <button @click="search()">Cerca</button>
+      </div>
+    </header>
     <ResturantSectionHome>
       <ButtonsComponent
         slot="buttons"
@@ -13,11 +24,11 @@
       />
       <ResturantComponent
         slot="resturant"
-        v-for="(resturant, index) in resturants"
+        v-for="(restaurant, index) in restaurants"
         :key="index"
-        :resturantName="resturant.name"
-        :resturantImg="resturant.imgUrl"
-        :resturantAddress="resturant.indirizzo"
+        :resturantName="restaurant.name"
+        :resturantImg="restaurant.image_url"
+        :resturantAddress="restaurant.address"
       />
     </ResturantSectionHome>
   </div>
@@ -39,6 +50,7 @@ export default {
   },
   data() {
     return {
+      query: "",
       categories: [
         {
           name: "Vegan",
@@ -89,69 +101,36 @@ export default {
           imgUrl: "img/homepage/icon/Pane.png",
         },
       ],
-      resturants: [
-        {
-          name: "Pizzeria da Gennaro",
-          indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
-        },
-        {
-          name: "Pizzeria da Gennaro",
-          indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
-        },
-        {
-          name: "Pizzeria da Gennaro",
-          indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
-        },
-        {
-          name: "Pizzeria da Gennaro",
-          indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
-        },
-        {
-          name: "Pizzeria da Gennaro",
-          indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
-        },
-        {
-          name: "Pizzeria da Gennaro",
-          indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
-        },
-        {
-          name: "Pizzeria da Gennaro",
-          indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
-        },
-        {
-          name: "Pizzeria da Gennaro",
-          indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
-        },
-        {
-          name: "Pizzeria da Gennaro",
-          indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
-        },
-        {
-          name: "Pizzeria da Gennaro",
-          indirizzo: "Via Europa, 23 Milano",
-          imgUrl: "img/restaurant/pizza-Bufalina.jpg",
-        },
-      ],
+      restaurants: [],
     };
   },
-  methods:{
-      search(){
-          
-      }
-  }
+  methods: {
+    search() {
+      this.restaurants = [];
+      console.log(this.query);
+      axios
+        .get("/api/restaurants", {
+          params: {
+            query: this.query,
+          },
+        })
+        .then(response =>{
+          const array = response.data;
+          this.restaurants = array;
+        })
+      console.log(this.restaurants);
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+div {
+  height: calc(100% - 100px);
+}
+.custom-input {
+  width: 50%;
+}
 </style>
 
 
