@@ -200,4 +200,9 @@ section#becomePartner {
     border-radius: 20px;
     border: 1px solid black;
 }
-
+#bg {
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('../img/homepage/background_header.png');
+}

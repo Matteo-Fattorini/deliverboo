@@ -1,8 +1,8 @@
 <template>
-  <header>
+  <header id="bg">
     <slot name="navbar"></slot>
     <div class="d-flex justify-content-center align-items-center">
-      <input type="text" name="" id="" placeholder="Cosa vuoi mangiare?" />
+      <input class="custom-input" type="text" name="" id="" placeholder="Cosa vuoi mangiare?" />
     </div>
   </header>
 </template>
@@ -14,12 +14,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-header {
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 div {
   height: calc(100% - 100px);
+}
+.custom-input {
+  width: 50%;
 }
 </style>

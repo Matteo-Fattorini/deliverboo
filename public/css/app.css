@@ -11117,3 +11117,10 @@ ul {
   border: 1px solid black;
 }
 
+#bg {
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(/images/background_header.png?546f73a709163fb8bb678215e8888178);
+}
+
