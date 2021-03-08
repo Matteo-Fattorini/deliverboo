@@ -94,6 +94,7 @@
     </div>
 
     <!-- carrello -->
+<form  @submit="goToPayment">
     <div class="container cart" v-if="cartActive === true">
       <div class="row">
         <div class="col-12 d-flex">
@@ -149,12 +150,13 @@
           <h1>{{ totalPrice }}</h1>
         </div>
         <div class="col-6 d-flex justify-content-end align-items-center">
-          <button class="btn-light" @click="goTopayment()">
+          <button class="btn-light" type="submit">
             <span>VAI AL PAGAMENTO </span>
           </button>
         </div>
       </div>
     </div>
+  </form>
 
     <!-- attiva carrello -->
 
@@ -188,7 +190,7 @@ export default {
       cart: [],
       cartActive: false,
       totalPay: 0,
-      restaurantData: {},
+      restaurantData: [],
       dishes: [],
       dishesImport: [
         {
@@ -387,10 +389,8 @@ export default {
 
     // vai al pagamento
 
-    goTopayment() {
-      const data = {
-        cart: this.cart,
-      };
+    goToPayment() {
+
       //   console.log('sono dati', data)
       //   axios.get('/checkout', data)
       //       .then(function (result ) {
@@ -398,9 +398,10 @@ export default {
       //            location.replace('/checkout');
       //       })
 
-      axios.get("/checkout", data).then((response) => {
-        console.log(response);
-        location.replace("/checkout");
+      axios.post("/checkout", this.cart)
+      .then((response) => {
+         console.log(response.data);
+         location.replace("/checkout", this.cart);
       });
     },
   },

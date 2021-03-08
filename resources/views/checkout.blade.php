@@ -3,6 +3,6 @@
 @extends('layouts.main')
 @section('content')
 
-@dd($data)
+<h1>pagamento</h1>
 
 @endsection
