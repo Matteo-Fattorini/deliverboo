@@ -7,9 +7,9 @@
               </div>
               <div class="col-6 d-flex justify-content-end align-items-center">
                   <ul class="d-flex justify-content-between align-items-center d-flex justify-content-between align-items-center m-0 p-0">
-                      <li>Home</li>
+                      <li><a :href="homelink">Home</a></li>
                       <li>Aiuto</li>
-                      <li>Login Ristoratori</li>
+                      <li><a :href="loginlink">Login Ristoratori</a></li>
                   </ul>
               </div>
           </div>
@@ -19,7 +19,11 @@
 
 <script>
 export default {
-    name:'NavComponent'
+    name:'NavComponent',
+    props:{
+        homelink: String,
+        loginlink: String
+    },
 }
 </script>
 

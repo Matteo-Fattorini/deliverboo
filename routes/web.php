@@ -34,5 +34,6 @@ Route::get('/frontRegister', 'FrontEndTestController@register')->name('register'
 Route::get('/menu', 'FrontEndTestController@menu' )->name('menu');
 Route::get('/checkout', 'FrontEndTestController@checkoutResponse' );
 Route::post('/checkout', 'FrontEndTestController@checkoutRequest' );
+Route::get('/frontLogin', 'FrontEndTestController@login')->name('login');
 
 

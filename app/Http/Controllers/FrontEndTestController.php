@@ -34,5 +34,8 @@ class FrontEndTestController extends Controller
     public function checkoutResponse($dataOrder){
         return view('checkout',compact('dataOrder'));
     }
+    public function login(){
+        return view('frontLogin');
+    }
 }
 

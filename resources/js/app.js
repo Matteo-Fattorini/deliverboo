@@ -30,7 +30,6 @@ Vue.component('footercomponent', require('./components/FooterComponent.vue').def
 
 
 //HOMEPAGE
-Vue.component('headerhome', require('./components/homepage/HeaderHome.vue').default);
 Vue.component('resturantsectionhome', require('./components/homepage/ResturantSectionHome.vue').default);
 Vue.component('partnersectionhome', require('./components/homepage/PartnerSectionHome.vue').default);
 Vue.component('infosectionhome', require('./components/homepage/InfosectionHome.vue').default);

@@ -23,6 +23,7 @@ $primary-color: #b3f5fd;
     border-radius: 20px;
     padding: 10px;
     color: #000;
+    text-decoration: none;
 }
 %button-black {
     @extend %button-colored;
@@ -205,4 +206,23 @@ section#becomePartner {
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url('../img/homepage/background_header.png');
+}
+
+#login{
+    .login-img{
+        height: 200px;
+        width: 100%;
+        background-image: url('img/homepage/rider.jpg');
+        background-position: center;
+        background-size: cover;
+    }
+
+    .black-container{
+        background-color: #000;
+        color: #fff;
+
+        a{
+            @extend %button-colored
+        }
+    }
 }
