@@ -33,5 +33,6 @@ Route::get('/frontSuccess', 'FrontEndTestController@success')->name('success');
 Route::get('/frontRegister', 'FrontEndTestController@register')->name('register');
 Route::get('/menu', 'FrontEndTestController@menu' )->name('menu');
 Route::get('/checkout', 'FrontEndTestController@checkout' )->name('checkout');
+Route::get('/frontLogin', 'FrontEndTestController@login')->name('login');
 
 

@@ -2,7 +2,7 @@
   <div>
     <header>
       <div id="bg">
-        <NavComponent></NavComponent>
+        <NavComponent :homelink="homelink" :loginlink="loginlink"></NavComponent>
         <div class="d-flex justify-content-center align-items-center">
           <input
             v-model="query"
@@ -37,7 +37,6 @@
   </div>
 </template>
 <script>
-import HeaderHome from "./HeaderHome.vue";
 import NavComponent from "./../NavComponent.vue";
 import ResturantSectionHome from "./ResturantSectionHome.vue";
 import ButtonsComponent from "./ButtonsComponent.vue";
@@ -45,11 +44,14 @@ import ResturantComponent from "./ResturantComponent.vue";
 export default {
   name: "JoinComponent",
   components: {
-    HeaderHome,
     ResturantSectionHome,
     NavComponent,
     ButtonsComponent,
     ResturantComponent,
+  },
+  props:{
+    homelink: String,
+    loginlink: String
   },
   data() {
     return {

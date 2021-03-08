@@ -10948,12 +10948,14 @@ a.text-dark:focus {
   border: 1px solid black;
 }
 
+#login .black-container a,
 section#becomePartner a,
 nav li:last-child {
   background-color: #b3f5fd;
   border-radius: 20px;
   padding: 10px;
   color: #000;
+  text-decoration: none;
 }
 
 nav li:last-child {
@@ -11122,5 +11124,18 @@ ul {
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url(/images/background_header.png?546f73a709163fb8bb678215e8888178);
+}
+
+#login .login-img {
+  height: 200px;
+  width: 100%;
+  background-image: url(/images/rider.jpg?d4f940a46c3205e8e77c00b27cf236b4);
+  background-position: center;
+  background-size: cover;
+}
+
+#login .black-container {
+  background-color: #000;
+  color: #fff;
 }
 

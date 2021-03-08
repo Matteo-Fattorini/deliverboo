@@ -25,5 +25,8 @@ class FrontEndTestController extends Controller
         return view('checkout', compact('data'));
         
     }
+    public function login(){
+        return view('frontLogin');
+    }
 }
 

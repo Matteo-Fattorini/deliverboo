@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
     <header>
-        <NavComponent></NavComponent>
+        <NavComponent homelink="{{route('homePage')}}" loginlink="{{route('login')}}"></NavComponent>
         <div class="container p-5">
             <div class="row">
                 <div class="col">
