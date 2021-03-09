@@ -8,14 +8,9 @@
 require('./bootstrap');
 
 
-import VueRouter from "vue-router";
-
 
 
 window.Vue = require('vue');
-Vue.use(VueRouter);
-
-
 
 
 /**
@@ -33,19 +28,29 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('navcomponent', require('./components/NavComponent.vue').default);
 Vue.component('footercomponent', require('./components/FooterComponent.vue').default);
 
+
 //HOMEPAGE
-Vue.component('headerhome', require('./components/homepage/HeaderHome.vue').default);
 Vue.component('resturantsectionhome', require('./components/homepage/ResturantSectionHome.vue').default);
 Vue.component('partnersectionhome', require('./components/homepage/PartnerSectionHome.vue').default);
 Vue.component('infosectionhome', require('./components/homepage/InfosectionHome.vue').default);
+Vue.component('joincomponent', require('./components/homepage/JoinComponent.vue').default);
+Vue.component('buttonscomponent', require('./components/homepage/ButtonsComponent.vue').default);
+Vue.component('resturantcomponent', require('./components/homepage/ResturantComponent.vue').default);
+
 
 //SUCCESS PAGE
 Vue.component('successpage', require('./components/success/SuccessPage.vue').default);
 
 
-
+//RESTOURANT MENU
 Vue.component('inforestaurant', require('./components/RestaurantMenu/InfoRestaurant.vue').default);
 Vue.component('typemenu', require('./components/RestaurantMenu/TypeMenu.vue').default);
+Vue.component('prefooter', require('./components/RestaurantMenu/PreFooter.vue').default);
+
+
+//CHECKOUT
+Vue.component('cart', require('./components/checkout/Cart.vue').default);
+
 
 
 /**

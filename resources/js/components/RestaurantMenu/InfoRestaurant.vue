@@ -1,36 +1,47 @@
 <template>
       <div class="container">
           <div class="row">
-              <div class="col-4 d-flex m.0 p-0 ">
+              <div class="col-6  info d-flex p-0 ">
                   <div class=" rst-info d-flex flex-column justify-content-start align-items-start">
-                      <h1> {{ resturants.name }}</h1>
-                      <h5> {{ resturants.indirizzo }}</h5>
+                      <h1> {{ restaurantData.name }}</h1>
+                      <h5> {{ restaurantData.address }}</h5>
                       <div class="dist"></div>
                   </div>
                   
               </div>
-              <div class="col-8 d-flex justify-content-center align-items-center ">
-                  <div class="resturantImage m-0 p-0">
-                     <img class='m-0 p-0' :src="resturants.imgUrl" alt="">
+              <div class="col-6 circle d-flex justify-content-center align-items-center p-0">
+                  <div class="resturantImage ">
+                     <img class='m-0 p-0' :src="restaurantData.image_url" alt="">
                   </div>
               </div>
           </div>
       </div>
-    
+      
+      
 </template>
 
 <script>
 export default {
     name: 'inforestaurant',
+    props:{
+        data: String,
+    },
     data(){
         return{
+              restaurantData:[],
               resturants: { 
                              name : "Pizzeria da Gennaro",
                              indirizzo: "Via Europa, 23 Milano",
                              imgUrl: "img/restaurant/pizza-Bufalina.jpg",
                            },
         }
-    }   
+    },
+    mounted: function () {
+    var data = JSON.parse(this.data);
+    this.restaurantData = data;
+    console.log(this.restaurantData);
+    },
+
 }
 </script>
 
@@ -41,18 +52,19 @@ export default {
         margin-top: 30px;
         margin-bottom: 50px;
         .row{
-            .col-8{
+            .circle{
                 margin:0;
                 padding:0;
                 position: absolute;
-                top:120px;
-                right:0;
+                top:140px;
+                right:40px;
                 z-index:2;
                 .resturantImage {
                     min-width: 450px;
                     height: 450px;
                     overflow: hidden;
                     border-radius: 100%;
+                    border:6px solid black;
                     img {
                         width: 100%;
                         height: 100%;
@@ -61,10 +73,10 @@ export default {
                     }
                 }
             }
-            .col-4{
+            .info{
                 .rst-info{
                     margin: 20px 0 0 20px;
-                    padding:0;
+                    padding-right:0;
                     
 
                     h1{
@@ -73,7 +85,6 @@ export default {
                         line-height:50px ;
                     }
                     h5{
-                        
                         font-size: 18px ;
                         font-weight: 400;
                     }

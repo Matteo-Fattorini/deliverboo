@@ -10948,12 +10948,14 @@ a.text-dark:focus {
   border: 1px solid black;
 }
 
+#login .black-container a,
 section#becomePartner a,
 nav li:last-child {
   background-color: #b3f5fd;
   border-radius: 20px;
   padding: 10px;
   color: #000;
+  text-decoration: none;
 }
 
 nav li:last-child {
@@ -11028,6 +11030,35 @@ nav li:last-child {
   margin: 5px 0;
 }
 
+.oval-white-button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.oval-white-button .notselected {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  margin: 0 15px 0 0;
+  border: 1px solid white;
+  width: 35px;
+  height: 50px;
+  border-radius: 60px;
+}
+
+.oval-white-button .notselected span {
+  color: white;
+  font-size: 18px;
+  font-weight: 900;
+  margin: 5px 0;
+}
+
 ul {
   list-style: none;
 }
@@ -11064,11 +11095,47 @@ ul {
      object-position: 50% 50%;
 }
 
+.cartImage {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 100%;
+}
+
+.cartImage img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 50%;
+     object-position: 50% 50%;
+}
+
 .custom-input {
   width: 100%;
   padding: 8px;
   margin: 5px 0px;
   border-radius: 20px;
   border: 1px solid black;
+}
+
+#bg {
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(/images/background_header.png?546f73a709163fb8bb678215e8888178);
+}
+
+#login .login-img {
+  height: 200px;
+  width: 100%;
+  background-image: url(/images/rider.jpg?d4f940a46c3205e8e77c00b27cf236b4);
+  background-position: center;
+  background-size: cover;
+}
+
+#login .black-container {
+  background-color: #000;
+  color: #fff;
 }
 

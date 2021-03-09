@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 class FrontEndTestController extends Controller
 {
+
+    private $dataOrder = [];
+
     public function home(){
         return view('frontHome');
     }
@@ -18,6 +21,14 @@ class FrontEndTestController extends Controller
     }
     public function menu(){
         return view('menu');
+    }
+
+
+    public function checkout(){
+        return view('checkout');
+    }
+    public function login(){
+        return view('frontLogin');
     }
 }
 

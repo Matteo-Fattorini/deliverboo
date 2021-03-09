@@ -84,11 +84,13 @@ footer {
   a:hover{
     text-decoration: underline;
   }
-  img{
-    height: 4vh;
-  }
+  
   div.social{
-    width:50%;
+    width:70%;
+    img{
+      width:30px;
+      margin-right:30px;
+    }
   }
   li{
     line-height:3rem;

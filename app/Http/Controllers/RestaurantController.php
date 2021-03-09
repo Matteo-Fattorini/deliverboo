@@ -82,11 +82,7 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        // $restaurant = Restaurant::find($id);
         $restaurant = Restaurant::where("id", $id)->with("getTypes","getDishes","getRestaurateur","getDishes.getGenre")->get();
-        
-        
-
         return view("menu", compact("restaurant"));
     }
 
