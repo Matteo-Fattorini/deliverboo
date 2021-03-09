@@ -140,4 +140,10 @@ class DishController extends Controller
         $item = "Hai cancellato l'elemento con successo!!";
         return view("success", compact("item"));
     }
+
+
+    public function testChart(){
+        $restaurant = Restaurant::find(3);
+        return view("chart", compact("restaurant"));
+    }
 }
