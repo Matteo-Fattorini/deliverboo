@@ -1,28 +1,27 @@
 <template>
   <div id="menu">
-    <div class="container restaurant">
+    <div class="container restaurant ">
       <div class="row">
         <div class="col-12">
           <h1>Menù</h1>
-          <button @click="check()">Check</button>
         </div>
         <div class="col-12">
           <ul class="oval-button">
             <li
-              v-for="(category, index) in dCategories"
+              v-for="(category, index) in genreFiltered"
               :key="index"
-              @click="selectCategory(category.name)"
+              @click="selectCategory(category)"
               :class="{
-                selected: category.name === categorySelect,
-                notselected: category.name != categorySelect,
+                selected: category === categorySelect,
+                notselected: category != categorySelect,
               }"
             >
-              <img class="icon" :src="category.imgUrl" alt="" />
+              <img class="icon" :src="category.image_url" alt="" />
               <!-- ondragstart="return false" 
                          onselectstart="return false"
                          evita evidenziazione del testo -->
               <span ondragstart="return false" onselectstart="return false">
-                {{ category.name }}
+                {{ category }}
               </span>
             </li>
           </ul>
@@ -48,7 +47,7 @@
             >
               <div class="dishImg">
                 <div class="listImage dishImg">
-                  <img class="" :src="dish.imgUrl" alt="" />
+                  <img class="" :src="dish.image_url" alt="" />
                 </div>
               </div>
               <div class="dishtext">
@@ -83,7 +82,7 @@
               class="btn-black d-flex justify-content-center align-items-center"
               @click="putInCart(i), activeCart()"
             >
-              <img src="img/dashboard/icon/cart-white.svg" alt="" />
+              <img src="/images/cart-white.svg" alt="" />
               <span ondragstart="return false" onselectstart="return false">
                 Aggiungi +
               </span>
@@ -94,7 +93,8 @@
     </div>
 
     <!-- carrello -->
-<form  @submit="goToPayment">
+   <form action="http://localhost:8000/checkout" @submit="goToPayment">
+      @csrf
     <div class="container cart" v-if="cartActive === true">
       <div class="row">
         <div class="col-12 d-flex">
@@ -107,7 +107,7 @@
             class="close d-flex justify-content-end align-items-start"
             @click="openAndClose()"
           >
-            <img src="img/restaurant/close_white.png" alt="" />
+            <img src="/images/close_white.png" alt="" />
           </div>
         </div>
         <div class="col-12 d-flex flex-row flex-wrap">
@@ -167,11 +167,11 @@
             class="roundedCart d-flex justify-content-center align-items-center"
             @click="openAndClose()"
           >
-            <img src="img/dashboard/icon/cart.svg" alt="" />
+            <img src="/images/cart.svg" alt="" />
           </div>
         </div>
       </div>
-    </div>
+    </div> 
   </div>
 </template>
 
@@ -188,113 +188,70 @@ export default {
       categorySelect: "",
       nCounter: [],
       cart: [],
-      cartActive: false,
       totalPay: 0,
       restaurantData: [],
+      dishesImport:[],
       dishes: [],
-      dishesImport: [
-        {
-          name: "Margherita",
-          description: "Pomodoro, Mozzarella, basilico, olio EVO",
-          price: "6.00",
-          imgUrl: "img/restaurant/pizza-margherita.jpg",
-          category: "Pizza",
-        },
-        {
-          name: "Margherita",
-          description: "Pomodoro, Mozzarella, basilico, olio EVO",
-          price: "6.00",
-          imgUrl: "img/restaurant/pizza-margherita.jpg",
-          category: "Pizza",
-        },
-        {
-          name: "Margherita",
-          description: "Pomodoro, Mozzarella, basilico, olio EVO",
-          price: "6.50",
-          imgUrl: "img/restaurant/pizza-margherita.jpg",
-          category: "Pizza",
-        },
-        {
-          name: "Fritto Misto",
-          description:
-            "Arancino, Suppli, Frittatina di pasta, Verdure in pastella, pane fritto",
-          price: "11.00",
-          imgUrl: "img/restaurant/fritto-misto.jpg",
-          category: "Fritto",
-        },
-        {
-          name: "Fritto Misto",
-          description:
-            "Arancino, Suppli, Frittatina di pasta, Verdure in pastella, pane fritto",
-          price: "11.00",
-          imgUrl: "img/restaurant/fritto-misto.jpg",
-          category: "Fritto",
-        },
-        {
-          name: "Fritto Misto",
-          description:
-            "Arancino, Suppli, Frittatina di pasta, Verdure in pastella, pane fritto",
-          price: "11.00",
-          imgUrl: "img/restaurant/fritto-misto.jpg",
-          category: "Fritto",
-        },
-        {
-          name: "Tiramisù",
-          description: "Savoiardi, Crema al mascarpone, Caffè, Cacao",
-          price: "5.00",
-          imgUrl: "img/restaurant/dessert-tiramisu.jpg",
-          category: "Dessert",
-        },
-        {
-          name: "Tiramisù",
-          description: "Savoiardi, Crema al mascarpone, Caffè, Cacao",
-          price: "5.00",
-          imgUrl: "img/restaurant/dessert-tiramisu.jpg",
-          category: "Dessert",
-        },
-        {
-          name: "Tiramisù",
-          description: "Savoiardi, Crema al mascarpone, Caffè, Cacao",
-          price: "5.00",
-          imgUrl: "img/restaurant/dessert-tiramisu.jpg",
-          category: "Dessert",
-        },
-      ],
-      dCategories: [
-        {
-          name: "Pizza",
-          imgUrl: "img/homepage/icon/Pizza.png",
-        },
-        {
-          name: "Fritto",
-          imgUrl: "img/homepage/icon/Fritto.png",
-        },
-        {
-          name: "Dessert",
-          imgUrl: "img/homepage/icon/Dessert.png",
-        },
-      ],
+      genreList:[],
+      genreName:[],
+      
+      
     };
   },
 
   mounted: function () {
+
     var data = JSON.parse(this.data);
-    this.restaurantData = data;
+    this.dishesImport = data.get_dishes;
+
     //aggiungi quantità dal counter
     this.dishes = this.dishesImport.map((element) => {
       this.elementUpgrade = { ...element, counter: 0 };
       return this.elementUpgrade;
     });
+
+    this.genreList =  this.dishesImport.map((element)=>{
+      this.genre = element.get_genre;
+      return  this.genre;
+     }),
+
+     this.genreName = this.genreList.map((e)=>{
+       this.name = e.name;
+       return this.name;
+     })
+
+
+
+
+
+
+
+
+     console.log(this.dishesImport);
+     console.log('piatti');
+     console.log(this.dishes);
+     console.log('generi');
+     console.log(this.genreList);
+     console.log('generi nomi');
+     console.log(this.genreName);
+     console.log('generi filtrati');
+     console.log(this.dCategories);
   },
+    
 
   computed: {
+
+    genreFiltered(){
+      return this.genreName.filter((v,i,a)=> a.indexOf(v) === i);
+    },
+    
     filtered() {
       return this.dishes.filter((e) => {
-        return e.category.includes(this.categorySelect);
+        return e.get_genre.name.includes(this.categorySelect);
       });
     },
 
-    // calcola il totale del pagamento del carrello
+    //calcola il totale del pagamento del carrello
 
     totalPrice() {
       const total = this.cart.reduce(
@@ -346,7 +303,7 @@ export default {
           this.cart.push({
             quantity: dish.counter,
             dishName: dish.name,
-            dishImgUrl: dish.imgUrl,
+            dishImgUrl: dish.image_url,
             dishPrice: dish.price,
             totalPrice: parseFloat(dish.price) * dish.counter,
           });
@@ -400,8 +357,8 @@ export default {
 
       axios.post("/checkout", this.cart)
       .then((response) => {
-         console.log(response.data);
-         location.replace("/checkout", this.cart);
+         console.log(response);
+         location.replace("/checkout", response);
       });
     },
   },

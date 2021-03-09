@@ -1,7 +1,7 @@
 <template>
       <div class="container">
           <div class="row">
-              <div class="col-4 d-flex m.0 p-0 ">
+              <div class="col-6  info d-flex p-0 ">
                   <div class=" rst-info d-flex flex-column justify-content-start align-items-start">
                       <h1> {{ restaurantData.name }}</h1>
                       <h5> {{ restaurantData.address }}</h5>
@@ -9,8 +9,8 @@
                   </div>
                   
               </div>
-              <div class="col-8 d-flex justify-content-center align-items-center ">
-                  <div class="resturantImage m-0 p-0">
+              <div class="col-6 circle d-flex justify-content-center align-items-center p-0">
+                  <div class="resturantImage ">
                      <img class='m-0 p-0' :src="restaurantData.image_url" alt="">
                   </div>
               </div>
@@ -52,12 +52,12 @@ export default {
         margin-top: 30px;
         margin-bottom: 50px;
         .row{
-            .col-8{
+            .circle{
                 margin:0;
                 padding:0;
                 position: absolute;
                 top:140px;
-                right:0;
+                right:40px;
                 z-index:2;
                 .resturantImage {
                     min-width: 450px;
@@ -73,10 +73,10 @@ export default {
                     }
                 }
             }
-            .col-4{
+            .info{
                 .rst-info{
                     margin: 20px 0 0 20px;
-                    padding:0;
+                    padding-right:0;
                     
 
                     h1{
@@ -85,7 +85,6 @@ export default {
                         line-height:50px ;
                     }
                     h5{
-                        
                         font-size: 18px ;
                         font-weight: 400;
                     }
