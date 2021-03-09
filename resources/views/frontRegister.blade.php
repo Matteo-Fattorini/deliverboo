@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
     <header>
-        <NavComponent homelink="{{route('homePage')}}" loginlink="{{route('login')}}"></NavComponent>
+        <NavComponent homelink="{{ route('homePage') }}" loginlink="{{ route('login') }}"></NavComponent>
         <div class="container p-5">
             <div class="row">
                 <div class="col">
@@ -31,9 +31,11 @@
                     <div class="col-6">
                         <input class="custom-input" type="password" name="" id="" placeholder="Conferma password" />
                     </div>
-
+                    <button>
+                        {{ __('Register') }}
+                    </button>
                 </div>
-                <div class="row m-3">
+                {{-- <div class="row m-3">
                     <div class="col-12">
                         <p>INFORMAZIONI RISTORANTE</p>
                     </div>
@@ -64,7 +66,7 @@
                     <div class="col-12 d-flex justify-content-end align-items-center">
                         <button type="submit">REGISTRATI</button>
                     </div>
-                </div>
+                </div> --}}
             </form>
         </div>
     </header>

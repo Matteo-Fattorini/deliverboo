@@ -10,6 +10,7 @@
                       <li><a :href="homelink">Home</a></li>
                       <li>Aiuto</li>
                       <li><a :href="loginlink">Login Ristoratori</a></li>
+                      <li><a :href="dashboard">DASH</a></li>
                   </ul>
               </div>
           </div>
@@ -22,7 +23,9 @@ export default {
     name:'NavComponent',
     props:{
         homelink: String,
-        loginlink: String
+        loginlink: String,
+        dashboard: String,
+        data: String
     },
 }
 </script>

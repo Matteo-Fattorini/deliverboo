@@ -2,7 +2,6 @@
   <div>
     <header>
       <div id="bg">
-        <NavComponent :homelink="homelink" :loginlink="loginlink"></NavComponent>
         <div class="d-flex justify-content-center align-items-center">
           <input
             v-model="query"
@@ -19,10 +18,13 @@
     <ResturantSectionHome>
       <ButtonsComponent
         slot="buttons"
+        @click.stop.native="addCategory(category.name,$event)"
         v-for="(category, index) in categories"
         :key="index"
         :categoryName="category.name"
-        :categoryImg="category.imgUrl"
+        :categoryImg="category.image_url"
+        :value="category.name"
+        :id="category.id"
       />
       <ResturantComponent
         slot="resturant"
@@ -37,7 +39,7 @@
   </div>
 </template>
 <script>
-import NavComponent from "./../NavComponent.vue";
+// import NavComponent from "./../NavComponent.vue";
 import ResturantSectionHome from "./ResturantSectionHome.vue";
 import ButtonsComponent from "./ButtonsComponent.vue";
 import ResturantComponent from "./ResturantComponent.vue";
@@ -45,67 +47,15 @@ export default {
   name: "JoinComponent",
   components: {
     ResturantSectionHome,
-    NavComponent,
+    // NavComponent,
     ButtonsComponent,
     ResturantComponent,
-  },
-  props:{
-    homelink: String,
-    loginlink: String
   },
   data() {
     return {
       query: "",
-      categories: [
-        {
-          name: "Vegan",
-          imgUrl: "img/homepage/icon/Vegan.png",
-        },
-        {
-          name: "Pizza",
-          imgUrl: "img/homepage/icon/Pizza.png",
-        },
-        {
-          name: "Burger",
-          imgUrl: "img/homepage/icon/Burger.png",
-        },
-        {
-          name: "Orientale",
-          imgUrl: "img/homepage/icon/Orientale.png",
-        },
-        {
-          name: "Italiano",
-          imgUrl: "img/homepage/icon/Italiano.png",
-        },
-        {
-          name: "Bbq",
-          imgUrl: "img/homepage/icon/Bbq.png",
-        },
-        {
-          name: "Brasiliano",
-          imgUrl: "img/homepage/icon/Brasiliano.png",
-        },
-        {
-          name: "Pesce",
-          imgUrl: "img/homepage/icon/Pesce.png",
-        },
-        {
-          name: "Carne",
-          imgUrl: "img/homepage/icon/Carne.png",
-        },
-        {
-          name: "Fritto",
-          imgUrl: "img/homepage/icon/Fritto.png",
-        },
-        {
-          name: "Dessert",
-          imgUrl: "img/homepage/icon/Dessert.png",
-        },
-        {
-          name: "Pane",
-          imgUrl: "img/homepage/icon/Pane.png",
-        },
-      ],
+      checked: [],
+      categories: [],
       restaurants: [],
     };
   },
@@ -125,6 +75,44 @@ export default {
         });
       console.log(this.restaurants);
     },
+    
+    getCategories() {
+      this.categories = [];
+      axios.get("/api/genres").then((response) => {
+        this.categories = response.data;
+      });
+    },
+
+    addCategory(name, e){
+      if(!this.checked.includes(name)){
+        this.checked.push(name)
+      }else{
+        this.checked.splice(this.checked.indexOf(name),1)
+      }
+
+      if(this.checked.length >0){
+        this.check();
+      }
+      
+      if(!e.target.classList.contains("icon")){
+
+        e.target.classList.toggle("selected")
+      }
+      console.log(this.checked)
+      
+      
+    },
+    check(e) {
+      this.restaurants = [];
+      axios
+        .get("/api/checked", { params: { query: this.checked } })
+        .then((response) => {
+          this.restaurants = response.data;
+        });
+    },
+  },
+  mounted() {
+    this.getCategories();
   },
 };
 </script>
@@ -136,7 +124,6 @@ div {
 .custom-input {
   width: 50%;
 }
-
 </style>
 
 
