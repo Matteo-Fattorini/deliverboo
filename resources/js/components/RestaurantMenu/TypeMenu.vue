@@ -93,8 +93,6 @@
     </div>
 
     <!-- carrello -->
-   <form action="http://localhost:8000/checkout" @submit="goToPayment">
-      @csrf
     <div class="container cart" v-if="cartActive === true">
       <div class="row">
         <div class="col-12 d-flex">
@@ -150,14 +148,14 @@
           <h1>{{ totalPrice }}</h1>
         </div>
         <div class="col-6 d-flex justify-content-end align-items-center">
-          <button class="btn-light" type="submit">
+          <!-- @submit="goToPayment" -->
+          <button class="btn-light" @click="goToPayment()" >
             <span>VAI AL PAGAMENTO </span>
           </button>
         </div>
       </div>
     </div>
-  </form>
-
+  
     <!-- attiva carrello -->
 
     <div class="container cartButton">
@@ -194,6 +192,7 @@ export default {
       dishes: [],
       genreList:[],
       genreName:[],
+      action: "{{ URL::to('/checkout')}}",
       
       
     };
@@ -347,6 +346,13 @@ export default {
     // vai al pagamento
 
     goToPayment() {
+      
+      localStorage.setItem('storedData',this.cart);
+      location.replace("/checkout");
+
+
+      
+
 
       //   console.log('sono dati', data)
       //   axios.get('/checkout', data)
@@ -354,14 +360,25 @@ export default {
       //            console.log(result.data.response);
       //            location.replace('/checkout');
       //       })
+  
+  //     axios.post("/checkout", {
+  //           cart: this.cart,
+  //       })
+  //     .then((response) => {
+  //        console.log(response);
 
-      axios.post("/checkout", this.cart)
-      .then((response) => {
-         console.log(response);
-         location.replace("/checkout", response);
-      });
+  //        location.replace("/checkout");
+         
+  //     })
+  //     .catch(function(error){
+  //           console.log(error);
+  //     });
     },
+    
   },
+
+  
+
   //   props:{
   //       dishesImport : Object,
   //       dCategory: Object,

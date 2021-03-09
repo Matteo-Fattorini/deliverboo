@@ -1,8 +1,6 @@
 
-
 @extends('layouts.main')
 @section('content')
+<cart></cart>
 
-<h1>pagamento</h1>
-@dd($rec)
 @endsection

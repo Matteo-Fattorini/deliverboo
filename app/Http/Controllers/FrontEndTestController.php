@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class FrontEndTestController extends Controller
 {
 
-    private $dataOrder;
+    private $dataOrder = [];
 
     public function home(){
         return view('frontHome');
@@ -23,14 +23,9 @@ class FrontEndTestController extends Controller
         return view('menu');
     }
 
-    public function checkoutRequest(Request $rec){
-        return $this->dataOrder = $rec->All();
-        // return Response()->json('dataOrder')->setCallback($cart);
-        // return view('checkout', compact('data'));
-    }
 
-    public function checkoutResponse(Request $rec){
-        return view('checkout',compact('rec'));
+    public function checkout(){
+        return view('checkout');
     }
     public function login(){
         return view('frontLogin');

@@ -46,7 +46,10 @@ Vue.component('successpage', require('./components/success/SuccessPage.vue').def
 Vue.component('inforestaurant', require('./components/RestaurantMenu/InfoRestaurant.vue').default);
 Vue.component('typemenu', require('./components/RestaurantMenu/TypeMenu.vue').default);
 Vue.component('prefooter', require('./components/RestaurantMenu/PreFooter.vue').default);
-Vue.component('cart', require('./components/Cart.vue').default);
+
+
+//CHECKOUT
+Vue.component('cart', require('./components/checkout/Cart.vue').default);
 
 
 
