@@ -82,8 +82,9 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
+        $var = Auth::check();
         $restaurant = Restaurant::where("id", $id)->with("getTypes","getDishes","getRestaurateur","getDishes.getGenre")->get();
-        return view("menu", compact("restaurant"));
+        return view("menu", compact("restaurant", "var"));
     }
 
     /**

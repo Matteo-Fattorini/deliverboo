@@ -20,7 +20,7 @@
                     <div class="col-6 d-flex justify-content-end align-items-center">
                         <ul
                             class="d-flex justify-content-between align-items-center d-flex justify-content-between align-items-center ">
-                            <li><a>Home</a></li>
+                            <li><a href="{{route('restaurant.index')}}">Home</a></li>
                             <li>Aiuto</li>
                             @guest
                                 <li><a href="{{ route('login') }}">Login Ristoratori</a></li>
@@ -28,8 +28,11 @@
                             @endguest
                             @if (Auth::check())
                                 @if(isset(Auth::user()->getRestaurant))
-                                <li><a>DASH</a></li>
+                                <li><a href="{{ route('restaurant.show',Auth::user()->getRestaurant->id)}}">DASH</a></li>
+                                @else
+                                <li><a href="{{ route('restaurant.create')}}">Crea il tuo Ristorante</a></li>
                                 @endif
+                                
                                 <li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                         @csrf

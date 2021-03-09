@@ -179,6 +179,7 @@ export default {
   name: "TypeMenu",
   props: {
     data: String,
+    auth: Boolean,
   },
   data() {
     return {
@@ -621,7 +622,7 @@ export default {
     position: fixed;
     top: 20px;
     right: 10px;
-    z-index: 2;
+    z-index: -1;
     .row {
       .col-12 {
         .roundedCart {
