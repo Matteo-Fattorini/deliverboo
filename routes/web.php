@@ -39,7 +39,7 @@ Route::get("/payment", function(){
 
 // Route::post("/checkout", "PaymentsController@checkout");
 
-//ROTTE DI TEST PER IL FRONTEND
+//ROTTE DI TEST PER IL FRONT
 Route::get('/frontHome', 'FrontEndTestController@home' )->name('homePage');
 Route::get('/frontSuccess', 'FrontEndTestController@success')->name('success');
 // Route::get('/frontRegister', 'FrontEndTestController@register')->name('register');
