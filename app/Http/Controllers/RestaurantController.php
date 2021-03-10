@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\File;
 use App\Restaurateur;
 use App\Type;
 use App\Genre;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -48,7 +49,7 @@ class RestaurantController extends Controller
     public function store(restaurantValidator $request)
     {
 
-        
+
         $exists = (Restaurant::where("restaurateur_id", Auth::User()->id)->exists());
         $data = $request->validated();
         $file = $request->file('image');
@@ -67,6 +68,19 @@ class RestaurantController extends Controller
             $restaurant->getTypes()->sync($data["types"]);
 
             $item = "Hai creato un ristorante!";
+
+
+            $input = array(
+                'name' => Auth::User()["name"],
+                "restaurantName" => $restaurant["name"],
+                "restaurantAddress" => $restaurant["address"],
+                "restaurantIva" => $restaurant["p_iva"],
+            );
+            Mail::send('restaurant-mail', $input, function ($message) {
+                $message->to(Auth::User()["email"], Auth::User()["name"])->subject('Grazie per aver usato il nostro servizio');
+                $message->from('deliverboo@gmail.com', 'DeliverBoo Team-3');
+            });
+
             return view("success", compact("item"));
         } else {
             $item = "Esiste già un ristorante a tuo nome!";
@@ -83,7 +97,7 @@ class RestaurantController extends Controller
     public function show($id)
     {
         $var = Auth::check();
-        $restaurant = Restaurant::where("id", $id)->with("getTypes","getDishes","getRestaurateur","getDishes.getGenre")->get();
+        $restaurant = Restaurant::where("id", $id)->with("getTypes", "getDishes", "getRestaurateur", "getDishes.getGenre")->get();
         return view("menu", compact("restaurant", "var"));
     }
 
@@ -97,7 +111,7 @@ class RestaurantController extends Controller
     {
         $restaurant = Restaurant::find($id);
         $types = Type::all();
-        return view("test-restaurant-edit",compact("restaurant","types"));
+        return view("test-restaurant-edit", compact("restaurant", "types"));
     }
 
     /**
@@ -109,7 +123,7 @@ class RestaurantController extends Controller
      */
     public function update(restaurantValidator $request, $id)
     {
-        
+
         $file = $request->file('image');
         $extension = $file->getClientOriginalExtension();
         Storage::disk('public')->put($file->getFilename() . '.' . $extension,  File::get($file));
@@ -126,7 +140,7 @@ class RestaurantController extends Controller
         $restaurant->getRestaurateur()->associate(Auth::User()->id)->save();
         $restaurant->getTypes()->sync($data["types"]);
 
-        
+
         $item = "ok hai modificato con successo il tuo ristorante";
 
         return view("success", compact("item"));
