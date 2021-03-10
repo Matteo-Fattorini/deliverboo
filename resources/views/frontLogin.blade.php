@@ -1,6 +1,5 @@
 @extends('layouts.main')
 @section('content')
-    <NavComponent homelink="{{route('homePage')}}" loginlink="{{route('login')}}"></NavComponent>
     <section id="login">
         <div class="login-img"></div>
         <div class="container">

@@ -25,13 +25,6 @@ Route::resource("orders", "OrderController");
 Route::resource("dishes", "DishController");
 Auth::routes();
 
-// Route::get('/frontHome', 'FrontEndTestController@home' )->name('homePage');
-// Route::get('/frontSuccess', 'FrontEndTestController@success')->name('success');
-// Route::get('/frontRegister', 'FrontEndTestController@register')->name('register');
-// Route::get('/menu', 'FrontEndTestController@menu' )->name('restaurant-menu');
-
-
-
 
 Route::get("/payment", function(){
     $gateway = new Braintree\Gateway([
@@ -44,13 +37,15 @@ Route::get("/payment", function(){
     return view("payment", ["token" => $token]);
 });
 
+// Route::post("/checkout", "PaymentsController@checkout");
+
 //ROTTE DI TEST PER IL FRONTEND
 Route::get('/frontHome', 'FrontEndTestController@home' )->name('homePage');
 Route::get('/frontSuccess', 'FrontEndTestController@success')->name('success');
-Route::get('/frontRegister', 'FrontEndTestController@register')->name('register');
+// Route::get('/frontRegister', 'FrontEndTestController@register')->name('register');
 Route::get('/menu', 'FrontEndTestController@menu' )->name('menu');
-Route::get('/checkout', 'FrontEndTestController@checkout' );
-Route::get('/frontLogin', 'FrontEndTestController@login')->name('login');
+// Route::get('/checkout', 'FrontEndTestController@checkout' );
+// Route::get('/frontLogin', 'FrontEndTestController@login')->name('login');
 
-Route::post("/checkout", "PaymentsController@checkout");
+
 
