@@ -1,11 +1,11 @@
 <template>
   <div id="menu">
-    <div class="container restaurant ">
+    <div class="container restaurant">
       <div class="row">
         <div class="col-12">
           <h1>Menù</h1>
         </div>
-        <div class="col-12">
+        <div class="col-12" >
           <ul class="oval-button">
             <li
               v-for="(category, index) in genreFiltered"
@@ -96,7 +96,9 @@
     <div class="container cart" v-if="cartActive === true">
       <div class="row">
         <div class="col-12 d-flex">
-          <div class="cartTitle d-flex justify-content-start align-items-center">
+          <div
+            class="cartTitle d-flex justify-content-start align-items-center"
+          >
             <h1>Carrello</h1>
           </div>
           <div
@@ -147,16 +149,16 @@
         </div>
         <div class="col-6 d-flex justify-content-end align-items-center">
           <!-- @submit="goToPayment" -->
-          <button class="btn-light" @click="goToPayment()" >
+          <button class="btn-light" @click="goToPayment()">
             <span>VAI AL PAGAMENTO </span>
           </button>
         </div>
       </div>
     </div>
-  
+
     <!-- attiva carrello -->
 
-    <div class="container cartButton">
+    <div class="container cartButton" >
       <div class="row">
         <div class="col-12 d-flex justify-content-end align-items-center">
           <div
@@ -167,7 +169,7 @@
           </div>
         </div>
       </div>
-    </div> 
+    </div>
   </div>
 </template>
 
@@ -177,7 +179,6 @@ export default {
   name: "TypeMenu",
   props: {
     data: String,
-    auth: Boolean,
   },
   data() {
     return {
@@ -187,17 +188,16 @@ export default {
       cart: [],
       totalPay: 0,
       restaurantData: [],
-      dishesImport:[],
+      dishesImport: [],
       dishes: [],
-      genreList:[],
-      genreName:[],
+      genreList: [],
+      genreName: [],
       action: "{{ URL::to('/checkout')}}",
-      
-      
     };
   },
 
   mounted: function () {
+
 
     var data = JSON.parse(this.data);
     this.dishesImport = data.get_dishes;
@@ -208,41 +208,31 @@ export default {
       return this.elementUpgrade;
     });
 
-    this.genreList =  this.dishesImport.map((element)=>{
+    (this.genreList = this.dishesImport.map((element) => {
       this.genre = element.get_genre;
-      return  this.genre;
-     }),
+      return this.genre;
+    })),
+      (this.genreName = this.genreList.map((e) => {
+        this.name = e.name;
+        return this.name;
+      }));
 
-     this.genreName = this.genreList.map((e)=>{
-       this.name = e.name;
-       return this.name;
-     })
-
-
-
-
-
-
-
-
-     console.log(this.dishesImport);
-     console.log('piatti');
-     console.log(this.dishes);
-     console.log('generi');
-     console.log(this.genreList);
-     console.log('generi nomi');
-     console.log(this.genreName);
-     console.log('generi filtrati');
-     console.log(this.dCategories);
+    //  console.log(this.dishesImport);
+    //  console.log('piatti');
+    //  console.log(this.dishes);
+    //  console.log('generi');
+    //  console.log(this.genreList);
+    //  console.log('generi nomi');
+    //  console.log(this.genreName);
+    //  console.log('generi filtrati');
+    //  console.log(this.dCategories);
   },
-    
 
   computed: {
-
-    genreFiltered(){
-      return this.genreName.filter((v,i,a)=> a.indexOf(v) === i);
+    genreFiltered() {
+      return this.genreName.filter((v, i, a) => a.indexOf(v) === i);
     },
-    
+
     filtered() {
       return this.dishes.filter((e) => {
         return e.get_genre.name.includes(this.categorySelect);
@@ -264,9 +254,6 @@ export default {
   },
 
   methods: {
-    check() {
-      console.log(this.restaurantData);
-    },
     //contatore
     changeCounter(direction, index) {
       this.filtered.forEach((dish, i) => {
@@ -345,20 +332,15 @@ export default {
     },
 
     //salva dati per il pagamento
-    saveCart(){
+    saveCart() {
       const parsed = JSON.stringify(this.cart);
-      localStorage.setItem('cart', parsed);
+      localStorage.setItem("cart", parsed);
     },
-
 
     // vai al pagamento
     goToPayment() {
       this.saveCart();
       location.replace("/checkout");
-
-
-      
-
 
       //   console.log('sono dati', data)
       //   axios.get('/checkout', data)
@@ -366,24 +348,21 @@ export default {
       //            console.log(result.data.response);
       //            location.replace('/checkout');
       //       })
-  
-  //     axios.post("/checkout", {
-  //           cart: this.cart,
-  //       })
-  //     .then((response) => {
-  //        console.log(response);
 
-  //        location.replace("/checkout");
-         
-  //     })
-  //     .catch(function(error){
-  //           console.log(error);
-  //     });
+      //     axios.post("/checkout", {
+      //           cart: this.cart,
+      //       })
+      //     .then((response) => {
+      //        console.log(response);
+
+      //        location.replace("/checkout");
+
+      //     })
+      //     .catch(function(error){
+      //           console.log(error);
+      //     });
     },
-    
   },
-
-  
 
   //   props:{
   //       dishesImport : Object,

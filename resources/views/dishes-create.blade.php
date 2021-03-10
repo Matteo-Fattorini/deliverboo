@@ -1,68 +1,61 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 
 @section('content')
+    <section id="new-dish">
 
 
-    <div class="container">
-        <div class="row ">
-            <div class="col-10  mt-5 d-flex flex-wrap justify-content-center ">
-                <form action="{{ route('dishes.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method("PUT")
-                    <input type="hidden" name="_method" value="POST">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nome Piatto</label>
-                        <input name="name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
-
+        <form action="{{ route('dishes.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method("PUT")
+            <div class="container p-5">
+                <div class="row ">
+                    <div class="col-6 mb-2">
+                        <input type="hidden" name="_method" value="POST">
+                        <input name="name" type="text" class="custom-input" id="name" aria-describedby="emailHelp"
+                            placeholder="Nome Piatto">
                     </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Descrizione</label>
-                        <input name="description" type="text" class="form-control" id="description"
-                            aria-describedby="emailHelp">
-
+                    <div class="col-6 mb-2">
+                        <input name="price" type="text" class="custom-input" id="price" aria-describedby="emailHelp"
+                            placeholder="Prezzo">
                     </div>
-                    <div class="mb-3">
-                        <label for="price" class="form-label">Prezzo</label>
-                        <input name="price" type="text" class="form-control" id="price" aria-describedby="emailHelp">
+                    <div class="col-12 mb-2">
+                        <input name="description" type="text" class="custom-input" id="description"
+                            aria-describedby="emailHelp" placeholder="Descrizione">
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="visibility" value="0" id="visibility">
-
-                        <label class="form-check-label" for="visibility">
-                            Non Disponibile
-                        </label>
+                    <div class="col-12 mb-2">
+                        <label for="image" class="form-label">Seleziona un immagine per il piatto</label>
+                        <input name="image" type="file" class="custom-input" id="image">
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="visibility" value="1" id="visibility">
-
-                        <label class="form-check-label" for="visibility">
-                            Disponibile
-                        </label>
-                    </div>
-
-
-
-                    <div class="mb-3">
-                        <label for="image" class="form-label">image</label>
-                        <input name="image" type="file" class="form-control" id="image">
-
-                    </div>
-
-                    @foreach ($genres as $genre)
+                    <div class="col-6 mb-2 justify-content-start align-items-center">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="genre" value="{{ $genre['id'] }}"
-                                id="categories1">
-
-                            <label class="form-check-label" for="categories1">
-                                {{ $genre['name'] }}
+                            <input class="form-check-input" type="radio" name="visibility" value="0" id="visibility">
+                            <label class="form-check-label" for="visibility">
+                                Non Disponibile
                             </label>
                         </div>
-                    @endforeach
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="visibility" value="1" id="visibility">
+                            <label class="form-check-label" for="visibility">
+                                Disponibile
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-2 justify-content-center align-items-center">
+                        @foreach ($genres as $genre)
+                            <div class="form-check">
 
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
-
+                                <input class="form-check-input" type="radio" name="genre" value="{{ $genre['id'] }}"
+                                    id="categories1">
+                                <label class="form-check-label" for="categories1">
+                                    {{ $genre['name'] }}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="button-colored">Submit</button>
+                    </div>
                     @if ($errors->any())
                         <div class="alert alert-danger mt-5">
                             <ul>
@@ -72,10 +65,10 @@
                             </ul>
                         </div>
                     @endif
-                </form>
+                </div>
             </div>
-        </div>
-    </div>
+        </form>
+    </section>
 
 
 
