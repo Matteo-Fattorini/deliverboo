@@ -42,10 +42,10 @@ Route::get("/payment", function(){
 //ROTTE DI TEST PER IL FRONTEND
 Route::get('/frontHome', 'FrontEndTestController@home' )->name('homePage');
 Route::get('/frontSuccess', 'FrontEndTestController@success')->name('success');
-Route::get('/frontRegister', 'FrontEndTestController@register')->name('register');
+// Route::get('/frontRegister', 'FrontEndTestController@register')->name('register');
 Route::get('/menu', 'FrontEndTestController@menu' )->name('menu');
-Route::get('/checkout', 'FrontEndTestController@checkout' );
-Route::get('/frontLogin', 'FrontEndTestController@login')->name('login');
+// Route::get('/checkout', 'FrontEndTestController@checkout' );
+// Route::get('/frontLogin', 'FrontEndTestController@login')->name('login');
 
 
 

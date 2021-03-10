@@ -56,7 +56,8 @@ $primary-color: #b3f5fd;
         
         .icon{
             height: 30px;
-            margin: 5px 0;  
+            margin: 5px 0;
+            pointer-events: none;  
         }
         span{
             font-size: 14px;
@@ -83,7 +84,8 @@ $primary-color: #b3f5fd;
 
         .icon{
             height: 30px;
-            margin: 5px 0;  
+            margin: 5px 0;
+            pointer-events: none;  
         }
         span{
             font-size: 14px;
@@ -206,6 +208,15 @@ section#becomePartner {
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url('../img/homepage/background_header.png');
+}
+
+nav{
+    .row{
+        height: 100px;
+    }
+    ul{
+        width: 60%;
+    }
 }
 
 #login{

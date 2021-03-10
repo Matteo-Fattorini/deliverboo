@@ -9,6 +9,7 @@
 <div class="container">
     <div class="row">
         <div class="col-6">
+            <a href="{{route('register')}}">Registrati</a>
             <h1>Login ristoratoir</h1>
             <div class="input">
                 <form method="POST" action="{{ route('login') }}">

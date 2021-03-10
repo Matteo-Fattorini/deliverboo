@@ -8,7 +8,7 @@
 
             <div class="col-8 offset-2 mt-5 d-flex flex-wrap justify-content-center ">
                 
-                <example-component></example-component>
+                {{-- <example-component></example-component> --}}
                 
                
             </div>

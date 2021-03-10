@@ -10993,6 +10993,7 @@ nav li:last-child {
 .oval-button .notselected .icon {
   height: 30px;
   margin: 5px 0;
+  pointer-events: none;
 }
 
 .oval-button .notselected span {
@@ -11022,6 +11023,7 @@ nav li:last-child {
 .oval-button .selected .icon {
   height: 30px;
   margin: 5px 0;
+  pointer-events: none;
 }
 
 .oval-button .selected span {
@@ -11124,6 +11126,14 @@ ul {
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url(/images/background_header.png?546f73a709163fb8bb678215e8888178);
+}
+
+nav .row {
+  height: 100px;
+}
+
+nav ul {
+  width: 60%;
 }
 
 #login .login-img {
