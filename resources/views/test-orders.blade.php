@@ -1,64 +1,68 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 
 @section('content')
 
+<section id="orders-dashboard">
+    @foreach ($restaurant->getOrders as $order)
+        <div class="container p-5 mb-3">
+            <div class="row ">
+                <div class="col-12 justify-content-start align-items-center">
+                    <h5 class="card-title">ID ordine: {{ $order->id }}</h5>
+                </div>
+                <div class="col-12">
+                    <h3>Data Ordine</h3>
+                    <p>{{ $order->created_at }}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-start align-items-center">
+                    <h3>Dati Cliente</h3>
+                </div>
 
-    <div class="container">
-        <a class="btn btn-secondary"href="{{ route("restaurant.index") }}">Torna Indietro</a>
-        <div class="row ">
-            <div class="col-8 offset-2 mt-5 d-flex flex-wrap justify-content-center ">
-                @foreach ($restaurant->getOrders as $order)
+                <div class="col-3 d-flex flex-column justify-content-start align-items-start">
+                    <h5>Nome e Cognome</h5>
+                    <p>{{ $order->client_name }} {{ $order->client_surname }}</p>
+                </div>
+                <div class="col-3 d-flex flex-column justify-content-start align-items-start">
+                    <h5>Email</h5>
+                    <p>{{ $order->client_email }}</p>
+                </div>
+                <div class="col-3 d-flex flex-column justify-content-start align-items-start">
+                    <h5>Telefono</h5>
+                    <p>{{ $order->client_phone }}</p>
+                </div>
+                <div class="col-3 d-flex flex-column  justify-content-start align-items-start">
+                    <h5>Indirizzo di consegna</h5>
+                    <p>{{ $order->client_address }}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12">
+                    <h3>Prodotti Acquistati</h3>
+                </div>
+                @foreach ($order->getDishes as $dish)
 
-
-                    <div class="card mr-3 mb-3" style="width: 35rem;">
-                        <div class="card-body">
-                            
-                            <h5 class="card-title">ID ordine: {{ $order->id }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                Ordine del: {{ $order->created_at }} 
-                            </h6>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                Totale: {{ $order->total }} €
-                            </h6>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                Nome Cliente: {{ $order->client_name }} {{ $order->client_surname }}
-                            </h6>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                Email: {{ $order->client_email }}
-                            </h6>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                Telefono: {{ $order->client_phone }}
-                            </h6>
-                            
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                Indirizzo: {{ $order->client_address }}
-                            </h6>
-                            
-                            <h4>Scontrino:</h4>
-                            <ul>
-                                @foreach ($order->getDishes as $dish) 
-                                <li>{{ $dish->name }} --- {{ $dish->price }}€</li>     
-                                @endforeach
-                            </ul>
-                            @if ($order->is_payed == 0)
-                                <div class="btn btn-danger">DA PAGARE</div>
-                                
-                            @endif
-                            @if ($order->is_payed == 1)
-                                <div class="btn btn-success">PAGATO</div>
-                            @endif                                                                         
-
-                            
-
-
-
-                        </div>
+                    <div class="col-2">
+                        <h5>{{ $dish->name }}</h5>
+                        <p>{{ $dish->price }}€</p>
                     </div>
                 @endforeach
             </div>
+            <hr>
+            <div class="row">
+                <div class="col-12">
+                    <h3>Totale</h3>
+                </div>
+                <div class="col-12">
+                    <p>{{ $order->total }} €</p>
+                </div>
+            </div>
         </div>
-    </div>
+    @endforeach
+</section>
 
 
 

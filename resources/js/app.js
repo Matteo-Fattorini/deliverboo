@@ -50,6 +50,8 @@ Vue.component('prefooter', require('./components/RestaurantMenu/PreFooter.vue').
 //CHECKOUT
 Vue.component('cart', require('./components/checkout/Cart.vue').default);
 
+//DASHBOARD
+Vue.component('dashboardcomponent', require('./components/dashboard/DashboardComponent.vue').default)
 
 
 /**

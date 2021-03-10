@@ -1,10 +1,76 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 
 @section('content')
+<section id="edit-dish">
 
 
-    <div class="container">
+        <form action="{{ route('dishes.update', $dish->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method("PUT")
+            <div class="container p-5">
+                <div class="row ">
+                    <div class="col-6 mb-2">
+                        <input type="hidden" name="_method" value="PUT">
+                        <input name="name" type="text" class="custom-input" id="name" aria-describedby="emailHelp"
+                            placeholder="Nome Piatto">
+                    </div>
+                    <div class="col-6 mb-2">
+                        <input name="price" type="text" class="custom-input" id="price" aria-describedby="emailHelp"
+                            placeholder="Prezzo">
+                    </div>
+                    <div class="col-12 mb-2">
+                        <input name="description" type="text" class="custom-input" id="description"
+                            aria-describedby="emailHelp" placeholder="Descrizione">
+                    </div>
+                    <div class="col-12 mb-2">
+                        <label for="image" class="form-label">Seleziona un immagine per il piatto</label>
+                        <input name="image" type="file" class="custom-input" id="image">
+                    </div>
+                    <div class="col-6 mb-2 justify-content-start align-items-center">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="visibility" value="0" id="visibility">
+                            <label class="form-check-label" for="visibility">
+                                Non Disponibile
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="visibility" value="1" id="visibility">
+                            <label class="form-check-label" for="visibility">
+                                Disponibile
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-2 justify-content-center align-items-center">
+                        @foreach ($genres as $genre)
+                            <div class="form-check">
+
+                                <input class="form-check-input" type="radio" name="genre" value="{{ $genre['id'] }}"
+                                    id="categories1">
+                                <label class="form-check-label" for="categories1">
+                                    {{ $genre['name'] }}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="button-colored">Modifica</button>
+                    </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger mt-5">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </form>
+    </section>
+
+    {{-- <div class="container">
         <div class="row ">
             <div class="col-10  mt-5 d-flex flex-wrap justify-content-center ">
                 <form action="{{ route('dishes.update', $dish->id) }}" method="POST" enctype="multipart/form-data">
@@ -74,14 +140,7 @@
                 </form>
             </div>
         </div>
-    </div>
-
-
-
-
-
-
-
+    </div> --}}
 
 
 

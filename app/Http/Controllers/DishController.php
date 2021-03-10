@@ -64,9 +64,10 @@ class DishController extends Controller
         $dish->getRestaurant()->associate(Auth::User()->getRestaurant->id);
         $dish->getGenre()->associate($data["genre"]);
         $dish->save();
+
+        $restaurant = Auth::User()->getRestaurant;
         
-        $item = "Hai creato un nuovo piatto con successo!";
-        return route("success", compact("item"));
+        return view("dashboard", compact('restaurant'));
         
     }
 

@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\restaurantValidator;
+use App\Restaurant;
+use App\Type;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class OrderController extends Controller
 {
@@ -45,7 +51,8 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $restaurant = Restaurant::find($id);
+        return view("test-orders",compact("restaurant"));
     }
 
     /**
