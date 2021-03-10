@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\restaurantValidator;
 use App\Restaurant;
+use App\Http\Requests\restaurantValidator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Type;
-use App\Genre;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
