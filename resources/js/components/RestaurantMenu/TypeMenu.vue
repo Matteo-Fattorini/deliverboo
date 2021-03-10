@@ -96,9 +96,7 @@
     <div class="container cart" v-if="cartActive === true">
       <div class="row">
         <div class="col-12 d-flex">
-          <div
-            class="cartTitle d-flex justify-content-start align-items-center"
-          >
+          <div class="cartTitle d-flex justify-content-start align-items-center">
             <h1>Carrello</h1>
           </div>
           <div
@@ -306,6 +304,7 @@ export default {
             dishPrice: dish.price,
             totalPrice: parseFloat(dish.price) * dish.counter,
           });
+          this.saveCart();
           console.log(this.cart);
         } else {
           //carrello vuoto
@@ -316,6 +315,7 @@ export default {
     // cancella un ordine se non ci sono ordini chiude il carrello
     deleteOrder: function (delIndex) {
       this.cart.splice(delIndex, 1);
+      this.saveCart();
       if (this.cart.length != 0) {
         this.cartActive = true;
       } else {
@@ -343,11 +343,16 @@ export default {
       }
     },
 
-    // vai al pagamento
+    //salva dati per il pagamento
+    saveCart(){
+      const parsed = JSON.stringify(this.cart);
+      localStorage.setItem('cart', parsed);
+    },
 
+
+    // vai al pagamento
     goToPayment() {
-      
-      localStorage.setItem('storedData',this.cart);
+      this.saveCart();
       location.replace("/checkout");
 
 
@@ -606,7 +611,7 @@ export default {
         span {
           color: black;
           font-weight: 900;
-          font-size: 22px;
+          font-size: 18px;
           line-height: 30px;
           &:hover {
             text-decoration: none;
