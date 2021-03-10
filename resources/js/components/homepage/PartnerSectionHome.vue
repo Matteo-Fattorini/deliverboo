@@ -30,6 +30,8 @@ export default {
   height: 70vh;
   background-size: cover;
   background-position: center;
+  background-color: rgba(0, 0,0, 0.6);
+  background-blend-mode: multiply;
   h1 {
     color: #fff;
   }

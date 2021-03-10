@@ -11,7 +11,7 @@
             id=""
             placeholder="Cosa vuoi mangiare?"
           />
-          <button @click="search()">Cerca</button>
+          <button class="btn btn-info" @click="search()">Cerca</button>
         </div>
       </div>
     </header>
@@ -113,6 +113,7 @@ export default {
   },
   mounted() {
     this.getCategories();
+    document.querySelector(".custom-input").focus();
   },
 };
 </script>
@@ -123,6 +124,10 @@ div {
 }
 .custom-input {
   width: 50%;
+  // outline:none
+}
+.custom-input:focus, .custom-input:active {
+  outline:none;
 }
 </style>
 

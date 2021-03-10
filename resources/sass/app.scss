@@ -194,7 +194,7 @@ section#becomePartner {
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url("../img/homepage/background_header.png");
+    background-image: url("../../public/img/homepage/background_header.png");
 }
 
 nav {
@@ -210,10 +210,14 @@ nav {
     .login-img {
         height: 200px;
         width: 100%;
-        background-image: url("img/homepage/rider.jpg");
+        background-image: url("../../public/img/homepage/rider.jpg");
         background-position: center;
         background-size: cover;
+        
+
+       
     }
+
 
     .black-container {
         background-color: #000;

@@ -11121,7 +11121,7 @@ a {
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(/images/background_header.png?546f73a709163fb8bb678215e8888178);
+  background-image: url(/images/background_header.png?6c3b083f920a630446ad4d1310a47664);
 }
 
 nav .row {
@@ -11135,7 +11135,7 @@ nav ul {
 #login .login-img {
   height: 200px;
   width: 100%;
-  background-image: url(/images/rider.jpg?d4f940a46c3205e8e77c00b27cf236b4);
+  background-image: url(/images/rider.jpg?56e1991f5856136adcc6c1b6a677d361);
   background-position: center;
   background-size: cover;
 }

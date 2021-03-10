@@ -2912,6 +2912,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getCategories();
+    document.querySelector(".custom-input").focus();
   }
 });
 
@@ -7644,7 +7645,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "div[data-v-7c37c506] {\n  height: calc(100% - 100px);\n}\n.custom-input[data-v-7c37c506] {\n  width: 50%;\n}", ""]);
+exports.push([module.i, "div[data-v-7c37c506] {\n  height: calc(100% - 100px);\n}\n.custom-input[data-v-7c37c506] {\n  width: 50%;\n}\n.custom-input[data-v-7c37c506]:focus, .custom-input[data-v-7c37c506]:active {\n  outline: none;\n}", ""]);
 
 // exports
 
@@ -7663,7 +7664,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#becomePartner[data-v-d8efec3c] {\n  height: 70vh;\n  background-size: cover;\n  background-position: center;\n}\n#becomePartner h1[data-v-d8efec3c] {\n  color: #fff;\n}\n#becomePartner span[data-v-d8efec3c] {\n  color: #fff;\n}", ""]);
+exports.push([module.i, "#becomePartner[data-v-d8efec3c] {\n  height: 70vh;\n  background-size: cover;\n  background-position: center;\n  background-color: rgba(0, 0, 0, 0.6);\n  background-blend-mode: multiply;\n}\n#becomePartner h1[data-v-d8efec3c] {\n  color: #fff;\n}\n#becomePartner span[data-v-d8efec3c] {\n  color: #fff;\n}", ""]);
 
 // exports
 
@@ -41093,6 +41094,7 @@ var render = function() {
               _c(
                 "button",
                 {
+                  staticClass: "btn btn-info",
                   on: {
                     click: function($event) {
                       return _vm.search()
@@ -54761,8 +54763,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! F:\User Folders\Documenti\GitHub\deliverboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! F:\User Folders\Documenti\GitHub\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\NoSync\deliverboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\NoSync\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
