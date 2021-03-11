@@ -24,24 +24,22 @@
                             aria-describedby="emailHelp" placeholder="Descrizione">
                     </div>
                     <div class="col-12 mb-2">
-                        <label for="image" class="form-label">Seleziona un immagine per il piatto</label>
+                        <label for="image" class="form-label">Seleziona un immagine per il prodotto</label>
                         <input name="image" type="file" class="custom-input" id="image">
                     </div>
-                    <div class="col-6 mb-2 justify-content-start align-items-center">
-                        <div class="form-check">
+                    <div class="col-12 justify-content-start align-items-center mt-4 mb-4">
+                            <p>Seleziona se il prodotto è disponibile alla vendita.</p>
                             <input class="checkbox-tools" type="radio" name="visibility" value="0" id="visibility0">
                             <label class="for-checkbox-tools" for="visibility0">
                                 Non Disponibile
                             </label>
-                        </div>
-                        <div class="form-check">
                             <input class="checkbox-tools" type="radio" name="visibility" value="1" id="visibility1">
                             <label class="for-checkbox-tools" for="visibility1">
                                 Disponibile
                             </label>
-                        </div>
                     </div>
-                    <div class="col-6 mb-2 justify-content-center align-items-center">
+                    <div class="col-12 justify-content-center align-items-center mb-4">
+                        <p>Seleziona a che categoria appartiene il prodotto.</p>
                         @foreach ($genres as $genre)
                             <input class="checkbox-tools" type="radio" name="genre" value="{{ $genre['id'] }}"
                                 id="{{ $genre['id'] }}">
@@ -50,8 +48,8 @@
                             </label>
                         @endforeach
                     </div>
-                    <div class="col-12">
-                        <button type="submit" class="button-colored">Submit</button>
+                    <div class="col-12 m">
+                        <button type="submit" class="button-colored">CREA IL NUOVO PIATTO</button>
                     </div>
                     @if ($errors->any())
                         <div class="alert alert-danger mt-5">
