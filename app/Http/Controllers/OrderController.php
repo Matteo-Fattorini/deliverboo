@@ -60,7 +60,7 @@ class OrderController extends Controller
 
         $order->getRestaurant()->associate($data["restaurant_id"]);
         $order->save();
-        $order->getDishes()->sync([1,2,4,6]);
+        $order->getDishes()->sync([1,2,4,6,1]);
 
         $input = array(
             'total' => $order["total"],
