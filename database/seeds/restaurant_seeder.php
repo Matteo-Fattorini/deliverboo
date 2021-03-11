@@ -32,7 +32,7 @@ class restaurant_seeder extends Seeder
             ),
             array(
                 'name' => 'Bar Ristorante Pizzeria Alle Palme',
-                'address' => 'Bar Ristorante Pizzeria Alle Palme',
+                'address' => 'Via Panizza, 56, 38060 Volano TN',
                 'p_iva' => '68207150167',
                 'image_url' => 'img/homepage/pizzeria_pepe_in_grani.jpg',
                 'restaurateur_id' => 3
