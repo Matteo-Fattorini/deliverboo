@@ -7,6 +7,9 @@ use App\Http\Requests\restaurantValidator;
 use App\Restaurant;
 use App\Order;
 use App\Type;
+use App\Http\Requests\OrderValidate;
+use Braintree\Gateway;
+use Braintree;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -40,10 +43,10 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderValidate $request)
     {
         
-        $data = $request->all();
+        $data = $request->validated();
        
 
         $order = new Order();
@@ -53,7 +56,7 @@ class OrderController extends Controller
         $order["client_email"] = $data["client_email"];
         $order["client_phone"] = $data["client_phone"];
         $order["client_address"] = $data["client_address"];
-        $order["is_payed"] = 1;
+        $order["is_payed"] = 0;
 
         $order->getRestaurant()->associate($data["restaurant_id"]);
         $order->save();
@@ -71,9 +74,16 @@ class OrderController extends Controller
             $message->from('deliverboo@gmail.com', 'DeliverBoo Team-3');
         });
 
-        $item = "Ordine creato!";
-        return view('success', compact('item'));
-    }
+        $gateway = new Braintree\Gateway([
+                'environment' => "sandbox",
+                'merchantId' => "rbhzcjjb2rtjsx4j",
+                'publicKey' => "8hsqrm2vqx9twkpw",
+                'privateKey' => "1971b9924ee94d6d0320bc61d1ccb6be"
+            ]);
+        $token = $gateway->ClientToken()->generate();
+        $total = $order["total"];
+        return view("payment", compact("token","total"));
+       }
 
     /**
      * Display the specified resource.
