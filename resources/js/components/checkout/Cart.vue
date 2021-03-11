@@ -38,18 +38,6 @@
                 </div>        
              </div>
         </div>
-        <div class="container mt-5 mb-5">
-            <div class="row">
-                <div class="col-6 d-flex  align-items-center justify-content-center">
-                  <img src="/images/food.png" alt="">
-                </div>
-                <div class="col-6 d-flex flex-column align-items-start justify-content-center">
-                    <h1>Totale ordine:</h1>
-                    <h1>{{ totalPrice }}</h1>
-                    <button @click="Pay()"> PAGA E INVIA ORDINE </button>
-                </div>
-            </div>
-        </div>
    </section>
 </template>
 
@@ -99,11 +87,6 @@ return{
       const parsed = JSON.stringify(this.cart);
       localStorage.setItem('cart', parsed);
     },
-
-    Pay(){
-         localStorage.removeItem('cart');
-         location.replace("/frontSuccess");
-    }
 
 
  },

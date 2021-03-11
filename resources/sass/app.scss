@@ -10,6 +10,9 @@
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
+html{
+    scroll-behavior: smooth;
+}
 body {
     font-family: "Montserrat", sans-serif;
 }
@@ -188,6 +191,13 @@ section#becomePartner {
     margin: 5px 0px;
     border-radius: 20px;
     border: 1px solid black;
+    transition: box-shadow 200ms;
+    &:focus{
+        outline: none;
+        border: 1px solid $primary-color;
+        box-shadow: 0 0 10px 5px $primary-color;
+
+    }
 }
 
 #bg {
@@ -198,6 +208,7 @@ section#becomePartner {
 }
 
 nav {
+    background-color: #000;
     .row {
         height: 100px;
     }

@@ -12,7 +12,7 @@
       </div>
     </div>
     <a :href="link">
-      <img class="icon" src="img/homepage/icon/menu.png" alt="" />
+      <img id="icon" src="img/homepage/icon/menu.png" alt="" />
     </a>
   </div>
 </template>
@@ -30,4 +30,9 @@ export default {
 </script>
 
 <style>
+#icon{
+  height: 30px;
+  margin: 0;
+  width: auto;
+}
 </style>

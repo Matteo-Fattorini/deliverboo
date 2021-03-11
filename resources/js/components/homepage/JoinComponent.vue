@@ -5,13 +5,14 @@
         <div class="d-flex justify-content-center align-items-center">
           <input
             v-model="query"
+            @keyup.enter="search()"
             class="custom-input"
             type="text"
             name=""
             id=""
             placeholder="Cosa vuoi mangiare?"
           />
-          <button class="btn btn-info" @click="search()">Cerca</button>
+
         </div>
       </div>
     </header>
@@ -39,7 +40,6 @@
   </div>
 </template>
 <script>
-// import NavComponent from "./../NavComponent.vue";
 import ResturantSectionHome from "./ResturantSectionHome.vue";
 import ButtonsComponent from "./ButtonsComponent.vue";
 import ResturantComponent from "./ResturantComponent.vue";
@@ -47,7 +47,6 @@ export default {
   name: "JoinComponent",
   components: {
     ResturantSectionHome,
-    // NavComponent,
     ButtonsComponent,
     ResturantComponent,
   },
@@ -61,7 +60,10 @@ export default {
   },
   methods: {
     search() {
+
       this.restaurants = [];
+      let el = document.getElementById("resturant-type");
+      el.scrollIntoView();
       console.log(this.query);
       axios
         .get("/api/restaurants", {
@@ -126,9 +128,9 @@ div {
   width: 50%;
   // outline:none
 }
-.custom-input:focus, .custom-input:active {
-  outline:none;
-}
+// .custom-input:focus, .custom-input:active {
+//   outline:none;
+// }
 </style>
 
 
