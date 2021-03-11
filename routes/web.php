@@ -40,3 +40,4 @@ Route::get('/menu', 'FrontEndTestController@menu')->name('menu');
 // Route::get('/checkout', 'FrontEndTestController@checkout' );
 // Route::get('/frontLogin', 'FrontEndTestController@login')->name('login');
 // Route::get('/checkout', 'FrontEndTestController@checkout' );
+Route::get('/infoClienti', 'FrontEndTestController@infoClienti' );

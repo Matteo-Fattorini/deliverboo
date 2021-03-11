@@ -3,7 +3,7 @@
      <div class="container cart">
          <div class="row">
              <div class="col-12 cartTitle" >
-                 <h1>CARRELLO</h1>
+                 <h1>Hai Ordinato:</h1>
              </div>
              <div class="col-12 d-flex flex-row flex-wrap">
                 <div class="order d-flex" v-for="(order, ind) in cart" :key="ind">
@@ -30,9 +30,6 @@
                     </div>
                     <div class="price d-flex justify-content-end align-items-center">
                       <h1>{{ order.totalPrice }} €</h1>
-                    </div>
-                    <div class="delete d-flex justify-content-end align-items-center">
-                      <button @click.stop="deleteOrder(ind)">X</button>
                     </div>
                   </div>
                 </div>        
@@ -78,10 +75,6 @@ return{
 
  methods:{
 
-     deleteOrder: function (delIndex) {
-      this.cart.splice(delIndex, 1);
-      this.saveCart();
-    },
 
     saveCart(){
       const parsed = JSON.stringify(this.cart);
@@ -113,7 +106,7 @@ return{
         .close {
           width: 50%;
           img {
-            height: 30px;
+            height: 40px;
           }
         }
         .order {
@@ -130,8 +123,8 @@ return{
               margin-left: 30px;
               h3 {
                 color: white;
-                font-size: 22px;
-                font-weight: 900;
+                font-size: 18px;
+                font-weight: 700;
               }
               h6 {
                 color: white;

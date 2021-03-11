@@ -17,16 +17,22 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+.debug{
+    border: 1px solid black;
+}
+
 
 $primary-color: #b3f5fd;
 
 %button-colored {
     background-color: $primary-color;
     border-radius: 20px;
-    padding: 10px;
+    padding: 10px 45px;
     color: #000;
     border-style:none;
     text-decoration: none;
+    font-weight: 600;
+
 }
 %button-black {
     @extend %button-colored;
@@ -62,8 +68,8 @@ $primary-color: #b3f5fd;
             pointer-events: none;
         }
         span {
-            font-size: 14px;
-            font-weight: 900;
+            font-size: 12px;
+            font-weight: 800;
             margin: 5px 0;
         }
     }
@@ -89,8 +95,8 @@ $primary-color: #b3f5fd;
             pointer-events: none;
         }
         span {
-            font-size: 14px;
-            font-weight: 900;
+            font-size: 12px;
+            font-weight: 600;
             margin: 5px 0;
         }
     }
@@ -116,8 +122,8 @@ $primary-color: #b3f5fd;
 
         span {
             color: white;
-            font-size: 18px;
-            font-weight: 900;
+            font-size: 15px;
+            font-weight: 600;
             margin: 5px 0;
         }
     }
@@ -139,6 +145,58 @@ section#becomePartner {
         @extend %button-colored;
     }
 }
+
+.primary-button{
+    @extend %button-colored;
+}
+.black-button{
+    @extend %button-black;
+}
+
+.primary-text{
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 50px;
+}
+
+.m-50{
+    margin: 50px;
+}
+.mt-50{
+    margin-top: 50px;
+}
+
+.mb-50{
+    margin-bottom: 50px;
+}
+
+.ml-30{
+    margin-left:30px;
+}
+
+
+.inputForm{
+
+    form{
+        margin: 30px 30px;
+        label{
+            margin: 15px 0;
+            font-size:18px;
+            font-weight:400;
+        }
+        .row{
+            input{
+                border:1px solid black;
+                border-radius: 30px;
+                padding: 5px 25px;
+                font-size:15px;
+            }
+        }
+    }
+}
+
+
 .resturantImage {
     width: 200px;
     height: 200px;
