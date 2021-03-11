@@ -31,35 +31,7 @@ class OrderController extends Controller
      */
     public function create(Request $request)
     {
-        $data = $request->all();
-
-        $order = new Order();
-        $order["total"] = $data["total"];
-        $order["client_name"] = $data["client_name"];
-        $order["client_surname"] = $data["client_surname"];
-        $order["client_email"] = $data["client_email"];
-        $order["client_phone"] = $data["client_phone"];
-        $order["client_address"] = $data["client_address"];
-        $order["is_payed"] = 1;
-      
-        $order->getRestaurant()->associate($data["restaurant_id"]);
-        $order->getDishes()->sync($data["dishes"]);
-        $order->save();
-
-        $input = array(
-            'total' => $order["total"],
-            "order_id" => $order["id"],
-            "client_name" => $order["client_name"],
-            "dishes" => $order->getDishes,
-        );
-
-        Mail::send('order-mail', $input, function ($message) use($order) {
-            $message->to($order["client_email"], $order["client_name"])->subject('Grazie per aver usato il nostro servizio!');
-            $message->from('deliverboo@gmail.com', 'DeliverBoo Team-3');
-        });
-
-        $item = "Ordine creato!";
-        return view('success', compact('item'));
+       
     }
 
     /**
@@ -70,7 +42,37 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $data = $request->all();
+       
+
+        $order = new Order();
+        $order["total"] = $data["total"];
+        $order["client_name"] = $data["client_name"];
+        $order["client_surname"] = $data["client_surname"];
+        $order["client_email"] = $data["client_email"];
+        $order["client_phone"] = $data["client_phone"];
+        $order["client_address"] = $data["client_address"];
+        $order["is_payed"] = 1;
+
+        $order->getRestaurant()->associate($data["restaurant_id"]);
+        $order->save();
+        $order->getDishes()->sync([1,2,4,6]);
+
+        $input = array(
+            'total' => $order["total"],
+            "order_id" => $order["id"],
+            "client_name" => $order["client_name"],
+            "dishes" => $order->getDishes,
+        );
+
+        Mail::send('order-mail', $input, function ($message) use ($order) {
+            $message->to($order["client_email"], $order["client_name"])->subject('Grazie per aver usato il nostro servizio!');
+            $message->from('deliverboo@gmail.com', 'DeliverBoo Team-3');
+        });
+
+        $item = "Ordine creato!";
+        return view('success', compact('item'));
     }
 
     /**

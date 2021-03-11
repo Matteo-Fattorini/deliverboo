@@ -12,12 +12,13 @@
 </div>
 
 <div class="container inputForm ">
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('orders.store') }}">
         @csrf
+        @method("POST")
         <label for="">INFORMAZIONI CLIENTE</label>
         <div class="form-group  row d-flex">
             <div class="col-6 ">
-                <input id="name" placeholder="Nome" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                <input id="name" placeholder="Nome" type="text" class="form-control @error('name') is-invalid @enderror" name="client_name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                 @error('name')
                     <span class="invalid-feedback" role="alert">
@@ -26,7 +27,7 @@
                 @enderror
             </div>
             <div class="col-6">
-                <input id="surname" placeholder="Cognome" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus>
+                <input id="surname" placeholder="Cognome" type="text" class="form-control @error('surname') is-invalid @enderror" name="client_surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus>
 
                 @error('surname')
                     <span class="invalid-feedback" role="alert">
@@ -38,7 +39,7 @@
 
         <div class="form-group d-flex  row">
             <div class="col-6">
-                <input id="email"  placeholder="Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                <input id="email"  placeholder="Email" type="email" class="form-control @error('email') is-invalid @enderror" name="client_email" value="{{ old('email') }}" required autocomplete="email">
 
                 @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -48,7 +49,7 @@
             </div>
         
             <div class="col-6">
-                <input id="tel" placeholder="Cellulare" type="text" class="form-control" name="tel" required autocomplete="new-cel">
+                <input id="tel" placeholder="Cellulare" type="text" class="form-control" name="client_phone" required autocomplete="new-cel">
             </div>
         </div>
 
@@ -56,7 +57,7 @@
 
        <div class="form-group  row">
           <div class="col-12">
-            <input id="address" placeholder="Indirizzo" type="text" class="form-control" name="adress" required>
+            <input id="address" placeholder="Indirizzo" type="text" class="form-control" name="client_address" required>
           </div>
        </div>
        <div class="form-group  row">
@@ -77,10 +78,13 @@
 
      <div class="form-group d-flex  row">
         <div class="col-12">
-            <input id="order"  type="hidden" class="form-control" name="order" value='' required>
+            <input id="dishes"  type="hidden" class="form-control" name="dishes" value='0563' >
           </div>
           <div class="col-12">
-            <input id="totalprice"  type="hidden" class="form-control" name="order" value='' required>
+            <input id="totalprice"  type="hidden" class="form-control" name="total" value='75'>
+          </div>
+          <div class="col-12">
+            <input id="restaurant_id"  type="hidden" class="form-control" name="restaurant_id" value='1'>
           </div>
     </div>
 

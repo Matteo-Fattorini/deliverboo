@@ -8,7 +8,7 @@
             <ul>
                 <li>Id Ordine: {{ $order_id }}</li>
                 <li>Totale: {{ $total }}</li>
-                <li>Partita Iva: {{ $restaurantIva}}</li>
+                
             </ul>
 
         </div>
