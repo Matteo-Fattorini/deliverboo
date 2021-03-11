@@ -29,7 +29,7 @@ export default {
 <style lang="scss" scoped>
 ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   margin: 0;
   padding: 0;

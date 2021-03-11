@@ -10939,6 +10939,10 @@ a.text-dark:focus {
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Montserrat", sans-serif;
 }
@@ -11115,6 +11119,13 @@ a {
   margin: 5px 0px;
   border-radius: 20px;
   border: 1px solid black;
+  transition: box-shadow 200ms;
+}
+
+.custom-input:focus {
+  outline: none;
+  border: 1px solid #b3f5fd;
+  box-shadow: 0 0 10px 5px #b3f5fd;
 }
 
 #bg {
@@ -11122,6 +11133,10 @@ a {
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url(/images/background_header.png?6c3b083f920a630446ad4d1310a47664);
+}
+
+nav {
+  background-color: #000;
 }
 
 nav .row {

@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-6 d-flex justify-content-between align-items-center">
                         <a href="{{route('restaurant.index')}}">
-                            <img src="/images/logo_black.png" alt="">
+                            <img src="/img/logo/logo_white@2x.png" alt="">
                         </a>
                     </div>
                     <div class="col-6 d-flex justify-content-end align-items-center">
