@@ -92,16 +92,24 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        $restaurantt = Restaurant::find($id);
-        if(Auth::User()->id  == $restaurantt->getRestaurateur->id){
-            $restaurant = Auth::User()->getRestaurant;
-            return view('dashboard', compact('restaurant'));
-
+        if (Auth::check()){
+            $restaurantt = Restaurant::find($id);
+            if (Auth::User()->id  == $restaurantt->getRestaurateur->id) {
+                $restaurant = Auth::User()->getRestaurant;
+                return view('dashboard', compact('restaurant'));
+            } else {
+                $restaurant = Restaurant::where("id", $id)->with("getTypes", "getDishes", "getRestaurateur", "getDishes.getGenre")->get();
+                return view("menu", compact("restaurant"));
+            }
+        } else {
+            
+            $restaurant = Restaurant::where("id", $id)->with("getTypes", "getDishes", "getRestaurateur", "getDishes.getGenre")->get();
+            return view("menu", compact("restaurant"));
         }
+        
        
         
-        $restaurant = Restaurant::where("id", $id)->with("getTypes","getDishes","getRestaurateur","getDishes.getGenre")->get();
-        return view("menu", compact("restaurant"));
+        
     }
 
     /**
