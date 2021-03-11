@@ -8,20 +8,20 @@
         <div class="col-12" >
           <ul class="oval-button">
             <li
-              v-for="(category, index) in genreFiltered"
+              v-for="(genre, index) in genreList"
               :key="index"
-              @click="selectCategory(category)"
+              @click="selectCategory(genre.name)"
               :class="{
-                selected: category === categorySelect,
-                notselected: category != categorySelect,
+                selected: genre.name === categorySelect,
+                notselected: genre.name != categorySelect,
               }"
             >
-              <img class="icon" :src="category.image_url" alt="" />
+              <img class="icon" :src="genre.image_url" alt="" />
               <!-- ondragstart="return false" 
                          onselectstart="return false"
                          evita evidenziazione del testo -->
               <span ondragstart="return false" onselectstart="return false">
-                {{ category }}
+                {{ genre.name }}
               </span>
             </li>
           </ul>
@@ -191,8 +191,6 @@ export default {
       dishesImport: [],
       dishes: [],
       genreList: [],
-      genreName: [],
-      action: "{{ URL::to('/checkout')}}",
     };
   },
 
@@ -208,20 +206,21 @@ export default {
       return this.elementUpgrade;
     });
 
-    (this.genreList = this.dishesImport.map((element) => {
+    this.genreList = this.dishesImport.map((element) => {
       this.genre = element.get_genre;
       return this.genre;
-    })),
-      (this.genreName = this.genreList.map((e) => {
-        this.name = e.name;
-        return this.name;
-      }));
+    }),
+
+      this.genreList = this.genreList.filter((genre,index,self)=>
+      index === self.findIndex((g)=>(
+      g.name === genre.name && g.image_url === genre.image_url
+      )));
 
     //  console.log(this.dishesImport);
     //  console.log('piatti');
     //  console.log(this.dishes);
-    //  console.log('generi');
-    //  console.log(this.genreList);
+     console.log('generi');
+     console.log(this.genreList);
     //  console.log('generi nomi');
     //  console.log(this.genreName);
     //  console.log('generi filtrati');
@@ -229,10 +228,6 @@ export default {
   },
 
   computed: {
-    genreFiltered() {
-      return this.genreName.filter((v, i, a) => a.indexOf(v) === i);
-    },
-
     filtered() {
       return this.dishes.filter((e) => {
         return e.get_genre.name.includes(this.categorySelect);
@@ -340,7 +335,7 @@ export default {
     // vai al pagamento
     goToPayment() {
       this.saveCart();
-      location.replace("/checkout");
+      location.replace("/payment");
 
       //   console.log('sono dati', data)
       //   axios.get('/checkout', data)

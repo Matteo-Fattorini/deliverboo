@@ -1,9 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
+
+   <Cart></Cart>
     <div class="container">
         <div class="row">
-            <div class="col-6 offset-3">
+            <div class="col-12 offset-3">
                 @if (session('success_message'))
                     <div class="alert alert-success">
                         {{ session('success_message') }}
@@ -42,6 +44,7 @@
             </div>
         </div>
     </div>
+    <Prefooter></Prefooter>
 
 @endsection
 
@@ -77,7 +80,10 @@
                 });
             });
         });
+    
 
     });
+
+    
 
 </script>
