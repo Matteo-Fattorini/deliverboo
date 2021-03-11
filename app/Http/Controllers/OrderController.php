@@ -50,13 +50,16 @@ class OrderController extends Controller
             'total' => $order["total"],
             "order_id" => $order["id"],
             "client_name" => $order["client_name"],
-            "dishes" => $order->getDishes(),
+            "dishes" => $order->getDishes,
         );
-        
+
         Mail::send('order-mail', $input, function ($message) use($order) {
-            $message->to($order["client_email"], $order["client_name"])->subject('Grazie per aver usato il nostro servizio');
+            $message->to($order["client_email"], $order["client_name"])->subject('Grazie per aver usato il nostro servizio!');
             $message->from('deliverboo@gmail.com', 'DeliverBoo Team-3');
         });
+
+        $item = "Ordine creato!";
+        return view('success', compact('item'));
     }
 
     /**
