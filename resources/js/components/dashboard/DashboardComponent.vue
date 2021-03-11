@@ -13,7 +13,7 @@
     </div>
     <div class="row m-3">
       <div
-        class="col-6 d-flex justify-content-center align-items-center new-dish-button"
+        class="col-4 d-flex justify-content-center align-items-center new-dish-button"
       >
         <a :href="createdish">
           <div
@@ -25,7 +25,7 @@
         </a>
       </div>
       <div
-        class="col-6 d-flex flex-column justify-content-center align-items-center orders-button"
+        class="col-4 d-flex flex-column justify-content-center align-items-center orders-button"
       >
         <a :href="orderlist">
           <div
@@ -33,6 +33,16 @@
           >
             <img src="/img/dashboard/icon/orders.png" alt="" />
             <p>Visualizza gli ordini</p>
+          </div>
+        </a>
+      </div>
+      <div
+        class="col-4 d-flex flex-column justify-content-center align-items-center orders-button"
+      >
+        <a href="/chart">
+          <div>
+            <img src="/img/dashboard/icon/statistic.png" alt="" />
+            <p>Visualizza le statistiche</p>
           </div>
         </a>
       </div>
@@ -72,11 +82,6 @@
         <ul
           class="list-style-none d-flex justify-content-between align-items-center items-buttons"
         >
-          <li class="m-2">
-            <a href="#"
-              ><img src="/img/dashboard/icon/statistic.png" alt=""
-            /></a>
-          </li>
           <li class="m-2">
             <a :href="'/dishes/' + dish.id"
               ><img src="/img/dashboard/icon/view-order-click.png" alt=""
