@@ -13,15 +13,15 @@
                     <div class="col-6 mb-2">
                         <input type="hidden" name="_method" value="PUT">
                         <input name="name" type="text" class="custom-input" id="name" aria-describedby="emailHelp"
-                            placeholder="Nome Piatto">
+                            placeholder="Nome Piatto" value="{{$dish->name}}">
                     </div>
                     <div class="col-6 mb-2">
                         <input name="price" type="text" class="custom-input" id="price" aria-describedby="emailHelp"
-                            placeholder="Prezzo">
+                            placeholder="Prezzo" value="{{$dish->price}}">
                     </div>
                     <div class="col-12 mb-2">
                         <input name="description" type="text" class="custom-input" id="description"
-                            aria-describedby="emailHelp" placeholder="Descrizione">
+                            aria-describedby="emailHelp" placeholder="Descrizione" value="{{$dish->description}}">
                     </div>
                     <div class="col-12 mb-2">
                         <label for="image" class="form-label">Seleziona un immagine per il piatto</label>
@@ -29,14 +29,14 @@
                     </div>
                     <div class="col-6 mb-2 justify-content-start align-items-center">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="visibility" value="0" id="visibility">
-                            <label class="form-check-label" for="visibility">
+                            <input class="checkbox-tools" type="radio" name="visibility" value="0" id="visibility0" @if ($dish->visibility == 0) checked  @endif>
+                            <label class="for-checkbox-tools" for="visibility0">
                                 Non Disponibile
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="visibility" value="1" id="visibility">
-                            <label class="form-check-label" for="visibility">
+                            <input class="checkbox-tools" type="radio" name="visibility" value="1" id="visibility1" @if ($dish->visibility == 1) checked  @endif>
+                            <label class="for-checkbox-tools" for="visibility1">
                                 Disponibile
                             </label>
                         </div>
@@ -45,9 +45,9 @@
                         @foreach ($genres as $genre)
                             <div class="form-check">
 
-                                <input class="form-check-input" type="radio" name="genre" value="{{ $genre['id'] }}"
-                                    id="categories1">
-                                <label class="form-check-label" for="categories1">
+                                <input class="checkbox-tools" type="radio" name="genre" value="{{ $genre['id'] }}"
+                                    id="{{$genre['id']}}" @if ($dish->getGenre->id == $genre['id']) checked  @endif>
+                                <label class="for-checkbox-tools" for="{{$genre['id']}}">
                                     {{ $genre['name'] }}
                                 </label>
                             </div>
