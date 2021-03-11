@@ -44,7 +44,7 @@ class RestaurantController extends Controller
      */
     public function store(restaurantValidator $request)
     {
-
+        
         
         $exists = (Restaurant::where("restaurateur_id", Auth::User()->id)->exists());
         $data = $request->validated();
