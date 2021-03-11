@@ -45,31 +45,31 @@ class restaurant_seeder extends Seeder
                 'restaurateur_id' => 4
             ),
             array(
-                'name' => 'Al Silenzio',
-                'address' => 'Borgo Santa Caterina 20, 38068, Rovereto Italia',
+                'name' => 'Kensho Restaurant',
+                'address' => 'Via Mercanti, 16 Ex Mister Hu, 10122 Torino Italia',
                 'p_iva' => '12962660226',
-                'image_url' => 'img/homepage/pizzeria_sciuè_sciuè.jpg',
+                'image_url' => 'img/homepage/kensho.jpg',
                 'restaurateur_id' => 5
             ),
             array(
-                'name' => "L'orto di Pitagora",
-                'address' => 'Piazza Malfatti, 20, 38068, Rovereto Italia',
+                'name' => "Maison du Brasil",
+                'address' => 'Via Paolo Veronese n.240 TORINO, 10149 Torino Italia',
                 'p_iva' => '47769490088',
-                'image_url' => 'img/homepage/pizzeria_sorbillo.jpg',
+                'image_url' => 'img/homepage/brasil.jpg',
                 'restaurateur_id' => 6
             ),
             array(
-                'name' => 'Vineria de Tarczal',
-                'address' => 'Via Giovanni Battista Miori 4, 38060 Isera Italia',
+                'name' => 'Pasticceria Venier',
+                'address' => 'Via Monte di Pietà, 22/B, 10122 Torino Italia',
                 'p_iva' => '10236140686',
-                'image_url' => 'img/homepage/ristoranti-italiani-in-uk.jpg',
+                'image_url' => 'img/homepage/ghigo.webp',
                 'restaurateur_id' => 7
             ),
             array(
-                'name' => 'Il Barone di Nomi',
+                'name' => 'Lo Fai',
                 'address' => 'Piazza Mario Springa 1, 38060 Nomi Italia',
                 'p_iva' => '72729960624',
-                'image_url' => 'img/homepage/i-migliori-ristoranti-di-firenze-cover.jpg',
+                'image_url' => 'img/homepage/vegan.jpg',
                 'restaurateur_id' => 8
             ),
             array(
@@ -80,7 +80,7 @@ class restaurant_seeder extends Seeder
                 'restaurateur_id' => 9
             ),
             array(
-                'name' => 'Casa del Vino della Vallagarina',
+                'name' => 'The Burger Factory',
                 'address' => 'Piazza San Vincenzo, 1, 38060 Isera Italia',
                 'p_iva' => '52855690492',
                 'image_url' => 'img/homepage/cucinoio.jpg',

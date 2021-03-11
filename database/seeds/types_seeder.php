@@ -64,7 +64,7 @@ class types_seeder extends Seeder
                 ],
                 [
                     'id' => 10,
-                    'name' => 'Dessert',
+                    'name' => 'Dolci',
                     'image_url' => 'img/homepage/icon/Dessert.png'
                 ],
                 [
