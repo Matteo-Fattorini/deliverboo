@@ -19,7 +19,7 @@ Route::resource("dishes", "DishController");
 Auth::routes();
 
 
-Route::get("/payment", function(){
+Route::get("/payment", function () {
     $gateway = new Braintree\Gateway([
         'environment' => "sandbox",
         'merchantId' => "rbhzcjjb2rtjsx4j",
@@ -33,18 +33,10 @@ Route::get("/payment", function(){
 Route::post("/checkout", "PaymentsController@checkout");
 
 //ROTTE DI TEST PER IL FRONT
-Route::get('/frontHome', 'FrontEndTestController@home' )->name('homePage');
+Route::get('/frontHome', 'FrontEndTestController@home')->name('homePage');
 Route::get('/frontSuccess', 'FrontEndTestController@success')->name('success');
 // Route::get('/frontRegister', 'FrontEndTestController@register')->name('register');
-Route::get('/menu', 'FrontEndTestController@menu' )->name('menu');
+Route::get('/menu', 'FrontEndTestController@menu')->name('menu');
 // Route::get('/checkout', 'FrontEndTestController@checkout' );
 // Route::get('/frontLogin', 'FrontEndTestController@login')->name('login');
 // Route::get('/checkout', 'FrontEndTestController@checkout' );
-
-
-
-
-
-
-
-
