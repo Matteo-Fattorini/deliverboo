@@ -40,7 +40,7 @@
         class="col-4 d-flex flex-column justify-content-center align-items-center orders-button"
       >
         <a href="/chart">
-          <div>
+          <div class="d-flex flex-column justify-content-center align-items-center">
             <img src="/img/dashboard/icon/statistic.png" alt="" />
             <p>Visualizza le statistiche</p>
           </div>
@@ -48,9 +48,11 @@
       </div>
     </div>
     <div class="row m-3">
-      <div class="col">
+      <div class="col-12">
         <h1>Gestione Menù</h1>
         <input
+          v-model="search"
+          @keyup.enter="filteredList()"
           class="custom-input"
           type="search"
           name=""
@@ -59,12 +61,49 @@
         />
       </div>
     </div>
+    <div
+      class="row"
+      v-for="(filteredDish, index) in filteredDishes"
+      :key="index"
+    >
+      <div class="col-2 d-flex justify-content-center align-items-center">
+        <div>
+          <img class="listImage" :src="filteredDish.image_url" alt="" />
+        </div>
+      </div>
+      <div class="col-3 d-flex justify-content-center align-items-center">
+        <p>
+          <strong>{{ filteredDish.name }}</strong>
+        </p>
+      </div>
+      <div class="col-3 d-flex justify-content-center align-items-center">
+        <p>{{ filteredDish.price }}€</p>
+      </div>
+      <div class="col-4 d-flex justify-content-center align-items-center">
+        <ul
+          class="list-style-none d-flex justify-content-between align-items-center items-buttons"
+        >
+          <li class="m-2">
+            <a :href="'/dishes/' + filteredDish.id"
+              ><img src="/img/dashboard/icon/view-order-click.png" alt=""
+            /></a>
+          </li>
+          <li class="m-2">
+            <a :href="'/dishes/' + filteredDish.id + '/edit'"
+              ><img src="/img/dashboard/icon/edit-little.png" alt=""
+            /></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <div class="row m-3">
       <div class="col-12">
         <h1>Tutti i piatti</h1>
       </div>
     </div>
-    <div class="row m-2" v-for="(dish, index) in dishes" :key="index">
+
+    <div class="row m-2" v-for="dish in dishes" :key="dish.id">
       <div class="col-2 d-flex justify-content-center align-items-center">
         <div>
           <img class="listImage" :src="dish.image_url" alt="" />
@@ -110,16 +149,29 @@ export default {
   data() {
     return {
       restaurant: {},
+      filteredDishes: [],
+      search: "",
       dishes: {},
     };
+  },
+  methods: {
+    filteredList() {
+      return (this.filteredDishes = this.dishes.filter((dish) => {
+        if (this.search == "") {
+          return "";
+        } else if (
+          dish.name.toLowerCase().includes(this.search.toLowerCase())
+        ) {
+          return dish;
+        }
+      }));
+    },
   },
   mounted() {
     var restaurantData = JSON.parse(this.restaurantdata);
     this.restaurant = restaurantData;
-    console.log(this.restaurant);
     var dishesData = JSON.parse(this.dishesdata);
     this.dishes = dishesData;
-    console.log(this.dishes);
   },
 };
 </script>

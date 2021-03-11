@@ -2653,6 +2653,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "DashboardComponent",
   props: {
@@ -2664,16 +2703,29 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       restaurant: {},
+      filteredDishes: [],
+      search: "",
       dishes: {}
     };
+  },
+  methods: {
+    filteredList: function filteredList() {
+      var _this = this;
+
+      return this.filteredDishes = this.dishes.filter(function (dish) {
+        if (_this.search == "") {
+          return "";
+        } else if (dish.name.toLowerCase().includes(_this.search.toLowerCase())) {
+          return dish;
+        }
+      });
+    }
   },
   mounted: function mounted() {
     var restaurantData = JSON.parse(this.restaurantdata);
     this.restaurant = restaurantData;
-    console.log(this.restaurant);
     var dishesData = JSON.parse(this.dishesdata);
     this.dishes = dishesData;
-    console.log(this.dishes);
   }
 });
 
@@ -40721,12 +40773,136 @@ var render = function() {
         _vm._m(2)
       ]),
       _vm._v(" "),
+      _c("div", { staticClass: "row m-3" }, [
+        _c("div", { staticClass: "col-12" }, [
+          _c("h1", [_vm._v("Gestione Menù")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.search,
+                expression: "search"
+              }
+            ],
+            staticClass: "custom-input",
+            attrs: {
+              type: "search",
+              name: "",
+              id: "",
+              placeholder: "Cerca un piatto"
+            },
+            domProps: { value: _vm.search },
+            on: {
+              keyup: function($event) {
+                if (
+                  !$event.type.indexOf("key") &&
+                  _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                ) {
+                  return null
+                }
+                return _vm.filteredList()
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.search = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.filteredDishes, function(filteredDish, index) {
+        return _c("div", { key: index, staticClass: "row" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "col-2 d-flex justify-content-center align-items-center"
+            },
+            [
+              _c("div", [
+                _c("img", {
+                  staticClass: "listImage",
+                  attrs: { src: filteredDish.image_url, alt: "" }
+                })
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "col-3 d-flex justify-content-center align-items-center"
+            },
+            [_c("p", [_c("strong", [_vm._v(_vm._s(filteredDish.name))])])]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "col-3 d-flex justify-content-center align-items-center"
+            },
+            [_c("p", [_vm._v(_vm._s(filteredDish.price) + "€")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "col-4 d-flex justify-content-center align-items-center"
+            },
+            [
+              _c(
+                "ul",
+                {
+                  staticClass:
+                    "list-style-none d-flex justify-content-between align-items-center items-buttons"
+                },
+                [
+                  _c("li", { staticClass: "m-2" }, [
+                    _c("a", { attrs: { href: "/dishes/" + filteredDish.id } }, [
+                      _c("img", {
+                        attrs: {
+                          src: "/img/dashboard/icon/view-order-click.png",
+                          alt: ""
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "m-2" }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "/dishes/" + filteredDish.id + "/edit" }
+                      },
+                      [
+                        _c("img", {
+                          attrs: {
+                            src: "/img/dashboard/icon/edit-little.png",
+                            alt: ""
+                          }
+                        })
+                      ]
+                    )
+                  ])
+                ]
+              )
+            ]
+          )
+        ])
+      }),
+      _vm._v(" "),
       _vm._m(3),
       _vm._v(" "),
-      _vm._m(4),
-      _vm._v(" "),
-      _vm._l(_vm.dishes, function(dish, index) {
-        return _c("div", { key: index, staticClass: "row m-2" }, [
+      _vm._l(_vm.dishes, function(dish) {
+        return _c("div", { key: dish.id, staticClass: "row m-2" }, [
           _c(
             "div",
             {
@@ -40859,36 +41035,23 @@ var staticRenderFns = [
       },
       [
         _c("a", { attrs: { href: "/chart" } }, [
-          _c("div", [
-            _c("img", {
-              attrs: { src: "/img/dashboard/icon/statistic.png", alt: "" }
-            }),
-            _vm._v(" "),
-            _c("p", [_vm._v("Visualizza le statistiche")])
-          ])
+          _c(
+            "div",
+            {
+              staticClass:
+                "d-flex flex-column justify-content-center align-items-center"
+            },
+            [
+              _c("img", {
+                attrs: { src: "/img/dashboard/icon/statistic.png", alt: "" }
+              }),
+              _vm._v(" "),
+              _c("p", [_vm._v("Visualizza le statistiche")])
+            ]
+          )
         ])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row m-3" }, [
-      _c("div", { staticClass: "col" }, [
-        _c("h1", [_vm._v("Gestione Menù")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "custom-input",
-          attrs: {
-            type: "search",
-            name: "",
-            id: "",
-            placeholder: "Cerca un piatto"
-          }
-        })
-      ])
-    ])
   },
   function() {
     var _vm = this
