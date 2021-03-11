@@ -13,22 +13,37 @@ class restaurant_to_type_seeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run()
     {
-        $types = Type::all();
-        $restaurants = Restaurant::all();
+        // $types = Type::all();
+        // $restaurants = Restaurant::all();
 
-        foreach ($restaurants as $restaurant) {
-            for ($i = 1; $i <= $faker->numberBetween(1, ($types->count())); $i++) {
+        // foreach ($restaurants as $restaurant) {
+        //     for ($i = 1; $i <= $faker->numberBetween(1, ($types->count())); $i++) {
 
-                DB::table("restaurant_type")->insert([
-                    "restaurant_id" => $restaurant->id,
-                    "type_id" => $i,
-                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                    'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        //         DB::table("restaurant_type")->insert([
+        //             "restaurant_id" => $restaurant->id,
+        //             "type_id" => $i,
+        //             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        //             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
                     
-                ]);
-            }
-        }
+        //         ]);
+        //     }
+        // }
+
+        DB::table('restaurant_type')->insert([
+            [
+                'restaurant_id' => 1,
+                'type_id' => 8
+            ],
+            [
+                'restaurant_id' => 1,
+                'type_id' => 1
+            ],
+            [
+                'restaurant_id' => 2,
+                'type_id' => 1
+            ],
+        ]);
     }
 }
