@@ -52,5 +52,8 @@ class FrontEndTestController extends Controller
     public function login(){
         return view('frontLogin');
     }
+    public function infoClienti(){
+        return view('infoClienti');
+    }
 }
 

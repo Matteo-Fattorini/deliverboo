@@ -4,8 +4,8 @@
 
    <Cart></Cart>
     <div class="container">
-        <div class="row">
-            <div class="col-12 offset-3">
+        <div class="row m-50">
+            <div class="col-12">
                 @if (session('success_message'))
                     <div class="alert alert-success">
                         {{ session('success_message') }}
@@ -27,9 +27,9 @@
                     @csrf
                     <section>
                         <label for="amount">
-                            <span class="input-label">Da Pagare</span>
+                            <h1 class="primary-text">Totale Ordine:</h1>
                             <div class="input-wrapper amount-wrapper">
-                                <input  id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10">
+                                <input  id="amount" name="amount" type="hidden" min="1" placeholder="Amount" value="">
                             </div>
                         </label>
 
@@ -39,7 +39,7 @@
                     </section>
 
                     <input id="nonce" name="payment_method_nonce" type="hidden" />
-                    <button class="button" type="submit"><span>Paga!</span></button>
+                    <button class="button primary-button" type="submit"><span> PAGA E METTITI COMODO</span></button>
                 </form>
             </div>
         </div>

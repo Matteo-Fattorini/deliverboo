@@ -159,8 +159,8 @@
     <!-- attiva carrello -->
 
     <div class="container cartButton" >
-      <div class="row">
-        <div class="col-12 d-flex justify-content-end align-items-center">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-1 ">
           <div
             class="roundedCart d-flex justify-content-center align-items-center"
             @click="openAndClose()"
@@ -400,12 +400,12 @@ export default {
             .dishtext {
               margin: 0 15px;
               h3 {
-                font-size: 30px;
+                font-size: 25px;
                 font-weight: 700;
-                margin-bottom: 0;
+                margin-bottom: 10px;
               }
               h5 {
-                font-size: 15px;
+                font-size: 12px;
                 font-weight: 400;
                 color: #5f5c5c;
               }
@@ -416,7 +416,7 @@ export default {
             margin: 0 15px;
             h1 {
               font-size: 30px;
-              font-weight: 900;
+              font-weight: 700;
               color: #2dccbc;
             }
           }
@@ -476,7 +476,7 @@ export default {
             border-radius: 30px;
             span {
               color: white;
-              font-weight: 900;
+              font-weight: 700;
               font-size: 15px;
               line-height: 40px;
               &:hover {
@@ -495,7 +495,7 @@ export default {
   .cart {
     box-sizing: border-box;
     min-width: 100vw;
-    height: 45vh;
+    height: 60vh;
     background-color: black;
     position: fixed;
     bottom: 0;
@@ -532,8 +532,8 @@ export default {
               margin-left: 30px;
               h3 {
                 color: white;
-                font-size: 22px;
-                font-weight: 900;
+                font-size: 18px;
+                font-weight: 600;
               }
               h6 {
                 color: white;
@@ -571,7 +571,7 @@ export default {
       margin: 30px 0;
       h1 {
         color: white;
-        font-size: 40px;
+        font-size: 30px;
         font-weight: 900;
       }
       .btn-light {
@@ -585,8 +585,8 @@ export default {
         }
         span {
           color: black;
-          font-weight: 900;
-          font-size: 18px;
+          font-weight: 600;
+          font-size: 15px;
           line-height: 30px;
           &:hover {
             text-decoration: none;
@@ -597,13 +597,14 @@ export default {
   }
   .cartButton {
     box-sizing: border-box;
-    min-width: 100vw;
+    width: 80px;
     position: fixed;
     top: 20px;
-    right: 10px;
-    z-index: -1;
+    right: 25px;
+    z-index: 2;
     .row {
-      .col-12 {
+      width:100%;
+      .col-1 {
         .roundedCart {
           height: 60px;
           width: 60px;
