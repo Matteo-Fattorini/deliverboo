@@ -33,7 +33,6 @@ $primary-color: #b3f5fd;
     background-color: #000;
     color: #fff;
 }
-
 %oval-button {
     display: flex;
     justify-content: flex-start;
@@ -96,7 +95,6 @@ $primary-color: #b3f5fd;
         }
     }
 }
-
 %oval-white-button {
     display: flex;
     justify-content: flex-start;
@@ -124,8 +122,6 @@ $primary-color: #b3f5fd;
         }
     }
 }
-
-
 ul {
     list-style: none;
 }
@@ -138,13 +134,11 @@ a{
 .oval-white-button {
     @extend %oval-white-button;
 }
-
 section#becomePartner {
     a {
         @extend %button-colored;
     }
 }
-
 .resturantImage {
     width: 200px;
     height: 200px;
@@ -158,7 +152,6 @@ section#becomePartner {
         object-position: 50% 50%;
     }
 }
-
 .listImage {
     width: 100px;
     height: 100px;
@@ -171,7 +164,6 @@ section#becomePartner {
         object-position: 50% 50%;
     }
 }
-
 .cartImage {
     width: 50px;
     height: 50px;
@@ -184,7 +176,6 @@ section#becomePartner {
         object-position: 50% 50%;
     }
 }
-
 .custom-input {
     width: 100%;
     padding: 8px;
@@ -199,14 +190,12 @@ section#becomePartner {
 
     }
 }
-
 #bg {
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url("../../public/img/homepage/background_header.png");
 }
-
 nav {
     background-color: #000;
     .row {
@@ -216,7 +205,6 @@ nav {
         width: 60%;
     }
 }
-
 #login {
     .login-img {
         height: 200px;
@@ -239,7 +227,6 @@ nav {
         }
     }
 }
-
 #new-dish, #edit-dish{
     button{
         @extend %button-colored;
@@ -264,4 +251,75 @@ nav {
         border-radius: 30px;
         box-shadow: 0 0 20px 5px gray;
     }
+}
+
+
+    $white: #ffffff;
+	$light: #f0eff3;
+	$black: #000000;
+	$dark-blue: #1f2029;
+	$dark-light: #353746;
+	$red: #da2c4d;
+	$yellow: #f8ab37;
+	$grey: #ecedf3;
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked){
+	position: absolute;
+	left: -9999px;
+	width: 0;
+	height: 0;
+	visibility: hidden;
+}
+.checkbox-tools:checked + label,
+.checkbox-tools:not(:checked) + label{
+	position: relative;
+	display: inline-block;
+	padding: 20px;
+	width: 110px;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 1px;
+	margin: 0 auto;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	text-align: center;
+	border-radius: 4px;
+	overflow: hidden;
+	cursor: pointer;
+	text-transform: uppercase;
+	color:$white;
+	-webkit-transition: all 300ms linear;
+	transition: all 300ms linear; 
+}
+.checkbox-tools:not(:checked) + label{
+	background-color:$dark-light;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+.checkbox-tools:checked + label{
+	background-color: transparent;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.checkbox-tools:not(:checked) + label:hover{
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.checkbox-tools:checked + label::before,
+.checkbox-tools:not(:checked) + label::before{
+	position: absolute;
+	content: '';
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+	background-image: linear-gradient(298deg,$red,$yellow);
+	z-index: -1;
+}
+.checkbox-tools:checked + label .uil,
+.checkbox-tools:not(:checked) + label .uil{
+	font-size: 24px;
+	line-height: 24px;
+	display: block;
+	padding-bottom: 10px;
 }
