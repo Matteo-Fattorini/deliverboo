@@ -335,7 +335,7 @@ export default {
     // vai al pagamento
     goToPayment() {
       this.saveCart();
-      location.replace("/payment");
+      location.replace("/infoClienti");
 
       //   console.log('sono dati', data)
       //   axios.get('/checkout', data)

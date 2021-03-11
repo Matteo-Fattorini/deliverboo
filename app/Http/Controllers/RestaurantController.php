@@ -44,8 +44,8 @@ class RestaurantController extends Controller
      */
     public function store(restaurantValidator $request)
     {
-        
-        
+
+
         $exists = (Restaurant::where("restaurateur_id", Auth::User()->id)->exists());
         $data = $request->validated();
         $file = $request->file('image');
@@ -92,16 +92,20 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        $restaurantt = Restaurant::find($id);
-        if(Auth::User()->id  == $restaurantt->getRestaurateur->id){
-            $restaurant = Auth::User()->getRestaurant;
-            return view('dashboard', compact('restaurant'));
+        if (Auth::check()) {
+            $temp_rest = Restaurant::find($id);
+            if (Auth::User()->id  == $temp_rest->getRestaurateur->id) {
+                $restaurant = Auth::User()->getRestaurant;
+                return view('dashboard', compact('restaurant'));
+            } else {
+                $restaurant = Restaurant::where("id", $id)->with("getTypes", "getDishes", "getRestaurateur", "getDishes.getGenre")->get();
+                return view("menu", compact("restaurant"));
+            }
+        } else {
 
+            $restaurant = Restaurant::where("id", $id)->with("getTypes", "getDishes", "getRestaurateur", "getDishes.getGenre")->get();
+            return view("menu", compact("restaurant"));
         }
-       
-        
-        $restaurant = Restaurant::where("id", $id)->with("getTypes","getDishes","getRestaurateur","getDishes.getGenre")->get();
-        return view("menu", compact("restaurant"));
     }
 
     /**
@@ -117,15 +121,15 @@ class RestaurantController extends Controller
         return view("test-restaurant-edit", compact("restaurant", "types"));
     }
 
-    
+
     public function orders($id)
     {
-        $restaurant = Restaurant::find($id);
-        ;
+        $restaurant = Restaurant::find($id);;
         return view("show-orders", compact("restaurant"));
     }
 
-    public function getChart(){
+    public function getChart()
+    {
         $restaurant = Auth::User()->getRestaurant;
         return view("chart", compact("restaurant"));
     }
@@ -156,7 +160,7 @@ class RestaurantController extends Controller
         $restaurant->getRestaurateur()->associate(Auth::User()->id)->save();
         $restaurant->getTypes()->sync($data["types"]);
 
-        
+
         $item = "ok hai modificato con successo il tuo ristorante";
 
         return view("success", compact("item"));

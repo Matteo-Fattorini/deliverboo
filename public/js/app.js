@@ -2431,7 +2431,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     // vai al pagamento
     goToPayment: function goToPayment() {
       this.saveCart();
-      location.replace("/payment"); //   console.log('sono dati', data)
+      location.replace("/infoClienti"); //   console.log('sono dati', data)
       //   axios.get('/checkout', data)
       //       .then(function (result ) {
       //            console.log(result.data.response);
@@ -54911,8 +54911,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! F:\User Folders\Documenti\GitHub\deliverboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! F:\User Folders\Documenti\GitHub\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\NoSync\deliverboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\NoSync\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

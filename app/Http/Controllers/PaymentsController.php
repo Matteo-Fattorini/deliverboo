@@ -28,7 +28,9 @@ class PaymentsController extends Controller
 
         if ($result->success) {
             $transaction = $result->transaction;
-            return back()->with("success_message", "Transation successful. The ID is:" .$transaction->id);
+            // return back()->with("success_message", "Transation successful. The ID is:" .$transaction->id);
+            $item = "Transazione avvenuta con successo";
+            return view("success", compact("item"));
         } else {
             $errorString = "";
 
