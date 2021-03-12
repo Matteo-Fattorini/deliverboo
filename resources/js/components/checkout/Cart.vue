@@ -20,7 +20,7 @@
                     <div class="dishes d-flex justify-content-start align-items-center">
                       <div class="dishImg">
                         <div class="cartImage">
-                          <img :src="'/img/restaurant/' + order.dishImgUrl" alt="" />
+                          <img :src="'/img/restaurant/' + order.dishImgUrl" alt="cart-img" />
                         </div>
                       </div>
                       <div class="dishtext">
