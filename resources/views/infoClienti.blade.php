@@ -126,5 +126,13 @@
 
 
 <script>
+ 
+$dishes = JSON.parse(localStorage.getItem('orders'));
+$restaurantId = JSON.parse(localStorage.getItem('restaurantId'));
+$total = JSON.parse(localStorage.getItem('total'));
 
-</script>
+ console.log('Piatti');console.log($dishes);
+ console.log('RestaurantId');console.log($restaurantId);
+ console.log('Total');console.log($total);
+
+ </script>

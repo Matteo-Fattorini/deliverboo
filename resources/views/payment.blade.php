@@ -49,7 +49,16 @@
     <Prefooter></Prefooter>
 
 @endsection
+<script>
 
+    $dishes = JSON.parse(localStorage.getItem('orders'));
+    $restaurantId = JSON.parse(localStorage.getItem('restaurantId'));
+    $total = JSON.parse(localStorage.getItem('total'));
+
+ console.log('Piatti');console.log($dishes);
+ console.log('RestaurantId');console.log($restaurantId);
+ console.log('Total');console.log($total);
+</script>
 <script defer src="https://js.braintreegateway.com/web/dropin/1.26.1/js/dropin.min.js"></script>
 <script defer>
     document.addEventListener("DOMContentLoaded", function(event) {
