@@ -32,6 +32,11 @@ export default {
 }
 img {
   height: 300px;
-  outline:none;
+  outline: none !important;
+
+  &:hover {
+  outline:none !important; 
+  }
 }
+
 </style>

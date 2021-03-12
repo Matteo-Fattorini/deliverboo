@@ -8349,7 +8349,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#infoSectionHome[data-v-a2af9f00] {\n  height: 60vh;\n}\nimg[data-v-a2af9f00] {\n  height: 300px;\n  outline: none;\n}", ""]);
+exports.push([module.i, "#infoSectionHome[data-v-a2af9f00] {\n  height: 60vh;\n}\nimg[data-v-a2af9f00] {\n  height: 300px;\n  outline: none !important;\n}\nimg[data-v-a2af9f00]:hover {\n  outline: none !important;\n}", ""]);
 
 // exports
 
