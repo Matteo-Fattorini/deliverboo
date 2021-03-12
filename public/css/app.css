@@ -11028,12 +11028,10 @@ nav ul {
   transition: all 200ms linear;
 }
 
-#new-dish button:hover,
-#edit-dish button:hover,
-#login .black-container a:hover,
 .primary-button:hover,
-section#becomePartner a:hover,
-.black-button:hover {
+.black-button:hover,
+#new-dish button:hover,
+#edit-dish button:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 

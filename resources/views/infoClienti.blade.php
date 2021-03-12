@@ -86,13 +86,13 @@
 
             <div class="form-group d-flex  row">
                 <div class="col-12">
-                    <input id="dishes" type="hidden" class="form-control" name="dishes" value='0563'>
+                    <input id="dishes" type="hidden" class="form-control" name="dishes" value='0'>
                 </div>
                 <div class="col-12">
-                    <input id="totalprice" type="hidden" class="form-control" name="total" value='75'>
+                    <input id="totalprice" type="hidden" class="form-control" name="total" value='0'>
                 </div>
                 <div class="col-12">
-                    <input id="restaurant_id" type="hidden" class="form-control" name="restaurant_id" value='1'>
+                    <input id="restaurant_id" type="hidden" class="form-control" name="restaurant_id" value='0'>
                 </div>
             </div>
 
@@ -130,6 +130,13 @@
 $dishes = JSON.parse(localStorage.getItem('orders'));
 $restaurantId = JSON.parse(localStorage.getItem('restaurantId'));
 $total = JSON.parse(localStorage.getItem('total'));
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+    document.getElementById('totalprice').value = $total;
+    document.getElementById('restaurant_id').value = $restaurantId
+    document.getElementById('dishes').value = $dishes
+
+});
 
  console.log('Piatti');console.log($dishes);
  console.log('RestaurantId');console.log($restaurantId);
