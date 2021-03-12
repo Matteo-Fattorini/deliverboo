@@ -94,7 +94,11 @@ class OrderController extends Controller
     public function show($id)
     {
         $restaurant = Restaurant::find($id);
-        return view("test-orders",compact("restaurant"));
+        $orders = json_encode(Order::where('restaurant_id', $id)->with("getDishes")->get());
+        // Restaurant::where("id", $id)->with("getTypes", "getDishes", "getRestaurateur", "getDishes.getGenre")->get();
+
+        
+        return view("test-orders", compact("restaurant", "orders"));
     }
 
     /**

@@ -63,7 +63,7 @@ export default {
 
       this.restaurants = [];
       let el = document.getElementById("resturant-type");
-      el.scrollIntoView();
+      el.scrollIntoView({behavior: 'smooth'});
       console.log(this.query);
       axios
         .get("/api/restaurants", {
