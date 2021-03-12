@@ -8,3 +8,4 @@ registerlink="{{route('register')}}">
 </PartnerSectionHome>
 <InfoSectionHome></InfoSectionHome>
 @endsection
+
