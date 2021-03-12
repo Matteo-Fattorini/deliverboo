@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section id="join-component">
     <header>
       <div id="bg">
         <div class="d-flex justify-content-center align-items-center">
@@ -37,7 +37,7 @@
         :link="'/restaurant/' + restaurant.id"
       />
     </ResturantSectionHome>
-  </div>
+  </section>
 </template>
 <script>
 import ResturantSectionHome from "./ResturantSectionHome.vue";
