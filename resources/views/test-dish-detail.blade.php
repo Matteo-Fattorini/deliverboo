@@ -9,7 +9,7 @@
         <div class="container p-5">
             <div class="row ">
                 <div class="col-6 d-flex justify-content-center align-items-center ">
-                    <img id="dish-show-img" src="{{ $dish->image_url }}" alt="{{ $dish->name }}">
+                    <img id="dish-show-img" src="/img/restaurant/{{ $dish->image_url }}" alt="{{ $dish->name }}">
                 </div>
                 <div class="col-6 d-flex flex-column justify-content-center align-items-start">
                     <div>

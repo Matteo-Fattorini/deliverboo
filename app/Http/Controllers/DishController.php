@@ -123,7 +123,7 @@ class DishController extends Controller
         Dish::find($id)->getGenre()->associate($data["genre"])->save();
 
 
-        $item = "ok hai modificato con successo";
+        $item = "Piatto modificato con successo!";
 
         return view("success", compact("item"));
     }

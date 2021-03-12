@@ -45,8 +45,9 @@ class OrderController extends Controller
      */
     public function store(OrderValidate $request)
     {
-        
+        $dish = $request->all();
         $data = $request->validated();
+       
        
 
         $order = new Order();
@@ -60,7 +61,7 @@ class OrderController extends Controller
 
         $order->getRestaurant()->associate($data["restaurant_id"]);
         $order->save();
-        $order->getDishes()->sync([1,2,4,6,1]);
+        $order->getDishes()->sync(explode(",",$dish["dishes"]));
 
         $input = array(
             'total' => $order["total"],

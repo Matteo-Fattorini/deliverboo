@@ -38,7 +38,6 @@ export default {
   mounted: function () {
     var data = JSON.parse(this.data);
     this.restaurantData = data;
-    console.log(this.restaurantData);
   },
 };
 </script>

@@ -27,7 +27,7 @@ class dishValidate extends FormRequest
             "name" => "required|min:3|max:50|string",
             "price" => "required|numeric",
             "visibility" => "required",
-            "description" => "required|string|min:10|max:50",
+            "description" => "required|string|min:10|max:500",
             "image" => 'image|mimes:jpeg,png,jpg,gif,svg,jfif|max:2048|required',
             "genre" => "required"
             
