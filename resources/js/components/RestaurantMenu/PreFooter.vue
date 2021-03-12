@@ -2,7 +2,7 @@
 
 <footer>
      <div class="container">
-                <img src="img/restaurant/food_short.png" alt="">
+                <img src="/img/restaurant/food_short.png" alt="">
     </div>
 </footer>
   

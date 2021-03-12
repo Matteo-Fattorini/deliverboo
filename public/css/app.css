@@ -10963,20 +10963,22 @@ section#becomePartner a,
   color: #000;
   border-style: none;
   text-decoration: none;
-  transition: all 200ms linear;
   font-weight: 600;
-}
-
-.black-button {
-  background-color: #000;
-  color: #fff;
+  transition: all 200ms linear;
 }
 
 #new-dish button:hover,
 #edit-dish button:hover,
 #login .black-container a:hover,
-section#becomePartner a:hover {
+.primary-button:hover,
+section#becomePartner a:hover,
+.black-button:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.black-button {
+  background-color: #000;
+  color: #fff;
 }
 
 .oval-button {

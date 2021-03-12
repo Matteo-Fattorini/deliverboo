@@ -41,9 +41,9 @@
         >
           <h5>SEGUICI SUI SOCIAL</h5>
           <div class="d-flex justify-content-between align-items-center social">
-            <img src="img/homepage/icon/twitter.png" alt="" />
-            <img src="img/homepage/icon/Facebook.png" alt="" />
-            <img src="img/homepage/icon/Instagram.png" alt="" />
+            <img src="/img/homepage/icon/twitter.png" alt="" />
+            <img src="/img/homepage/icon/Facebook.png" alt="" />
+            <img src="/img/homepage/icon/Instagram.png" alt="" />
           </div>
         </div>
       </div>
