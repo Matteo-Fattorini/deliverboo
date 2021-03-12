@@ -32,5 +32,6 @@ export default {
 }
 img {
   height: 300px;
+  outline:none;
 }
 </style>
