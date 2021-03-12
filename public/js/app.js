@@ -2365,9 +2365,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           _this3.putInCart(i);
 
-          _this3.cartActive = true;
-          console.log('PRE-ORDER');
-          console.log(_this3.orders);
+          _this3.cartActive = true; //ID piatti nel carrello
+
+          _this3.dishInCart = _this3.orders.map(function (e) {
+            _this3.order = e.dishId;
+            return _this3.order;
+          });
+          console.log('ordine nel carrello');
+          console.log(_this3.dishInCart);
         } else if (direction == "-" && i === index) {
           if (dish.counter === 0) {
             _this3.cartActive = false;
@@ -2476,7 +2481,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       localStorage.setItem("cart", parsed);
     },
     saveDish: function saveDish() {
-      var parsed = JSON.stringify(this.orders);
+      var parsed = JSON.stringify(this.dishInCart);
       localStorage.setItem("orders", parsed);
     },
     saveRestaurant: function saveRestaurant() {

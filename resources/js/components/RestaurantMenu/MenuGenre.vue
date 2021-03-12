@@ -187,7 +187,7 @@ export default {
       // cartFiltered:[],
       cart:[],
       total:0,
-      dishInCart:[]
+      dishInCart:[],
             
     }
   },
@@ -299,7 +299,13 @@ export default {
           });
           this.putInCart(i);
           this.cartActive = true;
-          console.log('PRE-ORDER');console.log(this.orders);
+
+          //ID piatti nel carrello
+          this.dishInCart = this.orders.map(e=>{
+            this.order = e.dishId;
+            return this.order
+          })
+          console.log('ordine nel carrello');console.log(this.dishInCart);
           
         } else if (direction == "-" && i === index) {
           if (dish.counter === 0) {
@@ -412,7 +418,7 @@ export default {
       localStorage.setItem("cart", parsed);
     },
     saveDish() {
-      const parsed = JSON.stringify(this.orders);
+      const parsed = JSON.stringify(this.dishInCart);
       localStorage.setItem("orders", parsed);
     },
     saveRestaurant() {
