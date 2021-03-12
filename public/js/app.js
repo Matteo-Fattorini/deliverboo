@@ -40538,7 +40538,7 @@ var render = function() {
                         _c("div", { staticClass: "cartImage" }, [
                           _c("img", {
                             attrs: {
-                              src: "../../../../" + order.dishImgUrl,
+                              src: "/img/restaurant/" + order.dishImgUrl,
                               alt: ""
                             }
                           })
@@ -40750,7 +40750,12 @@ var render = function() {
                 [
                   _c("div", { staticClass: "dishImg" }, [
                     _c("div", { staticClass: "cartImage" }, [
-                      _c("img", { attrs: { src: order.dishImgUrl, alt: "" } })
+                      _c("img", {
+                        attrs: {
+                          src: "/img/restaurant/" + order.dishImgUrl,
+                          alt: ""
+                        }
+                      })
                     ])
                   ]),
                   _vm._v(" "),

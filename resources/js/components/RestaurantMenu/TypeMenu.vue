@@ -125,7 +125,7 @@
             <div class="dishes d-flex justify-content-start align-items-center">
               <div class="dishImg">
                 <div class="cartImage">
-                  <img :src="'../../../../' + order.dishImgUrl" alt="" />
+                  <img :src="'/img/restaurant/' + order.dishImgUrl" alt="" />
                 </div>
               </div>
               <div class="dishtext">
