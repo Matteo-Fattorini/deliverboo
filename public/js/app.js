@@ -3304,9 +3304,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "InfoSectionHome"
 });
@@ -8323,7 +8320,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#infoSectionHome[data-v-a2af9f00] {\n  height: 40vh;\n}\nimg[data-v-a2af9f00] {\n  height: 300px;\n}", ""]);
+exports.push([module.i, "#infoSectionHome[data-v-a2af9f00] {\n  height: 60vh;\n}\nimg[data-v-a2af9f00] {\n  height: 300px;\n}", ""]);
 
 // exports
 
@@ -42414,7 +42411,11 @@ var staticRenderFns = [
                 staticClass:
                   "col-6 d-flex justify-align-content-center align-items-center"
               },
-              [_c("img", { attrs: { src: "img/homepage/food.png", alt: "" } })]
+              [
+                _c("img", {
+                  attrs: { src: "img/homepage/logo_dev_2.png", alt: "" }
+                })
+              ]
             ),
             _vm._v(" "),
             _c(
@@ -42430,8 +42431,10 @@ var staticRenderFns = [
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
-                    '\n          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque sint\n          ex ipsum ipsa, sunt accusamus, adipisci reiciendis, optio in amet\n          autem? Hic, recusandae. Consequuntur consequatur fugit earum hic\n          voluptate commodi."\n        '
-                  )
+                    "\n          La fame ti ha preso di sprovvista? Con pochi click puoi ordinare direttamente dai tuoi ristoranti preferiti. "
+                  ),
+                  _c("br"),
+                  _vm._v(" Il cibo arriverà direttamente a casa tua!\n        ")
                 ])
               ]
             )
