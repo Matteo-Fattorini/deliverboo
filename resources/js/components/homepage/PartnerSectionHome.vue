@@ -9,9 +9,9 @@
             Partner
           </h1>
           <div class="mt-5">
-            <a href="#">Effettua il login</a>
+            <a :href="loginlink" class="primary-button">Effettua il login</a>
             <span> - o - </span>
-            <a href="#">Registrati Subito</a>
+            <a :href="registerlink" class="primary-button">Registrati Subito</a>
           </div>
         </div>
       </div>
@@ -22,6 +22,10 @@
 <script>
 export default {
   name: "PartnerSectionHome",
+  props:{
+    loginlink: String,
+    registerlink: String
+  }
 };
 </script>
 

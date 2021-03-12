@@ -63,7 +63,7 @@ class RestaurantController extends Controller
 
             $restaurant->getTypes()->sync($data["types"]);
 
-            $item = "Hai creato un ristorante!";
+            $item = "Hai creato con successo il tuo ristorante.";
 
 
             $input = array(
@@ -79,7 +79,7 @@ class RestaurantController extends Controller
 
             return view("success", compact("item"));
         } else {
-            $item = "Esiste già un ristorante a tuo nome!";
+            $item = "Hai già registrato un ristorante.";
             return view("failed", compact("item"));
         }
     }
@@ -161,7 +161,7 @@ class RestaurantController extends Controller
         $restaurant->getTypes()->sync($data["types"]);
 
 
-        $item = "ok hai modificato con successo il tuo ristorante";
+        $item = "Le modifiche sono state effettuate con successo.";
 
         return view("success", compact("item"));
     }
@@ -180,7 +180,7 @@ class RestaurantController extends Controller
             $restaurant->getDishes()->delete();
             $restaurant->getTypes()->detach();
             $restaurant->delete();
-            $item = "Hai rimosso con successo il tuo ristorante";
+            $item = "Hai rimosso con successo il tuo ristorante.";
 
             return view("success", compact("item"));
         } else {
