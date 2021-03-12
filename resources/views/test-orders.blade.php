@@ -3,8 +3,9 @@
 
 @section('content')
 
-<section id="orders-dashboard">
-    @foreach ($restaurant->getOrders as $order)
+    <OrdersComponent ordersarr="{{ $orders }}">
+    </OrdersComponent>
+    {{-- @foreach ($restaurant->getOrders as $order)
         <div class="container p-5 mb-3">
             <div class="row ">
                 <div class="col-12 justify-content-start align-items-center">
@@ -61,8 +62,8 @@
                 </div>
             </div>
         </div>
-    @endforeach
-</section>
+    @endforeach --}}
+
 
 
 

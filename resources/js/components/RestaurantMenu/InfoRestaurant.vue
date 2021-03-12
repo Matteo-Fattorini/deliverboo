@@ -15,8 +15,10 @@
       >
         <div class="resturantImage">
           <!--  <img class='m-0 p-0' :src="restaurantData.image_url" alt=""> -->
-          <img :src="'/uploads/' + restaurantData.image_url" />
+          <img id="restaurant_img" alt="ok" :src="'/img/restaurant/' + restaurantData.image_url" />
         </div>
+
+        
       </div>
     </div>
   </div>
@@ -58,12 +60,15 @@ export default {
         overflow: hidden;
         border-radius: 100%;
         border: 6px solid black;
-        img {
+          #restaurant_img {
           width: 100%;
           height: 100%;
+          border-radius: 100%;
+          margin: 0;
           object-fit: cover;
-          object-position: 50% 50%;
-        }
+        
+          
+         }
       }
     }
     .info {

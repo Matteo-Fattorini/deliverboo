@@ -19,16 +19,16 @@ Route::resource("dishes", "DishController");
 Auth::routes();
 
 
-Route::get("/payment", function () {
-    $gateway = new Braintree\Gateway([
-        'environment' => "sandbox",
-        'merchantId' => "rbhzcjjb2rtjsx4j",
-        'publicKey' => "8hsqrm2vqx9twkpw",
-        'privateKey' => "1971b9924ee94d6d0320bc61d1ccb6be"
-    ]);
-    $token = $gateway->ClientToken()->generate();
-    return view("payment", ["token" => $token]);
-});
+// Route::get("/payment", function () {
+//     $gateway = new Braintree\Gateway([
+//         'environment' => "sandbox",
+//         'merchantId' => "rbhzcjjb2rtjsx4j",
+//         'publicKey' => "8hsqrm2vqx9twkpw",
+//         'privateKey' => "1971b9924ee94d6d0320bc61d1ccb6be"
+//     ]);
+//     $token = $gateway->ClientToken()->generate();
+//     return view("payment", ["token" => $token]);
+// })->name('payment');
 
 Route::post("/checkout", "PaymentsController@checkout");
 

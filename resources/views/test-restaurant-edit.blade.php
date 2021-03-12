@@ -2,9 +2,66 @@
 
 
 @section('content')
+    <section id="restaurant-edit">
+        <form action="{{ route('restaurant.update', $restaurant->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method("PUT")
+            <div class="container p-5">
+                <div class="row mt-3 mb-3">
+                    <h3>Modifica il tuo ristorante</h3>
+                </div>
+                <div class="row">
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="col-6 mb-3">
+                        <input name="name" type="text" class="custom-input" id="name" aria-describedby="emailHelp"
+                            placeholder="Nome Ristorante" value="{{ $restaurant->name }}">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <input name="p_iva" type="text" class="custom-input" id="p_iva" aria-describedby="emailHelp"
+                            placeholder="Partita IVA" value="{{ $restaurant->p_iva }}">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <input name="address" type="text" class="custom-input" id="address" aria-describedby="emailHelp"
+                            placeholder="Indirizzo Ristorante" value="{{ $restaurant->address }}">
+                    </div>
+                    <div class=" col-12 mb-3">
+                        <label for="image" class="form-label">Seleziona l'immagine del ristorante</label>
+                        <input name="image" type="file" class="custom-input" id="image">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <p>Modifica la tipologia di ristorante</p>
+                        @foreach ($types as $type)
+                            <input class="checkbox-tools" name="types[]" type="checkbox" value="{{ $type['id'] }}"
+                                id="{{ $type['id'] }}" @foreach ($restaurant->getTypes as $item)  @if ($item->id==$type['id'])
+                            checked @endif
+                        @endforeach
+                        >
+                        <label class="for-checkbox-tools" for="{{ $type['id'] }}">
+                            {{ $type['name'] }}
+                        </label>
+                        @endforeach
+                    </div>
+                    <div class="col-12">
+                        <button class="primary-button" type="submit">APPLICA LE MODIFICHE</button>
+                    </div>
+                    <div class="col-12">
+                        @if ($errors->any())
+                            <div class="alert alert-danger mt-5">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </form>
 
-
-    <div class="container">
+    </section>
+@endsection
+{{-- <div class="container">
         <div class="row ">
             <div class="col-10  mt-5 d-flex flex-wrap justify-content-center ">
                 <form action="{{ route('restaurant.update', $restaurant->id) }}" method="POST"
@@ -65,118 +122,4 @@
                 </form>
             </div>
         </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {{-- @foreach ($restaurants->getTypes as $type)
-    @dd($type->getRestaurants)
-    
-@endforeach
-
-
- @foreach ($restaurants->getOrders as $order)
-        <h4>{{ $order->client_name }}</h4>
-        <h4>{{ $order->client_surname }}</h4>
-        <h4>{{ $order->client_email }}</h4>
-        <h4>{{ $order->client_phone }}</h4>
-        <h4>{{ $order->client_address }}</h4>
-        <h1>{{ $order->getRestaurant->name }}</h1>
-        <br>
-    @foreach ($order->getDishes as $dish) 
-         <h4>{{ $dish->name }}</h4>
-         <h4>{{ $dish->price }} euro</h4>
-         <h4>{{ $dish->description }}</h4>
-         <h4>ristorante: {{ $dish->getRestaurant->name }}</h4>
-         <h4> genere: {{ $dish->getGenre->getDishes->pluck("name") }}</h4>
-         
-        
-    @endforeach
-     
- @endforeach --}}
-
-
-    {{-- <h1>{{ $restaurants->name }}</h1>
-@foreach ($restaurants->getTypes as $type)
-    <h5>{{ $type->name }}</h5>
-@endforeach
-"--------------------------"
-@foreach ($restaurants->getDishes as $dish)
-    <h5>{{ $dish->name }}</h5>
-    @foreach ($dish->getOrders as $order)
-         {{ $order->id }}
-         {{ $order->client_name }}
-        
-@endforeach
-
-@foreach ($orders as $order){
-    @foreach ($order->getDishes as $dishes)
-           {{ $dishes->getRestaurant->id }}
-        
-    @endforeach
-}
-    
-@endforeach
-
-
-@endforeach --}}
-
-
-
-
-    {{-- @foreach ($restaurants as $restaurant)
-    <div class="card" style="width: 18rem;">
-  <h2>immagine: {{ $restaurant->image_url }}</h2>
-  <div class="card-body">
-    <h5 class="card-title">{{ $restaurant->name }}</h5>
-    <p class="card-text">{{ $restaurant->address }}</p>
-    <p> test-getrestaurator: {{ $restaurant->getRestaurateur->getRestaurant->name }}</p>
-    <h5>Test Tipi</h5>
-    @foreach ($restaurant->getTypes as $type)
-        <h5>{{ $type->name }}</h5>
-    @endforeach
-    <br>
-    <h5>Test Piatti</h5>
-    @foreach ($restaurant->getorders as $dish)
-        <h5>{{ $dish->name }}</h5>
-        <h5> test genere: {{ $dish->getGenre->name}}</h5>
-        <h5>test restaurant: {{ $dish->getRestaurant->name }}</h5>
-        
-        
-            
-    @endforeach
-   
-    <br>
-
-    
-  </div>
-</div>
-@endforeach --}}
-
-
-@endsection
+    </div> --}}

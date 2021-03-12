@@ -44,8 +44,8 @@ class RestaurantController extends Controller
      */
     public function store(restaurantValidator $request)
     {
-        
-        
+
+
         $exists = (Restaurant::where("restaurateur_id", Auth::User()->id)->exists());
         $data = $request->validated();
         $file = $request->file('image');
@@ -63,23 +63,23 @@ class RestaurantController extends Controller
 
             $restaurant->getTypes()->sync($data["types"]);
 
-            $item = "Hai creato un ristorante!";
+            $item = "Hai creato con successo il tuo ristorante.";
 
 
-            $input = array(
-                'name' => Auth::User()["name"],
-                "restaurantName" => $restaurant["name"],
-                "restaurantAddress" => $restaurant["address"],
-                "restaurantIva" => $restaurant["p_iva"],
-            );
-            Mail::send('restaurant-mail', $input, function ($message) {
-                $message->to(Auth::User()["email"], Auth::User()["name"])->subject('Grazie per aver usato il nostro servizio');
-                $message->from('deliverboo@gmail.com', 'DeliverBoo Team-3');
-            });
+            // $input = array(
+            //     'name' => Auth::User()["name"],
+            //     "restaurantName" => $restaurant["name"],
+            //     "restaurantAddress" => $restaurant["address"],
+            //     "restaurantIva" => $restaurant["p_iva"],
+            // );
+            // Mail::send('restaurant-mail', $input, function ($message) {
+            //     $message->to(Auth::User()["email"], Auth::User()["name"])->subject('Grazie per aver usato il nostro servizio');
+            //     $message->from('deliverboo@gmail.com', 'DeliverBoo Team-3');
+            // });
 
             return view("success", compact("item"));
         } else {
-            $item = "Esiste già un ristorante a tuo nome!";
+            $item = "Hai già registrato un ristorante.";
             return view("failed", compact("item"));
         }
     }
@@ -92,9 +92,9 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        if (Auth::check()){
-            $restaurantt = Restaurant::find($id);
-            if (Auth::User()->id  == $restaurantt->getRestaurateur->id) {
+        if (Auth::check()) {
+            $temp_rest = Restaurant::find($id);
+            if (Auth::User()->id  == $temp_rest->getRestaurateur->id) {
                 $restaurant = Auth::User()->getRestaurant;
                 return view('dashboard', compact('restaurant'));
             } else {
@@ -102,14 +102,10 @@ class RestaurantController extends Controller
                 return view("menu", compact("restaurant"));
             }
         } else {
-            
+
             $restaurant = Restaurant::where("id", $id)->with("getTypes", "getDishes", "getRestaurateur", "getDishes.getGenre")->get();
             return view("menu", compact("restaurant"));
         }
-        
-       
-        
-        
     }
 
     /**
@@ -125,15 +121,15 @@ class RestaurantController extends Controller
         return view("test-restaurant-edit", compact("restaurant", "types"));
     }
 
-    
+
     public function orders($id)
     {
-        $restaurant = Restaurant::find($id);
-        ;
+        $restaurant = Restaurant::find($id);;
         return view("show-orders", compact("restaurant"));
     }
 
-    public function getChart(){
+    public function getChart()
+    {
         $restaurant = Auth::User()->getRestaurant;
         return view("chart", compact("restaurant"));
     }
@@ -164,8 +160,8 @@ class RestaurantController extends Controller
         $restaurant->getRestaurateur()->associate(Auth::User()->id)->save();
         $restaurant->getTypes()->sync($data["types"]);
 
-        
-        $item = "ok hai modificato con successo il tuo ristorante";
+
+        $item = "Le modifiche sono state effettuate con successo.";
 
         return view("success", compact("item"));
     }
@@ -184,7 +180,7 @@ class RestaurantController extends Controller
             $restaurant->getDishes()->delete();
             $restaurant->getTypes()->detach();
             $restaurant->delete();
-            $item = "Hai rimosso con successo il tuo ristorante";
+            $item = "Hai rimosso con successo il tuo ristorante.";
 
             return view("success", compact("item"));
         } else {

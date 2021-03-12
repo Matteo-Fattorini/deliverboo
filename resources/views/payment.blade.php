@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+
    <Cart></Cart>
     <div class="container">
         <div class="row m-50">
@@ -27,9 +29,9 @@
                     @csrf
                     <section>
                         <label for="amount">
-                            <h1 class="primary-text">Totale Ordine:</h1>
+                            <h1 class="primary-text">Totale Ordine: {{ $total }} euro.</h1>
                             <div class="input-wrapper amount-wrapper">
-                                <input  id="amount" name="amount" type="hidden" min="1" placeholder="Amount" value="">
+                                <input  id="amount" name="amount" type="hidden" min="1" placeholder="Amount" value={{ strval($total) }}>
                             </div>
                         </label>
 

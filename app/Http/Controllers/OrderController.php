@@ -7,6 +7,9 @@ use App\Http\Requests\restaurantValidator;
 use App\Restaurant;
 use App\Order;
 use App\Type;
+use App\Http\Requests\OrderValidate;
+use Braintree\Gateway;
+use Braintree;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -31,35 +34,7 @@ class OrderController extends Controller
      */
     public function create(Request $request)
     {
-        $data = $request->all();
-
-        $order = new Order();
-        $order["total"] = $data["total"];
-        $order["client_name"] = $data["client_name"];
-        $order["client_surname"] = $data["client_surname"];
-        $order["client_email"] = $data["client_email"];
-        $order["client_phone"] = $data["client_phone"];
-        $order["client_address"] = $data["client_address"];
-        $order["is_payed"] = 1;
-      
-        $order->getRestaurant()->associate($data["restaurant_id"]);
-        $order->getDishes()->sync($data["dishes"]);
-        $order->save();
-
-        $input = array(
-            'total' => $order["total"],
-            "order_id" => $order["id"],
-            "client_name" => $order["client_name"],
-            "dishes" => $order->getDishes,
-        );
-
-        Mail::send('order-mail', $input, function ($message) use($order) {
-            $message->to($order["client_email"], $order["client_name"])->subject('Grazie per aver usato il nostro servizio!');
-            $message->from('deliverboo@gmail.com', 'DeliverBoo Team-3');
-        });
-
-        $item = "Ordine creato!";
-        return view('success', compact('item'));
+       
     }
 
     /**
@@ -68,10 +43,47 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderValidate $request)
     {
-        //
-    }
+        
+        $data = $request->validated();
+       
+
+        $order = new Order();
+        $order["total"] = $data["total"];
+        $order["client_name"] = $data["client_name"];
+        $order["client_surname"] = $data["client_surname"];
+        $order["client_email"] = $data["client_email"];
+        $order["client_phone"] = $data["client_phone"];
+        $order["client_address"] = $data["client_address"];
+        $order["is_payed"] = 0;
+
+        $order->getRestaurant()->associate($data["restaurant_id"]);
+        $order->save();
+        $order->getDishes()->sync([1,2,4,6,1]);
+
+        $input = array(
+            'total' => $order["total"],
+            "order_id" => $order["id"],
+            "client_name" => $order["client_name"],
+            "dishes" => $order->getDishes,
+        );
+
+        Mail::send('order-mail', $input, function ($message) use ($order) {
+            $message->to($order["client_email"], $order["client_name"])->subject('Grazie per aver usato il nostro servizio!');
+            $message->from('deliverboo@gmail.com', 'DeliverBoo Team-3');
+        });
+
+        $gateway = new Braintree\Gateway([
+                'environment' => "sandbox",
+                'merchantId' => "rbhzcjjb2rtjsx4j",
+                'publicKey' => "8hsqrm2vqx9twkpw",
+                'privateKey' => "1971b9924ee94d6d0320bc61d1ccb6be"
+            ]);
+        $token = $gateway->ClientToken()->generate();
+        $total = $order["total"];
+        return view("payment", compact("token","total"));
+       }
 
     /**
      * Display the specified resource.
@@ -82,7 +94,11 @@ class OrderController extends Controller
     public function show($id)
     {
         $restaurant = Restaurant::find($id);
-        return view("test-orders",compact("restaurant"));
+        $orders = json_encode(Order::where('restaurant_id', $id)->with("getDishes")->get());
+        // Restaurant::where("id", $id)->with("getTypes", "getDishes", "getRestaurateur", "getDishes.getGenre")->get();
+
+        
+        return view("test-orders", compact("restaurant", "orders"));
     }
 
     /**

@@ -52,7 +52,10 @@ Vue.component('menugenre', require('./components/RestaurantMenu/MenuGenre.vue').
 Vue.component('cart', require('./components/checkout/Cart.vue').default);
 
 //DASHBOARD
-Vue.component('dashboardcomponent', require('./components/dashboard/DashboardComponent.vue').default)
+Vue.component('dashboardcomponent', require('./components/dashboard/DashboardComponent.vue').default);
+
+//ORDERS
+Vue.component('orderscomponent', require('./components/orders/OrdersComponent.vue').default);
 
 
 /**
