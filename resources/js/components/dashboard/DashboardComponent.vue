@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <!-- Sezione ristorante -->
     <div class="row m-3">
       <div class="col d-flex justify-content-start align-items-center">
         <div class="resturantImage m-5">
@@ -11,9 +12,10 @@
         </div>
       </div>
     </div>
+
     <div class="row m-3">
       <div
-        class="col-4 d-flex justify-content-center align-items-center new-dish-button"
+        class="col-3 d-flex justify-content-center align-items-center new-dish-button"
       >
         <a :href="createdish">
           <div
@@ -24,8 +26,9 @@
           </div>
         </a>
       </div>
+
       <div
-        class="col-4 d-flex flex-column justify-content-center align-items-center orders-button"
+        class="col-3 d-flex flex-column justify-content-center align-items-center orders-button"
       >
         <a :href="orderlist">
           <div
@@ -36,17 +39,35 @@
           </div>
         </a>
       </div>
+
       <div
-        class="col-4 d-flex flex-column justify-content-center align-items-center orders-button"
+        class="col-3 d-flex flex-column justify-content-center align-items-center orders-button"
       >
         <a href="/chart">
-          <div class="d-flex flex-column justify-content-center align-items-center">
+          <div
+            class="d-flex flex-column justify-content-center align-items-center"
+          >
             <img src="/img/dashboard/icon/statistic.png" alt="" />
             <p>Visualizza le statistiche</p>
           </div>
         </a>
       </div>
+
+      <div
+        class="col-3 d-flex flex-column justify-content-center align-items-center orders-button"
+      >
+        <a :href="'/restaurant/' + restaurant.id + '/edit'">
+          <div
+            class="d-flex flex-column justify-content-center align-items-center"
+          >
+            <img src="/img/dashboard/icon/edit.png" alt="" />
+            <p>Modifica ristorante</p>
+          </div>
+        </a>
+      </div>
     </div>
+
+    <!-- Sezione Menù -->
     <div class="row m-3">
       <div class="col-12">
         <h1>Gestione Menù</h1>
@@ -72,9 +93,16 @@
         </div>
       </div>
       <div class="col-3 d-flex justify-content-center align-items-center">
-        <p>
-          <strong>{{ filteredDish.name }}</strong>
-        </p>
+        <div
+          class="d-flex flex-column justify-content-center align-items-start text-box"
+        >
+          <h4>
+            {{ filteredDish.name }}
+          </h4>
+          <p>
+            {{ filteredDish.description }}
+          </p>
+        </div>
       </div>
       <div class="col-3 d-flex justify-content-center align-items-center">
         <p>{{ filteredDish.price }}€</p>
@@ -103,16 +131,23 @@
       </div>
     </div>
 
-    <div class="row m-2" v-for="dish in dishes" :key="dish.id">
+    <div class="row mb-5" v-for="dish in dishes" :key="dish.id">
       <div class="col-2 d-flex justify-content-center align-items-center">
         <div>
           <img class="listImage" :src="dish.image_url" alt="" />
         </div>
       </div>
-      <div class="col-3 d-flex justify-content-center align-items-center">
-        <p>
-          <strong>{{ dish.name }}</strong>
-        </p>
+      <div class="col-3 d-flex justify-content-start align-items-center">
+        <div
+          class="d-flex flex-column justify-content-center align-items-start text-box"
+        >
+          <h4>
+            {{ dish.name }}
+          </h4>
+          <p>
+            {{ dish.description }}
+          </p>
+        </div>
       </div>
       <div class="col-3 d-flex justify-content-center align-items-center">
         <p>{{ dish.price }}€</p>
@@ -154,6 +189,7 @@ export default {
       dishes: {},
     };
   },
+  
   methods: {
     filteredList() {
       return (this.filteredDishes = this.dishes.filter((dish) => {
@@ -188,5 +224,11 @@ export default {
   height: 30px;
   width: auto;
   margin: 0;
+}
+.text-box p{
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 200px;
 }
 </style>
