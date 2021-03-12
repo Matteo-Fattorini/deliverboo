@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Restaurant;
+use Illuminate\Support\Facades\DB;
 class restaurant_seeder extends Seeder
 {
     /**

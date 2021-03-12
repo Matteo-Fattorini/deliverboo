@@ -5,6 +5,7 @@ use App\Type;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
+
 class genres_seeder extends Seeder
 {
     /**
