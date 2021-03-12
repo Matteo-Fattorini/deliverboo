@@ -40906,7 +40906,7 @@ var render = function() {
                 [
                   _c("img", {
                     staticClass: "icon",
-                    attrs: { src: genre.image_url, alt: "" }
+                    attrs: { src: "/" + genre.image_url, alt: "" }
                   }),
                   _vm._v(" "),
                   _c(
@@ -40963,7 +40963,12 @@ var render = function() {
                   [
                     _c("div", { staticClass: "dishImg" }, [
                       _c("div", { staticClass: "listImage dishImg" }, [
-                        _c("img", { attrs: { src: dish.image_url, alt: "" } })
+                        _c("img", {
+                          attrs: {
+                            src: "/img/restaurant/" + dish.image_url,
+                            alt: ""
+                          }
+                        })
                       ])
                     ]),
                     _vm._v(" "),
