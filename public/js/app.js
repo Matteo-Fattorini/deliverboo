@@ -3228,8 +3228,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.orders = JSON.parse(this.ordersarr);
-    console.log(this.orders);
+    var ordersData = JSON.parse(this.ordersarr);
+    ordersData.forEach(function (order) {
+      var time = new Date(order.created_at);
+      return order.created_at = time.getDate() + '/' + (time.getMonth() + 1) + '/' + time.getFullYear() + ' ' + '-' + ' ' + time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds();
+    });
+    this.orders = ordersData;
+    console.log(ordersData);
   },
   methods: {
     display: function display(order) {
@@ -55659,8 +55664,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\NoSync\deliverboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\NoSync\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! F:\User Folders\Documenti\GitHub\deliverboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! F:\User Folders\Documenti\GitHub\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

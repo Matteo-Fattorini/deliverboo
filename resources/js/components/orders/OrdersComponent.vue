@@ -115,8 +115,14 @@ export default {
     };
   },
   mounted() {
-    this.orders = JSON.parse(this.ordersarr);
-    console.log(this.orders);
+   const ordersData = JSON.parse(this.ordersarr);
+   
+    ordersData.forEach(order =>{
+      let time = new Date(order.created_at);
+      return order.created_at = time.getDate() + '/' + (time.getMonth()+1)  + '/'  +  time.getFullYear() +  ' ' + '-' + ' ' + time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds() ;
+    })
+    this.orders = ordersData;
+    console.log(ordersData);
   },
 
   methods: { 
