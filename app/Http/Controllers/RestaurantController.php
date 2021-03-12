@@ -66,16 +66,16 @@ class RestaurantController extends Controller
             $item = "Hai creato con successo il tuo ristorante.";
 
 
-            $input = array(
-                'name' => Auth::User()["name"],
-                "restaurantName" => $restaurant["name"],
-                "restaurantAddress" => $restaurant["address"],
-                "restaurantIva" => $restaurant["p_iva"],
-            );
-            Mail::send('restaurant-mail', $input, function ($message) {
-                $message->to(Auth::User()["email"], Auth::User()["name"])->subject('Grazie per aver usato il nostro servizio');
-                $message->from('deliverboo@gmail.com', 'DeliverBoo Team-3');
-            });
+            // $input = array(
+            //     'name' => Auth::User()["name"],
+            //     "restaurantName" => $restaurant["name"],
+            //     "restaurantAddress" => $restaurant["address"],
+            //     "restaurantIva" => $restaurant["p_iva"],
+            // );
+            // Mail::send('restaurant-mail', $input, function ($message) {
+            //     $message->to(Auth::User()["email"], Auth::User()["name"])->subject('Grazie per aver usato il nostro servizio');
+            //     $message->from('deliverboo@gmail.com', 'DeliverBoo Team-3');
+            // });
 
             return view("success", compact("item"));
         } else {

@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-start align-items-center dishinfo">  
         <div class="dishImg m-3">
           <div class="listImage">
-            <img :src="resturantImg" alt="" />
+            <img :src="'/img/restaurant/' + resturantImg" alt="prova" />
           </div>
         </div>
       <div class="d-flex flex-column justify-content-center align-items-start dishText">

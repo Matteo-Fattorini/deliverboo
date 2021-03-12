@@ -16,7 +16,7 @@
                 notselected: genre.name != categorySelect,
               }"
             >
-              <img class="icon" :src="genre.image_url" alt="" />
+              <img class="icon" :src="'../../../../' + genre.image_url" alt="" />
               <!-- ondragstart="return false" 
                          onselectstart="return false"
                          evita evidenziazione del testo -->
@@ -47,7 +47,7 @@
             >
               <div class="dishImg">
                 <div class="listImage dishImg">
-                  <img class="" :src="dish.image_url" alt="" />
+                  <img class="" :src="'/img/restaurant/' + dish.image_url" alt="img_piatto" />
                 </div>
               </div>
               <div class="dishtext">
@@ -125,7 +125,7 @@
             <div class="dishes d-flex justify-content-start align-items-center">
               <div class="dishImg">
                 <div class="cartImage">
-                  <img :src="order.dishImgUrl" alt="" />
+                  <img :src="'/img/restaurant/' + order.dishImgUrl" alt="" />
                 </div>
               </div>
               <div class="dishtext">
