@@ -11,6 +11,6 @@ class orders_seeder extends Seeder
      */
     public function run()
     {
-        factory(Order::class,30)->create();
+        factory(Order::class,100)->create();
     }
 }

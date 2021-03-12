@@ -50,7 +50,8 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root'   => public_path() . '/uploads',
+            // 'root'   => public_path() . '/uploads',
+            "root" => public_path() . '/img/restaurant',
             'url' => env('APP_URL') . '/public',
             'visibility' => 'public',
         ],
@@ -79,6 +80,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        
     ],
 
 ];

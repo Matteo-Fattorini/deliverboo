@@ -4,7 +4,7 @@
     <div class="row m-3">
       <div class="col d-flex justify-content-start align-items-center">
         <div class="resturantImage m-5">
-          <img :src="restaurant.image_url" alt="" />
+          <img :src="'/img/restaurant/' + restaurant.image_url" alt="" />
         </div>
         <div>
           <h1>{{ restaurant.name }}</h1>
@@ -89,7 +89,7 @@
     >
       <div class="col-2 d-flex justify-content-center align-items-center">
         <div>
-          <img class="listImage" :src="filteredDish.image_url" alt="" />
+          <img class="listImage" :src="'/img/restaurant/' + filteredDish.image_url" alt="" />
         </div>
       </div>
       <div class="col-3 d-flex justify-content-center align-items-center">
@@ -134,7 +134,7 @@
     <div class="row mb-5" v-for="dish in dishes" :key="dish.id">
       <div class="col-2 d-flex justify-content-center align-items-center">
         <div>
-          <img class="listImage" :src="dish.image_url" alt="" />
+          <img class="listImage" :src="'/img/restaurant/' + dish.image_url" alt="" />
         </div>
       </div>
       <div class="col-3 d-flex justify-content-start align-items-center">
@@ -230,5 +230,9 @@ export default {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   max-width: 200px;
+}
+
+.listImage {
+  object-fit: cover !important;
 }
 </style>

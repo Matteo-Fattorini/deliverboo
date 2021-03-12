@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Dish;
+use Illuminate\Support\Facades\DB;
 
 class dishes_seeder extends Seeder
 {
@@ -22,7 +23,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 3,
                 'description' => "Pomodoro S.Marzano, aglio, origano, basilico, olio Evo",
-                'image_url' => 'img/restaurant/pizza-marinara.jpg',
+                'image_url' => 'pizza-marinara.jpg',
             ],
             [
                 'restaurant_id' => 1,
@@ -31,7 +32,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 3,
                 'description' => "Pomodoro S.Marzano, Fior di Latte, basilico, olio Evo",
-                'image_url' => 'img/restaurant/pizza-margherita.jpg',
+                'image_url' => 'pizza-margherita.jpg',
             ],
             [
                 'restaurant_id' => 1,
@@ -40,7 +41,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 3,
                 'description' => "Pomodoro S.Marzano, Fior di Latte, Würstel, Patatine, basilico, olio Evo",
-                'image_url' => 'img/restaurant/wurstel-patatine.jpg',
+                'image_url' => 'wurstel-patatine.jpg',
             ],
             [
                 'restaurant_id' => 1,
@@ -49,7 +50,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 3,
                 'description' => "Pomodoro S.Marzano DOP, Fior di Latte, Olive di Gaeta, Acciughe di Sciacca",
-                'image_url' => 'img/restaurant/pizza-pachino.jpg',
+                'image_url' => 'pizza-pachino.jpg',
             ],
             [
                 'restaurant_id' => 1,
@@ -58,7 +59,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 3,
                 'description' => "Pomodoro S.Marzano DOP, Bufala Campana DOP, basilico, olio Evo",
-                'image_url' => 'img/restaurant/pizza-Bufalina.jpg',
+                'image_url' => 'pizza-Bufalina.jpg',
             ],
             [
                 'restaurant_id' => 1,
@@ -67,7 +68,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 2,
                 'description' => "Spaghetti,Guanciale, Tuorlo d'Uovo, Pecorino romano DOP",
-                'image_url' => 'img/restaurant/carbonara.jpg',
+                'image_url' => 'carbonara.jpg',
             ],
             [
                 'restaurant_id' => 1,
@@ -76,7 +77,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 2,
                 'description' => "Spaghetti,Guanciale, Pomodoro, Pecorino romano DOP",
-                'image_url' => 'img/restaurant/amatriciana.jpg',
+                'image_url' => 'amatriciana.jpg',
             ],
             [
                 'restaurant_id' => 1,
@@ -86,7 +87,7 @@ class dishes_seeder extends Seeder
                 'genre_id' => 2,
                 'description' => "Spaghetti,
                 Pecorino romano DOP, Pepe",
-                'image_url' => 'img/restaurant/caciopepe.jpg',
+                'image_url' => 'caciopepe.jpg',
             ],
             [
                 'restaurant_id' => 2,
@@ -96,7 +97,7 @@ class dishes_seeder extends Seeder
                 'genre_id' => 2,
                 'description' => "Spaghetti,Guanciale, Tuorlo d'Uovo, 
                 Pecorino romano DOP",
-                'image_url' => 'img/restaurant/carbonara.jpg',
+                'image_url' => 'carbonara.jpg',
             ],
             [
                 'restaurant_id' => 2,
@@ -106,7 +107,7 @@ class dishes_seeder extends Seeder
                 'genre_id' => 2,
                 'description' => "Spaghetti,Guanciale, Pomodoro, 
                 Pecorino romano DOP",
-                'image_url' => 'img/restaurant/amatriciana.jpg',
+                'image_url' => 'amatriciana.jpg',
             ],
             [
                 'restaurant_id' => 2,
@@ -116,7 +117,7 @@ class dishes_seeder extends Seeder
                 'genre_id' => 2,
                 'description' => "Spaghetti,
                 Pecorino romano DOP, Pepe",
-                'image_url' => 'img/restaurant/caciopepe.jpg',
+                'image_url' => 'caciopepe.jpg',
             ],
             [
                 'restaurant_id' => 2,
@@ -126,7 +127,7 @@ class dishes_seeder extends Seeder
                 'genre_id' => 5,
                 'description' => "Trancio di salmone di Alaska, prezzemolo,
                 olio Extra Vergine, Pepe Rosa",
-                'image_url' => 'img/restaurant/salmone.jpg',
+                'image_url' => 'salmone.jpg',
             ],
             [
                 'restaurant_id' => 2,
@@ -135,7 +136,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 5,
                 'description' => "Tartare di Tonno abbattuto, olio Evo, semi di papavero",
-                'image_url' => 'img/restaurant/tartare.jpg',
+                'image_url' => 'tartare.jpg',
             ],
             [
                 'restaurant_id' => 2,
@@ -144,7 +145,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 4,
                 'description' => "Fettine di pollo marinate al limone, olio, prezzemolo",
-                'image_url' => 'img/restaurant/scaloppine.webp',
+                'image_url' => 'scaloppine.webp',
             ],
             [
                 'restaurant_id' => 2,
@@ -153,7 +154,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 4,
                 'description' => "Tacchino, Prosciutto crudo, Parmigiano Reggiano DOP, Marsala, Tartufo Nero",
-                'image_url' => 'img/restaurant/tacchino.webp',
+                'image_url' => 'tacchino.webp',
             ],
             [
                 'restaurant_id' => 2,
@@ -162,7 +163,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 7,
                 'description' => "Patatine, Sale",
-                'image_url' => 'img/restaurant/patate-fritte.jpg',
+                'image_url' => 'patate-fritte.jpg',
             ],
             [
                 'restaurant_id' => 2,
@@ -171,7 +172,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 7,
                 'description' => "Zucchine, Melanzane, Zucca, Peperoni, Olio, Sale, Prezzemolo",
-                'image_url' => 'img/restaurant/verdure.jpg',
+                'image_url' => 'verdure.jpg',
             ],
             [
                 'restaurant_id' => 2,
@@ -180,7 +181,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 7,
                 'description' => "Patate, Rosmarino, Olio, Sale",
-                'image_url' => 'img/restaurant/forno.webp',
+                'image_url' => 'forno.webp',
             ],
             [
                 'restaurant_id' => 3,
@@ -189,7 +190,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 4,
                 'description' => "Fettine di pollo marinate al limone, olio, prezzemolo",
-                'image_url' => 'img/restaurant/scaloppine.webp',
+                'image_url' => 'scaloppine.webp',
             ],
             [
                 'restaurant_id' => 3,
@@ -198,7 +199,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 4,
                 'description' => "Tacchino, Prosciutto crudo, Parmigiano Reggiano DOP, Marsala, Tartufo Nero",
-                'image_url' => 'img/restaurant/tacchino.webp',
+                'image_url' => 'tacchino.webp',
             ],
             [
                 'restaurant_id' => 3,
@@ -207,7 +208,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 6,
                 'description' => "Pane al Sesamo, Hamburger di Fassona 320g, Insalata, Pomodoro, *salse",
-                'image_url' => 'img/restaurant/burger.jpg',
+                'image_url' => 'burger.jpg',
             ],
             [
                 'restaurant_id' => 3,
@@ -216,7 +217,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 6,
                 'description' => "Pane al Sesamo, Petto di Pollo impanato, Insalata, Pomodoro, *salse",
-                'image_url' => 'img/restaurant/burger.jpg',
+                'image_url' => 'burger.jpg',
             ],
             [
                 'restaurant_id' => 3,
@@ -225,7 +226,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 6,
                 'description' => "Pane al Sesamo, Hamburger di Maiale, Formaggio, Bacon, *salse",
-                'image_url' => 'img/restaurant/burger.jpg',
+                'image_url' => 'burger.jpg',
             ],
             [
                 'restaurant_id' => 4,
@@ -234,7 +235,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 3,
                 'description' => "Pomodoro S.Marzano, aglio, origano, basilico, olio Evo",
-                'image_url' => 'img/restaurant/pizza-marinara.jpg',
+                'image_url' => 'pizza-marinara.jpg',
             ],
             [
                 'restaurant_id' => 4,
@@ -243,7 +244,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 3,
                 'description' => "Pomodoro S.Marzano, Fior di Latte, basilico, olio Evo",
-                'image_url' => 'img/restaurant/pizza-margherita.jpg',
+                'image_url' => 'pizza-margherita.jpg',
             ],
             [
                 'restaurant_id' => 4,
@@ -252,7 +253,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 3,
                 'description' => "Pomodoro S.Marzano, Fior di Latte, Würstel, Patatine, basilico, olio Evo",
-                'image_url' => 'img/restaurant/wurstel-patatine.jpg',
+                'image_url' => 'wurstel-patatine.jpg',
             ],
             [
                 'restaurant_id' => 4,
@@ -261,7 +262,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 3,
                 'description' => "Pomodoro S.Marzano DOP, Fior di Latte, Olive di Gaeta, Acciughe di Sciacca",
-                'image_url' => 'img/restaurant/pizza-pachino.jpg',
+                'image_url' => 'pizza-pachino.jpg',
             ],
             [
                 'restaurant_id' => 4,
@@ -270,7 +271,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 3,
                 'description' => "Pomodoro S.Marzano DOP, Bufala Campana DOP, basilico, olio Evo",
-                'image_url' => 'img/restaurant/pizza-Bufalina.jpg',
+                'image_url' => 'pizza-Bufalina.jpg',
             ],
             [
                 'restaurant_id' => 4,
@@ -279,7 +280,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 3,
                 'description' => "Focaccia, Sale, Olio, ingredienti a scelta",
-                'image_url' => 'img/restaurant/pizza-focaccia.jpg',
+                'image_url' => 'pizza-focaccia.jpg',
             ],
             [
                 'restaurant_id' => 5,
@@ -288,7 +289,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 5,
                 'description' => "Salmone, Riso, Avocado, Philadelphia, Alga Nori, Maionese",
-                'image_url' => 'img/restaurant/temaki.webp',
+                'image_url' => 'temaki.webp',
             ],
             [
                 'restaurant_id' => 5,
@@ -297,7 +298,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 5,
                 'description' => "Salmone o Tonno fresco abbattuto con Salsa di Soia agli Agrumi",
-                'image_url' => 'img/restaurant/sashimi.jpg',
+                'image_url' => 'sashimi.jpg',
             ],
             [
                 'restaurant_id' => 5,
@@ -306,7 +307,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 5,
                 'description' => "Roll di Riso con Salmone, Tonno o Gamberi, Avocado",
-                'image_url' => 'img/restaurant/uramaki.jpg',
+                'image_url' => 'uramaki.jpg',
             ],
             [
                 'restaurant_id' => 6,
@@ -315,7 +316,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 4,
                 'description' => "Carne di Vitello e Maiale alla brace con verdure",
-                'image_url' => 'img/restaurant/churrasco.jpg',
+                'image_url' => 'churrasco.jpg',
             ],
             [
                 'restaurant_id' => 6,
@@ -324,7 +325,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 4,
                 'description' => "Grigliata di carne mista",
-                'image_url' => 'img/restaurant/churrasco.jpg',
+                'image_url' => 'churrasco.jpg',
             ],
             [
                 'restaurant_id' => 6,
@@ -333,7 +334,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 6,
                 'description' => "Pane al Sesamo, Hamburger di Maiale, Formaggio, Bacon, *salse",
-                'image_url' => 'img/restaurant/burger.jpg',
+                'image_url' => 'burger.jpg',
             ],
             [
                 'restaurant_id' => 6,
@@ -342,7 +343,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 4,
                 'description' => "Tagliata di Carne scottata alla piastra",
-                'image_url' => 'img/restaurant/churrasco.jpg',
+                'image_url' => 'churrasco.jpg',
             ],
             [
                 'restaurant_id' => 7,
@@ -351,7 +352,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 9,
                 'description' => "Torta Sacher farcita con marmellata alle pesche, ricoperta di cioccolato fondente",
-                'image_url' => 'img/restaurant/sacher.jpg',
+                'image_url' => 'sacher.jpg',
             ],
             [
                 'restaurant_id' => 8,
@@ -360,7 +361,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 2,
                 'description' => "Spaghetti integrali, pesto di rucola, olio, mandorle",
-                'image_url' => 'img/restaurant/sacher.jpg',
+                'image_url' => 'sacher.jpg',
             ],
             [
                 'restaurant_id' => 8,
@@ -369,7 +370,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 7,
                 'description' => "Burger di ceci alla piastra con spinaci",
-                'image_url' => 'img/restaurant/ceci.jpg',
+                'image_url' => 'ceci.jpg',
             ],
             [
                 'restaurant_id' => 8,
@@ -378,7 +379,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 7,
                 'description' => "Involtini di Melanzane con Pomodoro e Zucca",
-                'image_url' => 'img/restaurant/involtini.jpg',
+                'image_url' => 'involtini.jpg',
             ],
             [
                 'restaurant_id' => 9,
@@ -388,7 +389,7 @@ class dishes_seeder extends Seeder
                 'genre_id' => 2,
                 'description' => "Spaghetti,Guanciale, Tuorlo d'Uovo, 
                 Pecorino romano DOP",
-                'image_url' => 'img/restaurant/carbonara.jpg',
+                'image_url' => 'carbonara.jpg',
             ],
             [
                 'restaurant_id' => 9,
@@ -398,7 +399,7 @@ class dishes_seeder extends Seeder
                 'genre_id' => 2,
                 'description' => "Spaghetti,Guanciale, Pomodoro, 
                 Pecorino romano DOP",
-                'image_url' => 'img/restaurant/amatriciana.jpg',
+                'image_url' => 'amatriciana.jpg',
             ],
             [
                 'restaurant_id' => 9,
@@ -408,7 +409,7 @@ class dishes_seeder extends Seeder
                 'genre_id' => 2,
                 'description' => "Spaghetti,
                 Pecorino romano DOP, Pepe",
-                'image_url' => 'img/restaurant/caciopepe.jpg',
+                'image_url' => 'caciopepe.jpg',
             ],
             [
                 'restaurant_id' => 9,
@@ -417,7 +418,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 4,
                 'description' => "Fettine di pollo marinate al limone, olio, prezzemolo",
-                'image_url' => 'img/restaurant/scaloppine.webp',
+                'image_url' => 'scaloppine.webp',
             ],
             [
                 'restaurant_id' => 9,
@@ -426,7 +427,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 4,
                 'description' => "Tacchino, Prosciutto crudo, Parmigiano Reggiano DOP, Marsala, Tartufo Nero",
-                'image_url' => 'img/restaurant/tacchino.webp',
+                'image_url' => 'tacchino.webp',
             ],
             [
                 'restaurant_id' => 9,
@@ -436,7 +437,7 @@ class dishes_seeder extends Seeder
                 'genre_id' => 5,
                 'description' => "Trancio di salmone di Alaska, prezzemolo,
                 olio Extra Vergine, Pepe Rosa",
-                'image_url' => 'img/restaurant/salmone.jpg',
+                'image_url' => 'salmone.jpg',
             ],
             [
                 'restaurant_id' => 9,
@@ -445,7 +446,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 5,
                 'description' => "Tartare di Tonno abbattuto, olio Evo, semi di papavero",
-                'image_url' => 'img/restaurant/tartare.jpg',
+                'image_url' => 'tartare.jpg',
             ],
             [
                 'restaurant_id' => 9,
@@ -454,7 +455,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 8,
                 'description' => "Supplì di riso, sugo all'amatriciana, mozzarella campana",
-                'image_url' => 'img/restaurant/frittosuppli.jpg',
+                'image_url' => 'frittosuppli.jpg',
             ],
             [
                 'restaurant_id' => 9,
@@ -463,7 +464,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 8,
                 'description' => "Carote, Zucchine e Melanzane in pastella",
-                'image_url' => 'img/restaurant/frittoverdure.jpg',
+                'image_url' => 'frittoverdure.jpg',
             ],
             [
                 'restaurant_id' => 9,
@@ -472,7 +473,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 8,
                 'description' => "Pasta alle zucchine fritta con pancetta",
-                'image_url' => 'img/restaurant/fritto-pasta.jpg',
+                'image_url' => 'fritto-pasta.jpg',
             ],
             [
                 'restaurant_id' => 9,
@@ -481,7 +482,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 8,
                 'description' => "Fritto misto di mare",
-                'image_url' => 'img/restaurant/fritto-misto.jpg',
+                'image_url' => 'fritto-misto.jpg',
             ],
             [
                 'restaurant_id' => 10,
@@ -490,7 +491,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 6,
                 'description' => "Pane al Sesamo, Hamburger di Fassona 320g, Insalata, Pomodoro, *salse",
-                'image_url' => 'img/restaurant/burger.jpg',
+                'image_url' => 'burger.jpg',
             ],
             [
                 'restaurant_id' => 10,
@@ -499,7 +500,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 6,
                 'description' => "Pane al Sesamo, Petto di Pollo impanato, Insalata, Pomodoro, *salse",
-                'image_url' => 'img/restaurant/burger.jpg',
+                'image_url' => 'burger.jpg',
             ],
             [
                 'restaurant_id' => 10,
@@ -508,7 +509,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 6,
                 'description' => "Pane al Sesamo, Hamburger di Maiale, Formaggio, Bacon, *salse",
-                'image_url' => 'img/restaurant/burger.jpg',
+                'image_url' => 'burger.jpg',
             ],
             [
                 'restaurant_id' => 10,
@@ -517,7 +518,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 4,
                 'description' => "Tagliata di Carne scottata alla piastra",
-                'image_url' => 'img/restaurant/churrasco.jpg',
+                'image_url' => 'churrasco.jpg',
             ],
             [
                 'restaurant_id' => 10,
@@ -526,7 +527,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 8,
                 'description' => "Supplì di riso, sugo all'amatriciana, mozzarella campana",
-                'image_url' => 'img/restaurant/frittosuppli.jpg',
+                'image_url' => 'frittosuppli.jpg',
             ],
             [
                 'restaurant_id' => 10,
@@ -535,7 +536,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 8,
                 'description' => "Carote, Zucchine e Melanzane in pastella",
-                'image_url' => 'img/restaurant/frittoverdure.jpg',
+                'image_url' => 'frittoverdure.jpg',
             ],
             [
                 'restaurant_id' => 10,
@@ -544,7 +545,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 8,
                 'description' => "Pasta alle zucchine fritta con pancetta",
-                'image_url' => 'img/restaurant/fritto-pasta.jpg',
+                'image_url' => 'fritto-pasta.jpg',
             ],
             [
                 'restaurant_id' => 10,
@@ -553,7 +554,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 8,
                 'description' => "Fritto misto di mare",
-                'image_url' => 'img/restaurant/fritto-misto.jpg',
+                'image_url' => 'fritto-misto.jpg',
             ],
             [
                 'restaurant_id' => 10,
@@ -562,7 +563,7 @@ class dishes_seeder extends Seeder
                 'visibility' => true,
                 'genre_id' => 4,
                 'description' => "Grigliata di carne mista",
-                'image_url' => 'img/restaurant/churrasco.jpg',
+                'image_url' => 'churrasco.jpg',
             ],
         ]);
     }
