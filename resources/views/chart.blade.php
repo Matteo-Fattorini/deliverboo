@@ -2,6 +2,8 @@
 
 
 @section('content')
+<section>
+
     <div class="container" style="height:80vh">
         <div class="row">
             <div class="col-12 d-flex justify-content-center align-items-center p-5">
@@ -11,6 +13,7 @@
             </div>
         </div>
     </div>
+</section>
 
 
 

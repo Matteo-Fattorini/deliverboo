@@ -2006,8 +2006,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FooterComponent",
   data: function data() {
@@ -2030,6 +2028,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2712,8 +2712,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'MenuGenre',
+  name: "MenuGenre",
   props: {
     data: String
   },
@@ -2723,7 +2724,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       dishes: [],
       genreList: [],
       restaurantId: 0,
-      categorySelect: '',
+      categorySelect: "",
       count: [],
       orders: [],
       cartActive: false,
@@ -2740,7 +2741,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     //DATI
     //importo ARRAY dei dati del ristorante
     var data = JSON.parse(this.data);
-    this.dishesImport = data.get_dishes; //aggiungi oggetto counter per la quantità 
+    this.dishesImport = data.get_dishes; //aggiungi oggetto counter per la quantità
 
     this.dishes = this.dishesImport.map(function (element) {
       _this.elementUpgrade = _objectSpread(_objectSpread({}, element), {}, {
@@ -2749,7 +2750,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return _this.elementUpgrade;
     }); //controllo ARRAY piatti
 
-    console.log('piatti');
+    console.log("piatti");
     console.log(this.dishes); //estraggo ARRAY GENERI
 
     this.genreList = this.dishes.map(function (element) {
@@ -2763,7 +2764,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     }); //controllo ARRAY generi
 
-    console.log('generi');
+    console.log("generi");
     console.log(this.genreList); //estraggo ARRAY RISTORANTE
 
     this.restaurantId = this.dishes.map(function (e) {
@@ -2772,12 +2773,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
     this.restaurant_id = this.restaurantId.splice(1); //controllo ID ristorante
 
-    console.log('ARRAY ID RISTORANTE');
+    console.log("ARRAY ID RISTORANTE");
     console.log(this.restaurantId);
   },
   computed: {
     //FUNZIONE filtered crea virtualmente un ARRAY filtrato
-    //dei piatti  che hanno il genere uguale a quello selezionato 
+    //dei piatti  che hanno il genere uguale a quello selezionato
     filtered: function filtered() {
       var _this2 = this;
 
@@ -2849,7 +2850,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             _this4.order = e.dishId;
             return _this4.order;
           });
-          console.log('ordine nel carrello');
+          console.log("ordine nel carrello");
           console.log(_this4.dishInCart); // DA RIVEDERE
           //filtro carrello
 
@@ -2871,15 +2872,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           _this4.saveTotal();
 
-          console.log('CART ELEMENTI');
+          console.log("CART ELEMENTI");
           console.log(_this4.cartElements);
-          console.log('CART FILTRO');
+          console.log("CART FILTRO");
           console.log(_this4.cartFiltered);
-          console.log('CART FINALE');
+          console.log("CART FINALE");
           console.log(_this4.cart);
-          console.log('Dish');
+          console.log("Dish");
           console.log(_this4.dishInCart);
-          console.log('Total');
+          console.log("Total");
           console.log(_this4.total);
         } else {}
       });
@@ -2902,11 +2903,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.cartActive = false;
       }
 
-      console.log('ORDER-DELETE');
+      console.log("ORDER-DELETE");
       console.log(this.orders);
-      console.log('ORDER-DELETE');
+      console.log("ORDER-DELETE");
       console.log(this.cart);
-      console.log('Total');
+      console.log("Total");
       console.log(this.total);
     },
     //ATTIVA CARRELLO{}
@@ -3353,6 +3354,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "InfoSectionHome"
 });
@@ -3525,7 +3528,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PartnerSectionHome",
   props: {
@@ -3585,9 +3587,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
 //
 //
 //
@@ -8255,7 +8254,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "footer[data-v-abfbddf2] {\n  background-color: black;\n  color: white;\n}\nfooter .container[data-v-abfbddf2] {\n  height: 500px;\n}\nfooter .row[data-v-abfbddf2] {\n  padding-top: 50px;\n}\nfooter a[data-v-abfbddf2] {\n  color: #fff;\n  text-decoration: none;\n}\nfooter a[data-v-abfbddf2]:hover {\n  text-decoration: underline;\n}\nfooter div.social[data-v-abfbddf2] {\n  width: 70%;\n}\nfooter div.social img[data-v-abfbddf2] {\n  width: 30px;\n  margin-right: 30px;\n}\nfooter li[data-v-abfbddf2] {\n  line-height: 3rem;\n}", ""]);
+exports.push([module.i, ".container[data-v-abfbddf2] {\n  height: auto;\n}", ""]);
 
 // exports
 
@@ -8388,7 +8387,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#infoSectionHome[data-v-a2af9f00] {\n  height: 60vh;\n}\nimg[data-v-a2af9f00] {\n  height: 300px;\n  outline: none !important;\n}\nimg[data-v-a2af9f00]:hover {\n  outline: none !important;\n}", ""]);
+exports.push([module.i, "#infoSectionHome[data-v-a2af9f00] {\n  height: 60vh;\n}\nimg[data-v-a2af9f00] {\n  outline: none !important;\n}\nimg[data-v-a2af9f00]:hover {\n  outline: none !important;\n}\n@media (max-width: 576px) {\nimg[data-v-a2af9f00] {\n    height: 200px;\n}\n}\n@media (min-width: 577px) and (max-width: 768px) {\nimg[data-v-a2af9f00] {\n    height: 250px;\n}\n}\n@media (min-width: 769px) and (max-width: 992px) {\nimg[data-v-a2af9f00] {\n    height: 300px;\n}\n}\n@media (min-width: 1200px) {\nimg[data-v-a2af9f00] {\n    height: 350px;\n}\n}", ""]);
 
 // exports
 
@@ -8426,7 +8425,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#becomePartner[data-v-d8efec3c] {\n  height: 70vh;\n  position: relative;\n  background-size: cover;\n  background-position: center;\n  background-color: rgba(0, 0, 0, 0.6);\n  background-blend-mode: multiply;\n}\n#becomePartner h1[data-v-d8efec3c] {\n  color: #fff;\n}\n#becomePartner #centerMe[data-v-d8efec3c] {\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n}\n#becomePartner span[data-v-d8efec3c] {\n  color: #fff;\n}", ""]);
+exports.push([module.i, "#becomePartner[data-v-d8efec3c] {\n  height: 70vh;\n  position: relative;\n  background-size: cover;\n  background-position: center;\n  background-color: rgba(0, 0, 0, 0.6);\n  background-blend-mode: multiply;\n}\n#becomePartner h1[data-v-d8efec3c] {\n  color: #fff;\n}\n#becomePartner .container[data-v-d8efec3c] {\n  height: 100%;\n}\n#becomePartner span[data-v-d8efec3c] {\n  color: #fff;\n}", ""]);
 
 // exports
 
@@ -8502,7 +8501,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#icon{\n  height: 30px;\n  margin: 0;\n  width: auto;\n}\n", ""]);
+exports.push([module.i, "\n#icon{\r\n  height: 30px;\r\n  margin: 0;\r\n  width: auto;\n}\r\n", ""]);
 
 // exports
 
@@ -40735,73 +40734,57 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("footer", [
-    _c("div", { staticClass: "container p-5" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-3" }, [
-          _c(
-            "ul",
-            [
-              _vm._m(0),
-              _vm._v(" "),
-              _vm._l(_vm.work, function(link, index) {
-                return _c("li", { key: index }, [
-                  _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(link))])
-                ])
-              })
-            ],
-            2
-          )
-        ]),
-        _vm._v(" "),
+  return _c("div", { staticClass: "container p-5" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-3 col-sm-6 mb-4" }, [
         _c(
-          "div",
-          {
-            staticClass:
-              "col-3 d-flex flex-column justify-content-start align-items-start"
-          },
+          "ul",
           [
-            _c(
-              "ul",
-              [
-                _vm._m(1),
-                _vm._v(" "),
-                _vm._l(_vm.legal, function(link, index) {
-                  return _c("li", { key: index }, [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(link))])
-                  ])
-                })
-              ],
-              2
-            )
-          ]
-        ),
-        _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._l(_vm.work, function(link, index) {
+              return _c("li", { key: index }, [
+                _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(link))])
+              ])
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-3 col-sm-6 mb-4" }, [
         _c(
-          "div",
-          {
-            staticClass:
-              "col-3 d-flex flex-column justify-content-start align-items-start"
-          },
+          "ul",
           [
-            _c(
-              "ul",
-              [
-                _vm._m(2),
-                _vm._v(" "),
-                _vm._l(_vm.help, function(link, index) {
-                  return _c("li", { key: index }, [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(link))])
-                  ])
-                })
-              ],
-              2
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _vm._m(3)
-      ])
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._l(_vm.legal, function(link, index) {
+              return _c("li", { key: index }, [
+                _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(link))])
+              ])
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-3 col-sm-6 mb-4" }, [
+        _c(
+          "ul",
+          [
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._l(_vm.help, function(link, index) {
+              return _c("li", { key: index }, [
+                _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(link))])
+              ])
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _vm._m(3)
     ])
   ])
 }
@@ -40810,7 +40793,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [_c("h6", [_vm._v("LAVORA CON NOI")])])
+    return _c("li", [_c("h5", [_vm._v("LAVORA CON NOI")])])
   },
   function() {
     var _vm = this
@@ -40828,37 +40811,30 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "col-3 d-flex flex-column justify-content-start align-items-start"
-      },
-      [
-        _c("h5", [_vm._v("SEGUICI SUI SOCIAL")]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "d-flex justify-content-between align-items-center social"
-          },
-          [
-            _c("img", {
-              attrs: { src: "/img/homepage/icon/twitter.png", alt: "" }
-            }),
-            _vm._v(" "),
-            _c("img", {
-              attrs: { src: "/img/homepage/icon/Facebook.png", alt: "" }
-            }),
-            _vm._v(" "),
-            _c("img", {
-              attrs: { src: "/img/homepage/icon/Instagram.png", alt: "" }
-            })
-          ]
-        )
-      ]
-    )
+    return _c("div", { staticClass: "col-lg-3 col-sm-6 mb-4" }, [
+      _c("h5", [_vm._v("SEGUICI SUI SOCIAL")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "d-flex justify-content-between align-items-center social"
+        },
+        [
+          _c("img", {
+            attrs: { src: "/img/homepage/icon/twitter.png", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("img", {
+            attrs: { src: "/img/homepage/icon/Facebook.png", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("img", {
+            attrs: { src: "/img/homepage/icon/Instagram.png", alt: "" }
+          })
+        ]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -40882,43 +40858,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-6 info d-flex p-0" }, [
+  return _c("section", [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-6 info d-flex p-0" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "rst-info d-flex flex-column justify-content-start align-items-start"
+            },
+            [
+              _c("h1", [_vm._v(_vm._s(_vm.restaurantData.name))]),
+              _vm._v(" "),
+              _c("h5", [_vm._v(_vm._s(_vm.restaurantData.address))]),
+              _vm._v(" "),
+              _c("div", { staticClass: "dist" })
+            ]
+          )
+        ]),
+        _vm._v(" "),
         _c(
           "div",
           {
             staticClass:
-              "rst-info d-flex flex-column justify-content-start align-items-start"
+              "col-6 circle d-flex justify-content-center align-items-center p-0"
           },
           [
-            _c("h1", [_vm._v(_vm._s(_vm.restaurantData.name))]),
-            _vm._v(" "),
-            _c("h5", [_vm._v(_vm._s(_vm.restaurantData.address))]),
-            _vm._v(" "),
-            _c("div", { staticClass: "dist" })
+            _c("div", { staticClass: "resturantImage" }, [
+              _c("img", {
+                attrs: {
+                  id: "restaurant_img",
+                  alt: "ok",
+                  src: "/img/restaurant/" + _vm.restaurantData.image_url
+                }
+              })
+            ])
           ]
         )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "col-6 circle d-flex justify-content-center align-items-center p-0"
-        },
-        [
-          _c("div", { staticClass: "resturantImage" }, [
-            _c("img", {
-              attrs: {
-                id: "restaurant_img",
-                alt: "ok",
-                src: "/img/restaurant/" + _vm.restaurantData.image_url
-              }
-            })
-          ])
-        ]
-      )
+      ])
     ])
   ])
 }
@@ -41770,7 +41748,7 @@ var render = function() {
         "div",
         { staticClass: "row d-flex justify-content-center align-items-center" },
         [
-          _c("div", { staticClass: "col-1 " }, [
+          _c("div", { staticClass: "col-1" }, [
             _c(
               "div",
               {
@@ -41962,7 +41940,8 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "col d-flex justify-content-start align-items-center"
+              staticClass:
+                "col-lg-12 d-flex justify-content-start align-items-center"
             },
             [
               _c("div", { staticClass: "resturantImage m-5" }, [
@@ -41988,7 +41967,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "col-3 d-flex justify-content-center align-items-center new-dish-button"
+                "col-lg-3 d-flex justify-content-center align-items-center new-dish-button"
             },
             [_c("a", { attrs: { href: _vm.createdish } }, [_vm._m(0)])]
           ),
@@ -41997,7 +41976,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "col-3 d-flex flex-column justify-content-center align-items-center orders-button"
+                "col-lg-3 d-flex flex-column justify-content-center align-items-center orders-button"
             },
             [_c("a", { attrs: { href: _vm.orderlist } }, [_vm._m(1)])]
           ),
@@ -42008,7 +41987,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "col-3 d-flex flex-column justify-content-center align-items-center orders-button"
+                "col-lg-3 d-flex flex-column justify-content-center align-items-center orders-button"
             },
             [
               _c(
@@ -42023,7 +42002,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row m-3" }, [
-          _c("div", { staticClass: "col-12" }, [
+          _c("div", { staticClass: "col-lg-12" }, [
             _c("h1", [_vm._v("Gestione Menù")]),
             _vm._v(" "),
             _c("input", {
@@ -42070,7 +42049,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-2 d-flex justify-content-center align-items-center"
+                  "col-lg-2 d-flex justify-content-center align-items-center"
               },
               [
                 _c("div", [
@@ -42089,7 +42068,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-3 d-flex justify-content-center align-items-center"
+                  "col-lg-3 d-flex justify-content-center align-items-center"
               },
               [
                 _c(
@@ -42123,7 +42102,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-3 d-flex justify-content-center align-items-center"
+                  "col-lg-3 d-flex justify-content-center align-items-center"
               },
               [_c("p", [_vm._v(_vm._s(filteredDish.price) + "€")])]
             ),
@@ -42132,7 +42111,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-4 d-flex justify-content-center align-items-center"
+                  "col-lg-4 d-flex justify-content-center align-items-center"
               },
               [
                 _c(
@@ -42190,7 +42169,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-2 d-flex justify-content-center align-items-center"
+                  "col-lg-2 d-flex justify-content-center align-items-center"
               },
               [
                 _c("div", [
@@ -42206,7 +42185,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-3 d-flex justify-content-start align-items-center"
+                  "col-lg-3 d-flex justify-content-start align-items-center"
               },
               [
                 _c(
@@ -42238,7 +42217,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-3 d-flex justify-content-center align-items-center"
+                  "col-lg-3 d-flex justify-content-center align-items-center"
               },
               [_c("p", [_vm._v(_vm._s(dish.price) + "€")])]
             ),
@@ -42247,7 +42226,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-4 d-flex justify-content-center align-items-center"
+                  "col-lg-4 d-flex justify-content-center align-items-center"
               },
               [
                 _c(
@@ -42338,7 +42317,7 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "col-3 d-flex flex-column justify-content-center align-items-center orders-button"
+          "col-lg-3 d-flex flex-column justify-content-center align-items-center orders-button"
       },
       [
         _c("a", { attrs: { href: "/chart" } }, [
@@ -42382,7 +42361,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row m-3" }, [
-      _c("div", { staticClass: "col-12" }, [
+      _c("div", { staticClass: "col-lg-12" }, [
         _c("h1", [_vm._v("Tutti i piatti")])
       ])
     ])
@@ -42409,19 +42388,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", [
-    _c(
-      "button",
-      { staticClass: "notselected", attrs: { value: _vm.value, id: _vm.id } },
-      [
-        _c("img", {
-          staticClass: "icon",
-          attrs: { src: _vm.categoryImg, alt: "" }
-        }),
-        _vm._v("\n    " + _vm._s(_vm.categoryName) + "\n  ")
-      ]
-    )
-  ])
+  return _c(
+    "div",
+    {
+      staticClass:
+        "col-2 col-lg-1 mb-2 d-flex justify-content-center align-items-center oval-button"
+    },
+    [
+      _c(
+        "button",
+        { staticClass: "notselected", attrs: { value: _vm.value, id: _vm.id } },
+        [
+          _c("img", {
+            staticClass: "icon",
+            attrs: { src: _vm.categoryImg, alt: "" }
+          }),
+          _vm._v("\r\n      " + _vm._s(_vm.categoryName) + "\r\n    ")
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -42453,7 +42439,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { attrs: { id: "infoSectionHome" } }, [
-      _c("div", { staticClass: "container mt-5 mb-5 " }, [
+      _c("div", { staticClass: "container mt-5 mb-5" }, [
         _c(
           "div",
           {
@@ -42464,7 +42450,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass:
-                  "col-6 d-flex justify-align-content-center align-items-center"
+                  "col-sm-12 col-lg-6 d-flex justify-content-center align-items-center"
               },
               [
                 _c("img", {
@@ -42477,7 +42463,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass:
-                  "col-6 d-flex flex-column justify-content-center align-items-center"
+                  "col-sm-12 col-lg-6 d-flex flex-column justify-content-center align-items-center"
               },
               [
                 _c("h1", [
@@ -42486,10 +42472,12 @@ var staticRenderFns = [
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
-                    "\n          La fame ti ha preso di sprovvista? Con pochi click puoi ordinare direttamente dai tuoi ristoranti preferiti. "
+                    "\n          La fame ti ha preso di sprovvista? Con pochi click puoi ordinare\n          direttamente dai tuoi ristoranti preferiti. "
                   ),
                   _c("br"),
-                  _vm._v(" Il cibo arriverà direttamente a casa tua!\n        ")
+                  _vm._v(
+                    "\n          Il cibo arriverà direttamente a casa tua!\n        "
+                  )
                 ])
               ]
             )
@@ -42521,7 +42509,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "section",
+    "div",
     { attrs: { id: "join-component" } },
     [
       _c("header", [
@@ -42642,35 +42630,42 @@ var render = function() {
       attrs: { id: "becomePartner" }
     },
     [
-      _c("div", { staticClass: "container mt-5 mb-5" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col p-5", attrs: { id: "centerMe" } }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "mt-5" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "primary-button",
-                  attrs: { href: _vm.loginlink }
-                },
-                [_vm._v("Effettua il login")]
-              ),
+      _c(
+        "div",
+        {
+          staticClass:
+            "container mt-5 mb-5 d-flex justify-content-start align-items-center"
+        },
+        [
+          _c("div", { staticClass: "row " }, [
+            _c("div", { staticClass: "col-12 p-5" }, [
+              _vm._m(0),
               _vm._v(" "),
-              _c("span", [_vm._v(" - o - ")]),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "primary-button",
-                  attrs: { href: _vm.registerlink }
-                },
-                [_vm._v("Registrati Subito")]
-              )
+              _c("div", { staticClass: "mt-5" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "primary-button",
+                    attrs: { href: _vm.loginlink }
+                  },
+                  [_vm._v("Effettua il login")]
+                ),
+                _vm._v(" "),
+                _c("span", [_vm._v(" - o - ")]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "primary-button",
+                    attrs: { href: _vm.registerlink }
+                  },
+                  [_vm._v("Registrati Subito")]
+                )
+              ])
             ])
           ])
-        ])
-      ])
+        ]
+      )
     ]
   )
 }
@@ -42682,9 +42677,7 @@ var staticRenderFns = [
     return _c("h1", [
       _vm._v("\n          Sei un ristoratore? "),
       _c("br"),
-      _vm._v("\n          Diventa nostro "),
-      _c("br"),
-      _vm._v("\n          Partner\n        ")
+      _vm._v("\n          Diventa nostro partner\n        ")
     ])
   }
 ]
@@ -42713,7 +42706,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "col-6 d-flex justify-content-between align-items-center mb-3"
+        "col-lg-6 d-flex justify-content-between align-items-center mb-3"
     },
     [
       _c(
@@ -42787,15 +42780,12 @@ var render = function() {
       _c(
         "div",
         { staticClass: "row m-4", attrs: { id: "resturants-buttons" } },
-        [
-          _c("div", { staticClass: "col-12" }, [
-            _c("ul", { staticClass: "oval-button" }, [_vm._t("buttons")], 2)
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "row m-4" }, [_vm._t("resturant")], 2)
-    ])
+        [_vm._t("buttons")],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row m-4" }, [_vm._t("resturant")], 2)
   ])
 }
 var staticRenderFns = [
@@ -42804,7 +42794,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row m-4" }, [
-      _c("div", { staticClass: "col-12" }, [
+      _c("div", { staticClass: "col-lg-12" }, [
         _c("h1", [_vm._v("Seleziona una tipologia di ristorante")])
       ])
     ])
@@ -56751,8 +56741,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\NoSync\deliverboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\NoSync\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! F:\User Folders\Documenti\GitHub\deliverboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! F:\User Folders\Documenti\GitHub\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

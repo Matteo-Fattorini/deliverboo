@@ -1,5 +1,5 @@
 <template>
-  <div class="col-6 d-flex justify-content-between align-items-center mb-3">
+  <div class="col-lg-6 d-flex justify-content-between align-items-center mb-3">
     <div class="d-flex justify-content-start align-items-center dishinfo">  
         <div class="dishImg m-3">
           <div class="listImage">
