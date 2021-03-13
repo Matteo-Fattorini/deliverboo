@@ -48,8 +48,6 @@ class OrderController extends Controller
         $dish = $request->all();
         $data = $request->validated();
        
-       
-
         $order = new Order();
         $order["total"] = $data["total"];
         $order["client_name"] = $data["client_name"];
@@ -61,8 +59,8 @@ class OrderController extends Controller
 
         $order->getRestaurant()->associate($data["restaurant_id"]);
         $order->save();
-        $order->getDishes()->sync(explode(",",$dish["dishes"]));
-
+        $order->getDishes()->attach(explode(",",$dish["dishes"]));
+        
         $input = array(
             'total' => $order["total"],
             "order_id" => $order["id"],
