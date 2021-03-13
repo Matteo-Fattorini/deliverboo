@@ -70,7 +70,7 @@
 
       <!-- Sezione Menù -->
       <div class="row m-3">
-        <div class="col-12">
+        <div class="col-12 mb-5 mt-5">
           <h1>Gestione Menù</h1>
           <input
             v-model="search"
@@ -244,5 +244,9 @@ export default {
 
 .listImage {
   object-fit: cover !important;
+  outline: none !important;
+  &:hover{
+    outline: none !important;
+  }
 }
 </style>

@@ -23,7 +23,7 @@
                         <ul
                             class="d-flex justify-content-between align-items-center d-flex justify-content-between align-items-center ">
                             <li><a href="{{ route('restaurant.index') }}"><h5>Home</h5></a></li>
-                            <li><h5>Aiuto</h5></li>
+                            <li><a href="{{ route('restaurant.index') }}"><h5>Aiuto</h5></a></li>
                             @guest
                                 <li><a href="{{ route('login') }}"><h5>Area Ristoratori</h5></a></li>
                                 {{-- <li><a href="{{ route('register') }}">Registrati</a></li> --}}

@@ -8277,7 +8277,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".container[data-v-007e6d83] {\n  margin-bottom: 50px;\n}\n.container .row .circle[data-v-007e6d83] {\n  margin: 0;\n  padding: 0;\n  position: absolute;\n  top: 140px;\n  right: 40px;\n  z-index: 2;\n}\n.container .row .circle .resturantImage[data-v-007e6d83] {\n  min-width: 450px;\n  height: 450px;\n  overflow: hidden;\n  border-radius: 100%;\n  border: 6px solid black;\n}\n.container .row .circle .resturantImage #restaurant_img[data-v-007e6d83] {\n  width: 100%;\n  height: 100%;\n  border-radius: 100%;\n  margin: 0;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.container .row .info .rst-info[data-v-007e6d83] {\n  margin: 20px 0 0 20px;\n  padding-right: 0;\n}\n.container .row .info .rst-info h1[data-v-007e6d83] {\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n.container .row .info .rst-info h5[data-v-007e6d83] {\n  font-size: 18px;\n  font-weight: 400;\n}\n.container .row .info .rst-info .dist[data-v-007e6d83] {\n  margin: 30px 0;\n}", ""]);
+exports.push([module.i, ".container[data-v-007e6d83] {\n  margin-top: 30px;\n  margin-bottom: 50px;\n}\n.container .row .circle[data-v-007e6d83] {\n  margin: 0;\n  padding: 0;\n  position: absolute;\n  top: 140px;\n  right: 40px;\n  z-index: 2;\n}\n.container .row .circle .resturantImage[data-v-007e6d83] {\n  min-width: 350px;\n  height: 350px;\n  overflow: hidden;\n  border-radius: 100%;\n  border: 6px solid black;\n}\n.container .row .circle .resturantImage #restaurant_img[data-v-007e6d83] {\n  width: 100%;\n  height: 100%;\n  border-radius: 100%;\n  margin: 0;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.container .row .info .rst-info[data-v-007e6d83] {\n  margin: 20px 0 0 20px;\n  padding-right: 0;\n}\n.container .row .info .rst-info h1[data-v-007e6d83] {\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n.container .row .info .rst-info h5[data-v-007e6d83] {\n  font-size: 18px;\n  font-weight: 400;\n}\n.container .row .info .rst-info .dist[data-v-007e6d83] {\n  margin: 30px 0;\n}", ""]);
 
 // exports
 
@@ -8372,7 +8372,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".items-buttons img[data-v-1c27d7e2] {\n  height: 30px;\n}\n.custom-input[data-v-1c27d7e2] {\n  width: 50%;\n}\n.new-dish-button img[data-v-1c27d7e2],\n.orders-button img[data-v-1c27d7e2] {\n  height: 30px;\n  width: auto;\n  margin: 0;\n}\n.text-box p[data-v-1c27d7e2] {\n  white-space: nowrap;\n  overflow: hidden !important;\n  text-overflow: ellipsis !important;\n  max-width: 200px;\n}\n.listImage[data-v-1c27d7e2] {\n  -o-object-fit: cover !important;\n     object-fit: cover !important;\n}", ""]);
+exports.push([module.i, ".items-buttons img[data-v-1c27d7e2] {\n  height: 30px;\n}\n.custom-input[data-v-1c27d7e2] {\n  width: 50%;\n}\n.new-dish-button img[data-v-1c27d7e2],\n.orders-button img[data-v-1c27d7e2] {\n  height: 30px;\n  width: auto;\n  margin: 0;\n}\n.text-box p[data-v-1c27d7e2] {\n  white-space: nowrap;\n  overflow: hidden !important;\n  text-overflow: ellipsis !important;\n  max-width: 200px;\n}\n.listImage[data-v-1c27d7e2] {\n  -o-object-fit: cover !important;\n     object-fit: cover !important;\n  outline: none !important;\n}\n.listImage[data-v-1c27d7e2]:hover {\n  outline: none !important;\n}", ""]);
 
 // exports
 
@@ -8429,7 +8429,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#becomePartner[data-v-d8efec3c] {\n  height: 70vh;\n  background-size: cover;\n  background-position: center;\n  background-color: rgba(0, 0, 0, 0.6);\n  background-blend-mode: multiply;\n}\n#becomePartner h1[data-v-d8efec3c] {\n  color: #fff;\n}\n#becomePartner span[data-v-d8efec3c] {\n  color: #fff;\n}", ""]);
+exports.push([module.i, "#becomePartner[data-v-d8efec3c] {\n  height: 70vh;\n  position: relative;\n  background-size: cover;\n  background-position: center;\n  background-color: rgba(0, 0, 0, 0.6);\n  background-blend-mode: multiply;\n}\n#becomePartner h1[data-v-d8efec3c] {\n  color: #fff;\n}\n#becomePartner #centerMe[data-v-d8efec3c] {\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n}\n#becomePartner span[data-v-d8efec3c] {\n  color: #fff;\n}", ""]);
 
 // exports
 
@@ -8505,7 +8505,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#icon{\n  height: 30px;\n  margin: 0;\n  width: auto;\n}\n", ""]);
+exports.push([module.i, "\n#icon{\r\n  height: 30px;\r\n  margin: 0;\r\n  width: auto;\n}\r\n", ""]);
 
 // exports
 
@@ -40885,45 +40885,49 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container mt-120" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-6 info d-flex p-0" }, [
+  return _c(
+    "div",
+    { staticClass: "container", staticStyle: { "margin-top": "120px" } },
+    [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-6 info d-flex p-0" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "rst-info d-flex flex-column justify-content-start align-items-start"
+            },
+            [
+              _c("h1", [_vm._v(_vm._s(_vm.restaurantData.name))]),
+              _vm._v(" "),
+              _c("h5", [_vm._v(_vm._s(_vm.restaurantData.address))]),
+              _vm._v(" "),
+              _c("div", { staticClass: "dist" })
+            ]
+          )
+        ]),
+        _vm._v(" "),
         _c(
           "div",
           {
             staticClass:
-              "rst-info d-flex flex-column justify-content-start align-items-start"
+              "col-6 circle d-flex justify-content-center align-items-center p-0"
           },
           [
-            _c("h1", [_vm._v(_vm._s(_vm.restaurantData.name))]),
-            _vm._v(" "),
-            _c("h5", [_vm._v(_vm._s(_vm.restaurantData.address))]),
-            _vm._v(" "),
-            _c("div", { staticClass: "dist" })
+            _c("div", { staticClass: "resturantImage" }, [
+              _c("img", {
+                attrs: {
+                  id: "restaurant_img",
+                  alt: "ok",
+                  src: "/img/restaurant/" + _vm.restaurantData.image_url
+                }
+              })
+            ])
           ]
         )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "col-6 circle d-flex justify-content-center align-items-center p-0"
-        },
-        [
-          _c("div", { staticClass: "resturantImage" }, [
-            _c("img", {
-              attrs: {
-                id: "restaurant_img",
-                alt: "ok",
-                src: "/img/restaurant/" + _vm.restaurantData.image_url
-              }
-            })
-          ])
-        ]
-      )
-    ])
-  ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -41925,7 +41929,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row m-3" }, [
-          _c("div", { staticClass: "col-12" }, [
+          _c("div", { staticClass: "col-12 mb-5 mt-5" }, [
             _c("h1", [_vm._v("Gestione Menù")]),
             _vm._v(" "),
             _c("input", {
@@ -42546,7 +42550,7 @@ var render = function() {
     [
       _c("div", { staticClass: "container mt-5 mb-5" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col p-5" }, [
+          _c("div", { staticClass: "col p-5", attrs: { id: "centerMe" } }, [
             _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "mt-5" }, [
@@ -56653,8 +56657,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/pierlucamariodussich/Desktop/boolean/vs-code/php-playground/deliverboo/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/pierlucamariodussich/Desktop/boolean/vs-code/php-playground/deliverboo/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\NoSync\deliverboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\NoSync\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

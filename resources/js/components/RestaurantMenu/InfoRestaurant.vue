@@ -54,8 +54,8 @@ export default {
       right: 40px;
       z-index: 2;
       .resturantImage {
-        min-width: 450px;
-        height: 450px;
+        min-width: 350px;
+        height: 350px;
         overflow: hidden;
         border-radius: 100%;
         border: 6px solid black;

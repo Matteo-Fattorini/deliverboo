@@ -2,7 +2,7 @@
   <section id="becomePartner" class="d-flex flex-column justify-content-end">
     <div class="container mt-5 mb-5">
       <div class="row">
-        <div class="col p-5">
+        <div id="centerMe" class="col p-5">
           <h1>
             Sei un ristoratore? <br />
             Diventa nostro <br />
@@ -32,12 +32,18 @@ export default {
 <style lang="scss" scoped>
 #becomePartner {
   height: 70vh;
+  position:relative;
   background-size: cover;
   background-position: center;
   background-color: rgba(0, 0, 0, 0.6);
   background-blend-mode: multiply;
   h1 {
     color: #fff;
+  }
+  #centerMe{
+    position:absolute;
+    top: 50%;
+    transform: translateY(-50%);
   }
   span {
     color: #fff;

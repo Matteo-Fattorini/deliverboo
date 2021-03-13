@@ -14,11 +14,13 @@
                         </form>
                     </div>
                 </div>
-                <div class="col col d-flex flex-column justify-content-center align-items-center p-5 black-container">
-                    <h1>Vuoi diventare nostro partner?</h1>
+                <div id="reg-cont" class="col col d-flex flex-column justify-content-center align-items-center p-5 black-container">
+                    <h1>Vuoi diventare nostro partener?</h1>
                     <a href="{{route('register')}}">REGISTRATI SU DELIVEBOO</a>
                 </div>
             </div>
         </div>
     </section>
 @endsection
+
+
