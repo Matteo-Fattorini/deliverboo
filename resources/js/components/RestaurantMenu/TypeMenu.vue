@@ -1,11 +1,11 @@
 <template>
-     <div id="menu">
+  <div id="menu">
     <div class="container restaurant">
       <div class="row">
         <div class="col-12">
           <h1>Menù</h1>
         </div>
-        <div class="col-12" >
+        <div class="col-12">
           <ul class="oval-button">
             <li
               v-for="(genre, index) in genreList"
@@ -16,7 +16,7 @@
                 notselected: genre.name != categorySelect,
               }"
             >
-              <img class="icon" :src="'/'+genre.image_url" alt="" />
+              <img class="icon" :src="'/' + genre.image_url" alt="" />
               <!-- ondragstart="return false" 
                          onselectstart="return false"
                          evita evidenziazione del testo -->
@@ -47,7 +47,11 @@
             >
               <div class="dishImg">
                 <div class="listImage dishImg">
-                  <img class="" :src="'/img/restaurant/' + dish.image_url" alt="" />
+                  <img
+                    class=""
+                    :src="'/img/restaurant/' + dish.image_url"
+                    alt=""
+                  />
                 </div>
               </div>
               <div class="dishtext">
@@ -55,14 +59,11 @@
                 <h5>{{ dish.description }}</h5>
               </div>
             </div>
-            <div class="price d-flex justify-content-end align-items-center">
+            <div class="price d-flex justify-content-center align-items-center">
               <h1>{{ dish.price }}€</h1>
             </div>
-            <div
-              class="counter-box d-flex justify-content-end align-items-center"
-            >
+            <!-- <div class="counter-box d-flex justify-content-end align-items-center">
               <div class="counter d-flex justify-content-between">
-      
                 <div class="bt" @click="changeCounter('-', i)">
                   <span ondragstart="return false" onselectstart="return false">
                     -
@@ -76,7 +77,13 @@
                     +
                   </span>
                 </div>
+
               </div>
+            </div> -->
+            <div class="button">
+              <button class="black-button" @click="putInCart(i)"> 
+                Ordina +
+              </button>
             </div>
           </div>
         </div>
@@ -99,21 +106,9 @@
             <img src="/images/close_white.png" alt="" />
           </div>
         </div>
-        <div class="col-12 d-flex flex-row flex-wrap">
+        <div class="col-12 d-flex flex-row flex-wrap ">
           <div class="order d-flex" v-for="(order, ind) in cart" :key="ind">
-            <div
-              class="quantity d-flex justify-content-start align-items-center"
-            >
-              <ul class="oval-white-button">
-                <li class="notselected">
-                  <img src="" alt="" />
-                  <span ondragstart="return false" onselectstart="return false">
-                    x{{ order.counter }}
-                  </span>
-                </li>
-              </ul>
-            </div>
-            <div class="dishes d-flex justify-content-start align-items-center">
+            <div class="dishes d-flex  justify-content-start align-items-center">
               <div class="dishImg">
                 <div class="cartImage">
                   <img :src="'/img/restaurant/' + order.dishImgUrl" alt="" />
@@ -121,12 +116,11 @@
               </div>
               <div class="dishtext">
                 <h3>{{ order.dishName }}</h3>
-                <h6>{{ order.dishPrice }} € x {{ order.counter }} =</h6>
               </div>
             </div>
             <div class="price d-flex justify-content-end align-items-center">
-             <!-- nel caso ritorna il filtro sarebbe order.totalPrice -->
-              <h1>{{ order.dishPrice}} €</h1>
+              <!-- nel caso ritorna il filtro sarebbe order.totalPrice -->
+              <h1>{{ order.dishPrice }} €</h1>
             </div>
             <div class="delete d-flex justify-content-end align-items-center">
               <button @click.stop="deleteOrder(ind)">X</button>
@@ -150,9 +144,9 @@
 
     <!-- attiva carrello -->
 
-    <div class="container cartButton" >
+    <div class="container cartButton">
       <div class="row d-flex justify-content-center align-items-center">
-        <div class="col-1 ">
+        <div class="col-1">
           <div
             class="roundedCart d-flex justify-content-center align-items-center"
             @click="openAndClose()"
@@ -163,99 +157,95 @@
       </div>
     </div>
   </div>
-
-
 </template>
 
 <script>
 export default {
-  name:'MenuGenre',
+  name: "MenuGenre",
   props: {
     data: String,
   },
-  data(){
-    return{
+  data() {
+    return {
       dishesImport: [],
       dishes: [],
-      genreList:[],
-      restaurantId:0,
-      categorySelect:'',
+      genreList: [],
+      restaurantId: 0,
+      categorySelect: "",
       count: [],
       orders: [],
+      quantity:[],
       cartActive: false,
       // cartElements:[],
       // cartFiltered:[],
-      cart:[],
-      total:0,
-      dishInCart:[],
-            
-    }
+      cart: [],
+      total: 0,
+      dishInCart: [],
+    };
   },
-  mounted:function(){
-
+  mounted: function () {
     //DATI
     //importo ARRAY dei dati del ristorante
     var data = JSON.parse(this.data);
 
-    
     this.dishesImport = data.get_dishes;
 
-    //aggiungi oggetto counter per la quantità 
+    //aggiungi oggetto counter per la quantità
     this.dishes = this.dishesImport.map((element) => {
       this.elementUpgrade = { ...element, counter: 0 };
       return this.elementUpgrade;
     });
     //controllo ARRAY piatti
-    console.log('piatti');console.log(this.dishes);
+    console.log("piatti");
+    console.log(this.dishes);
 
     //estraggo ARRAY GENERI
     this.genreList = this.dishes.map((element) => {
-            this.genre = element.get_genre;
-            return this.genre;
-          });
+      this.genre = element.get_genre;
+      return this.genre;
+    });
 
     //filtro per eliminare doppioni nell'ARRAY GENERI mi restituisce nomi e immagini
-    this.genreList = this.genreList.filter((genre,index,self)=>
-                 index === self.findIndex((g)=>(
-                 g.name === genre.name && g.image_url === genre.image_url
-                 )));
+    this.genreList = this.genreList.filter(
+      (genre, index, self) =>
+        index ===
+        self.findIndex(
+          (g) => g.name === genre.name && g.image_url === genre.image_url
+        )
+    );
     //controllo ARRAY generi
-    console.log('generi');console.log(this.genreList);
+    console.log("generi");
+    console.log(this.genreList);
 
     //estraggo ARRAY RISTORANTE
-    this.restaurantId = this.dishes.map(e => {
-                 this.id = e.restaurant_id;
-                 return this.id });
-                 this.restaurant_id = this.restaurantId.splice(1); 
+    this.restaurantId = this.dishes.map((e) => {
+      this.id = e.restaurant_id;
+      return this.id;
+    });
+    this.restaurant_id = this.restaurantId.splice(1);
     //controllo ID ristorante
-    console.log('ARRAY ID RISTORANTE');console.log(this.restaurantId)
-  
+    console.log("ARRAY ID RISTORANTE");
+    console.log(this.restaurantId);
   },
-  computed:{
-
+  computed: {
     //FUNZIONE filtered crea virtualmente un ARRAY filtrato
-    //dei piatti  che hanno il genere uguale a quello selezionato 
+    //dei piatti  che hanno il genere uguale a quello selezionato
 
-    filtered(){
-      return this.dishes.filter((e)=>{
+    filtered() {
+      return this.dishes.filter((e) => {
         return e.get_genre.name.includes(this.categorySelect);
       })},
     
     //calcola il totale del carrello e lo trasforma in formato prezzo
 
-    TotalPrice(){
-
+    TotalPrice() {
       return new Intl.NumberFormat("it-IT", {
         style: "currency",
         currency: "EUR",
       }).format(this.total);
     },
-    
-
   },
-  methods:{
-
-
+  methods: {
     //AL CLICK FILTRA PER CATEGORIA
     selectCategory(category) {
       return (
@@ -271,18 +261,17 @@ export default {
     //CARRELLO
 
     //CONTATORE
-    changeCounter(direction, index){
-       this.filtered.forEach((dish, i) => {
+    changeCounter(direction, index) {
+      this.filtered.forEach((dish, i) => {
         if (direction == "+" && i === index) {
-          dish.counter++; //aumenta il contatore di 1
           this.putInCart(i); //attiva funzione di creazione ordine e carrello
           this.cartActive = true; //attiva la sezione carrello
         } else if (direction == "-" && i === index) {
-            if (dish.counter === 0) { //blocca il counter a 0
-              this.cartActive = false; // chiude sezione carrello
+          if (dish.counter === 0) {
+            //blocca il counter a 0
+            this.cartActive = false; // chiude sezione carrello
           } else {
-            dish.counter--; //decrementa il contatore
-            this.deleteOrder(i); //attiva funzione di cancellazione degli elementi
+            this.deleteOrder(index);
           }
         }
       });
@@ -299,14 +288,21 @@ export default {
             dishName: dish.name,
             dishImgUrl: dish.image_url,
             dishPrice: dish.price,
-            // totalPrice: parseFloat(dish.price) * dish.counter,
           });
+          this.cartActive=true;
           this.orders.push({
             dishId: dish.id,
           });
 
+          //quantità piatti nel carrello
+          // this.quantity = this.cart.map(e=>{
+          //   this.quantity = e.quantity;
+          //   return this.quantity
+          // })
+          // console.log('quantità');console.log(this.quantity);
+
           //ID piatti nel carrello
-          this.dishInCart = this.orders.map(e=>{
+          this.dishInCart = this.orders.map((e) => {
             this.order = e.dishId;
             return this.order
           })
@@ -325,8 +321,9 @@ export default {
 
           //TOTALE ORDINE
           this.total = this.cart.reduce(
-          (total, order) => total + parseFloat(order.dishPrice),
-           0  );
+            (total, order) => total + parseFloat(order.dishPrice),
+            0
+          );
 
           //
 
@@ -362,12 +359,15 @@ export default {
           this.saveTotal();
       if (this.cart.length != 0) {
         this.cartActive = true;
-      } else  {
+      } else {
         this.cartActive = false;
       }
-      console.log('ORDER-DELETE');console.log(this.orders);
-      console.log('ORDER-DELETE');console.log(this.cart);
-      console.log('Total');console.log(this.total);
+      console.log("ORDER-DELETE");
+      console.log(this.orders);
+      console.log("ORDER-DELETE");
+      console.log(this.cart);
+      console.log("Total");
+      console.log(this.total);
     },
 
     //ATTIVA CARRELLO{}
@@ -390,7 +390,6 @@ export default {
       }
     },
 
-
     //INVIO DATI
 
     saveCart() {
@@ -410,7 +409,6 @@ export default {
       localStorage.setItem("total", parsed);
     },
 
-
     // Vai al pagamento
     goToPayment() {
       this.saveCart();
@@ -418,14 +416,9 @@ export default {
       this.saveRestaurant();
       this.saveTotal();
       location.replace("/infoClienti");
-    }
-
-
+    },
   },
-
-
-}
-
+};
 </script>
 
 <style lang="scss" scoped>
@@ -454,7 +447,7 @@ export default {
         .dish {
           padding: 20px 0;
           .dishinfo {
-            width: 60%;
+            width: 50%;
             .dishImg {
               width: 100px;
               height: 100px;
@@ -499,7 +492,7 @@ export default {
                 width: 70px;
                 text-align: center;
                 span {
-                  color:white;
+                  color: white;
                   height: 30px;
                   font-size: 30px;
                   font-weight: 500;
@@ -514,10 +507,9 @@ export default {
                 &:hover {
                   background-color: #b3f5fd;
                   line-height: 40px;
-                  span{
-                  color: black;
+                  span {
+                    color: black;
                   }
-                    
                 }
                 &:hover:first-child {
                   border-top-left-radius: 30px;
@@ -543,7 +535,7 @@ export default {
   .cart {
     box-sizing: border-box;
     min-width: 100vw;
-    height: 60vh;
+    height: 50vh;
     background-color: black;
     position: fixed;
     bottom: 0;
@@ -567,9 +559,38 @@ export default {
           }
         }
         .order {
-          padding: 30px 0px;
-          border-bottom: 1px solid white;
+          margin-bottom: 10px;
+          padding: 15px 30px;
+          border: 1px solid white;
+          border-radius: 50px;
           flex-basis: 47%;
+          &:hover{
+            border:none;
+            background:#b3f5fd;
+            .dishes {
+            .dishtext {
+
+              h3 {
+                color: black;
+              }
+              h6 {
+                color: black;
+              }
+            }
+          }
+          .price {
+          h1 {
+            color: black;
+            font-weight: 700;
+          }
+        }
+        .delete {
+          button {
+            color: black;
+            font-weight: 700;
+          }
+        }
+        }
           &:nth-child(n) {
             margin-right: 20px;
           }
@@ -621,7 +642,7 @@ export default {
         color: white;
         font-size: 30px;
         font-weight: 900;
-        &:last-child{
+        &:last-child {
           color: #2fbcae;
         }
       }
@@ -650,11 +671,11 @@ export default {
     box-sizing: border-box;
     width: 80px;
     position: fixed;
-    top: 20px;
+    top: 50vh;
     right: 25px;
     z-index: 2;
     .row {
-      width:100%;
+      width: 100%;
       .col-1 {
         .roundedCart {
           height: 60px;

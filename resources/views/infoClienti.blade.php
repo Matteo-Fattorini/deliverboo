@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="container ">
+    <div class="container  mt-120">
         <div class="row">
             <div class="col-6 primary-text ml-30">
                 <h1>Inserisci i dati <br> e vai al pagamento</h1>

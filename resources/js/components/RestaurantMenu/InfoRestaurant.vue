@@ -1,5 +1,6 @@
 <template>
-  <div class="container" style="margin-top: 120px;">
+<section>
+  <div class="container">
     <div class="row">
       <div class="col-6 info d-flex p-0">
         <div
@@ -22,6 +23,7 @@
       </div>
     </div>
   </div>
+</section>
 </template>
 
 <script>
@@ -44,7 +46,6 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  margin-top: 30px;
   margin-bottom: 50px;
   .row {
     .circle {

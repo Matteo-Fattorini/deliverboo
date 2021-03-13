@@ -2006,8 +2006,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FooterComponent",
   data: function data() {
@@ -2030,6 +2028,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2703,17 +2703,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'MenuGenre',
+  name: "MenuGenre",
   props: {
     data: String
   },
@@ -2723,9 +2714,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       dishes: [],
       genreList: [],
       restaurantId: 0,
-      categorySelect: '',
+      categorySelect: "",
       count: [],
       orders: [],
+      quantity: [],
       cartActive: false,
       // cartElements:[],
       // cartFiltered:[],
@@ -2740,7 +2732,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     //DATI
     //importo ARRAY dei dati del ristorante
     var data = JSON.parse(this.data);
-    this.dishesImport = data.get_dishes; //aggiungi oggetto counter per la quantità 
+    this.dishesImport = data.get_dishes; //aggiungi oggetto counter per la quantità
 
     this.dishes = this.dishesImport.map(function (element) {
       _this.elementUpgrade = _objectSpread(_objectSpread({}, element), {}, {
@@ -2749,7 +2741,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return _this.elementUpgrade;
     }); //controllo ARRAY piatti
 
-    console.log('piatti');
+    console.log("piatti");
     console.log(this.dishes); //estraggo ARRAY GENERI
 
     this.genreList = this.dishes.map(function (element) {
@@ -2763,7 +2755,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     }); //controllo ARRAY generi
 
-    console.log('generi');
+    console.log("generi");
     console.log(this.genreList); //estraggo ARRAY RISTORANTE
 
     this.restaurantId = this.dishes.map(function (e) {
@@ -2772,17 +2764,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
     this.restaurant_id = this.restaurantId.splice(1); //controllo ID ristorante
 
-    console.log('ARRAY ID RISTORANTE');
+    console.log("ARRAY ID RISTORANTE");
     console.log(this.restaurantId);
   },
   computed: {
     //FUNZIONE filtered crea virtualmente un ARRAY filtrato
-    //dei piatti  che hanno il genere uguale a quello selezionato 
+    //dei piatti  che hanno il genere uguale a quello selezionato
     filtered: function filtered() {
       var _this2 = this;
 
       return this.dishes.filter(function (e) {
         return e.get_genre.name.includes(_this2.categorySelect);
+      });
+    },
+    filteredCart: function filteredCart() {
+      return this.cart.filter(function (order, index, self) {
+        return index === self.findIndex(function (o, i) {
+          return o.dishId === order.dishId;
+        });
       });
     },
     //calcola il totale del carrello e lo trasforma in formato prezzo
@@ -2805,8 +2804,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.filtered.forEach(function (dish, i) {
         if (direction == "+" && i === index) {
-          dish.counter++; //aumenta il contatore di 1
-
           _this3.putInCart(i); //attiva funzione di creazione ordine e carrello
 
 
@@ -2816,10 +2813,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             //blocca il counter a 0
             _this3.cartActive = false; // chiude sezione carrello
           } else {
-            dish.counter--; //decrementa il contatore
-
-            _this3.deleteOrder(i); //attiva funzione di cancellazione degli elementi
-
+            _this3.deleteOrder(index);
           }
         }
       });
@@ -2829,20 +2823,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this4 = this;
 
       this.filtered.forEach(function (dish, i) {
-        if (index === i && dish.counter != 0 && dish.name) {
+        if (index === i && dish.counter >= 0) {
           _this4.cart.push({
             //se attivo filtro this.cart diventa this.cartElement
             dishId: dish.id,
-            quantity: dish.counter,
             dishName: dish.name,
             dishImgUrl: dish.image_url,
-            dishPrice: dish.price // totalPrice: parseFloat(dish.price) * dish.counter,
-
+            dishPrice: dish.price
           });
+
+          _this4.cartActive = true;
 
           _this4.orders.push({
             dishId: dish.id
-          }); //ID piatti nel carrello
+          }); //quantità piatti nel carrello
+          // this.quantity = this.cart.map(e=>{
+          //   this.quantity = e.quantity;
+          //   return this.quantity
+          // })
+          // console.log('quantità');console.log(this.quantity);
+          //ID piatti nel carrello
 
 
           _this4.dishInCart = _this4.orders.map(function (e) {
@@ -2850,14 +2850,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             return _this4.order;
           });
           console.log('ordine nel carrello');
-          console.log(_this4.dishInCart); // DA RIVEDERE
-          //filtro carrello
-
-          _this4.cartFiltered = _this4.cart.filter(function (order, index, self) {
-            return index === self.findIndex(function (o) {
-              return o.dishId === order.dishId;
-            });
-          }); //TOTALE ORDINE
+          console.log(_this4.dishInCart); //TOTALE ORDINE
 
           _this4.total = _this4.cart.reduce(function (total, order) {
             return total + parseFloat(order.dishPrice);
@@ -2871,26 +2864,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           _this4.saveTotal();
 
-          console.log('CART ELEMENTI');
+          console.log("CART ELEMENTI");
           console.log(_this4.cartElements);
-          console.log('CART FILTRO');
+          console.log("CART FILTRO");
           console.log(_this4.cartFiltered);
-          console.log('CART FINALE');
+          console.log("CART FINALE");
+          console.log('quantity');
+          console.log(_this4.quantity);
           console.log(_this4.cart);
-          console.log('Dish');
+          console.log("Dish");
           console.log(_this4.dishInCart);
-          console.log('Total');
+          console.log("Total");
           console.log(_this4.total);
         } else {}
       });
     },
     //ELIMINA UN ORDINE QUANDO VIENE CLICCATO - SUL CONTATORE
     deleteOrder: function deleteOrder(delIndex) {
-      this.cart.splice(delIndex, 1);
-      this.orders.splice(delIndex, 1);
-      this.total = this.cart.reduce(function (total, order) {
-        return total + parseFloat(order.dishPrice);
-      }, 0);
+      var _this5 = this;
+
+      this.filtered.forEach(function (dish, i) {
+        dish.counter = 0;
+
+        _this5.filteredCart.splice(delIndex, 1);
+
+        _this5.cart.splice(delIndex);
+
+        _this5.orders.splice(delIndex, 1);
+
+        _this5.total = _this5.cart.reduce(function (total, order) {
+          return total + parseFloat(order.dishPrice);
+        }, 0);
+      });
       this.saveCart();
       this.saveDish();
       this.saveRestaurant();
@@ -2902,11 +2907,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.cartActive = false;
       }
 
-      console.log('ORDER-DELETE');
+      console.log("ORDER-DELETE");
       console.log(this.orders);
-      console.log('ORDER-DELETE');
+      console.log("ORDER-DELETE");
       console.log(this.cart);
-      console.log('Total');
+      console.log("Total");
       console.log(this.total);
     },
     //ATTIVA CARRELLO{}
@@ -3353,6 +3358,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "InfoSectionHome"
 });
@@ -3525,7 +3532,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PartnerSectionHome",
   props: {
@@ -3585,9 +3591,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
 //
 //
 //
@@ -8255,7 +8258,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "footer[data-v-abfbddf2] {\n  background-color: black;\n  color: white;\n}\nfooter .container[data-v-abfbddf2] {\n  height: 500px;\n}\nfooter .row[data-v-abfbddf2] {\n  padding-top: 50px;\n}\nfooter a[data-v-abfbddf2] {\n  color: #fff;\n  text-decoration: none;\n}\nfooter a[data-v-abfbddf2]:hover {\n  text-decoration: underline;\n}\nfooter div.social[data-v-abfbddf2] {\n  width: 70%;\n}\nfooter div.social img[data-v-abfbddf2] {\n  width: 30px;\n  margin-right: 30px;\n}\nfooter li[data-v-abfbddf2] {\n  line-height: 3rem;\n}", ""]);
+exports.push([module.i, ".container[data-v-abfbddf2] {\n  height: auto;\n}", ""]);
 
 // exports
 
@@ -8293,7 +8296,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#menu .restaurant[data-v-2bac63c8] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n#menu .restaurant .row .col-12 h1[data-v-2bac63c8] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n#menu .menu[data-v-2bac63c8] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n#menu .menu .row .col-12[data-v-2bac63c8] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n#menu .menu .row .col-12 .dish[data-v-2bac63c8] {\n  padding: 20px 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo[data-v-2bac63c8] {\n  width: 60%;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishImg[data-v-2bac63c8] {\n  width: 100px;\n  height: 100px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext[data-v-2bac63c8] {\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2bac63c8] {\n  font-size: 25px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2bac63c8] {\n  font-size: 12px;\n  font-weight: 400;\n  color: #5f5c5c;\n}\n#menu .menu .row .col-12 .dish .price[data-v-2bac63c8] {\n  width: 20%;\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .price h1[data-v-2bac63c8] {\n  font-size: 30px;\n  font-weight: 700;\n  color: #2dccbc;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2bac63c8] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  background-color: black;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2bac63c8]:hover {\n  border: none;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter[data-v-2bac63c8] {\n  width: 100%;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div[data-v-2bac63c8] {\n  width: 70px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div span[data-v-2bac63c8] {\n  color: white;\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt:hover span[data-v-2bac63c8] {\n  color: black;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2bac63c8] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n#menu .cart[data-v-2bac63c8] {\n  box-sizing: border-box;\n  min-width: 100vw;\n  height: 60vh;\n  background-color: black;\n  position: fixed;\n  bottom: 0;\n  overflow-y: scroll;\n  z-index: 3;\n}\n#menu .cart .row[data-v-2bac63c8] {\n  padding: 50px 200px;\n}\n#menu .cart .row .col-12 .cartTitle[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .cartTitle h1[data-v-2bac63c8] {\n  color: white;\n  font-size: 40px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .close[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .close img[data-v-2bac63c8] {\n  height: 30px;\n}\n#menu .cart .row .col-12 .order[data-v-2bac63c8] {\n  padding: 30px 0px;\n  border-bottom: 1px solid white;\n  flex-basis: 47%;\n}\n#menu .cart .row .col-12 .order[data-v-2bac63c8]:nth-child(n) {\n  margin-right: 20px;\n}\n#menu .cart .row .col-12 .order .dishes[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext[data-v-2bac63c8] {\n  margin-left: 30px;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h3[data-v-2bac63c8] {\n  color: white;\n  font-size: 18px;\n  font-weight: 600;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h6[data-v-2bac63c8] {\n  color: white;\n  font-size: 15px;\n  font-weight: 300;\n}\n#menu .cart .row .col-12 .price[data-v-2bac63c8] {\n  width: 30%;\n  margin: 0 10px;\n}\n#menu .cart .row .col-12 .price h1[data-v-2bac63c8] {\n  color: #2fbcae;\n  font-size: 30px;\n  font-weight: 200;\n  line-height: 30px;\n}\n#menu .cart .row .col-12 .delete button[data-v-2bac63c8] {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 22px;\n  font-weight: 400;\n}\n#menu .cart .col-6[data-v-2bac63c8] {\n  margin: 30px 0;\n}\n#menu .cart .col-6 h1[data-v-2bac63c8] {\n  color: white;\n  font-size: 30px;\n  font-weight: 900;\n}\n#menu .cart .col-6 h1[data-v-2bac63c8]:last-child {\n  color: #2fbcae;\n}\n#menu .cart .col-6 .btn-light[data-v-2bac63c8] {\n  background-color: #b3f5fd;\n  border: none;\n  height: 40px;\n  border-radius: 30px;\n  padding: 0 85px;\n}\n#menu .cart .col-6 .btn-light[data-v-2bac63c8]:hover {\n  background-color: white;\n}\n#menu .cart .col-6 .btn-light span[data-v-2bac63c8] {\n  color: black;\n  font-weight: 600;\n  font-size: 15px;\n  line-height: 30px;\n}\n#menu .cart .col-6 .btn-light span[data-v-2bac63c8]:hover {\n  text-decoration: none;\n}\n#menu .cartButton[data-v-2bac63c8] {\n  box-sizing: border-box;\n  width: 80px;\n  position: fixed;\n  top: 20px;\n  right: 25px;\n  z-index: 2;\n}\n#menu .cartButton .row[data-v-2bac63c8] {\n  width: 100%;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2bac63c8] {\n  height: 60px;\n  width: 60px;\n  border: 4px solid black;\n  border-radius: 50%;\n  background-color: white;\n}\n#menu .cartButton .row .col-1 .roundedCart img[data-v-2bac63c8] {\n  height: 30px;\n  width: 30px;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2bac63c8]:hover {\n  background-color: #b3f5fd;\n  border: none;\n}", ""]);
+exports.push([module.i, "#menu .restaurant[data-v-2bac63c8] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n#menu .restaurant .row .col-12 h1[data-v-2bac63c8] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n#menu .menu[data-v-2bac63c8] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n#menu .menu .row .col-12[data-v-2bac63c8] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n#menu .menu .row .col-12 .dish[data-v-2bac63c8] {\n  padding: 20px 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo[data-v-2bac63c8] {\n  width: 60%;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishImg[data-v-2bac63c8] {\n  width: 100px;\n  height: 100px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext[data-v-2bac63c8] {\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2bac63c8] {\n  font-size: 25px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2bac63c8] {\n  font-size: 12px;\n  font-weight: 400;\n  color: #5f5c5c;\n}\n#menu .menu .row .col-12 .dish .price[data-v-2bac63c8] {\n  width: 20%;\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .price h1[data-v-2bac63c8] {\n  font-size: 30px;\n  font-weight: 700;\n  color: #2dccbc;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2bac63c8] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  background-color: black;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2bac63c8]:hover {\n  border: none;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter[data-v-2bac63c8] {\n  width: 100%;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div[data-v-2bac63c8] {\n  width: 70px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div span[data-v-2bac63c8] {\n  color: white;\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt:hover span[data-v-2bac63c8] {\n  color: black;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2bac63c8] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n#menu .cart[data-v-2bac63c8] {\n  box-sizing: border-box;\n  min-width: 100vw;\n  height: 4z0vh;\n  background-color: black;\n  position: fixed;\n  bottom: 0;\n  overflow-y: scroll;\n  z-index: 3;\n}\n#menu .cart .row[data-v-2bac63c8] {\n  padding: 50px 200px;\n}\n#menu .cart .row .col-12 .cartTitle[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .cartTitle h1[data-v-2bac63c8] {\n  color: white;\n  font-size: 30px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .close[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .close img[data-v-2bac63c8] {\n  height: 30px;\n}\n#menu .cart .row .col-12 .order[data-v-2bac63c8] {\n  padding: 30px 0px;\n  border-bottom: 1px solid white;\n  flex-basis: 47%;\n}\n#menu .cart .row .col-12 .order[data-v-2bac63c8]:nth-child(n) {\n  margin-right: 20px;\n}\n#menu .cart .row .col-12 .order .dishes[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext[data-v-2bac63c8] {\n  margin-left: 30px;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h3[data-v-2bac63c8] {\n  color: white;\n  font-size: 15px;\n  font-weight: 600;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h6[data-v-2bac63c8] {\n  color: white;\n  font-size: 12px;\n  font-weight: 300;\n}\n#menu .cart .row .col-12 .price[data-v-2bac63c8] {\n  width: 30%;\n  margin: 0 10px;\n}\n#menu .cart .row .col-12 .price h1[data-v-2bac63c8] {\n  color: #2fbcae;\n  font-size: 18px;\n  font-weight: 200;\n  line-height: 30px;\n}\n#menu .cart .row .col-12 .delete button[data-v-2bac63c8] {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 15px;\n  font-weight: 400;\n}\n#menu .cart .col-6[data-v-2bac63c8] {\n  margin: 30px 0;\n}\n#menu .cart .col-6 h1[data-v-2bac63c8] {\n  color: white;\n  font-size: 20px;\n  font-weight: 900;\n}\n#menu .cart .col-6 h1[data-v-2bac63c8]:last-child {\n  color: #2fbcae;\n}\n#menu .cart .col-6 .btn-light[data-v-2bac63c8] {\n  background-color: #b3f5fd;\n  border: none;\n  height: 40px;\n  border-radius: 30px;\n  padding: 0 85px;\n}\n#menu .cart .col-6 .btn-light[data-v-2bac63c8]:hover {\n  background-color: white;\n}\n#menu .cart .col-6 .btn-light span[data-v-2bac63c8] {\n  color: black;\n  font-weight: 600;\n  font-size: 15px;\n  line-height: 30px;\n}\n#menu .cart .col-6 .btn-light span[data-v-2bac63c8]:hover {\n  text-decoration: none;\n}\n#menu .cartButton[data-v-2bac63c8] {\n  box-sizing: border-box;\n  width: 80px;\n  position: fixed;\n  top: 20px;\n  right: 25px;\n  z-index: 2;\n}\n#menu .cartButton .row[data-v-2bac63c8] {\n  width: 100%;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2bac63c8] {\n  height: 60px;\n  width: 60px;\n  border: 4px solid black;\n  border-radius: 50%;\n  background-color: white;\n}\n#menu .cartButton .row .col-1 .roundedCart img[data-v-2bac63c8] {\n  height: 30px;\n  width: 30px;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2bac63c8]:hover {\n  background-color: #b3f5fd;\n  border: none;\n}", ""]);
 
 // exports
 
@@ -8331,7 +8334,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#menu .restaurant[data-v-2478efb1] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n#menu .restaurant .row .col-12 h1[data-v-2478efb1] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n#menu .menu[data-v-2478efb1] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n#menu .menu .row .col-12[data-v-2478efb1] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n#menu .menu .row .col-12 .dish[data-v-2478efb1] {\n  padding: 20px 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo[data-v-2478efb1] {\n  width: 60%;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishImg[data-v-2478efb1] {\n  width: 100px;\n  height: 100px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext[data-v-2478efb1] {\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2478efb1] {\n  font-size: 25px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2478efb1] {\n  font-size: 12px;\n  font-weight: 400;\n  color: #5f5c5c;\n}\n#menu .menu .row .col-12 .dish .price[data-v-2478efb1] {\n  width: 20%;\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .price h1[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 700;\n  color: #2dccbc;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  background-color: black;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1]:hover {\n  border: none;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter[data-v-2478efb1] {\n  width: 100%;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div[data-v-2478efb1] {\n  width: 70px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div span[data-v-2478efb1] {\n  color: white;\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt:hover span[data-v-2478efb1] {\n  color: black;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n#menu .cart[data-v-2478efb1] {\n  box-sizing: border-box;\n  min-width: 100vw;\n  height: 60vh;\n  background-color: black;\n  position: fixed;\n  bottom: 0;\n  overflow-y: scroll;\n  z-index: 3;\n}\n#menu .cart .row[data-v-2478efb1] {\n  padding: 50px 200px;\n}\n#menu .cart .row .col-12 .cartTitle[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .cartTitle h1[data-v-2478efb1] {\n  color: white;\n  font-size: 40px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .close[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .close img[data-v-2478efb1] {\n  height: 30px;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1] {\n  padding: 30px 0px;\n  border-bottom: 1px solid white;\n  flex-basis: 47%;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1]:nth-child(n) {\n  margin-right: 20px;\n}\n#menu .cart .row .col-12 .order .dishes[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext[data-v-2478efb1] {\n  margin-left: 30px;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h3[data-v-2478efb1] {\n  color: white;\n  font-size: 18px;\n  font-weight: 600;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h6[data-v-2478efb1] {\n  color: white;\n  font-size: 15px;\n  font-weight: 300;\n}\n#menu .cart .row .col-12 .price[data-v-2478efb1] {\n  width: 30%;\n  margin: 0 10px;\n}\n#menu .cart .row .col-12 .price h1[data-v-2478efb1] {\n  color: #2fbcae;\n  font-size: 30px;\n  font-weight: 200;\n  line-height: 30px;\n}\n#menu .cart .row .col-12 .delete button[data-v-2478efb1] {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 22px;\n  font-weight: 400;\n}\n#menu .cart .col-6[data-v-2478efb1] {\n  margin: 30px 0;\n}\n#menu .cart .col-6 h1[data-v-2478efb1] {\n  color: white;\n  font-size: 30px;\n  font-weight: 900;\n}\n#menu .cart .col-6 h1[data-v-2478efb1]:last-child {\n  color: #2fbcae;\n}\n#menu .cart .col-6 .btn-light[data-v-2478efb1] {\n  background-color: #b3f5fd;\n  border: none;\n  height: 40px;\n  border-radius: 30px;\n  padding: 0 85px;\n}\n#menu .cart .col-6 .btn-light[data-v-2478efb1]:hover {\n  background-color: white;\n}\n#menu .cart .col-6 .btn-light span[data-v-2478efb1] {\n  color: black;\n  font-weight: 600;\n  font-size: 15px;\n  line-height: 30px;\n}\n#menu .cart .col-6 .btn-light span[data-v-2478efb1]:hover {\n  text-decoration: none;\n}\n#menu .cartButton[data-v-2478efb1] {\n  box-sizing: border-box;\n  width: 80px;\n  position: fixed;\n  top: 20px;\n  right: 25px;\n  z-index: 2;\n}\n#menu .cartButton .row[data-v-2478efb1] {\n  width: 100%;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2478efb1] {\n  height: 60px;\n  width: 60px;\n  border: 4px solid black;\n  border-radius: 50%;\n  background-color: white;\n}\n#menu .cartButton .row .col-1 .roundedCart img[data-v-2478efb1] {\n  height: 30px;\n  width: 30px;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  border: none;\n}", ""]);
+exports.push([module.i, "#menu .restaurant[data-v-2478efb1] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n#menu .restaurant .row .col-12 h1[data-v-2478efb1] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n#menu .menu[data-v-2478efb1] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n#menu .menu .row .col-12[data-v-2478efb1] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n#menu .menu .row .col-12 .dish[data-v-2478efb1] {\n  padding: 20px 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishImg[data-v-2478efb1] {\n  width: 100px;\n  height: 100px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext[data-v-2478efb1] {\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2478efb1] {\n  font-size: 25px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2478efb1] {\n  font-size: 12px;\n  font-weight: 400;\n  color: #5f5c5c;\n}\n#menu .menu .row .col-12 .dish .price[data-v-2478efb1] {\n  width: 20%;\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .price h1[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 700;\n  color: #2dccbc;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  background-color: black;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1]:hover {\n  border: none;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter[data-v-2478efb1] {\n  width: 100%;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div[data-v-2478efb1] {\n  width: 70px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div span[data-v-2478efb1] {\n  color: white;\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt:hover span[data-v-2478efb1] {\n  color: black;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n#menu .cart[data-v-2478efb1] {\n  box-sizing: border-box;\n  min-width: 100vw;\n  height: 50vh;\n  background-color: black;\n  position: fixed;\n  bottom: 0;\n  overflow-y: scroll;\n  z-index: 3;\n}\n#menu .cart .row[data-v-2478efb1] {\n  padding: 50px 200px;\n}\n#menu .cart .row .col-12 .cartTitle[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .cartTitle h1[data-v-2478efb1] {\n  color: white;\n  font-size: 40px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .close[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .close img[data-v-2478efb1] {\n  height: 30px;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1] {\n  margin-bottom: 10px;\n  padding: 15px 30px;\n  border: 1px solid white;\n  border-radius: 50px;\n  flex-basis: 47%;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1]:hover {\n  border: none;\n  background: #b3f5fd;\n}\n#menu .cart .row .col-12 .order:hover .dishes .dishtext h3[data-v-2478efb1] {\n  color: black;\n}\n#menu .cart .row .col-12 .order:hover .dishes .dishtext h6[data-v-2478efb1] {\n  color: black;\n}\n#menu .cart .row .col-12 .order:hover .price h1[data-v-2478efb1] {\n  color: black;\n  font-weight: 700;\n}\n#menu .cart .row .col-12 .order:hover .delete button[data-v-2478efb1] {\n  color: black;\n  font-weight: 700;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1]:nth-child(n) {\n  margin-right: 20px;\n}\n#menu .cart .row .col-12 .order .dishes[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext[data-v-2478efb1] {\n  margin-left: 30px;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h3[data-v-2478efb1] {\n  color: white;\n  font-size: 18px;\n  font-weight: 600;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h6[data-v-2478efb1] {\n  color: white;\n  font-size: 15px;\n  font-weight: 300;\n}\n#menu .cart .row .col-12 .price[data-v-2478efb1] {\n  width: 30%;\n  margin: 0 10px;\n}\n#menu .cart .row .col-12 .price h1[data-v-2478efb1] {\n  color: #2fbcae;\n  font-size: 30px;\n  font-weight: 200;\n  line-height: 30px;\n}\n#menu .cart .row .col-12 .delete button[data-v-2478efb1] {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 22px;\n  font-weight: 400;\n}\n#menu .cart .col-6[data-v-2478efb1] {\n  margin: 30px 0;\n}\n#menu .cart .col-6 h1[data-v-2478efb1] {\n  color: white;\n  font-size: 30px;\n  font-weight: 900;\n}\n#menu .cart .col-6 h1[data-v-2478efb1]:last-child {\n  color: #2fbcae;\n}\n#menu .cart .col-6 .btn-light[data-v-2478efb1] {\n  background-color: #b3f5fd;\n  border: none;\n  height: 40px;\n  border-radius: 30px;\n  padding: 0 85px;\n}\n#menu .cart .col-6 .btn-light[data-v-2478efb1]:hover {\n  background-color: white;\n}\n#menu .cart .col-6 .btn-light span[data-v-2478efb1] {\n  color: black;\n  font-weight: 600;\n  font-size: 15px;\n  line-height: 30px;\n}\n#menu .cart .col-6 .btn-light span[data-v-2478efb1]:hover {\n  text-decoration: none;\n}\n#menu .cartButton[data-v-2478efb1] {\n  box-sizing: border-box;\n  width: 80px;\n  position: fixed;\n  top: 50vh;\n  right: 25px;\n  z-index: 2;\n}\n#menu .cartButton .row[data-v-2478efb1] {\n  width: 100%;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2478efb1] {\n  height: 60px;\n  width: 60px;\n  border: 4px solid black;\n  border-radius: 50%;\n  background-color: white;\n}\n#menu .cartButton .row .col-1 .roundedCart img[data-v-2478efb1] {\n  height: 30px;\n  width: 30px;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  border: none;\n}", ""]);
 
 // exports
 
@@ -8388,7 +8391,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#infoSectionHome[data-v-a2af9f00] {\n  height: 60vh;\n}\nimg[data-v-a2af9f00] {\n  height: 300px;\n  outline: none !important;\n}\nimg[data-v-a2af9f00]:hover {\n  outline: none !important;\n}", ""]);
+exports.push([module.i, "#infoSectionHome[data-v-a2af9f00] {\n  height: 60vh;\n}\nimg[data-v-a2af9f00] {\n  outline: none !important;\n}\nimg[data-v-a2af9f00]:hover {\n  outline: none !important;\n}\n@media (max-width: 576px) {\nimg[data-v-a2af9f00] {\n    height: 200px;\n}\n}\n@media (min-width: 577px) and (max-width: 768px) {\nimg[data-v-a2af9f00] {\n    height: 250px;\n}\n}\n@media (min-width: 769px) and (max-width: 992px) {\nimg[data-v-a2af9f00] {\n    height: 300px;\n}\n}\n@media (min-width: 1200px) {\nimg[data-v-a2af9f00] {\n    height: 350px;\n}\n}", ""]);
 
 // exports
 
@@ -8426,7 +8429,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#becomePartner[data-v-d8efec3c] {\n  height: 70vh;\n  position: relative;\n  background-size: cover;\n  background-position: center;\n  background-color: rgba(0, 0, 0, 0.6);\n  background-blend-mode: multiply;\n}\n#becomePartner h1[data-v-d8efec3c] {\n  color: #fff;\n}\n#becomePartner #centerMe[data-v-d8efec3c] {\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n}\n#becomePartner span[data-v-d8efec3c] {\n  color: #fff;\n}", ""]);
+exports.push([module.i, "#becomePartner[data-v-d8efec3c] {\n  height: 70vh;\n  position: relative;\n  background-size: cover;\n  background-position: center;\n  background-color: rgba(0, 0, 0, 0.6);\n  background-blend-mode: multiply;\n}\n#becomePartner h1[data-v-d8efec3c] {\n  color: #fff;\n}\n#becomePartner .container[data-v-d8efec3c] {\n  height: 100%;\n}\n#becomePartner span[data-v-d8efec3c] {\n  color: #fff;\n}", ""]);
 
 // exports
 
@@ -40735,73 +40738,57 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("footer", [
-    _c("div", { staticClass: "container p-5" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-3" }, [
-          _c(
-            "ul",
-            [
-              _vm._m(0),
-              _vm._v(" "),
-              _vm._l(_vm.work, function(link, index) {
-                return _c("li", { key: index }, [
-                  _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(link))])
-                ])
-              })
-            ],
-            2
-          )
-        ]),
-        _vm._v(" "),
+  return _c("div", { staticClass: "container p-5" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-3 col-sm-6 mb-4" }, [
         _c(
-          "div",
-          {
-            staticClass:
-              "col-3 d-flex flex-column justify-content-start align-items-start"
-          },
+          "ul",
           [
-            _c(
-              "ul",
-              [
-                _vm._m(1),
-                _vm._v(" "),
-                _vm._l(_vm.legal, function(link, index) {
-                  return _c("li", { key: index }, [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(link))])
-                  ])
-                })
-              ],
-              2
-            )
-          ]
-        ),
-        _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._l(_vm.work, function(link, index) {
+              return _c("li", { key: index }, [
+                _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(link))])
+              ])
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-3 col-sm-6 mb-4" }, [
         _c(
-          "div",
-          {
-            staticClass:
-              "col-3 d-flex flex-column justify-content-start align-items-start"
-          },
+          "ul",
           [
-            _c(
-              "ul",
-              [
-                _vm._m(2),
-                _vm._v(" "),
-                _vm._l(_vm.help, function(link, index) {
-                  return _c("li", { key: index }, [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(link))])
-                  ])
-                })
-              ],
-              2
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _vm._m(3)
-      ])
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._l(_vm.legal, function(link, index) {
+              return _c("li", { key: index }, [
+                _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(link))])
+              ])
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-3 col-sm-6 mb-4" }, [
+        _c(
+          "ul",
+          [
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._l(_vm.help, function(link, index) {
+              return _c("li", { key: index }, [
+                _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(link))])
+              ])
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _vm._m(3)
     ])
   ])
 }
@@ -40810,7 +40797,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [_c("h6", [_vm._v("LAVORA CON NOI")])])
+    return _c("li", [_c("h5", [_vm._v("LAVORA CON NOI")])])
   },
   function() {
     var _vm = this
@@ -40828,37 +40815,30 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "col-3 d-flex flex-column justify-content-start align-items-start"
-      },
-      [
-        _c("h5", [_vm._v("SEGUICI SUI SOCIAL")]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "d-flex justify-content-between align-items-center social"
-          },
-          [
-            _c("img", {
-              attrs: { src: "/img/homepage/icon/twitter.png", alt: "" }
-            }),
-            _vm._v(" "),
-            _c("img", {
-              attrs: { src: "/img/homepage/icon/Facebook.png", alt: "" }
-            }),
-            _vm._v(" "),
-            _c("img", {
-              attrs: { src: "/img/homepage/icon/Instagram.png", alt: "" }
-            })
-          ]
-        )
-      ]
-    )
+    return _c("div", { staticClass: "col-lg-3 col-sm-6 mb-4" }, [
+      _c("h5", [_vm._v("SEGUICI SUI SOCIAL")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "d-flex justify-content-between align-items-center social"
+        },
+        [
+          _c("img", {
+            attrs: { src: "/img/homepage/icon/twitter.png", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("img", {
+            attrs: { src: "/img/homepage/icon/Facebook.png", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("img", {
+            attrs: { src: "/img/homepage/icon/Instagram.png", alt: "" }
+          })
+        ]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -40882,10 +40862,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container", staticStyle: { "margin-top": "120px" } },
-    [
+  return _c("section", [
+    _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-6 info d-flex p-0" }, [
           _c(
@@ -40922,9 +40900,28 @@ var render = function() {
             ])
           ]
         )
-      ])
-    ]
-  )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-6 circle d-flex justify-content-center align-items-center p-0"
+        },
+        [
+          _c("div", { staticClass: "resturantImage" }, [
+            _c("img", {
+              attrs: {
+                id: "restaurant_img",
+                alt: "ok",
+                src: "/img/restaurant/" + _vm.restaurantData.image_url
+              }
+            })
+          ])
+        ]
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -41514,85 +41511,25 @@ var render = function() {
                   "div",
                   {
                     staticClass:
-                      "price d-flex justify-content-end align-items-center"
+                      "price d-flex justify-content-center align-items-center"
                   },
                   [_c("h1", [_vm._v(_vm._s(dish.price) + "€")])]
                 ),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "counter-box d-flex justify-content-end align-items-center"
-                  },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "counter d-flex justify-content-between" },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "bt",
-                            on: {
-                              click: function($event) {
-                                return _vm.changeCounter("-", i)
-                              }
-                            }
-                          },
-                          [
-                            _c(
-                              "span",
-                              {
-                                attrs: {
-                                  ondragstart: "return false",
-                                  onselectstart: "return false"
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                  -\n                "
-                                )
-                              ]
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: " " }, [
-                          _c("span", [_vm._v(" " + _vm._s(dish.counter) + " ")])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "bt",
-                            on: {
-                              click: function($event) {
-                                return _vm.changeCounter("+", i)
-                              }
-                            }
-                          },
-                          [
-                            _c(
-                              "span",
-                              {
-                                attrs: {
-                                  ondragstart: "return false",
-                                  onselectstart: "return false"
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                  +\n                "
-                                )
-                              ]
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  ]
-                )
+                _c("div", { staticClass: "button" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "black-button",
+                      on: {
+                        click: function($event) {
+                          return _vm.putInCart(i)
+                        }
+                      }
+                    },
+                    [_vm._v(" \n              Ordina +\n            ")]
+                  )
+                ])
               ]
             )
           }),
@@ -41628,46 +41565,14 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "col-12 d-flex flex-row flex-wrap" },
+              { staticClass: "col-12 d-flex flex-row flex-wrap " },
               _vm._l(_vm.cart, function(order, ind) {
                 return _c("div", { key: ind, staticClass: "order d-flex" }, [
                   _c(
                     "div",
                     {
                       staticClass:
-                        "quantity d-flex justify-content-start align-items-center"
-                    },
-                    [
-                      _c("ul", { staticClass: "oval-white-button" }, [
-                        _c("li", { staticClass: "notselected" }, [
-                          _c("img", { attrs: { src: "", alt: "" } }),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              attrs: {
-                                ondragstart: "return false",
-                                onselectstart: "return false"
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                  x" +
-                                  _vm._s(order.counter) +
-                                  "\n                "
-                              )
-                            ]
-                          )
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "dishes d-flex justify-content-start align-items-center"
+                        "dishes d-flex  justify-content-start align-items-center"
                     },
                     [
                       _c("div", { staticClass: "dishImg" }, [
@@ -41682,16 +41587,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "dishtext" }, [
-                        _c("h3", [_vm._v(_vm._s(order.dishName))]),
-                        _vm._v(" "),
-                        _c("h6", [
-                          _vm._v(
-                            _vm._s(order.dishPrice) +
-                              " € x " +
-                              _vm._s(order.counter) +
-                              " ="
-                          )
-                        ])
+                        _c("h3", [_vm._v(_vm._s(order.dishName))])
                       ])
                     ]
                   ),
@@ -41774,7 +41670,7 @@ var render = function() {
         "div",
         { staticClass: "row d-flex justify-content-center align-items-center" },
         [
-          _c("div", { staticClass: "col-1 " }, [
+          _c("div", { staticClass: "col-1" }, [
             _c(
               "div",
               {
@@ -41836,7 +41732,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", [
-    _c("div", { staticClass: "container cart" }, [
+    _c("div", { staticClass: "container cart mt-120" }, [
       _c("div", { staticClass: "row" }, [
         _vm._m(0),
         _vm._v(" "),
@@ -41966,7 +41862,8 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "col d-flex justify-content-start align-items-center"
+              staticClass:
+                "col-lg-12 d-flex justify-content-start align-items-center"
             },
             [
               _c("div", { staticClass: "resturantImage m-5" }, [
@@ -41992,7 +41889,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "col-3 d-flex justify-content-center align-items-center new-dish-button"
+                "col-lg-3 d-flex justify-content-center align-items-center new-dish-button"
             },
             [_c("a", { attrs: { href: _vm.createdish } }, [_vm._m(0)])]
           ),
@@ -42001,7 +41898,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "col-3 d-flex flex-column justify-content-center align-items-center orders-button"
+                "col-lg-3 d-flex flex-column justify-content-center align-items-center orders-button"
             },
             [_c("a", { attrs: { href: _vm.orderlist } }, [_vm._m(1)])]
           ),
@@ -42012,7 +41909,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "col-3 d-flex flex-column justify-content-center align-items-center orders-button"
+                "col-lg-3 d-flex flex-column justify-content-center align-items-center orders-button"
             },
             [
               _c(
@@ -42027,7 +41924,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row m-3" }, [
-          _c("div", { staticClass: "col-12 mb-5 mt-5" }, [
+          _c("div", { staticClass: "col-12" }, [
             _c("h1", [_vm._v("Gestione Menù")]),
             _vm._v(" "),
             _c("input", {
@@ -42074,7 +41971,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-2 d-flex justify-content-center align-items-center"
+                  "col-lg-2 d-flex justify-content-center align-items-center"
               },
               [
                 _c("div", [
@@ -42093,7 +41990,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-3 d-flex justify-content-center align-items-center"
+                  "col-lg-3 d-flex justify-content-center align-items-center"
               },
               [
                 _c(
@@ -42127,7 +42024,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-3 d-flex justify-content-center align-items-center"
+                  "col-lg-3 d-flex justify-content-center align-items-center"
               },
               [_c("p", [_vm._v(_vm._s(filteredDish.price) + "€")])]
             ),
@@ -42136,7 +42033,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-4 d-flex justify-content-center align-items-center"
+                  "col-lg-4 d-flex justify-content-center align-items-center"
               },
               [
                 _c(
@@ -42194,7 +42091,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-2 d-flex justify-content-center align-items-center"
+                  "col-lg-2 d-flex justify-content-center align-items-center"
               },
               [
                 _c("div", [
@@ -42210,7 +42107,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-3 d-flex justify-content-start align-items-center"
+                  "col-lg-3 d-flex justify-content-start align-items-center"
               },
               [
                 _c(
@@ -42242,7 +42139,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-3 d-flex justify-content-center align-items-center"
+                  "col-lg-3 d-flex justify-content-center align-items-center"
               },
               [_c("p", [_vm._v(_vm._s(dish.price) + "€")])]
             ),
@@ -42251,7 +42148,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-4 d-flex justify-content-center align-items-center"
+                  "col-lg-4 d-flex justify-content-center align-items-center"
               },
               [
                 _c(
@@ -42342,7 +42239,7 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "col-3 d-flex flex-column justify-content-center align-items-center orders-button"
+          "col-lg-3 d-flex flex-column justify-content-center align-items-center orders-button"
       },
       [
         _c("a", { attrs: { href: "/chart" } }, [
@@ -42386,7 +42283,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row m-3" }, [
-      _c("div", { staticClass: "col-12" }, [
+      _c("div", { staticClass: "col-lg-12" }, [
         _c("h1", [_vm._v("Tutti i piatti")])
       ])
     ])
@@ -42413,19 +42310,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", [
-    _c(
-      "button",
-      { staticClass: "notselected", attrs: { value: _vm.value, id: _vm.id } },
-      [
-        _c("img", {
-          staticClass: "icon",
-          attrs: { src: _vm.categoryImg, alt: "" }
-        }),
-        _vm._v("\n    " + _vm._s(_vm.categoryName) + "\n  ")
-      ]
-    )
-  ])
+  return _c(
+    "div",
+    {
+      staticClass:
+        "col-2 col-lg-1 mb-2 d-flex justify-content-center align-items-center oval-button"
+    },
+    [
+      _c(
+        "button",
+        { staticClass: "notselected", attrs: { value: _vm.value, id: _vm.id } },
+        [
+          _c("img", {
+            staticClass: "icon",
+            attrs: { src: _vm.categoryImg, alt: "" }
+          }),
+          _vm._v("\r\n      " + _vm._s(_vm.categoryName) + "\r\n    ")
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -42457,7 +42361,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { attrs: { id: "infoSectionHome" } }, [
-      _c("div", { staticClass: "container mt-5 mb-5 " }, [
+      _c("div", { staticClass: "container mt-5 mb-5" }, [
         _c(
           "div",
           {
@@ -42468,7 +42372,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass:
-                  "col-6 d-flex justify-align-content-center align-items-center"
+                  "col-sm-12 col-lg-6 d-flex justify-content-center align-items-center"
               },
               [
                 _c("img", {
@@ -42481,7 +42385,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass:
-                  "col-6 d-flex flex-column justify-content-center align-items-center"
+                  "col-sm-12 col-lg-6 d-flex flex-column justify-content-center align-items-center"
               },
               [
                 _c("h1", [
@@ -42490,10 +42394,12 @@ var staticRenderFns = [
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
-                    "\n          La fame ti ha preso di sprovvista? Con pochi click puoi ordinare direttamente dai tuoi ristoranti preferiti. "
+                    "\n          La fame ti ha preso di sprovvista? Con pochi click puoi ordinare\n          direttamente dai tuoi ristoranti preferiti. "
                   ),
                   _c("br"),
-                  _vm._v(" Il cibo arriverà direttamente a casa tua!\n        ")
+                  _vm._v(
+                    "\n          Il cibo arriverà direttamente a casa tua!\n        "
+                  )
                 ])
               ]
             )
@@ -42525,7 +42431,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "section",
+    "div",
     { attrs: { id: "join-component" } },
     [
       _c("header", [
@@ -42646,35 +42552,42 @@ var render = function() {
       attrs: { id: "becomePartner" }
     },
     [
-      _c("div", { staticClass: "container mt-5 mb-5" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col p-5", attrs: { id: "centerMe" } }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "mt-5" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "primary-button",
-                  attrs: { href: _vm.loginlink }
-                },
-                [_vm._v("Effettua il login")]
-              ),
+      _c(
+        "div",
+        {
+          staticClass:
+            "container mt-5 mb-5 d-flex justify-content-start align-items-center"
+        },
+        [
+          _c("div", { staticClass: "row " }, [
+            _c("div", { staticClass: "col-12 p-5" }, [
+              _vm._m(0),
               _vm._v(" "),
-              _c("span", [_vm._v(" - o - ")]),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "primary-button",
-                  attrs: { href: _vm.registerlink }
-                },
-                [_vm._v("Registrati Subito")]
-              )
+              _c("div", { staticClass: "mt-5" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "primary-button",
+                    attrs: { href: _vm.loginlink }
+                  },
+                  [_vm._v("Effettua il login")]
+                ),
+                _vm._v(" "),
+                _c("span", [_vm._v(" - o - ")]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "primary-button",
+                    attrs: { href: _vm.registerlink }
+                  },
+                  [_vm._v("Registrati Subito")]
+                )
+              ])
             ])
           ])
-        ])
-      ])
+        ]
+      )
     ]
   )
 }
@@ -42686,9 +42599,7 @@ var staticRenderFns = [
     return _c("h1", [
       _vm._v("\n          Sei un ristoratore? "),
       _c("br"),
-      _vm._v("\n          Diventa nostro "),
-      _c("br"),
-      _vm._v("\n          Partner\n        ")
+      _vm._v("\n          Diventa nostro partner\n        ")
     ])
   }
 ]
@@ -42717,7 +42628,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "col-6 d-flex justify-content-between align-items-center mb-3"
+        "col-lg-6 d-flex justify-content-between align-items-center mb-3"
     },
     [
       _c(
@@ -42791,15 +42702,12 @@ var render = function() {
       _c(
         "div",
         { staticClass: "row m-4", attrs: { id: "resturants-buttons" } },
-        [
-          _c("div", { staticClass: "col-12" }, [
-            _c("ul", { staticClass: "oval-button" }, [_vm._t("buttons")], 2)
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "row m-4" }, [_vm._t("resturant")], 2)
-    ])
+        [_vm._t("buttons")],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row m-4" }, [_vm._t("resturant")], 2)
   ])
 }
 var staticRenderFns = [
@@ -42808,7 +42716,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row m-4" }, [
-      _c("div", { staticClass: "col-12" }, [
+      _c("div", { staticClass: "col-lg-12" }, [
         _c("h1", [_vm._v("Seleziona una tipologia di ristorante")])
       ])
     ])
@@ -56755,8 +56663,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\NoSync\deliverboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\NoSync\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! F:\User Folders\Documenti\GitHub\deliverboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! F:\User Folders\Documenti\GitHub\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

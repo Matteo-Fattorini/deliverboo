@@ -1,5 +1,5 @@
 <template>
-  <section id="join-component">
+  <div id="join-component">
     <header>
       <div id="bg">
         <div class="d-flex justify-content-center align-items-center">
@@ -37,7 +37,7 @@
         :link="'/restaurant/' + restaurant.id"
       />
     </ResturantSectionHome>
-  </section>
+  </div>
 </template>
 <script>
 import ResturantSectionHome from "./ResturantSectionHome.vue";
@@ -60,7 +60,6 @@ export default {
   },
   methods: {
     search() {
-
       this.restaurants = [];
       let el = document.getElementById("resturant-type");
       el.scrollIntoView({behavior: 'smooth'});

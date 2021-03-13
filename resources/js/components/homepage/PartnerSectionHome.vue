@@ -1,12 +1,11 @@
 <template>
   <section id="becomePartner" class="d-flex flex-column justify-content-end">
-    <div class="container mt-5 mb-5">
-      <div class="row">
-        <div id="centerMe" class="col p-5">
+    <div class="container mt-5 mb-5 d-flex justify-content-start align-items-center" >
+      <div class="row ">
+        <div  class="col-12 p-5">
           <h1>
             Sei un ristoratore? <br />
-            Diventa nostro <br />
-            Partner
+            Diventa nostro partner
           </h1>
           <div class="mt-5">
             <a :href="loginlink" class="primary-button">Effettua il login</a>
@@ -40,11 +39,14 @@ export default {
   h1 {
     color: #fff;
   }
-  #centerMe{
-    position:absolute;
-    top: 50%;
-    transform: translateY(-50%);
+  .container{
+    height: 100%;
   }
+  // #centerMe{
+  //   position:absolute;
+  //   top: 50%;
+  //   transform: translateY(-50%);
+  // }
   span {
     color: #fff;
   }

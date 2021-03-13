@@ -1,11 +1,10 @@
 <template>
-  <footer>
     <div class="container p-5">
-      <div class="row">
-        <div class="col-3">
+      <div class="row"> 
+        <div class="col-lg-3 col-sm-6 mb-4">
           <ul>
             <li>
-              <h6>LAVORA CON NOI</h6>
+              <h5>LAVORA CON NOI</h5>
             </li>
             <li v-for="(link, index) in work" :key="index">
               <a href="#">{{ link }}</a>
@@ -13,7 +12,7 @@
           </ul>
         </div>
         <div
-          class="col-3 d-flex flex-column justify-content-start align-items-start"
+          class="col-lg-3 col-sm-6 mb-4"
         >
           <ul>
             <li>
@@ -25,7 +24,7 @@
           </ul>
         </div>
         <div
-          class="col-3 d-flex flex-column justify-content-start align-items-start"
+          class="col-lg-3 col-sm-6 mb-4"
         >
           <ul>
             <li>
@@ -37,7 +36,7 @@
           </ul>
         </div>
         <div
-          class="col-3 d-flex flex-column justify-content-start align-items-start"
+          class="col-lg-3 col-sm-6 mb-4"
         >
           <h5>SEGUICI SUI SOCIAL</h5>
           <div class="d-flex justify-content-between align-items-center social">
@@ -48,7 +47,6 @@
         </div>
       </div>
     </div>
-  </footer>
 </template>
 
 <script>
@@ -65,35 +63,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-footer {
-
-  background-color: black;
-  color: white;
-  .container{
-    height: 500px;
-  }
-
-  .row{
-    padding-top: 50px;
-  }
-
-  a {
-    color: #fff;
-    text-decoration: none;
-  }
-  a:hover{
-    text-decoration: underline;
-  }
-  
-  div.social{
-    width:70%;
-    img{
-      width:30px;
-      margin-right:30px;
-    }
-  }
-  li{
-    line-height:3rem;
-  }
+.container{
+  height: auto;
 }
 </style>

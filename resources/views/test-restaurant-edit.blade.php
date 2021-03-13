@@ -12,23 +12,23 @@
                 </div>
                 <div class="row">
                     <input type="hidden" name="_method" value="PUT">
-                    <div class="col-6 mb-3">
+                    <div class="col-lg-6 mb-3">
                         <input name="name" type="text" class="custom-input" id="name" aria-describedby="emailHelp"
                             placeholder="Nome Ristorante" value="{{ $restaurant->name }}">
                     </div>
-                    <div class="col-6 mb-3">
+                    <div class="col-lg-6 mb-3">
                         <input name="p_iva" type="text" class="custom-input" id="p_iva" aria-describedby="emailHelp"
                             placeholder="Partita IVA" value="{{ $restaurant->p_iva }}">
                     </div>
-                    <div class="col-12 mb-3">
+                    <div class="col-lg-12 mb-3">
                         <input name="address" type="text" class="custom-input" id="address" aria-describedby="emailHelp"
                             placeholder="Indirizzo Ristorante" value="{{ $restaurant->address }}">
                     </div>
-                    <div class=" col-12 mb-3">
+                    <div class=" col-lg-12 mb-3">
                         <label for="image" class="form-label">Seleziona l'immagine del ristorante</label>
                         <input name="image" type="file" class="custom-input" id="image">
                     </div>
-                    <div class="col-12 mb-3">
+                    <div class="col-lg-12 mb-3">
                         <p>Modifica la tipologia di ristorante</p>
                         @foreach ($types as $type)
                             <input class="checkbox-tools" name="types[]" type="checkbox" value="{{ $type['id'] }}"
@@ -41,10 +41,10 @@
                         </label>
                         @endforeach
                     </div>
-                    <div class="col-12">
+                    <div class="col-lg-12">
                         <button class="primary-button" type="submit">APPLICA LE MODIFICHE</button>
                     </div>
-                    <div class="col-12">
+                    <div class="col-lg-12">
                         @if ($errors->any())
                             <div class="alert alert-danger mt-5">
                                 <ul>

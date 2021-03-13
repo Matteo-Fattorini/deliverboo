@@ -2,15 +2,12 @@
   <section id="resturant-type">
     <div class="container mt-5 mb-5">
       <div class="row m-4">
-        <div class="col-12">
+        <div class="col-lg-12">
           <h1>Seleziona una tipologia di ristorante</h1>
         </div>
       </div>
       <div class="row m-4" id="resturants-buttons">
-        <div class="col-12">
-          <ul class="oval-button">
             <slot name="buttons"></slot>
-          </ul>
         </div>
       </div>
       <div class="row m-4">
