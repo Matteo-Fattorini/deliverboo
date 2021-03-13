@@ -46,7 +46,6 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  margin-top: 30px;
   margin-bottom: 50px;
   .row {
     .circle {

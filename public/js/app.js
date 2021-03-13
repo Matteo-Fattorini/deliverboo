@@ -2703,16 +2703,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "MenuGenre",
   props: {
@@ -2727,6 +2717,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       categorySelect: "",
       count: [],
       orders: [],
+      quantity: [],
       cartActive: false,
       // cartElements:[],
       // cartFiltered:[],
@@ -2786,6 +2777,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return e.get_genre.name.includes(_this2.categorySelect);
       });
     },
+    filteredCart: function filteredCart() {
+      return this.cart.filter(function (order, index, self) {
+        return index === self.findIndex(function (o, i) {
+          return o.dishId === order.dishId;
+        });
+      });
+    },
     //calcola il totale del carrello e lo trasforma in formato prezzo
     TotalPrice: function TotalPrice() {
       return new Intl.NumberFormat("it-IT", {
@@ -2806,8 +2804,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.filtered.forEach(function (dish, i) {
         if (direction == "+" && i === index) {
-          dish.counter++; //aumenta il contatore di 1
-
           _this3.putInCart(i); //attiva funzione di creazione ordine e carrello
 
 
@@ -2817,10 +2813,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             //blocca il counter a 0
             _this3.cartActive = false; // chiude sezione carrello
           } else {
-            dish.counter--; //decrementa il contatore
-
-            _this3.deleteOrder(i); //attiva funzione di cancellazione degli elementi
-
+            _this3.deleteOrder(index);
           }
         }
       });
@@ -2830,35 +2823,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this4 = this;
 
       this.filtered.forEach(function (dish, i) {
-        if (index === i && dish.counter != 0 && dish.name) {
+        if (index === i && dish.counter >= 0) {
           _this4.cart.push({
             //se attivo filtro this.cart diventa this.cartElement
             dishId: dish.id,
-            quantity: dish.counter,
             dishName: dish.name,
             dishImgUrl: dish.image_url,
-            dishPrice: dish.price // totalPrice: parseFloat(dish.price) * dish.counter,
-
+            dishPrice: dish.price
           });
+
+          _this4.cartActive = true;
 
           _this4.orders.push({
             dishId: dish.id
-          }); //ID piatti nel carrello
+          }); //quantità piatti nel carrello
+          // this.quantity = this.cart.map(e=>{
+          //   this.quantity = e.quantity;
+          //   return this.quantity
+          // })
+          // console.log('quantità');console.log(this.quantity);
+          //ID piatti nel carrello
 
 
           _this4.dishInCart = _this4.orders.map(function (e) {
             _this4.order = e.dishId;
             return _this4.order;
           });
-          console.log("ordine nel carrello");
-          console.log(_this4.dishInCart); // DA RIVEDERE
-          //filtro carrello
-
-          _this4.cartFiltered = _this4.cart.filter(function (order, index, self) {
-            return index === self.findIndex(function (o) {
-              return o.dishId === order.dishId;
-            });
-          }); //TOTALE ORDINE
+          console.log('ordine nel carrello');
+          console.log(_this4.dishInCart); //TOTALE ORDINE
 
           _this4.total = _this4.cart.reduce(function (total, order) {
             return total + parseFloat(order.dishPrice);
@@ -2877,6 +2869,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           console.log("CART FILTRO");
           console.log(_this4.cartFiltered);
           console.log("CART FINALE");
+          console.log('quantity');
+          console.log(_this4.quantity);
           console.log(_this4.cart);
           console.log("Dish");
           console.log(_this4.dishInCart);
@@ -2887,11 +2881,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     //ELIMINA UN ORDINE QUANDO VIENE CLICCATO - SUL CONTATORE
     deleteOrder: function deleteOrder(delIndex) {
-      this.cart.splice(delIndex, 1);
-      this.orders.splice(delIndex, 1);
-      this.total = this.cart.reduce(function (total, order) {
-        return total + parseFloat(order.dishPrice);
-      }, 0);
+      var _this5 = this;
+
+      this.filtered.forEach(function (dish, i) {
+        dish.counter = 0;
+
+        _this5.filteredCart.splice(delIndex, 1);
+
+        _this5.cart.splice(delIndex);
+
+        _this5.orders.splice(delIndex, 1);
+
+        _this5.total = _this5.cart.reduce(function (total, order) {
+          return total + parseFloat(order.dishPrice);
+        }, 0);
+      });
       this.saveCart();
       this.saveDish();
       this.saveRestaurant();
@@ -8292,7 +8296,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#menu .restaurant[data-v-2bac63c8] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n#menu .restaurant .row .col-12 h1[data-v-2bac63c8] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n#menu .menu[data-v-2bac63c8] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n#menu .menu .row .col-12[data-v-2bac63c8] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n#menu .menu .row .col-12 .dish[data-v-2bac63c8] {\n  padding: 20px 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo[data-v-2bac63c8] {\n  width: 60%;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishImg[data-v-2bac63c8] {\n  width: 100px;\n  height: 100px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext[data-v-2bac63c8] {\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2bac63c8] {\n  font-size: 25px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2bac63c8] {\n  font-size: 12px;\n  font-weight: 400;\n  color: #5f5c5c;\n}\n#menu .menu .row .col-12 .dish .price[data-v-2bac63c8] {\n  width: 20%;\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .price h1[data-v-2bac63c8] {\n  font-size: 30px;\n  font-weight: 700;\n  color: #2dccbc;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2bac63c8] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  background-color: black;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2bac63c8]:hover {\n  border: none;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter[data-v-2bac63c8] {\n  width: 100%;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div[data-v-2bac63c8] {\n  width: 70px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div span[data-v-2bac63c8] {\n  color: white;\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt:hover span[data-v-2bac63c8] {\n  color: black;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2bac63c8] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n#menu .cart[data-v-2bac63c8] {\n  box-sizing: border-box;\n  min-width: 100vw;\n  height: 60vh;\n  background-color: black;\n  position: fixed;\n  bottom: 0;\n  overflow-y: scroll;\n  z-index: 3;\n}\n#menu .cart .row[data-v-2bac63c8] {\n  padding: 50px 200px;\n}\n#menu .cart .row .col-12 .cartTitle[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .cartTitle h1[data-v-2bac63c8] {\n  color: white;\n  font-size: 40px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .close[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .close img[data-v-2bac63c8] {\n  height: 30px;\n}\n#menu .cart .row .col-12 .order[data-v-2bac63c8] {\n  padding: 30px 0px;\n  border-bottom: 1px solid white;\n  flex-basis: 47%;\n}\n#menu .cart .row .col-12 .order[data-v-2bac63c8]:nth-child(n) {\n  margin-right: 20px;\n}\n#menu .cart .row .col-12 .order .dishes[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext[data-v-2bac63c8] {\n  margin-left: 30px;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h3[data-v-2bac63c8] {\n  color: white;\n  font-size: 18px;\n  font-weight: 600;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h6[data-v-2bac63c8] {\n  color: white;\n  font-size: 15px;\n  font-weight: 300;\n}\n#menu .cart .row .col-12 .price[data-v-2bac63c8] {\n  width: 30%;\n  margin: 0 10px;\n}\n#menu .cart .row .col-12 .price h1[data-v-2bac63c8] {\n  color: #2fbcae;\n  font-size: 30px;\n  font-weight: 200;\n  line-height: 30px;\n}\n#menu .cart .row .col-12 .delete button[data-v-2bac63c8] {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 22px;\n  font-weight: 400;\n}\n#menu .cart .col-6[data-v-2bac63c8] {\n  margin: 30px 0;\n}\n#menu .cart .col-6 h1[data-v-2bac63c8] {\n  color: white;\n  font-size: 30px;\n  font-weight: 900;\n}\n#menu .cart .col-6 h1[data-v-2bac63c8]:last-child {\n  color: #2fbcae;\n}\n#menu .cart .col-6 .btn-light[data-v-2bac63c8] {\n  background-color: #b3f5fd;\n  border: none;\n  height: 40px;\n  border-radius: 30px;\n  padding: 0 85px;\n}\n#menu .cart .col-6 .btn-light[data-v-2bac63c8]:hover {\n  background-color: white;\n}\n#menu .cart .col-6 .btn-light span[data-v-2bac63c8] {\n  color: black;\n  font-weight: 600;\n  font-size: 15px;\n  line-height: 30px;\n}\n#menu .cart .col-6 .btn-light span[data-v-2bac63c8]:hover {\n  text-decoration: none;\n}\n#menu .cartButton[data-v-2bac63c8] {\n  box-sizing: border-box;\n  width: 80px;\n  position: fixed;\n  top: 20px;\n  right: 25px;\n  z-index: 2;\n}\n#menu .cartButton .row[data-v-2bac63c8] {\n  width: 100%;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2bac63c8] {\n  height: 60px;\n  width: 60px;\n  border: 4px solid black;\n  border-radius: 50%;\n  background-color: white;\n}\n#menu .cartButton .row .col-1 .roundedCart img[data-v-2bac63c8] {\n  height: 30px;\n  width: 30px;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2bac63c8]:hover {\n  background-color: #b3f5fd;\n  border: none;\n}", ""]);
+exports.push([module.i, "#menu .restaurant[data-v-2bac63c8] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n#menu .restaurant .row .col-12 h1[data-v-2bac63c8] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n#menu .menu[data-v-2bac63c8] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n#menu .menu .row .col-12[data-v-2bac63c8] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n#menu .menu .row .col-12 .dish[data-v-2bac63c8] {\n  padding: 20px 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo[data-v-2bac63c8] {\n  width: 60%;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishImg[data-v-2bac63c8] {\n  width: 100px;\n  height: 100px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext[data-v-2bac63c8] {\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2bac63c8] {\n  font-size: 25px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2bac63c8] {\n  font-size: 12px;\n  font-weight: 400;\n  color: #5f5c5c;\n}\n#menu .menu .row .col-12 .dish .price[data-v-2bac63c8] {\n  width: 20%;\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .price h1[data-v-2bac63c8] {\n  font-size: 30px;\n  font-weight: 700;\n  color: #2dccbc;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2bac63c8] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  background-color: black;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2bac63c8]:hover {\n  border: none;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter[data-v-2bac63c8] {\n  width: 100%;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div[data-v-2bac63c8] {\n  width: 70px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div span[data-v-2bac63c8] {\n  color: white;\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt:hover span[data-v-2bac63c8] {\n  color: black;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2bac63c8] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n#menu .cart[data-v-2bac63c8] {\n  box-sizing: border-box;\n  min-width: 100vw;\n  height: 4z0vh;\n  background-color: black;\n  position: fixed;\n  bottom: 0;\n  overflow-y: scroll;\n  z-index: 3;\n}\n#menu .cart .row[data-v-2bac63c8] {\n  padding: 50px 200px;\n}\n#menu .cart .row .col-12 .cartTitle[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .cartTitle h1[data-v-2bac63c8] {\n  color: white;\n  font-size: 30px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .close[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .close img[data-v-2bac63c8] {\n  height: 30px;\n}\n#menu .cart .row .col-12 .order[data-v-2bac63c8] {\n  padding: 30px 0px;\n  border-bottom: 1px solid white;\n  flex-basis: 47%;\n}\n#menu .cart .row .col-12 .order[data-v-2bac63c8]:nth-child(n) {\n  margin-right: 20px;\n}\n#menu .cart .row .col-12 .order .dishes[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext[data-v-2bac63c8] {\n  margin-left: 30px;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h3[data-v-2bac63c8] {\n  color: white;\n  font-size: 15px;\n  font-weight: 600;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h6[data-v-2bac63c8] {\n  color: white;\n  font-size: 12px;\n  font-weight: 300;\n}\n#menu .cart .row .col-12 .price[data-v-2bac63c8] {\n  width: 30%;\n  margin: 0 10px;\n}\n#menu .cart .row .col-12 .price h1[data-v-2bac63c8] {\n  color: #2fbcae;\n  font-size: 18px;\n  font-weight: 200;\n  line-height: 30px;\n}\n#menu .cart .row .col-12 .delete button[data-v-2bac63c8] {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 15px;\n  font-weight: 400;\n}\n#menu .cart .col-6[data-v-2bac63c8] {\n  margin: 30px 0;\n}\n#menu .cart .col-6 h1[data-v-2bac63c8] {\n  color: white;\n  font-size: 20px;\n  font-weight: 900;\n}\n#menu .cart .col-6 h1[data-v-2bac63c8]:last-child {\n  color: #2fbcae;\n}\n#menu .cart .col-6 .btn-light[data-v-2bac63c8] {\n  background-color: #b3f5fd;\n  border: none;\n  height: 40px;\n  border-radius: 30px;\n  padding: 0 85px;\n}\n#menu .cart .col-6 .btn-light[data-v-2bac63c8]:hover {\n  background-color: white;\n}\n#menu .cart .col-6 .btn-light span[data-v-2bac63c8] {\n  color: black;\n  font-weight: 600;\n  font-size: 15px;\n  line-height: 30px;\n}\n#menu .cart .col-6 .btn-light span[data-v-2bac63c8]:hover {\n  text-decoration: none;\n}\n#menu .cartButton[data-v-2bac63c8] {\n  box-sizing: border-box;\n  width: 80px;\n  position: fixed;\n  top: 20px;\n  right: 25px;\n  z-index: 2;\n}\n#menu .cartButton .row[data-v-2bac63c8] {\n  width: 100%;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2bac63c8] {\n  height: 60px;\n  width: 60px;\n  border: 4px solid black;\n  border-radius: 50%;\n  background-color: white;\n}\n#menu .cartButton .row .col-1 .roundedCart img[data-v-2bac63c8] {\n  height: 30px;\n  width: 30px;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2bac63c8]:hover {\n  background-color: #b3f5fd;\n  border: none;\n}", ""]);
 
 // exports
 
@@ -8330,7 +8334,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#menu .restaurant[data-v-2478efb1] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n#menu .restaurant .row .col-12 h1[data-v-2478efb1] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n#menu .menu[data-v-2478efb1] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n#menu .menu .row .col-12[data-v-2478efb1] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n#menu .menu .row .col-12 .dish[data-v-2478efb1] {\n  padding: 20px 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo[data-v-2478efb1] {\n  width: 60%;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishImg[data-v-2478efb1] {\n  width: 100px;\n  height: 100px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext[data-v-2478efb1] {\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2478efb1] {\n  font-size: 25px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2478efb1] {\n  font-size: 12px;\n  font-weight: 400;\n  color: #5f5c5c;\n}\n#menu .menu .row .col-12 .dish .price[data-v-2478efb1] {\n  width: 20%;\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .price h1[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 700;\n  color: #2dccbc;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  background-color: black;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1]:hover {\n  border: none;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter[data-v-2478efb1] {\n  width: 100%;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div[data-v-2478efb1] {\n  width: 70px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div span[data-v-2478efb1] {\n  color: white;\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt:hover span[data-v-2478efb1] {\n  color: black;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n#menu .cart[data-v-2478efb1] {\n  box-sizing: border-box;\n  min-width: 100vw;\n  height: 60vh;\n  background-color: black;\n  position: fixed;\n  bottom: 0;\n  overflow-y: scroll;\n  z-index: 3;\n}\n#menu .cart .row[data-v-2478efb1] {\n  padding: 50px 200px;\n}\n#menu .cart .row .col-12 .cartTitle[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .cartTitle h1[data-v-2478efb1] {\n  color: white;\n  font-size: 40px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .close[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .close img[data-v-2478efb1] {\n  height: 30px;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1] {\n  padding: 30px 0px;\n  border-bottom: 1px solid white;\n  flex-basis: 47%;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1]:nth-child(n) {\n  margin-right: 20px;\n}\n#menu .cart .row .col-12 .order .dishes[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext[data-v-2478efb1] {\n  margin-left: 30px;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h3[data-v-2478efb1] {\n  color: white;\n  font-size: 18px;\n  font-weight: 600;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h6[data-v-2478efb1] {\n  color: white;\n  font-size: 15px;\n  font-weight: 300;\n}\n#menu .cart .row .col-12 .price[data-v-2478efb1] {\n  width: 30%;\n  margin: 0 10px;\n}\n#menu .cart .row .col-12 .price h1[data-v-2478efb1] {\n  color: #2fbcae;\n  font-size: 30px;\n  font-weight: 200;\n  line-height: 30px;\n}\n#menu .cart .row .col-12 .delete button[data-v-2478efb1] {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 22px;\n  font-weight: 400;\n}\n#menu .cart .col-6[data-v-2478efb1] {\n  margin: 30px 0;\n}\n#menu .cart .col-6 h1[data-v-2478efb1] {\n  color: white;\n  font-size: 30px;\n  font-weight: 900;\n}\n#menu .cart .col-6 h1[data-v-2478efb1]:last-child {\n  color: #2fbcae;\n}\n#menu .cart .col-6 .btn-light[data-v-2478efb1] {\n  background-color: #b3f5fd;\n  border: none;\n  height: 40px;\n  border-radius: 30px;\n  padding: 0 85px;\n}\n#menu .cart .col-6 .btn-light[data-v-2478efb1]:hover {\n  background-color: white;\n}\n#menu .cart .col-6 .btn-light span[data-v-2478efb1] {\n  color: black;\n  font-weight: 600;\n  font-size: 15px;\n  line-height: 30px;\n}\n#menu .cart .col-6 .btn-light span[data-v-2478efb1]:hover {\n  text-decoration: none;\n}\n#menu .cartButton[data-v-2478efb1] {\n  box-sizing: border-box;\n  width: 80px;\n  position: fixed;\n  top: 20px;\n  right: 25px;\n  z-index: 2;\n}\n#menu .cartButton .row[data-v-2478efb1] {\n  width: 100%;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2478efb1] {\n  height: 60px;\n  width: 60px;\n  border: 4px solid black;\n  border-radius: 50%;\n  background-color: white;\n}\n#menu .cartButton .row .col-1 .roundedCart img[data-v-2478efb1] {\n  height: 30px;\n  width: 30px;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  border: none;\n}", ""]);
+exports.push([module.i, "#menu .restaurant[data-v-2478efb1] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n#menu .restaurant .row .col-12 h1[data-v-2478efb1] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n#menu .menu[data-v-2478efb1] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n#menu .menu .row .col-12[data-v-2478efb1] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n#menu .menu .row .col-12 .dish[data-v-2478efb1] {\n  padding: 20px 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishImg[data-v-2478efb1] {\n  width: 100px;\n  height: 100px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext[data-v-2478efb1] {\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2478efb1] {\n  font-size: 25px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2478efb1] {\n  font-size: 12px;\n  font-weight: 400;\n  color: #5f5c5c;\n}\n#menu .menu .row .col-12 .dish .price[data-v-2478efb1] {\n  width: 20%;\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .price h1[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 700;\n  color: #2dccbc;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  background-color: black;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1]:hover {\n  border: none;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter[data-v-2478efb1] {\n  width: 100%;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div[data-v-2478efb1] {\n  width: 70px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div span[data-v-2478efb1] {\n  color: white;\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt:hover span[data-v-2478efb1] {\n  color: black;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n#menu .cart[data-v-2478efb1] {\n  box-sizing: border-box;\n  min-width: 100vw;\n  height: 50vh;\n  background-color: black;\n  position: fixed;\n  bottom: 0;\n  overflow-y: scroll;\n  z-index: 3;\n}\n#menu .cart .row[data-v-2478efb1] {\n  padding: 50px 200px;\n}\n#menu .cart .row .col-12 .cartTitle[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .cartTitle h1[data-v-2478efb1] {\n  color: white;\n  font-size: 40px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .close[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .close img[data-v-2478efb1] {\n  height: 30px;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1] {\n  margin-bottom: 10px;\n  padding: 15px 30px;\n  border: 1px solid white;\n  border-radius: 50px;\n  flex-basis: 47%;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1]:hover {\n  border: none;\n  background: #b3f5fd;\n}\n#menu .cart .row .col-12 .order:hover .dishes .dishtext h3[data-v-2478efb1] {\n  color: black;\n}\n#menu .cart .row .col-12 .order:hover .dishes .dishtext h6[data-v-2478efb1] {\n  color: black;\n}\n#menu .cart .row .col-12 .order:hover .price h1[data-v-2478efb1] {\n  color: black;\n  font-weight: 700;\n}\n#menu .cart .row .col-12 .order:hover .delete button[data-v-2478efb1] {\n  color: black;\n  font-weight: 700;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1]:nth-child(n) {\n  margin-right: 20px;\n}\n#menu .cart .row .col-12 .order .dishes[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext[data-v-2478efb1] {\n  margin-left: 30px;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h3[data-v-2478efb1] {\n  color: white;\n  font-size: 18px;\n  font-weight: 600;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h6[data-v-2478efb1] {\n  color: white;\n  font-size: 15px;\n  font-weight: 300;\n}\n#menu .cart .row .col-12 .price[data-v-2478efb1] {\n  width: 30%;\n  margin: 0 10px;\n}\n#menu .cart .row .col-12 .price h1[data-v-2478efb1] {\n  color: #2fbcae;\n  font-size: 30px;\n  font-weight: 200;\n  line-height: 30px;\n}\n#menu .cart .row .col-12 .delete button[data-v-2478efb1] {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 22px;\n  font-weight: 400;\n}\n#menu .cart .col-6[data-v-2478efb1] {\n  margin: 30px 0;\n}\n#menu .cart .col-6 h1[data-v-2478efb1] {\n  color: white;\n  font-size: 30px;\n  font-weight: 900;\n}\n#menu .cart .col-6 h1[data-v-2478efb1]:last-child {\n  color: #2fbcae;\n}\n#menu .cart .col-6 .btn-light[data-v-2478efb1] {\n  background-color: #b3f5fd;\n  border: none;\n  height: 40px;\n  border-radius: 30px;\n  padding: 0 85px;\n}\n#menu .cart .col-6 .btn-light[data-v-2478efb1]:hover {\n  background-color: white;\n}\n#menu .cart .col-6 .btn-light span[data-v-2478efb1] {\n  color: black;\n  font-weight: 600;\n  font-size: 15px;\n  line-height: 30px;\n}\n#menu .cart .col-6 .btn-light span[data-v-2478efb1]:hover {\n  text-decoration: none;\n}\n#menu .cartButton[data-v-2478efb1] {\n  box-sizing: border-box;\n  width: 80px;\n  position: fixed;\n  top: 50vh;\n  right: 25px;\n  z-index: 2;\n}\n#menu .cartButton .row[data-v-2478efb1] {\n  width: 100%;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2478efb1] {\n  height: 60px;\n  width: 60px;\n  border: 4px solid black;\n  border-radius: 50%;\n  background-color: white;\n}\n#menu .cartButton .row .col-1 .roundedCart img[data-v-2478efb1] {\n  height: 30px;\n  width: 30px;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  border: none;\n}", ""]);
 
 // exports
 
@@ -41507,85 +41511,25 @@ var render = function() {
                   "div",
                   {
                     staticClass:
-                      "price d-flex justify-content-end align-items-center"
+                      "price d-flex justify-content-center align-items-center"
                   },
                   [_c("h1", [_vm._v(_vm._s(dish.price) + "€")])]
                 ),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "counter-box d-flex justify-content-end align-items-center"
-                  },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "counter d-flex justify-content-between" },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "bt",
-                            on: {
-                              click: function($event) {
-                                return _vm.changeCounter("-", i)
-                              }
-                            }
-                          },
-                          [
-                            _c(
-                              "span",
-                              {
-                                attrs: {
-                                  ondragstart: "return false",
-                                  onselectstart: "return false"
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                  -\n                "
-                                )
-                              ]
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: " " }, [
-                          _c("span", [_vm._v(" " + _vm._s(dish.counter) + " ")])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "bt",
-                            on: {
-                              click: function($event) {
-                                return _vm.changeCounter("+", i)
-                              }
-                            }
-                          },
-                          [
-                            _c(
-                              "span",
-                              {
-                                attrs: {
-                                  ondragstart: "return false",
-                                  onselectstart: "return false"
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                  +\n                "
-                                )
-                              ]
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  ]
-                )
+                _c("div", { staticClass: "button" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "black-button",
+                      on: {
+                        click: function($event) {
+                          return _vm.putInCart(i)
+                        }
+                      }
+                    },
+                    [_vm._v(" \n              Ordina +\n            ")]
+                  )
+                ])
               ]
             )
           }),
@@ -41621,46 +41565,14 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "col-12 d-flex flex-row flex-wrap" },
+              { staticClass: "col-12 d-flex flex-row flex-wrap " },
               _vm._l(_vm.cart, function(order, ind) {
                 return _c("div", { key: ind, staticClass: "order d-flex" }, [
                   _c(
                     "div",
                     {
                       staticClass:
-                        "quantity d-flex justify-content-start align-items-center"
-                    },
-                    [
-                      _c("ul", { staticClass: "oval-white-button" }, [
-                        _c("li", { staticClass: "notselected" }, [
-                          _c("img", { attrs: { src: "", alt: "" } }),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              attrs: {
-                                ondragstart: "return false",
-                                onselectstart: "return false"
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                  x" +
-                                  _vm._s(order.counter) +
-                                  "\n                "
-                              )
-                            ]
-                          )
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "dishes d-flex justify-content-start align-items-center"
+                        "dishes d-flex  justify-content-start align-items-center"
                     },
                     [
                       _c("div", { staticClass: "dishImg" }, [
@@ -41675,16 +41587,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "dishtext" }, [
-                        _c("h3", [_vm._v(_vm._s(order.dishName))]),
-                        _vm._v(" "),
-                        _c("h6", [
-                          _vm._v(
-                            _vm._s(order.dishPrice) +
-                              " € x " +
-                              _vm._s(order.counter) +
-                              " ="
-                          )
-                        ])
+                        _c("h3", [_vm._v(_vm._s(order.dishName))])
                       ])
                     ]
                   ),
@@ -41829,7 +41732,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", [
-    _c("div", { staticClass: "container cart" }, [
+    _c("div", { staticClass: "container cart mt-120" }, [
       _c("div", { staticClass: "row" }, [
         _vm._m(0),
         _vm._v(" "),
