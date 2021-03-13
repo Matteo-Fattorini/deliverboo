@@ -30,7 +30,7 @@ Auth::routes();
 //     return view("payment", ["token" => $token]);
 // })->name('payment');
 
-// Route::post("/checkout", "PaymentsController@checkout");
+Route::post("/checkout", "PaymentsController@checkout");
 
 // //ROTTE DI TEST PER IL FRONT
 // Route::get('/frontHome', 'FrontEndTestController@home')->name('homePage');

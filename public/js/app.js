@@ -2703,7 +2703,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'MenuGenre',
   props: {
@@ -2778,6 +2777,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return e.get_genre.name.includes(_this2.categorySelect);
       });
     },
+    filteredCart: function filteredCart() {
+      return this.cart.filter(function (order, index, self) {
+        return index === self.findIndex(function (o, i) {
+          return o.dishId === order.dishId;
+        });
+      });
+    },
     //calcola il totale del carrello e lo trasforma in formato prezzo
     TotalPrice: function TotalPrice() {
       return new Intl.NumberFormat("it-IT", {
@@ -2817,11 +2823,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this4 = this;
 
       this.filtered.forEach(function (dish, i) {
-        if (index === i && dish.counter != 0 && dish.name) {
+        if (index === i && dish.counter >= 0) {
           _this4.cart.push({
             //se attivo filtro this.cart diventa this.cartElement
             dishId: dish.id,
-            quantity: dish.counter,
             dishName: dish.name,
             dishImgUrl: dish.image_url,
             dishPrice: dish.price
@@ -2845,14 +2850,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             return _this4.order;
           });
           console.log('ordine nel carrello');
-          console.log(_this4.dishInCart); // DA RIVEDERE
-          //filtro carrello
-
-          _this4.cartFiltered = _this4.cart.filter(function (order, index, self) {
-            return index === self.findIndex(function (o) {
-              return o.dishId === order.dishId;
-            });
-          }); //TOTALE ORDINE
+          console.log(_this4.dishInCart); //TOTALE ORDINE
 
           _this4.total = _this4.cart.reduce(function (total, order) {
             return total + parseFloat(order.dishPrice);
@@ -2866,10 +2864,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           _this4.saveTotal();
 
-          console.log('CART ELEMENTI');
-          console.log(_this4.cartElements);
+          console.log('quantity');
+          console.log(_this4.quantity);
           console.log('CART FILTRO');
-          console.log(_this4.cartFiltered);
+          console.log(_this4.filteredCart);
           console.log('CART FINALE');
           console.log(_this4.cart);
           console.log('Dish');
@@ -2960,14 +2958,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -8343,7 +8333,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".cart {\n  min-width: 100vw;\n  background-color: black;\n}\n.cart .row {\n  padding: 50px 200px;\n}\n.cart .row .cartTitle {\n  width: 50%;\n  color: white;\n}\n.cart .row .cartTitle h1 {\n  color: white;\n  font-size: 40px;\n  font-weight: 900;\n}\n.cart .row .close {\n  width: 50%;\n}\n.cart .row .close img {\n  height: 40px;\n}\n.cart .row .order {\n  padding: 30px 0px;\n  border-bottom: 1px solid white;\n  flex-basis: 47%;\n}\n.cart .row .order:nth-child(n) {\n  margin-right: 20px;\n}\n.cart .row .order .dishes {\n  width: 50%;\n}\n.cart .row .order .dishes .dishtext {\n  margin-left: 30px;\n}\n.cart .row .order .dishes .dishtext h3 {\n  color: white;\n  font-size: 18px;\n  font-weight: 700;\n}\n.cart .row .order .dishes .dishtext h6 {\n  color: white;\n  font-size: 15px;\n  font-weight: 300;\n}\n.cart .row .price {\n  width: 30%;\n  margin: 0 10px;\n}\n.cart .row .price h1 {\n  color: #2fbcae;\n  font-size: 30px;\n  font-weight: 200;\n  line-height: 30px;\n}\n.cart .row .delete button {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 22px;\n  font-weight: 400;\n}\n.col-6 img {\n  margin: 30px;\n  width: 70%;\n}\n.col-6 h1 {\n  color: black;\n  font-size: 50px;\n  font-weight: 900;\n}\n.col-6 button {\n  margin-top: 30px;\n  width: 350px;\n  padding: 10px 0;\n  background: #B3F5FD;\n  color: black;\n  border: none;\n  border-radius: 20px;\n  font-size: 15px;\n  font-weight: 600;\n}", ""]);
+exports.push([module.i, ".cart {\n  min-width: 100vw;\n  background-color: black;\n}\n.cart .row {\n  padding: 50px 200px;\n}\n.cart .row .cartTitle {\n  width: 50%;\n}\n.cart .row .cartTitle h1 {\n  color: white;\n  font-size: 40px;\n  font-weight: 900;\n}\n.cart .row .col-12 .close {\n  width: 50%;\n}\n.cart .row .col-12 .close img {\n  height: 30px;\n}\n.cart .row .col-12 .order {\n  margin-bottom: 10px;\n  padding: 15px 30px;\n  border: 1px solid white;\n  border-radius: 50px;\n  flex-basis: 47%;\n}\n.cart .row .col-12 .order:hover {\n  border: none;\n  background: #b3f5fd;\n}\n.cart .row .col-12 .order:hover .dishes .dishtext h3 {\n  color: black;\n}\n.cart .row .col-12 .order:hover .dishes .dishtext h6 {\n  color: black;\n}\n.cart .row .col-12 .order:hover .price h1 {\n  color: black;\n  font-weight: 700;\n}\n.cart .row .col-12 .order:hover .delete button {\n  color: black;\n  font-weight: 700;\n}\n.cart .row .col-12 .order:nth-child(n) {\n  margin-right: 20px;\n}\n.cart .row .col-12 .order .dishes {\n  width: 50%;\n}\n.cart .row .col-12 .order .dishes .dishtext {\n  margin-left: 30px;\n}\n.cart .row .col-12 .order .dishes .dishtext h3 {\n  color: white;\n  font-size: 18px;\n  font-weight: 600;\n}\n.cart .row .col-12 .order .dishes .dishtext h6 {\n  color: white;\n  font-size: 15px;\n  font-weight: 300;\n}\n.cart .row .col-12 .price {\n  width: 30%;\n  margin: 0 10px;\n}\n.cart .row .col-12 .price h1 {\n  color: #2fbcae;\n  font-size: 30px;\n  font-weight: 200;\n  line-height: 30px;\n}\n.cart .row .col-12 .delete button {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 22px;\n  font-weight: 400;\n}\n.cart .col-6 {\n  margin: 30px 0;\n}\n.cart .col-6 h1 {\n  color: white;\n  font-size: 30px;\n  font-weight: 900;\n}\n.cart .col-6 h1:last-child {\n  color: #2fbcae;\n}\n.cart .col-6 .btn-light {\n  background-color: #b3f5fd;\n  border: none;\n  height: 40px;\n  border-radius: 30px;\n  padding: 0 85px;\n}\n.cart .col-6 .btn-light:hover {\n  background-color: white;\n}\n.cart .col-6 .btn-light span {\n  color: black;\n  font-weight: 600;\n  font-size: 15px;\n  line-height: 30px;\n}\n.cart .col-6 .btn-light span:hover {\n  text-decoration: none;\n}", ""]);
 
 // exports
 
@@ -8495,7 +8485,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#icon{\r\n  height: 30px;\r\n  margin: 0;\r\n  width: auto;\n}\r\n", ""]);
+exports.push([module.i, "\n#icon{\n  height: 30px;\n  margin: 0;\n  width: auto;\n}\n", ""]);
 
 // exports
 
@@ -41716,39 +41706,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "quantity d-flex justify-content-start align-items-center"
-                },
-                [
-                  _c("ul", { staticClass: "oval-white-button" }, [
-                    _c("li", { staticClass: "notselected" }, [
-                      _c("img", { attrs: { src: "", alt: "" } }),
-                      _vm._v(" "),
-                      _c(
-                        "span",
-                        {
-                          attrs: {
-                            ondragstart: "return false",
-                            onselectstart: "return false"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                          x" +
-                              _vm._s(order.quantity) +
-                              "\n                        "
-                          )
-                        ]
-                      )
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "dishes d-flex justify-content-start align-items-center"
+                    "dishes d-flex  justify-content-start align-items-center"
                 },
                 [
                   _c("div", { staticClass: "dishImg" }, [
@@ -41756,23 +41714,14 @@ var render = function() {
                       _c("img", {
                         attrs: {
                           src: "/img/restaurant/" + order.dishImgUrl,
-                          alt: "cart-img"
+                          alt: ""
                         }
                       })
                     ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "dishtext" }, [
-                    _c("h3", [_vm._v(_vm._s(order.dishName))]),
-                    _vm._v(" "),
-                    _c("h6", [
-                      _vm._v(
-                        _vm._s(order.dishPrice) +
-                          " € x " +
-                          _vm._s(order.quantity) +
-                          " ="
-                      )
-                    ])
+                    _c("h3", [_vm._v(_vm._s(order.dishName))])
                   ])
                 ]
               ),
@@ -41783,7 +41732,7 @@ var render = function() {
                   staticClass:
                     "price d-flex justify-content-end align-items-center"
                 },
-                [_c("h1", [_vm._v(_vm._s(order.totalPrice) + " €")])]
+                [_c("h1", [_vm._v(_vm._s(order.dishPrice) + " €")])]
               )
             ])
           }),
@@ -56634,8 +56583,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\NoSync\deliverboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\NoSync\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/pierlucamariodussich/Desktop/boolean/vs-code/php-playground/deliverboo/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/pierlucamariodussich/Desktop/boolean/vs-code/php-playground/deliverboo/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

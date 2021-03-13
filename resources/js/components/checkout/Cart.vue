@@ -7,31 +7,23 @@
              </div>
              <div class="col-12 d-flex flex-row flex-wrap">
                 <div class="order d-flex" v-for="(order, ind) in cart" :key="ind">
-                   <div class="quantity d-flex justify-content-start align-items-center">
-                      <ul class="oval-white-button">
-                        <li class="notselected">
-                          <img src="" alt="" />
-                          <span ondragstart="return false" onselectstart="return false">
-                            x{{ order.quantity }}
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="dishes d-flex justify-content-start align-items-center">
-                      <div class="dishImg">
-                        <div class="cartImage">
-                          <img :src="'/img/restaurant/' + order.dishImgUrl" alt="cart-img" />
+                    <div class="dishes d-flex  justify-content-start align-items-center">
+                          <div class="dishImg">
+                            <div class="cartImage">
+                              <img :src="'/img/restaurant/' + order.dishImgUrl" alt="" />
+                            </div>
+                          </div>
+                          <div class="dishtext">
+                            <h3>{{ order.dishName }}</h3>
+                          </div>
                         </div>
+                        <div class="price d-flex justify-content-end align-items-center">
+                         <!-- nel caso ritorna il filtro sarebbe order.totalPrice -->
+                          <h1>{{ order.dishPrice}} €</h1>
+                        </div>
+
                       </div>
-                      <div class="dishtext">
-                        <h3>{{ order.dishName }}</h3>
-                        <h6>{{ order.dishPrice }} € x {{ order.quantity }} =</h6>
-                      </div>
-                    </div>
-                    <div class="price d-flex justify-content-end align-items-center">
-                      <h1>{{ order.totalPrice }} €</h1>
-                    </div>
-                  </div>
+        
                 </div>        
              </div>
         </div>
@@ -101,23 +93,52 @@ return{
       padding: 50px 200px;
         .cartTitle {
           width: 50%;
-          color: white;
           h1 {
             color: white;
             font-size: 40px;
             font-weight: 900;
           }
         }
+    .col-12 {
         .close {
           width: 50%;
           img {
-            height: 40px;
+            height: 30px;
           }
         }
         .order {
-          padding: 30px 0px;
-          border-bottom: 1px solid white;
+          margin-bottom: 10px;
+          padding: 15px 30px;
+          border: 1px solid white;
+          border-radius: 50px;
           flex-basis: 47%;
+          &:hover{
+            border:none;
+            background:#b3f5fd;
+            .dishes {
+            .dishtext {
+
+              h3 {
+                color: black;
+              }
+              h6 {
+                color: black;
+              }
+            }
+          }
+          .price {
+          h1 {
+            color: black;
+            font-weight: 700;
+          }
+        }
+        .delete {
+          button {
+            color: black;
+            font-weight: 700;
+          }
+        }
+        }
           &:nth-child(n) {
             margin-right: 20px;
           }
@@ -129,7 +150,7 @@ return{
               h3 {
                 color: white;
                 font-size: 18px;
-                font-weight: 700;
+                font-weight: 600;
               }
               h6 {
                 color: white;
@@ -160,32 +181,40 @@ return{
             font-weight: 400;
           }
         }
-      
-    }
-}
-.col-6{
-    img{
-        margin:30px;
-        width: 70%;  
-    }
-    h1 {
-         
-         color: black;
-         font-size: 50px;
-         font-weight: 900;
-        }
-    button{
-            margin-top:30px;
-            width: 350px;
-            padding: 10px 0;
-            background:#B3F5FD;
-            color: black;
-            border: none;
-            border-radius: 20px;
-            font-size: 15px;
-            font-weight: 600;
+      }
     }
 
+    .col-6 {
+      margin: 30px 0;
+      h1 {
+        color: white;
+        font-size: 30px;
+        font-weight: 900;
+        &:last-child{
+          color: #2fbcae;
+        }
+      }
+      .btn-light {
+        background-color: #b3f5fd;
+        border: none;
+        height: 40px;
+        border-radius: 30px;
+        padding: 0 85px;
+        &:hover {
+          background-color: white;
+        }
+        span {
+          color: black;
+          font-weight: 600;
+          font-size: 15px;
+          line-height: 30px;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  
 }
 
 </style>
