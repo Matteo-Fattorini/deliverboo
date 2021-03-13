@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-120">
     <div class="row">
       <div class="col-6 info d-flex p-0">
         <div
@@ -44,7 +44,6 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  margin-top: 30px;
   margin-bottom: 50px;
   .row {
     .circle {

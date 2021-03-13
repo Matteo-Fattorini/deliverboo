@@ -55,12 +55,10 @@
                 <h5>{{ dish.description }}</h5>
               </div>
             </div>
-            <div class="price d-flex justify-content-end align-items-center">
+            <div class="price d-flex justify-content-center align-items-center">
               <h1>{{ dish.price }}€</h1>
             </div>
-            <div
-              class="counter-box d-flex justify-content-end align-items-center"
-            >
+            <!-- <div class="counter-box d-flex justify-content-end align-items-center">
               <div class="counter d-flex justify-content-between">
       
                 <div class="bt" @click="changeCounter('-', i)">
@@ -76,7 +74,13 @@
                     +
                   </span>
                 </div>
+
               </div>
+            </div> -->
+            <div class="button">
+              <button class="black-button" @click="putInCart(i)"> 
+                Ordina +
+              </button>
             </div>
           </div>
         </div>
@@ -99,21 +103,9 @@
             <img src="/images/close_white.png" alt="" />
           </div>
         </div>
-        <div class="col-12 d-flex flex-row flex-wrap">
+        <div class="col-12 d-flex flex-row flex-wrap ">
           <div class="order d-flex" v-for="(order, ind) in cart" :key="ind">
-            <div
-              class="quantity d-flex justify-content-start align-items-center"
-            >
-              <ul class="oval-white-button">
-                <li class="notselected">
-                  <img src="" alt="" />
-                  <span ondragstart="return false" onselectstart="return false">
-                    x{{ order.counter }}
-                  </span>
-                </li>
-              </ul>
-            </div>
-            <div class="dishes d-flex justify-content-start align-items-center">
+            <div class="dishes d-flex  justify-content-start align-items-center">
               <div class="dishImg">
                 <div class="cartImage">
                   <img :src="'/img/restaurant/' + order.dishImgUrl" alt="" />
@@ -121,7 +113,6 @@
               </div>
               <div class="dishtext">
                 <h3>{{ order.dishName }}</h3>
-                <h6>{{ order.dishPrice }} € x {{ order.counter }} =</h6>
               </div>
             </div>
             <div class="price d-flex justify-content-end align-items-center">
@@ -182,6 +173,7 @@ export default {
       categorySelect:'',
       count: [],
       orders: [],
+      quantity:[],
       cartActive: false,
       // cartElements:[],
       // cartFiltered:[],
@@ -229,6 +221,8 @@ export default {
                  this.restaurant_id = this.restaurantId.splice(1); 
     //controllo ID ristorante
     console.log('ARRAY ID RISTORANTE');console.log(this.restaurantId)
+
+    
   
   },
   computed:{
@@ -240,6 +234,17 @@ export default {
       return this.dishes.filter((e)=>{
         return e.get_genre.name.includes(this.categorySelect);
       })},
+
+    filteredCart(){
+      return this.cart.filter((order,index,self)=>
+               index === self.findIndex((o,i) => (
+                     o.dishId === order.dishId
+                 )));
+            
+
+    },
+
+
     
     //calcola il totale del carrello e lo trasforma in formato prezzo
 
@@ -274,15 +279,13 @@ export default {
     changeCounter(direction, index){
        this.filtered.forEach((dish, i) => {
         if (direction == "+" && i === index) {
-          dish.counter++; //aumenta il contatore di 1
           this.putInCart(i); //attiva funzione di creazione ordine e carrello
           this.cartActive = true; //attiva la sezione carrello
         } else if (direction == "-" && i === index) {
             if (dish.counter === 0) { //blocca il counter a 0
               this.cartActive = false; // chiude sezione carrello
           } else {
-            dish.counter--; //decrementa il contatore
-            this.deleteOrder(i); //attiva funzione di cancellazione degli elementi
+            this.deleteOrder(index);
           }
         }
       });
@@ -292,18 +295,24 @@ export default {
 
     putInCart(index) {
       this.filtered.forEach((dish, i) => {
-        if (index === i && dish.counter != 0 && dish.name) {
+        if (index === i && dish.counter >= 0) {
           this.cart.push({ //se attivo filtro this.cart diventa this.cartElement
-            dishId:dish.id,
-            quantity: dish.counter,
+            dishId: dish.id,
             dishName: dish.name,
             dishImgUrl: dish.image_url,
             dishPrice: dish.price,
-            // totalPrice: parseFloat(dish.price) * dish.counter,
           });
+          this.cartActive=true;
           this.orders.push({
             dishId: dish.id,
           });
+
+          //quantità piatti nel carrello
+          // this.quantity = this.cart.map(e=>{
+          //   this.quantity = e.quantity;
+          //   return this.quantity
+          // })
+          // console.log('quantità');console.log(this.quantity);
 
           //ID piatti nel carrello
           this.dishInCart = this.orders.map(e=>{
@@ -312,17 +321,6 @@ export default {
           })
           console.log('ordine nel carrello');console.log(this.dishInCart);
           
-          // DA RIVEDERE
-          //filtro carrello
-          this.cartFiltered = this.cart.filter((order,index,self)=>
-                 index === self.findIndex((o,) => (
-                 o.dishId === order.dishId
-                 )));
-          
-          
-
-
-
           //TOTALE ORDINE
           this.total = this.cart.reduce(
           (total, order) => total + parseFloat(order.dishPrice),
@@ -336,8 +334,8 @@ export default {
           this.saveTotal();
 
          
-          console.log('CART ELEMENTI'); console.log(this.cartElements);
-          console.log('CART FILTRO');console.log(this.cartFiltered);
+          console.log('quantity');console.log(this.quantity);
+          console.log('CART FILTRO');console.log(this.filteredCart);
           console.log('CART FINALE');console.log(this.cart);
           console.log('Dish');console.log(this.dishInCart);
           console.log('Total');console.log(this.total);
@@ -350,12 +348,18 @@ export default {
     //ELIMINA UN ORDINE QUANDO VIENE CLICCATO - SUL CONTATORE
 
     deleteOrder: function (delIndex) {
-      this.cart.splice(delIndex, 1);
-      this.orders.splice(delIndex, 1);
-      this.total = this.cart.reduce(
+      this.filtered.forEach((dish,i) => {
+        dish.counter= 0;
+    
+        this.filteredCart.splice(delIndex,1);
+        this.cart.splice(delIndex)
+        this.orders.splice(delIndex,1);
+        this.total = this.cart.reduce(
           (total, order) => total + parseFloat(order.dishPrice),
            0  );
-      
+        
+      })
+     
           this.saveCart();
           this.saveDish();
           this.saveRestaurant();
@@ -454,7 +458,7 @@ export default {
         .dish {
           padding: 20px 0;
           .dishinfo {
-            width: 60%;
+            width: 50%;
             .dishImg {
               width: 100px;
               height: 100px;
@@ -543,7 +547,7 @@ export default {
   .cart {
     box-sizing: border-box;
     min-width: 100vw;
-    height: 60vh;
+    height: 50vh;
     background-color: black;
     position: fixed;
     bottom: 0;
@@ -567,9 +571,38 @@ export default {
           }
         }
         .order {
-          padding: 30px 0px;
-          border-bottom: 1px solid white;
+          margin-bottom: 10px;
+          padding: 15px 30px;
+          border: 1px solid white;
+          border-radius: 50px;
           flex-basis: 47%;
+          &:hover{
+            border:none;
+            background:#b3f5fd;
+            .dishes {
+            .dishtext {
+
+              h3 {
+                color: black;
+              }
+              h6 {
+                color: black;
+              }
+            }
+          }
+          .price {
+          h1 {
+            color: black;
+            font-weight: 700;
+          }
+        }
+        .delete {
+          button {
+            color: black;
+            font-weight: 700;
+          }
+        }
+        }
           &:nth-child(n) {
             margin-right: 20px;
           }
@@ -650,7 +683,7 @@ export default {
     box-sizing: border-box;
     width: 80px;
     position: fixed;
-    top: 20px;
+    top: 50vh;
     right: 25px;
     z-index: 2;
     .row {

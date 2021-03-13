@@ -17,6 +17,7 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+
 //REGOLE GENERALI
 ul {
     list-style: none;
@@ -246,6 +247,14 @@ section{
     margin-top: 50px;
 }
 
+.mt-120{
+    margin-top: 120px;
+}
+
+.mb-30{
+    margin-bottom: 30px;
+}
+
 .mb-50{
     margin-bottom: 50px;
 }
@@ -253,6 +262,8 @@ section{
 .ml-30{
     margin-left:30px;
 }
+
+
 
 
 .inputForm{
@@ -315,7 +326,7 @@ section{
 }
 .custom-input {
     width: 100%;
-    padding: 8px;
+    padding: 5px 25px;
     margin: 5px 0px;
     border-radius: 20px;
     border: 1px solid black;

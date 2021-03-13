@@ -1,6 +1,6 @@
 <template>
   <section>
-     <div class="container cart">
+     <div class="container cart mt-120">
          <div class="row">
              <div class="col-12 cartTitle" >
                  <h1>Hai Ordinato:</h1>

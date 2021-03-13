@@ -544,7 +544,7 @@ export default {
   .cart {
     box-sizing: border-box;
     min-width: 100vw;
-    height: 60vh;
+    height: 4z0vh;
     background-color: black;
     position: fixed;
     bottom: 0;
@@ -557,7 +557,7 @@ export default {
           width: 50%;
           h1 {
             color: white;
-            font-size: 40px;
+            font-size: 30px;
             font-weight: 900;
           }
         }
@@ -581,12 +581,12 @@ export default {
               margin-left: 30px;
               h3 {
                 color: white;
-                font-size: 18px;
+                font-size: 15px;
                 font-weight: 600;
               }
               h6 {
                 color: white;
-                font-size: 15px;
+                font-size: 12px;
                 font-weight: 300;
               }
             }
@@ -598,7 +598,7 @@ export default {
           margin: 0 10px;
           h1 {
             color: #2fbcae;
-            font-size: 30px;
+            font-size: 18px;
             font-weight: 200;
             line-height: 30px;
           }
@@ -609,7 +609,7 @@ export default {
             background: none;
             color: white;
             border: none;
-            font-size: 22px;
+            font-size: 15px;
             font-weight: 400;
           }
         }
@@ -620,7 +620,7 @@ export default {
       margin: 30px 0;
       h1 {
         color: white;
-        font-size: 30px;
+        font-size: 20px;
         font-weight: 900;
         &:last-child{
           color: #2fbcae;
