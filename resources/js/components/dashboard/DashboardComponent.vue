@@ -3,7 +3,7 @@
     <div class="container">
       <!-- Sezione ristorante -->
       <div class="row m-3">
-        <div class="col d-flex justify-content-start align-items-center">
+        <div class="col-lg-12 d-flex justify-content-start align-items-center">
           <div class="resturantImage m-5">
             <img :src="'/img/restaurant/' + restaurant.image_url" alt="" />
           </div>
@@ -16,7 +16,7 @@
 
       <div class="row m-3">
         <div
-          class="col-3 d-flex justify-content-center align-items-center new-dish-button"
+          class="col-lg-3 d-flex justify-content-center align-items-center new-dish-button"
         >
           <a :href="createdish">
             <div
@@ -29,7 +29,7 @@
         </div>
 
         <div
-          class="col-3 d-flex flex-column justify-content-center align-items-center orders-button"
+          class="col-lg-3 d-flex flex-column justify-content-center align-items-center orders-button"
         >
           <a :href="orderlist">
             <div
@@ -42,7 +42,7 @@
         </div>
 
         <div
-          class="col-3 d-flex flex-column justify-content-center align-items-center orders-button"
+          class="col-lg-3 d-flex flex-column justify-content-center align-items-center orders-button"
         >
           <a href="/chart">
             <div
@@ -55,7 +55,7 @@
         </div>
 
         <div
-          class="col-3 d-flex flex-column justify-content-center align-items-center orders-button"
+          class="col-lg-3 d-flex flex-column justify-content-center align-items-center orders-button"
         >
           <a :href="'/restaurant/' + restaurant.id + '/edit'">
             <div
@@ -70,7 +70,7 @@
 
       <!-- Sezione Menù -->
       <div class="row m-3">
-        <div class="col-12 mb-5 mt-5">
+        <div class="col-lg-12">
           <h1>Gestione Menù</h1>
           <input
             v-model="search"
@@ -88,7 +88,7 @@
         v-for="(filteredDish, index) in filteredDishes"
         :key="index"
       >
-        <div class="col-2 d-flex justify-content-center align-items-center">
+        <div class="col-lg-2 d-flex justify-content-center align-items-center">
           <div>
             <img
               class="listImage"
@@ -97,7 +97,7 @@
             />
           </div>
         </div>
-        <div class="col-3 d-flex justify-content-center align-items-center">
+        <div class="col-lg-3 d-flex justify-content-center align-items-center">
           <div
             class="d-flex flex-column justify-content-center align-items-start text-box"
           >
@@ -109,10 +109,10 @@
             </p>
           </div>
         </div>
-        <div class="col-3 d-flex justify-content-center align-items-center">
+        <div class="col-lg-3 d-flex justify-content-center align-items-center">
           <p>{{ filteredDish.price }}€</p>
         </div>
-        <div class="col-4 d-flex justify-content-center align-items-center">
+        <div class="col-lg-4 d-flex justify-content-center align-items-center">
           <ul
             class="list-style-none d-flex justify-content-between align-items-center items-buttons"
           >
@@ -131,13 +131,13 @@
       </div>
 
       <div class="row m-3">
-        <div class="col-12">
+        <div class="col-lg-12">
           <h1>Tutti i piatti</h1>
         </div>
       </div>
 
       <div class="row mb-5" v-for="dish in dishes" :key="dish.id">
-        <div class="col-2 d-flex justify-content-center align-items-center">
+        <div class="col-lg-2 d-flex justify-content-center align-items-center">
           <div>
             <img
               class="listImage"
@@ -146,7 +146,7 @@
             />
           </div>
         </div>
-        <div class="col-3 d-flex justify-content-start align-items-center">
+        <div class="col-lg-3 d-flex justify-content-start align-items-center">
           <div
             class="d-flex flex-column justify-content-center align-items-start text-box"
           >
@@ -158,10 +158,10 @@
             </p>
           </div>
         </div>
-        <div class="col-3 d-flex justify-content-center align-items-center">
+        <div class="col-lg-3 d-flex justify-content-center align-items-center">
           <p>{{ dish.price }}€</p>
         </div>
-        <div class="col-4 d-flex justify-content-center align-items-center">
+        <div class="col-lg-4 d-flex justify-content-center align-items-center">
           <ul
             class="list-style-none d-flex justify-content-between align-items-center items-buttons"
           >

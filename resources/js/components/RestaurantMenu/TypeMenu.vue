@@ -1,11 +1,11 @@
 <template>
-     <div id="menu">
+  <div id="menu">
     <div class="container restaurant">
       <div class="row">
         <div class="col-12">
           <h1>Menù</h1>
         </div>
-        <div class="col-12" >
+        <div class="col-12">
           <ul class="oval-button">
             <li
               v-for="(genre, index) in genreList"
@@ -16,7 +16,7 @@
                 notselected: genre.name != categorySelect,
               }"
             >
-              <img class="icon" :src="'/'+genre.image_url" alt="" />
+              <img class="icon" :src="'/' + genre.image_url" alt="" />
               <!-- ondragstart="return false" 
                          onselectstart="return false"
                          evita evidenziazione del testo -->
@@ -47,7 +47,11 @@
             >
               <div class="dishImg">
                 <div class="listImage dishImg">
-                  <img class="" :src="'/img/restaurant/' + dish.image_url" alt="" />
+                  <img
+                    class=""
+                    :src="'/img/restaurant/' + dish.image_url"
+                    alt=""
+                  />
                 </div>
               </div>
               <div class="dishtext">
@@ -60,7 +64,6 @@
             </div>
             <!-- <div class="counter-box d-flex justify-content-end align-items-center">
               <div class="counter d-flex justify-content-between">
-      
                 <div class="bt" @click="changeCounter('-', i)">
                   <span ondragstart="return false" onselectstart="return false">
                     -
@@ -116,8 +119,8 @@
               </div>
             </div>
             <div class="price d-flex justify-content-end align-items-center">
-             <!-- nel caso ritorna il filtro sarebbe order.totalPrice -->
-              <h1>{{ order.dishPrice}} €</h1>
+              <!-- nel caso ritorna il filtro sarebbe order.totalPrice -->
+              <h1>{{ order.dishPrice }} €</h1>
             </div>
             <div class="delete d-flex justify-content-end align-items-center">
               <button @click.stop="deleteOrder(ind)">X</button>
@@ -141,9 +144,9 @@
 
     <!-- attiva carrello -->
 
-    <div class="container cartButton" >
+    <div class="container cartButton">
       <div class="row d-flex justify-content-center align-items-center">
-        <div class="col-1 ">
+        <div class="col-1">
           <div
             class="roundedCart d-flex justify-content-center align-items-center"
             @click="openAndClose()"
@@ -154,113 +157,95 @@
       </div>
     </div>
   </div>
-
-
 </template>
 
 <script>
 export default {
-  name:'MenuGenre',
+  name: "MenuGenre",
   props: {
     data: String,
   },
-  data(){
-    return{
+  data() {
+    return {
       dishesImport: [],
       dishes: [],
-      genreList:[],
-      restaurantId:0,
-      categorySelect:'',
+      genreList: [],
+      restaurantId: 0,
+      categorySelect: "",
       count: [],
       orders: [],
       quantity:[],
       cartActive: false,
       // cartElements:[],
       // cartFiltered:[],
-      cart:[],
-      total:0,
-      dishInCart:[],
-            
-    }
+      cart: [],
+      total: 0,
+      dishInCart: [],
+    };
   },
-  mounted:function(){
-
+  mounted: function () {
     //DATI
     //importo ARRAY dei dati del ristorante
     var data = JSON.parse(this.data);
 
-    
     this.dishesImport = data.get_dishes;
 
-    //aggiungi oggetto counter per la quantità 
+    //aggiungi oggetto counter per la quantità
     this.dishes = this.dishesImport.map((element) => {
       this.elementUpgrade = { ...element, counter: 0 };
       return this.elementUpgrade;
     });
     //controllo ARRAY piatti
-    console.log('piatti');console.log(this.dishes);
+    console.log("piatti");
+    console.log(this.dishes);
 
     //estraggo ARRAY GENERI
     this.genreList = this.dishes.map((element) => {
-            this.genre = element.get_genre;
-            return this.genre;
-          });
+      this.genre = element.get_genre;
+      return this.genre;
+    });
 
     //filtro per eliminare doppioni nell'ARRAY GENERI mi restituisce nomi e immagini
-    this.genreList = this.genreList.filter((genre,index,self)=>
-                 index === self.findIndex((g)=>(
-                 g.name === genre.name && g.image_url === genre.image_url
-                 )));
+    this.genreList = this.genreList.filter(
+      (genre, index, self) =>
+        index ===
+        self.findIndex(
+          (g) => g.name === genre.name && g.image_url === genre.image_url
+        )
+    );
     //controllo ARRAY generi
-    console.log('generi');console.log(this.genreList);
+    console.log("generi");
+    console.log(this.genreList);
 
     //estraggo ARRAY RISTORANTE
-    this.restaurantId = this.dishes.map(e => {
-                 this.id = e.restaurant_id;
-                 return this.id });
-                 this.restaurant_id = this.restaurantId.splice(1); 
+    this.restaurantId = this.dishes.map((e) => {
+      this.id = e.restaurant_id;
+      return this.id;
+    });
+    this.restaurant_id = this.restaurantId.splice(1);
     //controllo ID ristorante
-    console.log('ARRAY ID RISTORANTE');console.log(this.restaurantId)
-
-    
-  
+    console.log("ARRAY ID RISTORANTE");
+    console.log(this.restaurantId);
   },
-  computed:{
-
+  computed: {
     //FUNZIONE filtered crea virtualmente un ARRAY filtrato
-    //dei piatti  che hanno il genere uguale a quello selezionato 
+    //dei piatti  che hanno il genere uguale a quello selezionato
 
-    filtered(){
-      return this.dishes.filter((e)=>{
+    filtered() {
+      return this.dishes.filter((e) => {
         return e.get_genre.name.includes(this.categorySelect);
       })},
-
-    filteredCart(){
-      return this.cart.filter((order,index,self)=>
-               index === self.findIndex((o,i) => (
-                     o.dishId === order.dishId
-                 )));
-            
-
-    },
-
-
     
     //calcola il totale del carrello e lo trasforma in formato prezzo
 
-    TotalPrice(){
-
+    TotalPrice() {
       return new Intl.NumberFormat("it-IT", {
         style: "currency",
         currency: "EUR",
       }).format(this.total);
     },
-    
-
   },
-  methods:{
-
-
+  methods: {
     //AL CLICK FILTRA PER CATEGORIA
     selectCategory(category) {
       return (
@@ -276,14 +261,15 @@ export default {
     //CARRELLO
 
     //CONTATORE
-    changeCounter(direction, index){
-       this.filtered.forEach((dish, i) => {
+    changeCounter(direction, index) {
+      this.filtered.forEach((dish, i) => {
         if (direction == "+" && i === index) {
           this.putInCart(i); //attiva funzione di creazione ordine e carrello
           this.cartActive = true; //attiva la sezione carrello
         } else if (direction == "-" && i === index) {
-            if (dish.counter === 0) { //blocca il counter a 0
-              this.cartActive = false; // chiude sezione carrello
+          if (dish.counter === 0) {
+            //blocca il counter a 0
+            this.cartActive = false; // chiude sezione carrello
           } else {
             this.deleteOrder(index);
           }
@@ -295,9 +281,10 @@ export default {
 
     putInCart(index) {
       this.filtered.forEach((dish, i) => {
-        if (index === i && dish.counter >= 0) {
+        if (index === i && dish.counter != 0 && dish.name) {
           this.cart.push({ //se attivo filtro this.cart diventa this.cartElement
-            dishId: dish.id,
+            dishId:dish.id,
+            quantity: dish.counter,
             dishName: dish.name,
             dishImgUrl: dish.image_url,
             dishPrice: dish.price,
@@ -315,16 +302,28 @@ export default {
           // console.log('quantità');console.log(this.quantity);
 
           //ID piatti nel carrello
-          this.dishInCart = this.orders.map(e=>{
+          this.dishInCart = this.orders.map((e) => {
             this.order = e.dishId;
             return this.order
           })
           console.log('ordine nel carrello');console.log(this.dishInCart);
           
+          // DA RIVEDERE
+          //filtro carrello
+          this.cartFiltered = this.cart.filter((order,index,self)=>
+                 index === self.findIndex((o,) => (
+                 o.dishId === order.dishId
+                 )));
+          
+          
+
+
+
           //TOTALE ORDINE
           this.total = this.cart.reduce(
-          (total, order) => total + parseFloat(order.dishPrice),
-           0  );
+            (total, order) => total + parseFloat(order.dishPrice),
+            0
+          );
 
           //
 
@@ -334,8 +333,8 @@ export default {
           this.saveTotal();
 
          
-          console.log('quantity');console.log(this.quantity);
-          console.log('CART FILTRO');console.log(this.filteredCart);
+          console.log('CART ELEMENTI'); console.log(this.cartElements);
+          console.log('CART FILTRO');console.log(this.cartFiltered);
           console.log('CART FINALE');console.log(this.cart);
           console.log('Dish');console.log(this.dishInCart);
           console.log('Total');console.log(this.total);
@@ -348,23 +347,27 @@ export default {
     //ELIMINA UN ORDINE QUANDO VIENE CLICCATO - SUL CONTATORE
 
     deleteOrder: function (delIndex) {
-        this.cart.splice(delIndex,1)
-        this.orders.splice(delIndex,1);
-        this.total = this.cart.reduce(
+      this.cart.splice(delIndex, 1);
+      this.orders.splice(delIndex, 1);
+      this.total = this.cart.reduce(
           (total, order) => total + parseFloat(order.dishPrice),
            0  );
+      
           this.saveCart();
           this.saveDish();
           this.saveRestaurant();
           this.saveTotal();
       if (this.cart.length != 0) {
         this.cartActive = true;
-      } else  {
+      } else {
         this.cartActive = false;
       }
-      console.log('ORDER-DELETE');console.log(this.orders);
-      console.log('ORDER-DELETE');console.log(this.cart);
-      console.log('Total');console.log(this.total);
+      console.log("ORDER-DELETE");
+      console.log(this.orders);
+      console.log("ORDER-DELETE");
+      console.log(this.cart);
+      console.log("Total");
+      console.log(this.total);
     },
 
     //ATTIVA CARRELLO{}
@@ -387,7 +390,6 @@ export default {
       }
     },
 
-
     //INVIO DATI
 
     saveCart() {
@@ -407,7 +409,6 @@ export default {
       localStorage.setItem("total", parsed);
     },
 
-
     // Vai al pagamento
     goToPayment() {
       this.saveCart();
@@ -415,14 +416,9 @@ export default {
       this.saveRestaurant();
       this.saveTotal();
       location.replace("/infoClienti");
-    }
-
-
+    },
   },
-
-
-}
-
+};
 </script>
 
 <style lang="scss" scoped>
@@ -496,7 +492,7 @@ export default {
                 width: 70px;
                 text-align: center;
                 span {
-                  color:white;
+                  color: white;
                   height: 30px;
                   font-size: 30px;
                   font-weight: 500;
@@ -511,10 +507,9 @@ export default {
                 &:hover {
                   background-color: #b3f5fd;
                   line-height: 40px;
-                  span{
-                  color: black;
+                  span {
+                    color: black;
                   }
-                    
                 }
                 &:hover:first-child {
                   border-top-left-radius: 30px;
@@ -647,7 +642,7 @@ export default {
         color: white;
         font-size: 30px;
         font-weight: 900;
-        &:last-child{
+        &:last-child {
           color: #2fbcae;
         }
       }
@@ -680,7 +675,7 @@ export default {
     right: 25px;
     z-index: 2;
     .row {
-      width:100%;
+      width: 100%;
       .col-1 {
         .roundedCart {
           height: 60px;

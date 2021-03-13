@@ -10,24 +10,24 @@
             @method("PUT")
             <div class="container p-5">
                 <div class="row ">
-                    <div class="col-6 mb-2">
+                    <div class="col-lg-6 mb-2">
                         <input type="hidden" name="_method" value="PUT">
                         <input name="name" type="text" class="custom-input" id="name" aria-describedby="emailHelp"
                             placeholder="Nome Piatto" value="{{ $dish->name }}">
                     </div>
-                    <div class="col-6 mb-2">
+                    <div class="col-lg-6 mb-2">
                         <input name="price" type="text" class="custom-input" id="price" aria-describedby="emailHelp"
                             placeholder="Prezzo" value="{{ $dish->price }}">
                     </div>
-                    <div class="col-12 mb-2">
+                    <div class="col-lg-12 mb-2">
                         <input name="description" type="text" class="custom-input" id="description"
                             aria-describedby="emailHelp" placeholder="Descrizione" value="{{ $dish->description }}">
                     </div>
-                    <div class="col-12 mb-2">
+                    <div class="col-lg-12 mb-2">
                         <label for="image" class="form-label">Seleziona un immagine per il prodotto</label>
                         <input name="image" type="file" class="custom-input" id="image">
                     </div>
-                    <div class="col-12 mb-2 justify-content-start align-items-center mb-4 mt-4">
+                    <div class="col-lg-12 mb-2 justify-content-start align-items-center mb-4 mt-4">
                         <p>Seleziona se il prodotto è disponibile alla vendita.</p>
                         <input class="checkbox-tools" type="radio" name="visibility" value="0" id="visibility0" @if ($dish->visibility == 0) checked @endif>
                         <label class="for-checkbox-tools" for="visibility0">
@@ -39,7 +39,7 @@
                             Disponibile
                         </label>
                     </div>
-                    <div class="col-12 mb-2 justify-content-center align-items-center mb-4">
+                    <div class="col-lg-12 mb-2 justify-content-center align-items-center mb-4">
                         <p>Seleziona a che categoria appartiene il prodotto.</p>
                         @foreach ($genres as $genre)
                             <input class="checkbox-tools" type="radio" name="genre" value="{{ $genre['id'] }}"
@@ -49,7 +49,7 @@
                             </label>
                         @endforeach
                     </div>
-                    <div class="col-12">
+                    <div class="col-lg-12">
                         <button type="submit" class="button-colored">MODIFICA</button>
                     </div>
                     @if ($errors->any())

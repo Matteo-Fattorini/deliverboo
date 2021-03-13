@@ -4,7 +4,7 @@
     <section id="login">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 login-img">
+                <div class="col-lg-12 login-img">
                 </div>
                 <div class="col-lg-6 login-box p-5">
                     <h1 id="log_title" style="mb-2">Login Ristoratori</h1>
@@ -44,27 +44,5 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> 
 @endsection
-
-<style>
-#log_btn {
-    position: absolute;
-    top: 74%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-#sub_btn{
-    margin-top: 30px;
-}
-.register-box{
-    text-align: center;
-    background-color: rgb(24, 23, 23) !important;
-}
-.login-box {
-    text-align: center;
-}
-#log_title{
-    margin-bottom: 30px;
-}
- </style>
