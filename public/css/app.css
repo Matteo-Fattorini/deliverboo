@@ -10956,7 +10956,10 @@ a {
 }
 
 nav {
-  background-color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 nav .row {
@@ -10964,7 +10967,26 @@ nav .row {
 }
 
 nav ul {
-  width: 60%;
+  margin: 0;
+  width: 80%;
+}
+
+nav ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav ul li h5 {
+  margin: 0;
+}
+
+nav ul li a {
+  color: #000000;
+}
+
+section {
+  margin-top: 100px !important;
 }
 
 #login .login-img {
@@ -11011,7 +11033,7 @@ nav ul {
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(/images/background_header.png?6c3b083f920a630446ad4d1310a47664);
+  background-image: url(/images/background_header2.png?546f73a709163fb8bb678215e8888178);
 }
 
 .primary-button,

@@ -5,17 +5,14 @@
         <div
           class="col-6 d-flex justify-align-content-center align-items-center"
         >
-          <img src="img/homepage/food.png" alt="" />
+          <img src="img/homepage/logo_dev_2.png" alt="" />
         </div>
         <div
           class="col-6 d-flex flex-column justify-content-center align-items-center"
         >
           <h1>E' ora di mangiare. Prenota con Deliveboo.</h1>
           <p>
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque sint
-            ex ipsum ipsa, sunt accusamus, adipisci reiciendis, optio in amet
-            autem? Hic, recusandae. Consequuntur consequatur fugit earum hic
-            voluptate commodi."
+            La fame ti ha preso di sprovvista? Con pochi click puoi ordinare direttamente dai tuoi ristoranti preferiti. <br> Il cibo arriverà direttamente a casa tua!
           </p>
         </div>
       </div>
@@ -31,9 +28,15 @@ export default {
 
 <style lang="scss" scoped>
 #infoSectionHome {
-  height: 40vh;
+  height: 60vh;
 }
 img {
   height: 300px;
+  outline: none !important;
+
+  &:hover {
+  outline:none !important; 
+  }
 }
+
 </style>

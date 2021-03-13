@@ -2,227 +2,58 @@
 
 
 @section('content')
-    <form action="{{ route('restaurant.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method("POST")
-        <div class="container p-5">
-            <div class="row mt-3 mb-3">
-                <h3>Registra il tuo ristorante</h3>
-            </div>
-            <div class="row">
-                <input type="hidden" name="_method" value="POST">
-                <div class="col-6 mb-3">
-                    <input name="name" type="text" class="custom-input" id="name" aria-describedby="emailHelp"
-                        placeholder="Nome Ristorante">
+    <section id="create-restaurant">
+        <form action="{{ route('restaurant.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method("POST")
+            <div class="container p-5">
+                <div class="row mt-3 mb-3">
+                    <h3>Registra il tuo ristorante</h3>
                 </div>
-                <div class="col-6 mb-3">
-                    <input name="p_iva" type="text" class="custom-input" id="p_iva" aria-describedby="emailHelp"
-                        placeholder="Partita IVA">
-                </div>
-                <div class="col-12 mb-3">
-                    <input name="address" type="text" class="custom-input" id="address" aria-describedby="emailHelp"
-                        placeholder="Indirizzo Ristorante">
-                </div>
-                <div class="col-12 mb-3">
-                    <label for="image" class="form-label">Seleziona l'immagine del ristorante</label>
-                    <input name="image" type="file" class="custom-input" id="image">
-                </div>
-                <div class="col-12 mb-3">
-                    <p>Seleziona la tipologia di ristorante che stai creando.</p>
-                    @foreach ($types as $type)
-                        <input class="checkbox-tools" name="types[]" type="checkbox" value="{{ $type['id'] }}"
-                            id="{{ $type['id'] }}">
-                        <label class="for-checkbox-tools" for="{{ $type['id'] }}">
-                            {{ $type['name'] }}
-                        </label>
-                    @endforeach
-                </div>
-                <div class="col-12">
-                    <button class="primary-button" type="submit">REGISTRA IL RISTORANTE</button>
-                </div>
-                <div class="col-12">
-                    @if ($errors->any())
-                        <div class="alert alert-danger mt-5">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </form>
-
-
-    {{-- <div class="container">
-        <div class="row ">
-            <div class="col-10  mt-5 d-flex flex-wrap justify-content-center ">
-                <form action="{{ route('restaurant.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method("POST")
+                <div class="row">
                     <input type="hidden" name="_method" value="POST">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nome Ristorante</label>
-                        <input name="name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
-
+                    <div class="col-6 mb-3">
+                        <input name="name" type="text" class="custom-input" id="name" aria-describedby="emailHelp"
+                            placeholder="Nome Ristorante">
                     </div>
-                    <div class="mb-3">
-                        <label for="address" class="form-label">Indirizzo</label>
-                        <input name="address" type="text" class="form-control" id="address" aria-describedby="emailHelp">
-
+                    <div class="col-6 mb-3">
+                        <input name="p_iva" type="text" class="custom-input" id="p_iva" aria-describedby="emailHelp"
+                            placeholder="Partita IVA">
                     </div>
-                    <div class="mb-3">
-                        <label for="p_iva" class="form-label">Partita IVA</label>
-                        <input name="p_iva" type="text" class="form-control" id="p_iva" aria-describedby="emailHelp">
+                    <div class="col-12 mb-3">
+                        <input name="address" type="text" class="custom-input" id="address" aria-describedby="emailHelp"
+                            placeholder="Indirizzo Ristorante">
                     </div>
-
-
-
-                    <div class="mb-3">
-                        <label for="image" class="form-label">image</label>
-                        <input name="image" type="file" class="form-control" id="image">
-
+                    <div class="col-12 mb-3">
+                        <label for="image" class="form-label">Seleziona l'immagine del ristorante</label>
+                        <input name="image" type="file" class="custom-input" id="image">
                     </div>
-
-
-                    <div class="mb-3 form-check">
+                    <div class="col-12 mb-3">
+                        <p>Seleziona la tipologia di ristorante che stai creando.</p>
                         @foreach ($types as $type)
-
-
-                            <div class="form-check ">
-                                <input class="form-check-input" name="types[]" type="checkbox" value="{{ $type['id'] }}"
-                                    id="type">
-                                <label class="form-check-label" for="type">
-                                    {{ $type['name'] }}
-                                </label>
-                            </div>
-
+                            <input class="checkbox-tools" name="types[]" type="checkbox" value="{{ $type['id'] }}"
+                                id="{{ $type['id'] }}">
+                            <label class="for-checkbox-tools" for="{{ $type['id'] }}">
+                                {{ $type['name'] }}
+                            </label>
                         @endforeach
-
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    @if ($errors->any())
-                        <div class="alert alert-danger mt-5">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                </form>
+                    <div class="col-12">
+                        <button class="primary-button" type="submit">REGISTRA IL RISTORANTE</button>
+                    </div>
+                    <div class="col-12">
+                        @if ($errors->any())
+                            <div class="alert alert-danger mt-5">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
+                </div>
             </div>
-        </div>
-    </div> --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {{-- @foreach ($restaurants->getTypes as $type)
-    @dd($type->getRestaurants)
-    
-@endforeach
-
-
- @foreach ($restaurants->getOrders as $order)
-        <h4>{{ $order->client_name }}</h4>
-        <h4>{{ $order->client_surname }}</h4>
-        <h4>{{ $order->client_email }}</h4>
-        <h4>{{ $order->client_phone }}</h4>
-        <h4>{{ $order->client_address }}</h4>
-        <h1>{{ $order->getRestaurant->name }}</h1>
-        <br>
-    @foreach ($order->getDishes as $dish) 
-         <h4>{{ $dish->name }}</h4>
-         <h4>{{ $dish->price }} euro</h4>
-         <h4>{{ $dish->description }}</h4>
-         <h4>ristorante: {{ $dish->getRestaurant->name }}</h4>
-         <h4> genere: {{ $dish->getGenre->getDishes->pluck("name") }}</h4>
-         
-        
-    @endforeach
-     
- @endforeach --}}
-
-
-    {{-- <h1>{{ $restaurants->name }}</h1>
-@foreach ($restaurants->getTypes as $type)
-    <h5>{{ $type->name }}</h5>
-@endforeach
-"--------------------------"
-@foreach ($restaurants->getDishes as $dish)
-    <h5>{{ $dish->name }}</h5>
-    @foreach ($dish->getOrders as $order)
-         {{ $order->id }}
-         {{ $order->client_name }}
-        
-@endforeach
-
-@foreach ($orders as $order){
-    @foreach ($order->getDishes as $dishes)
-           {{ $dishes->getRestaurant->id }}
-        
-    @endforeach
-}
-    
-@endforeach
-
-
-@endforeach --}}
-
-
-
-
-    {{-- @foreach ($restaurants as $restaurant)
-    <div class="card" style="width: 18rem;">
-  <h2>immagine: {{ $restaurant->image_url }}</h2>
-  <div class="card-body">
-    <h5 class="card-title">{{ $restaurant->name }}</h5>
-    <p class="card-text">{{ $restaurant->address }}</p>
-    <p> test-getrestaurator: {{ $restaurant->getRestaurateur->getRestaurant->name }}</p>
-    <h5>Test Tipi</h5>
-    @foreach ($restaurant->getTypes as $type)
-        <h5>{{ $type->name }}</h5>
-    @endforeach
-    <br>
-    <h5>Test Piatti</h5>
-    @foreach ($restaurant->getorders as $dish)
-        <h5>{{ $dish->name }}</h5>
-        <h5> test genere: {{ $dish->getGenre->name}}</h5>
-        <h5>test restaurant: {{ $dish->getRestaurant->name }}</h5>
-        
-        
-            
-    @endforeach
-   
-    <br>
-
-    
-  </div>
-</div>
-@endforeach --}}
-
-
+        </form>
+    </section>
 @endsection
