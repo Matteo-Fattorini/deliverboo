@@ -348,18 +348,11 @@ export default {
     //ELIMINA UN ORDINE QUANDO VIENE CLICCATO - SUL CONTATORE
 
     deleteOrder: function (delIndex) {
-      this.filtered.forEach((dish,i) => {
-        dish.counter= 0;
-    
-        this.filteredCart.splice(delIndex,1);
-        this.cart.splice(delIndex)
+        this.cart.splice(delIndex,1)
         this.orders.splice(delIndex,1);
         this.total = this.cart.reduce(
           (total, order) => total + parseFloat(order.dishPrice),
            0  );
-        
-      })
-     
           this.saveCart();
           this.saveDish();
           this.saveRestaurant();
