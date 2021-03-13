@@ -2881,21 +2881,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     //ELIMINA UN ORDINE QUANDO VIENE CLICCATO - SUL CONTATORE
     deleteOrder: function deleteOrder(delIndex) {
-      var _this5 = this;
-
-      this.filtered.forEach(function (dish, i) {
-        dish.counter = 0;
-
-        _this5.filteredCart.splice(delIndex, 1);
-
-        _this5.cart.splice(delIndex);
-
-        _this5.orders.splice(delIndex, 1);
-
-        _this5.total = _this5.cart.reduce(function (total, order) {
-          return total + parseFloat(order.dishPrice);
-        }, 0);
-      });
+      this.cart.splice(delIndex, 1);
+      this.orders.splice(delIndex, 1);
+      this.total = this.cart.reduce(function (total, order) {
+        return total + parseFloat(order.dishPrice);
+      }, 0);
       this.saveCart();
       this.saveDish();
       this.saveRestaurant();
@@ -8277,7 +8267,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".container[data-v-007e6d83] {\n  margin-top: 30px;\n  margin-bottom: 50px;\n}\n.container .row .circle[data-v-007e6d83] {\n  margin: 0;\n  padding: 0;\n  position: absolute;\n  top: 140px;\n  right: 40px;\n  z-index: 2;\n}\n.container .row .circle .resturantImage[data-v-007e6d83] {\n  min-width: 350px;\n  height: 350px;\n  overflow: hidden;\n  border-radius: 100%;\n  border: 6px solid black;\n}\n.container .row .circle .resturantImage #restaurant_img[data-v-007e6d83] {\n  width: 100%;\n  height: 100%;\n  border-radius: 100%;\n  margin: 0;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.container .row .info .rst-info[data-v-007e6d83] {\n  margin: 20px 0 0 20px;\n  padding-right: 0;\n}\n.container .row .info .rst-info h1[data-v-007e6d83] {\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n.container .row .info .rst-info h5[data-v-007e6d83] {\n  font-size: 18px;\n  font-weight: 400;\n}\n.container .row .info .rst-info .dist[data-v-007e6d83] {\n  margin: 30px 0;\n}", ""]);
+exports.push([module.i, ".container[data-v-007e6d83] {\n  margin-bottom: 50px;\n}\n.container .row .circle[data-v-007e6d83] {\n  margin: 0;\n  padding: 0;\n  position: absolute;\n  top: 140px;\n  right: 40px;\n  z-index: 2;\n}\n.container .row .circle .resturantImage[data-v-007e6d83] {\n  min-width: 350px;\n  height: 350px;\n  overflow: hidden;\n  border-radius: 100%;\n  border: 6px solid black;\n}\n.container .row .circle .resturantImage #restaurant_img[data-v-007e6d83] {\n  width: 100%;\n  height: 100%;\n  border-radius: 100%;\n  margin: 0;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.container .row .info .rst-info[data-v-007e6d83] {\n  margin: 20px 0 0 20px;\n  padding-right: 0;\n}\n.container .row .info .rst-info h1[data-v-007e6d83] {\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n.container .row .info .rst-info h5[data-v-007e6d83] {\n  font-size: 18px;\n  font-weight: 400;\n}\n.container .row .info .rst-info .dist[data-v-007e6d83] {\n  margin: 30px 0;\n}", ""]);
 
 // exports
 
@@ -8505,7 +8495,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#icon{\r\n  height: 30px;\r\n  margin: 0;\r\n  width: auto;\n}\r\n", ""]);
+exports.push([module.i, "\n#icon{\n  height: 30px;\n  margin: 0;\n  width: auto;\n}\n", ""]);
 
 // exports
 
@@ -40886,18 +40876,14 @@ var render = function() {
           "div",
           {
             staticClass:
-              "col-6 circle d-flex justify-content-center align-items-center p-0"
+              "rst-info d-flex flex-column justify-content-start align-items-start"
           },
           [
-            _c("div", { staticClass: "resturantImage" }, [
-              _c("img", {
-                attrs: {
-                  id: "restaurant_img",
-                  alt: "ok",
-                  src: "/img/restaurant/" + _vm.restaurantData.image_url
-                }
-              })
-            ])
+            _c("h1", [_vm._v(_vm._s(_vm.restaurantData.name))]),
+            _vm._v(" "),
+            _c("h5", [_vm._v(_vm._s(_vm.restaurantData.address))]),
+            _vm._v(" "),
+            _c("div", { staticClass: "dist" })
           ]
         )
       ]),
@@ -56663,8 +56649,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! F:\User Folders\Documenti\GitHub\deliverboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! F:\User Folders\Documenti\GitHub\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/pierlucamariodussich/Desktop/boolean/vs-code/php-playground/deliverboo/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/pierlucamariodussich/Desktop/boolean/vs-code/php-playground/deliverboo/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
