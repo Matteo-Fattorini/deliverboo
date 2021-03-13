@@ -2703,6 +2703,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'MenuGenre',
   props: {
@@ -2777,13 +2778,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return e.get_genre.name.includes(_this2.categorySelect);
       });
     },
-    filteredCart: function filteredCart() {
-      return this.cart.filter(function (order, index, self) {
-        return index === self.findIndex(function (o, i) {
-          return o.dishId === order.dishId;
-        });
-      });
-    },
     //calcola il totale del carrello e lo trasforma in formato prezzo
     TotalPrice: function TotalPrice() {
       return new Intl.NumberFormat("it-IT", {
@@ -2823,10 +2817,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this4 = this;
 
       this.filtered.forEach(function (dish, i) {
-        if (index === i && dish.counter >= 0) {
+        if (index === i && dish.counter != 0 && dish.name) {
           _this4.cart.push({
             //se attivo filtro this.cart diventa this.cartElement
             dishId: dish.id,
+            quantity: dish.counter,
             dishName: dish.name,
             dishImgUrl: dish.image_url,
             dishPrice: dish.price
@@ -2850,7 +2845,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             return _this4.order;
           });
           console.log('ordine nel carrello');
-          console.log(_this4.dishInCart); //TOTALE ORDINE
+          console.log(_this4.dishInCart); // DA RIVEDERE
+          //filtro carrello
+
+          _this4.cartFiltered = _this4.cart.filter(function (order, index, self) {
+            return index === self.findIndex(function (o) {
+              return o.dishId === order.dishId;
+            });
+          }); //TOTALE ORDINE
 
           _this4.total = _this4.cart.reduce(function (total, order) {
             return total + parseFloat(order.dishPrice);
@@ -2864,10 +2866,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           _this4.saveTotal();
 
-          console.log('quantity');
-          console.log(_this4.quantity);
+          console.log('CART ELEMENTI');
+          console.log(_this4.cartElements);
           console.log('CART FILTRO');
-          console.log(_this4.filteredCart);
+          console.log(_this4.cartFiltered);
           console.log('CART FINALE');
           console.log(_this4.cart);
           console.log('Dish');
@@ -42294,7 +42296,7 @@ var render = function() {
             staticClass: "icon",
             attrs: { src: _vm.categoryImg, alt: "" }
           }),
-          _vm._v("\r\n      " + _vm._s(_vm.categoryName) + "\r\n    ")
+          _vm._v("\n      " + _vm._s(_vm.categoryName) + "\n    ")
         ]
       )
     ]
