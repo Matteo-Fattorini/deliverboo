@@ -44,6 +44,7 @@ export default {
 data(){
 return{
     cart: [],
+    total:0,
 
  }
 },
@@ -56,20 +57,24 @@ return{
         localStorage.removeItem('cart');
       }
     }
+
+    if (localStorage.getItem('total')) {
+      try {
+        this.total = JSON.parse(localStorage.getItem('total'));
+      } catch(e) {
+        localStorage.removeItem('total');
+      }
+    }
      console.log(this.cart)
 
  },
  computed:{
 
      totalPrice() {
-      const total = this.cart.reduce(
-        (total, order) => total + order.totalPrice,
-        0
-      );
       return new Intl.NumberFormat("it-IT", {
         style: "currency",
         currency: "EUR",
-      }).format(total);
+      }).format(this.total);
     },
  },
 
