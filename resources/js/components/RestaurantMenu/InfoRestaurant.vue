@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" style="margin-top: 120px;">
     <div class="row">
       <div class="col-6 info d-flex p-0">
         <div
@@ -55,8 +55,8 @@ export default {
       right: 40px;
       z-index: 2;
       .resturantImage {
-        min-width: 450px;
-        height: 450px;
+        min-width: 350px;
+        height: 350px;
         overflow: hidden;
         border-radius: 100%;
         border: 6px solid black;
