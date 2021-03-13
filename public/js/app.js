@@ -2704,7 +2704,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "MenuGenre",
+  name: 'MenuGenre',
   props: {
     data: String
   },
@@ -2714,7 +2714,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       dishes: [],
       genreList: [],
       restaurantId: 0,
-      categorySelect: "",
+      categorySelect: '',
       count: [],
       orders: [],
       quantity: [],
@@ -2732,7 +2732,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     //DATI
     //importo ARRAY dei dati del ristorante
     var data = JSON.parse(this.data);
-    this.dishesImport = data.get_dishes; //aggiungi oggetto counter per la quantità
+    this.dishesImport = data.get_dishes; //aggiungi oggetto counter per la quantità 
 
     this.dishes = this.dishesImport.map(function (element) {
       _this.elementUpgrade = _objectSpread(_objectSpread({}, element), {}, {
@@ -2741,7 +2741,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return _this.elementUpgrade;
     }); //controllo ARRAY piatti
 
-    console.log("piatti");
+    console.log('piatti');
     console.log(this.dishes); //estraggo ARRAY GENERI
 
     this.genreList = this.dishes.map(function (element) {
@@ -2755,7 +2755,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     }); //controllo ARRAY generi
 
-    console.log("generi");
+    console.log('generi');
     console.log(this.genreList); //estraggo ARRAY RISTORANTE
 
     this.restaurantId = this.dishes.map(function (e) {
@@ -2764,12 +2764,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
     this.restaurant_id = this.restaurantId.splice(1); //controllo ID ristorante
 
-    console.log("ARRAY ID RISTORANTE");
+    console.log('ARRAY ID RISTORANTE');
     console.log(this.restaurantId);
   },
   computed: {
     //FUNZIONE filtered crea virtualmente un ARRAY filtrato
-    //dei piatti  che hanno il genere uguale a quello selezionato
+    //dei piatti  che hanno il genere uguale a quello selezionato 
     filtered: function filtered() {
       var _this2 = this;
 
@@ -2864,17 +2864,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           _this4.saveTotal();
 
-          console.log("CART ELEMENTI");
-          console.log(_this4.cartElements);
-          console.log("CART FILTRO");
-          console.log(_this4.cartFiltered);
-          console.log("CART FINALE");
           console.log('quantity');
           console.log(_this4.quantity);
+          console.log('CART FILTRO');
+          console.log(_this4.filteredCart);
+          console.log('CART FINALE');
           console.log(_this4.cart);
-          console.log("Dish");
+          console.log('Dish');
           console.log(_this4.dishInCart);
-          console.log("Total");
+          console.log('Total');
           console.log(_this4.total);
         } else {}
       });
@@ -2897,11 +2895,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.cartActive = false;
       }
 
-      console.log("ORDER-DELETE");
+      console.log('ORDER-DELETE');
       console.log(this.orders);
-      console.log("ORDER-DELETE");
+      console.log('ORDER-DELETE');
       console.log(this.cart);
-      console.log("Total");
+      console.log('Total');
       console.log(this.total);
     },
     //ATTIVA CARRELLO{}
@@ -8495,7 +8493,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#icon{\n  height: 30px;\n  margin: 0;\n  width: auto;\n}\n", ""]);
+exports.push([module.i, "\n#icon{\r\n  height: 30px;\r\n  margin: 0;\r\n  width: auto;\n}\r\n", ""]);
 
 // exports
 
@@ -40876,36 +40874,21 @@ var render = function() {
           "div",
           {
             staticClass:
-              "rst-info d-flex flex-column justify-content-start align-items-start"
+              "col-6 circle d-flex justify-content-center align-items-center p-0"
           },
           [
-            _c("h1", [_vm._v(_vm._s(_vm.restaurantData.name))]),
-            _vm._v(" "),
-            _c("h5", [_vm._v(_vm._s(_vm.restaurantData.address))]),
-            _vm._v(" "),
-            _c("div", { staticClass: "dist" })
+            _c("div", { staticClass: "resturantImage" }, [
+              _c("img", {
+                attrs: {
+                  id: "restaurant_img",
+                  alt: "ok",
+                  src: "/img/restaurant/" + _vm.restaurantData.image_url
+                }
+              })
+            ])
           ]
         )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "col-6 circle d-flex justify-content-center align-items-center p-0"
-        },
-        [
-          _c("div", { staticClass: "resturantImage" }, [
-            _c("img", {
-              attrs: {
-                id: "restaurant_img",
-                alt: "ok",
-                src: "/img/restaurant/" + _vm.restaurantData.image_url
-              }
-            })
-          ])
-        ]
-      )
+      ])
     ])
   ])
 }
@@ -41656,7 +41639,7 @@ var render = function() {
         "div",
         { staticClass: "row d-flex justify-content-center align-items-center" },
         [
-          _c("div", { staticClass: "col-1" }, [
+          _c("div", { staticClass: "col-1 " }, [
             _c(
               "div",
               {
@@ -41910,7 +41893,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row m-3" }, [
-          _c("div", { staticClass: "col-12" }, [
+          _c("div", { staticClass: "col-lg-12" }, [
             _c("h1", [_vm._v("Gestione Menù")]),
             _vm._v(" "),
             _c("input", {
@@ -56649,8 +56632,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/pierlucamariodussich/Desktop/boolean/vs-code/php-playground/deliverboo/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/pierlucamariodussich/Desktop/boolean/vs-code/php-playground/deliverboo/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\NoSync\deliverboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\NoSync\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
