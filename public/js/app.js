@@ -8369,7 +8369,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".items-buttons img[data-v-1c27d7e2] {\n  height: 30px;\n}\n.custom-input[data-v-1c27d7e2] {\n  width: 50%;\n}\n.new-dish-button img[data-v-1c27d7e2],\n.orders-button img[data-v-1c27d7e2] {\n  height: 30px;\n  width: auto;\n  margin: 0;\n}\n.text-box p[data-v-1c27d7e2] {\n  white-space: nowrap;\n  overflow: hidden !important;\n  text-overflow: ellipsis !important;\n  max-width: 200px;\n}\n.listImage[data-v-1c27d7e2] {\n  -o-object-fit: cover !important;\n     object-fit: cover !important;\n}", ""]);
+exports.push([module.i, ".items-buttons img[data-v-1c27d7e2] {\n  height: 30px;\n}\n.custom-input[data-v-1c27d7e2] {\n  width: 50%;\n}\n.new-dish-button img[data-v-1c27d7e2],\n.orders-button img[data-v-1c27d7e2] {\n  height: 30px;\n  width: auto;\n  margin: 0;\n}\n.text-box p[data-v-1c27d7e2] {\n  white-space: nowrap;\n  overflow: hidden !important;\n  text-overflow: ellipsis !important;\n  max-width: 200px;\n}\n.listImage[data-v-1c27d7e2] {\n  -o-object-fit: cover !important;\n     object-fit: cover !important;\n  outline: none !important;\n}\n.listImage[data-v-1c27d7e2]:hover {\n  outline: none !important;\n}", ""]);
 
 // exports
 
@@ -42027,7 +42027,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row m-3" }, [
-          _c("div", { staticClass: "col-12" }, [
+          _c("div", { staticClass: "col-12 mb-5 mt-5" }, [
             _c("h1", [_vm._v("Gestione Menù")]),
             _vm._v(" "),
             _c("input", {
