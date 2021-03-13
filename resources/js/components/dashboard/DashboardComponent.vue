@@ -244,5 +244,9 @@ export default {
 
 .listImage {
   object-fit: cover !important;
+  outline: none !important;
+  &:hover{
+    outline: none !important;
+  }
 }
 </style>

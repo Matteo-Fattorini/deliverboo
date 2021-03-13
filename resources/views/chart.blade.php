@@ -6,8 +6,8 @@
 
     <div class="container" style="height:80vh">
         <div class="row">
-            <div class="col-12 d-flex justify-content-center align-items-center p-5">
-                <div class="chart-container"  style="position: relative; height:40vh; width:80vw; min-width:790px">
+            <div class="col-12 d-flex justify-content-center align-items-center p-5" style="z-index: -10;">
+                <div class="chart-container"  style="position: relative; height:40vh; width:100vw; min-width:790px;margin-top: 75px;">
                     <canvas id="myChart"></canvas>
                 </div>
             </div>

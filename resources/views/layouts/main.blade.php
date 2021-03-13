@@ -19,15 +19,11 @@
                             <img src="/img/logo/logo_black@2x.png" alt="" id="navbar-logo">
                         </a>
                     </div>
-
-                    <div class="col-6 d-none d-xl-flex justify-content-end align-items-center debug">
-                        <ul class="d-flex justify-content-between align-items-center">
-                            <li><a href="{{ route('restaurant.index') }}">
-                                    <h5>Home</h5>
-                                </a></li>
-                            <li>
-                                <h5>Aiuto</h5>
-                            </li>
+                    <div class="col-6 d-flex justify-content-end align-items-center">
+                        <ul
+                            class="d-flex justify-content-between align-items-center d-flex justify-content-between align-items-center ">
+                            <li><a href="{{ route('restaurant.index') }}"><h5>Home</h5></a></li>
+                            <li><a href="{{ route('restaurant.index') }}"><h5>Aiuto</h5></a></li>
                             @guest
                                 <li><a href="{{ route('login') }}">
                                         <h5>Area Ristoratori</h5>

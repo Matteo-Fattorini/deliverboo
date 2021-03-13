@@ -8273,7 +8273,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".container[data-v-007e6d83] {\n  margin-top: 30px;\n  margin-bottom: 50px;\n}\n.container .row .circle[data-v-007e6d83] {\n  margin: 0;\n  padding: 0;\n  position: absolute;\n  top: 140px;\n  right: 40px;\n  z-index: 2;\n}\n.container .row .circle .resturantImage[data-v-007e6d83] {\n  min-width: 450px;\n  height: 450px;\n  overflow: hidden;\n  border-radius: 100%;\n  border: 6px solid black;\n}\n.container .row .circle .resturantImage #restaurant_img[data-v-007e6d83] {\n  width: 100%;\n  height: 100%;\n  border-radius: 100%;\n  margin: 0;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.container .row .info .rst-info[data-v-007e6d83] {\n  margin: 20px 0 0 20px;\n  padding-right: 0;\n}\n.container .row .info .rst-info h1[data-v-007e6d83] {\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n.container .row .info .rst-info h5[data-v-007e6d83] {\n  font-size: 18px;\n  font-weight: 400;\n}\n.container .row .info .rst-info .dist[data-v-007e6d83] {\n  margin: 30px 0;\n}", ""]);
+exports.push([module.i, ".container[data-v-007e6d83] {\n  margin-top: 30px;\n  margin-bottom: 50px;\n}\n.container .row .circle[data-v-007e6d83] {\n  margin: 0;\n  padding: 0;\n  position: absolute;\n  top: 140px;\n  right: 40px;\n  z-index: 2;\n}\n.container .row .circle .resturantImage[data-v-007e6d83] {\n  min-width: 350px;\n  height: 350px;\n  overflow: hidden;\n  border-radius: 100%;\n  border: 6px solid black;\n}\n.container .row .circle .resturantImage #restaurant_img[data-v-007e6d83] {\n  width: 100%;\n  height: 100%;\n  border-radius: 100%;\n  margin: 0;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.container .row .info .rst-info[data-v-007e6d83] {\n  margin: 20px 0 0 20px;\n  padding-right: 0;\n}\n.container .row .info .rst-info h1[data-v-007e6d83] {\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n.container .row .info .rst-info h5[data-v-007e6d83] {\n  font-size: 18px;\n  font-weight: 400;\n}\n.container .row .info .rst-info .dist[data-v-007e6d83] {\n  margin: 30px 0;\n}", ""]);
 
 // exports
 
@@ -8368,7 +8368,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".items-buttons img[data-v-1c27d7e2] {\n  height: 30px;\n}\n.custom-input[data-v-1c27d7e2] {\n  width: 50%;\n}\n.new-dish-button img[data-v-1c27d7e2],\n.orders-button img[data-v-1c27d7e2] {\n  height: 30px;\n  width: auto;\n  margin: 0;\n}\n.text-box p[data-v-1c27d7e2] {\n  white-space: nowrap;\n  overflow: hidden !important;\n  text-overflow: ellipsis !important;\n  max-width: 200px;\n}\n.listImage[data-v-1c27d7e2] {\n  -o-object-fit: cover !important;\n     object-fit: cover !important;\n}", ""]);
+exports.push([module.i, ".items-buttons img[data-v-1c27d7e2] {\n  height: 30px;\n}\n.custom-input[data-v-1c27d7e2] {\n  width: 50%;\n}\n.new-dish-button img[data-v-1c27d7e2],\n.orders-button img[data-v-1c27d7e2] {\n  height: 30px;\n  width: auto;\n  margin: 0;\n}\n.text-box p[data-v-1c27d7e2] {\n  white-space: nowrap;\n  overflow: hidden !important;\n  text-overflow: ellipsis !important;\n  max-width: 200px;\n}\n.listImage[data-v-1c27d7e2] {\n  -o-object-fit: cover !important;\n     object-fit: cover !important;\n  outline: none !important;\n}\n.listImage[data-v-1c27d7e2]:hover {\n  outline: none !important;\n}", ""]);
 
 // exports
 
@@ -40896,7 +40896,26 @@ var render = function() {
             ])
           ]
         )
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-6 circle d-flex justify-content-center align-items-center p-0"
+        },
+        [
+          _c("div", { staticClass: "resturantImage" }, [
+            _c("img", {
+              attrs: {
+                id: "restaurant_img",
+                alt: "ok",
+                src: "/img/restaurant/" + _vm.restaurantData.image_url
+              }
+            })
+          ])
+        ]
+      )
     ])
   ])
 }
@@ -42002,7 +42021,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row m-3" }, [
-          _c("div", { staticClass: "col-lg-12" }, [
+          _c("div", { staticClass: "col-12" }, [
             _c("h1", [_vm._v("Gestione Menù")]),
             _vm._v(" "),
             _c("input", {

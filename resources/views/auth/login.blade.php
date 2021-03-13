@@ -7,7 +7,7 @@
                 <div class="col-lg-12 login-img">
                 </div>
                 <div class="col-lg-6 login-box p-5">
-                    <h1>Login Ristoratori</h1>
+                    <h1 id="log_title" style="mb-2">Login Ristoratori</h1>
                     <form action="{{ route('login') }}" method="POST">
                         @csrf
                         <input id="email" type="email" class="custom-input @error('email') is-invalid @enderror"
@@ -31,14 +31,16 @@
                         @enderror
                         
                         <div>
-                            <button type="submit" class="primary-button">ACCEDI</button>
+                            <button id="sub_btn" type="submit" class="primary-button">ACCEDI</button>
                         </div>
 
                     </form>
                 </div>
                 <div class="col-lg-6 register-box p-5">
                     <h1>Vuoi diventare nostro partner?</h1>
-                    <a href="{{ route('register') }}" class="primary-button">REGISTRATI SU DELIVEBOO</a>
+                    <br>
+                    <h1>Inizia a vendere subito.</h1>
+                    <a id="log_btn" href="{{ route('register') }}" class="primary-button">REGISTRATI SU DELIVEBOO</a>
                 </div>
             </div>
         </div>
