@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Order::class, function (Faker $faker) {
     
     return [
-        "total" => strval($faker->numberBetween(200,1000)),
+        "total" => strval($faker->numberBetween(50,150)),
         "is_payed"=> $faker->numberBetween(0, 1),
         "client_name" => $faker->firstName(),
         "client_surname"=>$faker->lastName(),

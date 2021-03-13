@@ -8387,7 +8387,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#becomePartner[data-v-d8efec3c] {\n  height: 70vh;\n  background-size: cover;\n  background-position: center;\n  background-color: rgba(0, 0, 0, 0.6);\n  background-blend-mode: multiply;\n}\n#becomePartner h1[data-v-d8efec3c] {\n  color: #fff;\n}\n#becomePartner span[data-v-d8efec3c] {\n  color: #fff;\n}", ""]);
+exports.push([module.i, "#becomePartner[data-v-d8efec3c] {\n  height: 70vh;\n  position: relative;\n  background-size: cover;\n  background-position: center;\n  background-color: rgba(0, 0, 0, 0.6);\n  background-blend-mode: multiply;\n}\n#becomePartner h1[data-v-d8efec3c] {\n  color: #fff;\n}\n#becomePartner #centerMe[data-v-d8efec3c] {\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n}\n#becomePartner span[data-v-d8efec3c] {\n  color: #fff;\n}", ""]);
 
 // exports
 
@@ -42634,7 +42634,7 @@ var render = function() {
     [
       _c("div", { staticClass: "container mt-5 mb-5" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col p-5" }, [
+          _c("div", { staticClass: "col p-5", attrs: { id: "centerMe" } }, [
             _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "mt-5" }, [
@@ -56741,8 +56741,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! F:\User Folders\Documenti\GitHub\deliverboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! F:\User Folders\Documenti\GitHub\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\NoSync\deliverboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\NoSync\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
