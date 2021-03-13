@@ -2258,6 +2258,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'MenuGenre',
   props: {
@@ -2270,7 +2271,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       genreList: [],
       restaurantId: 0,
       categorySelect: '',
-      nCounter: [],
+      count: [],
       orders: [],
       cartActive: false,
       // cartElements:[],
@@ -2319,8 +2320,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.restaurant_id = this.restaurantId.splice(1); //controllo ID ristorante
 
     console.log('ARRAY ID RISTORANTE');
-    console.log(this.restaurantId); //DATI CARRELLO
-    //TOTALE DELL'ORDINE
+    console.log(this.restaurantId);
   },
   computed: {
     //FUNZIONE filtered crea virtualmente un ARRAY filtrato
@@ -2334,13 +2334,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     //calcola il totale del carrello e lo trasforma in formato prezzo
     TotalPrice: function TotalPrice() {
-      var total = this.cart.reduce(function (total, order) {
-        return total + order.totalPrice;
-      }, 0);
       return new Intl.NumberFormat("it-IT", {
         style: "currency",
         currency: "EUR"
-      }).format(total);
+      }).format(this.total);
     }
   },
   methods: {
@@ -2349,37 +2346,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.categorySelect = category, console.log("Cosa ci fa qui? Hai voglia di " + this.categorySelect + " ? Scegli Deliveboo ;)");
     },
     //CARRELLO
-    //CONTATORE + AGGIUNGI AL CARRELLO
-    //il contatore crea la quantità del prodotto
-    //preOrders salva i prodotti al click del contatore
+    //CONTATORE
     changeCounter: function changeCounter(direction, index) {
       var _this3 = this;
 
       this.filtered.forEach(function (dish, i) {
         if (direction == "+" && i === index) {
-          dish.counter++;
+          dish.counter++; //aumenta il contatore di 1
 
-          _this3.orders.push({
-            dishId: dish.id
-          });
+          _this3.putInCart(i); //attiva funzione di creazione ordine e carrello
 
-          _this3.putInCart(i);
 
-          _this3.cartActive = true; //ID piatti nel carrello
-
-          _this3.dishInCart = _this3.orders.map(function (e) {
-            _this3.order = e.dishId;
-            return _this3.order;
-          });
-          console.log('ordine nel carrello');
-          console.log(_this3.dishInCart);
+          _this3.cartActive = true; //attiva la sezione carrello
         } else if (direction == "-" && i === index) {
           if (dish.counter === 0) {
-            _this3.cartActive = false;
+            //blocca il counter a 0
+            _this3.cartActive = false; // chiude sezione carrello
           } else {
-            dish.counter--;
+            dish.counter--; //decrementa il contatore
 
-            _this3.deleteOrder(i);
+            _this3.deleteOrder(i); //attiva funzione di cancellazione degli elementi
+
           }
         }
       });
@@ -2389,27 +2376,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this4 = this;
 
       this.filtered.forEach(function (dish, i) {
-        if (index === i && dish.counter != 0) {
+        if (index === i && dish.counter != 0 && dish.name) {
           _this4.cart.push({
             //se attivo filtro this.cart diventa this.cartElement
             dishId: dish.id,
-            quantity: 1,
+            quantity: dish.counter,
             dishName: dish.name,
             dishImgUrl: dish.image_url,
             dishPrice: dish.price // totalPrice: parseFloat(dish.price) * dish.counter,
 
-          }); // DA RIVEDERE
-          // //filtro carrello
-          // this.cartFiltered = this.cartElements.filter((order,index,self)=>
-          //        index === self.findIndex((o,i) => (
-          //        o.dishId === order.dishId
-          //        )));
-          // //implemento quantità e prezzo totale
-          // this.cart = this.cartFiltered.map((element,i) => {
-          // this.elementUpgrade = { ...element,quantity:dish.counter};
-          // return this.elementUpgrade});
-          //TOTALE ORDINE
+          });
 
+          _this4.orders.push({
+            dishId: dish.id
+          }); //ID piatti nel carrello
+
+
+          _this4.dishInCart = _this4.orders.map(function (e) {
+            _this4.order = e.dishId;
+            return _this4.order;
+          });
+          console.log('ordine nel carrello');
+          console.log(_this4.dishInCart); // DA RIVEDERE
+          //filtro carrello
+
+          _this4.cartFiltered = _this4.cart.filter(function (order, index, self) {
+            return index === self.findIndex(function (o) {
+              return o.dishId === order.dishId;
+            });
+          }); //TOTALE ORDINE
 
           _this4.total = _this4.cart.reduce(function (total, order) {
             return total + parseFloat(order.dishPrice);
@@ -2440,6 +2435,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     deleteOrder: function deleteOrder(delIndex) {
       this.cart.splice(delIndex, 1);
       this.orders.splice(delIndex, 1);
+      this.total = this.cart.reduce(function (total, order) {
+        return total + parseFloat(order.dishPrice);
+      }, 0);
       this.saveCart();
       this.saveDish();
       this.saveRestaurant();
@@ -2714,31 +2712,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "TypeMenu",
+  name: 'MenuGenre',
   props: {
     data: String
   },
   data: function data() {
     return {
-      cartActive: false,
-      categorySelect: "",
-      nCounter: [],
-      cart: [],
-      restaurantData: [],
       dishesImport: [],
       dishes: [],
       genreList: [],
-      orders: [],
       restaurantId: 0,
-      dishId: []
+      categorySelect: '',
+      count: [],
+      orders: [],
+      cartActive: false,
+      // cartElements:[],
+      // cartFiltered:[],
+      cart: [],
+      total: 0,
+      dishInCart: []
     };
   },
   mounted: function mounted() {
@@ -2746,8 +2739,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     //DATI
     //importo ARRAY dei dati del ristorante
-    var data = JSON.parse(this.data); //estraggo ARRAY dei piatti del ristorante
-
+    var data = JSON.parse(this.data);
     this.dishesImport = data.get_dishes; //aggiungi oggetto counter per la quantità 
 
     this.dishes = this.dishesImport.map(function (element) {
@@ -2755,42 +2747,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         counter: 0
       });
       return _this.elementUpgrade;
-    }); //estraggo ARRAY GENERI
+    }); //controllo ARRAY piatti
+
+    console.log('piatti');
+    console.log(this.dishes); //estraggo ARRAY GENERI
 
     this.genreList = this.dishes.map(function (element) {
       _this.genre = element.get_genre;
       return _this.genre;
-    }), //filtro per eliminare doppioni nell'ARRAY GENERI mi restituisce nomi e immagini
+    }); //filtro per eliminare doppioni nell'ARRAY GENERI mi restituisce nomi e immagini
+
     this.genreList = this.genreList.filter(function (genre, index, self) {
       return index === self.findIndex(function (g) {
         return g.name === genre.name && g.image_url === genre.image_url;
       });
-    }); //estraggo ID del ristorante
+    }); //controllo ARRAY generi
+
+    console.log('generi');
+    console.log(this.genreList); //estraggo ARRAY RISTORANTE
 
     this.restaurantId = this.dishes.map(function (e) {
       _this.id = e.restaurant_id;
       return _this.id;
-    }); //rendo univoco l'ID del ristoratore
+    });
+    this.restaurant_id = this.restaurantId.splice(1); //controllo ID ristorante
 
-    this.restaurant_id = this.restaurantId.splice(1); //filtro ID per non avere doppioni
-    // this.dishId = this.dishId.filter((id,index,self)=>
-    // index === self.findIndex((i)=>(
-    // i.name === genre.name && g.image_url === genre.image_url
-    // )));
-    // CONTROLLO DATI
-
-    console.log('piatti');
-    console.log(this.dishes);
-    console.log('generi');
-    console.log(this.genreList);
-    console.log('ordini');
-    console.log(this.orders);
-    console.log('id ristorante');
+    console.log('ARRAY ID RISTORANTE');
     console.log(this.restaurantId);
-    console.log('id piatti');
-    console.log(this.dishId);
   },
   computed: {
+    //FUNZIONE filtered crea virtualmente un ARRAY filtrato
+    //dei piatti  che hanno il genere uguale a quello selezionato 
     filtered: function filtered() {
       var _this2 = this;
 
@@ -2798,82 +2785,132 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return e.get_genre.name.includes(_this2.categorySelect);
       });
     },
-    //calcola il totale del pagamento del carrello
-    totalPrice: function totalPrice() {
-      var total = this.cart.reduce(function (total, order) {
-        return total + order.totalPrice;
-      }, 0);
+    //calcola il totale del carrello e lo trasforma in formato prezzo
+    TotalPrice: function TotalPrice() {
       return new Intl.NumberFormat("it-IT", {
         style: "currency",
         currency: "EUR"
-      }).format(total);
+      }).format(this.total);
     }
   },
   methods: {
-    //contatore
+    //AL CLICK FILTRA PER CATEGORIA
+    selectCategory: function selectCategory(category) {
+      return this.categorySelect = category, console.log("Cosa ci fa qui? Hai voglia di " + this.categorySelect + " ? Scegli Deliveboo ;)");
+    },
+    //CARRELLO
+    //CONTATORE
     changeCounter: function changeCounter(direction, index) {
+      var _this3 = this;
+
       this.filtered.forEach(function (dish, i) {
         if (direction == "+" && i === index) {
-          dish.counter++;
+          dish.counter++; //aumenta il contatore di 1
+
+          _this3.putInCart(i); //attiva funzione di creazione ordine e carrello
+
+
+          _this3.cartActive = true; //attiva la sezione carrello
         } else if (direction == "-" && i === index) {
           if (dish.counter === 0) {
-            dish.counter = 0;
+            //blocca il counter a 0
+            _this3.cartActive = false; // chiude sezione carrello
           } else {
-            dish.counter--;
+            dish.counter--; //decrementa il contatore
+
+            _this3.deleteOrder(i); //attiva funzione di cancellazione degli elementi
+
           }
         }
       });
     },
-    //ritona una categoria
-    selectCategory: function selectCategory(category) {
-      return this.categorySelect = category, console.log("Cosa ci fa qui? Hai voglia di " + this.categorySelect + " ? Scegli Deliveboo ;)");
-    },
-    // inserimento e cancellazione ordini nel carrello
+    //AGGIUNGE ELEMENTO AD UN CARRELLO NON FILTRATO
     putInCart: function putInCart(index) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.filtered.forEach(function (dish, i) {
-        if (index === i && dish.counter != 0) {
-          _this3.cart.push({
-            dishId: [dish.id],
+        if (index === i && dish.counter != 0 && dish.name) {
+          _this4.cart.push({
+            //se attivo filtro this.cart diventa this.cartElement
+            dishId: dish.id,
             quantity: dish.counter,
             dishName: dish.name,
             dishImgUrl: dish.image_url,
-            dishPrice: dish.price,
-            totalPrice: parseFloat(dish.price) * dish.counter
-          }); // this.dishId.push({ 
-          //     id: dish.id.slice(dish.counter)
-          // });
+            dishPrice: dish.price // totalPrice: parseFloat(dish.price) * dish.counter,
+
+          });
+
+          _this4.orders.push({
+            dishId: dish.id
+          }); //ID piatti nel carrello
 
 
-          _this3.activeCart(); //estraggo ID dei piatti
+          _this4.dishInCart = _this4.orders.map(function (e) {
+            _this4.order = e.dishId;
+            return _this4.order;
+          });
+          console.log('ordine nel carrello');
+          console.log(_this4.dishInCart); // DA RIVEDERE
+          //filtro carrello
 
+          _this4.cartFiltered = _this4.cart.filter(function (order, index, self) {
+            return index === self.findIndex(function (o) {
+              return o.dishId === order.dishId;
+            });
+          }); //TOTALE ORDINE
 
-          _this3.saveCart();
+          _this4.total = _this4.cart.reduce(function (total, order) {
+            return total + parseFloat(order.dishPrice);
+          }, 0); //
 
-          console.log(_this3.total);
-          console.log('id piatti');
-          console.log(_this3.dishId);
-          console.log('carrello');
-          console.log(_this3.cart);
-        } else {//carrello vuoto
-        }
+          _this4.saveCart();
+
+          _this4.saveDish();
+
+          _this4.saveRestaurant();
+
+          _this4.saveTotal();
+
+          console.log('CART ELEMENTI');
+          console.log(_this4.cartElements);
+          console.log('CART FILTRO');
+          console.log(_this4.cartFiltered);
+          console.log('CART FINALE');
+          console.log(_this4.cart);
+          console.log('Dish');
+          console.log(_this4.dishInCart);
+          console.log('Total');
+          console.log(_this4.total);
+        } else {}
       });
     },
-    // cancella un ordine se non ci sono ordini chiude il carrello
+    //ELIMINA UN ORDINE QUANDO VIENE CLICCATO - SUL CONTATORE
     deleteOrder: function deleteOrder(delIndex) {
       this.cart.splice(delIndex, 1);
       this.orders.splice(delIndex, 1);
+      this.total = this.cart.reduce(function (total, order) {
+        return total + parseFloat(order.dishPrice);
+      }, 0);
       this.saveCart();
+      this.saveDish();
+      this.saveRestaurant();
+      this.saveTotal();
 
       if (this.cart.length != 0) {
         this.cartActive = true;
       } else {
         this.cartActive = false;
       }
+
+      console.log('ORDER-DELETE');
+      console.log(this.orders);
+      console.log('ORDER-DELETE');
+      console.log(this.cart);
+      console.log('Total');
+      console.log(this.total);
     },
-    // attivare o disattivare carrello
-    // attivazione per riempimento
+    //ATTIVA CARRELLO{}
+    //PER RIEMPIMENTO CARRELLO
     activeCart: function activeCart() {
       if (this.cart.length != 0) {
         this.cartActive = true;
@@ -2881,7 +2918,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.cartActive = false;
       }
     },
-    // attivazione e disattivazione per click
+    //PER CLICK
     openAndClose: function openAndClose() {
       if (this.cartActive === false) {
         this.cartActive = true;
@@ -2889,36 +2926,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.cartActive = false;
       }
     },
-    //salva dati per il pagamento
+    //INVIO DATI
     saveCart: function saveCart() {
       var parsed = JSON.stringify(this.cart);
       localStorage.setItem("cart", parsed);
     },
-    // vai al pagamento
+    saveDish: function saveDish() {
+      var parsed = JSON.stringify(this.dishInCart);
+      localStorage.setItem("orders", parsed);
+    },
+    saveRestaurant: function saveRestaurant() {
+      var parsed = JSON.stringify(this.restaurantId);
+      localStorage.setItem("restaurantId", parsed);
+    },
+    saveTotal: function saveTotal() {
+      var parsed = JSON.stringify(this.total);
+      localStorage.setItem("total", parsed);
+    },
+    // Vai al pagamento
     goToPayment: function goToPayment() {
       this.saveCart();
-      location.replace("/infoClienti"); //   console.log('sono dati', data)
-      //   axios.get('/checkout', data)
-      //       .then(function (result ) {
-      //            console.log(result.data.response);
-      //            location.replace('/checkout');
-      //       })
-      //     axios.post("/checkout", {
-      //           cart: this.cart,
-      //       })
-      //     .then((response) => {
-      //        console.log(response);
-      //        location.replace("/checkout");
-      //     })
-      //     .catch(function(error){
-      //           console.log(error);
-      //     });
+      this.saveDish();
+      this.saveRestaurant();
+      this.saveTotal();
+      location.replace("/infoClienti");
     }
-  } //   props:{
-  //       dishesImport : Object,
-  //       dCategory: Object,
-  //   }
-
+  }
 });
 
 /***/ }),
@@ -2975,7 +3008,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      cart: []
+      cart: [],
+      total: 0
     };
   },
   mounted: function mounted() {
@@ -2987,17 +3021,22 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
 
+    if (localStorage.getItem('total')) {
+      try {
+        this.total = JSON.parse(localStorage.getItem('total'));
+      } catch (e) {
+        localStorage.removeItem('total');
+      }
+    }
+
     console.log(this.cart);
   },
   computed: {
     totalPrice: function totalPrice() {
-      var total = this.cart.reduce(function (total, order) {
-        return total + order.totalPrice;
-      }, 0);
       return new Intl.NumberFormat("it-IT", {
         style: "currency",
         currency: "EUR"
-      }).format(total);
+      }).format(this.total);
     }
   },
   methods: {
@@ -8254,7 +8293,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#menu .restaurant[data-v-2bac63c8] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n#menu .restaurant .row .col-12 h1[data-v-2bac63c8] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n#menu .menu[data-v-2bac63c8] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n#menu .menu .row .col-12[data-v-2bac63c8] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n#menu .menu .row .col-12 .dish[data-v-2bac63c8] {\n  padding: 20px 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo[data-v-2bac63c8] {\n  width: 60%;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishImg[data-v-2bac63c8] {\n  width: 100px;\n  height: 100px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext[data-v-2bac63c8] {\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2bac63c8] {\n  font-size: 25px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2bac63c8] {\n  font-size: 12px;\n  font-weight: 400;\n  color: #5f5c5c;\n}\n#menu .menu .row .col-12 .dish .price[data-v-2bac63c8] {\n  width: 20%;\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .price h1[data-v-2bac63c8] {\n  font-size: 30px;\n  font-weight: 700;\n  color: #2dccbc;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2bac63c8] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  background-color: black;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2bac63c8]:hover {\n  border: none;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter[data-v-2bac63c8] {\n  width: 100%;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div[data-v-2bac63c8] {\n  width: 70px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div span[data-v-2bac63c8] {\n  color: white;\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt:hover span[data-v-2bac63c8] {\n  color: black;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2bac63c8] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n#menu .cart[data-v-2bac63c8] {\n  box-sizing: border-box;\n  min-width: 100vw;\n  height: 60vh;\n  background-color: black;\n  position: fixed;\n  bottom: 0;\n  overflow-y: scroll;\n  z-index: 3;\n}\n#menu .cart .row[data-v-2bac63c8] {\n  padding: 50px 200px;\n}\n#menu .cart .row .col-12 .cartTitle[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .cartTitle h1[data-v-2bac63c8] {\n  color: white;\n  font-size: 40px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .close[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .close img[data-v-2bac63c8] {\n  height: 30px;\n}\n#menu .cart .row .col-12 .order[data-v-2bac63c8] {\n  padding: 30px 0px;\n  border-bottom: 1px solid white;\n  flex-basis: 47%;\n}\n#menu .cart .row .col-12 .order[data-v-2bac63c8]:nth-child(n) {\n  margin-right: 20px;\n}\n#menu .cart .row .col-12 .order .dishes[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext[data-v-2bac63c8] {\n  margin-left: 30px;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h3[data-v-2bac63c8] {\n  color: white;\n  font-size: 18px;\n  font-weight: 600;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h6[data-v-2bac63c8] {\n  color: white;\n  font-size: 15px;\n  font-weight: 300;\n}\n#menu .cart .row .col-12 .price[data-v-2bac63c8] {\n  width: 30%;\n  margin: 0 10px;\n}\n#menu .cart .row .col-12 .price h1[data-v-2bac63c8] {\n  color: #2fbcae;\n  font-size: 30px;\n  font-weight: 200;\n  line-height: 30px;\n}\n#menu .cart .row .col-12 .delete button[data-v-2bac63c8] {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 22px;\n  font-weight: 400;\n}\n#menu .cart .col-6[data-v-2bac63c8] {\n  margin: 30px 0;\n}\n#menu .cart .col-6 h1[data-v-2bac63c8] {\n  color: white;\n  font-size: 30px;\n  font-weight: 900;\n}\n#menu .cart .col-6 .btn-light[data-v-2bac63c8] {\n  background-color: #b3f5fd;\n  border: none;\n  height: 40px;\n  border-radius: 30px;\n  padding: 0 85px;\n}\n#menu .cart .col-6 .btn-light[data-v-2bac63c8]:hover {\n  background-color: white;\n}\n#menu .cart .col-6 .btn-light span[data-v-2bac63c8] {\n  color: black;\n  font-weight: 600;\n  font-size: 15px;\n  line-height: 30px;\n}\n#menu .cart .col-6 .btn-light span[data-v-2bac63c8]:hover {\n  text-decoration: none;\n}\n#menu .cartButton[data-v-2bac63c8] {\n  box-sizing: border-box;\n  width: 80px;\n  position: fixed;\n  top: 20px;\n  right: 25px;\n  z-index: 2;\n}\n#menu .cartButton .row[data-v-2bac63c8] {\n  width: 100%;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2bac63c8] {\n  height: 60px;\n  width: 60px;\n  border: 4px solid black;\n  border-radius: 50%;\n  background-color: white;\n}\n#menu .cartButton .row .col-1 .roundedCart img[data-v-2bac63c8] {\n  height: 30px;\n  width: 30px;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2bac63c8]:hover {\n  background-color: #b3f5fd;\n  border: none;\n}", ""]);
+exports.push([module.i, "#menu .restaurant[data-v-2bac63c8] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n#menu .restaurant .row .col-12 h1[data-v-2bac63c8] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n#menu .menu[data-v-2bac63c8] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n#menu .menu .row .col-12[data-v-2bac63c8] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n#menu .menu .row .col-12 .dish[data-v-2bac63c8] {\n  padding: 20px 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo[data-v-2bac63c8] {\n  width: 60%;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishImg[data-v-2bac63c8] {\n  width: 100px;\n  height: 100px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext[data-v-2bac63c8] {\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2bac63c8] {\n  font-size: 25px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2bac63c8] {\n  font-size: 12px;\n  font-weight: 400;\n  color: #5f5c5c;\n}\n#menu .menu .row .col-12 .dish .price[data-v-2bac63c8] {\n  width: 20%;\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .price h1[data-v-2bac63c8] {\n  font-size: 30px;\n  font-weight: 700;\n  color: #2dccbc;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2bac63c8] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  background-color: black;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2bac63c8]:hover {\n  border: none;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter[data-v-2bac63c8] {\n  width: 100%;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div[data-v-2bac63c8] {\n  width: 70px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div span[data-v-2bac63c8] {\n  color: white;\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt:hover span[data-v-2bac63c8] {\n  color: black;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2bac63c8]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2bac63c8] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n#menu .cart[data-v-2bac63c8] {\n  box-sizing: border-box;\n  min-width: 100vw;\n  height: 60vh;\n  background-color: black;\n  position: fixed;\n  bottom: 0;\n  overflow-y: scroll;\n  z-index: 3;\n}\n#menu .cart .row[data-v-2bac63c8] {\n  padding: 50px 200px;\n}\n#menu .cart .row .col-12 .cartTitle[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .cartTitle h1[data-v-2bac63c8] {\n  color: white;\n  font-size: 40px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .close[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .close img[data-v-2bac63c8] {\n  height: 30px;\n}\n#menu .cart .row .col-12 .order[data-v-2bac63c8] {\n  padding: 30px 0px;\n  border-bottom: 1px solid white;\n  flex-basis: 47%;\n}\n#menu .cart .row .col-12 .order[data-v-2bac63c8]:nth-child(n) {\n  margin-right: 20px;\n}\n#menu .cart .row .col-12 .order .dishes[data-v-2bac63c8] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext[data-v-2bac63c8] {\n  margin-left: 30px;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h3[data-v-2bac63c8] {\n  color: white;\n  font-size: 18px;\n  font-weight: 600;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h6[data-v-2bac63c8] {\n  color: white;\n  font-size: 15px;\n  font-weight: 300;\n}\n#menu .cart .row .col-12 .price[data-v-2bac63c8] {\n  width: 30%;\n  margin: 0 10px;\n}\n#menu .cart .row .col-12 .price h1[data-v-2bac63c8] {\n  color: #2fbcae;\n  font-size: 30px;\n  font-weight: 200;\n  line-height: 30px;\n}\n#menu .cart .row .col-12 .delete button[data-v-2bac63c8] {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 22px;\n  font-weight: 400;\n}\n#menu .cart .col-6[data-v-2bac63c8] {\n  margin: 30px 0;\n}\n#menu .cart .col-6 h1[data-v-2bac63c8] {\n  color: white;\n  font-size: 30px;\n  font-weight: 900;\n}\n#menu .cart .col-6 h1[data-v-2bac63c8]:last-child {\n  color: #2fbcae;\n}\n#menu .cart .col-6 .btn-light[data-v-2bac63c8] {\n  background-color: #b3f5fd;\n  border: none;\n  height: 40px;\n  border-radius: 30px;\n  padding: 0 85px;\n}\n#menu .cart .col-6 .btn-light[data-v-2bac63c8]:hover {\n  background-color: white;\n}\n#menu .cart .col-6 .btn-light span[data-v-2bac63c8] {\n  color: black;\n  font-weight: 600;\n  font-size: 15px;\n  line-height: 30px;\n}\n#menu .cart .col-6 .btn-light span[data-v-2bac63c8]:hover {\n  text-decoration: none;\n}\n#menu .cartButton[data-v-2bac63c8] {\n  box-sizing: border-box;\n  width: 80px;\n  position: fixed;\n  top: 20px;\n  right: 25px;\n  z-index: 2;\n}\n#menu .cartButton .row[data-v-2bac63c8] {\n  width: 100%;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2bac63c8] {\n  height: 60px;\n  width: 60px;\n  border: 4px solid black;\n  border-radius: 50%;\n  background-color: white;\n}\n#menu .cartButton .row .col-1 .roundedCart img[data-v-2bac63c8] {\n  height: 30px;\n  width: 30px;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2bac63c8]:hover {\n  background-color: #b3f5fd;\n  border: none;\n}", ""]);
 
 // exports
 
@@ -8292,7 +8331,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#menu .restaurant[data-v-2478efb1] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n#menu .restaurant .row .col-12 h1[data-v-2478efb1] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n#menu .menu[data-v-2478efb1] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n#menu .menu .row .col-12[data-v-2478efb1] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n#menu .menu .row .col-12 .dish[data-v-2478efb1] {\n  padding: 20px 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishImg[data-v-2478efb1] {\n  width: 100px;\n  height: 100px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext[data-v-2478efb1] {\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2478efb1] {\n  font-size: 25px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2478efb1] {\n  font-size: 12px;\n  font-weight: 400;\n  color: #5f5c5c;\n}\n#menu .menu .row .col-12 .dish .price[data-v-2478efb1] {\n  width: 10%;\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .price h1[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 700;\n  color: #2dccbc;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  border: 1px solid black;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1]:hover {\n  border: none;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter[data-v-2478efb1] {\n  width: 100%;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div[data-v-2478efb1] {\n  width: 70px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n#menu .menu .row .col-12 .dish .btn-black[data-v-2478efb1] {\n  background-color: black;\n  height: 40px;\n  width: 20%;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .btn-black span[data-v-2478efb1] {\n  color: white;\n  font-weight: 700;\n  font-size: 15px;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .btn-black span[data-v-2478efb1]:hover {\n  text-decoration: none;\n}\n#menu .menu .row .col-12 .dish .btn-black img[data-v-2478efb1] {\n  height: 15px;\n  margin-right: 5px;\n}\n#menu .cart[data-v-2478efb1] {\n  box-sizing: border-box;\n  min-width: 100vw;\n  height: 60vh;\n  background-color: black;\n  position: fixed;\n  bottom: 0;\n  overflow-y: scroll;\n  z-index: 3;\n}\n#menu .cart .row[data-v-2478efb1] {\n  padding: 50px 200px;\n}\n#menu .cart .row .col-12 .cartTitle[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .cartTitle h1[data-v-2478efb1] {\n  color: white;\n  font-size: 40px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .close[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .close img[data-v-2478efb1] {\n  height: 30px;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1] {\n  padding: 30px 0px;\n  border-bottom: 1px solid white;\n  flex-basis: 47%;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1]:nth-child(n) {\n  margin-right: 20px;\n}\n#menu .cart .row .col-12 .order .dishes[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext[data-v-2478efb1] {\n  margin-left: 30px;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h3[data-v-2478efb1] {\n  color: white;\n  font-size: 18px;\n  font-weight: 600;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h6[data-v-2478efb1] {\n  color: white;\n  font-size: 15px;\n  font-weight: 300;\n}\n#menu .cart .row .col-12 .price[data-v-2478efb1] {\n  width: 30%;\n  margin: 0 10px;\n}\n#menu .cart .row .col-12 .price h1[data-v-2478efb1] {\n  color: #2fbcae;\n  font-size: 30px;\n  font-weight: 200;\n  line-height: 30px;\n}\n#menu .cart .row .col-12 .delete button[data-v-2478efb1] {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 22px;\n  font-weight: 400;\n}\n#menu .cart .col-6[data-v-2478efb1] {\n  margin: 30px 0;\n}\n#menu .cart .col-6 h1[data-v-2478efb1] {\n  color: white;\n  font-size: 30px;\n  font-weight: 900;\n}\n#menu .cart .col-6 .btn-light[data-v-2478efb1] {\n  background-color: #b3f5fd;\n  border: none;\n  height: 40px;\n  border-radius: 30px;\n  padding: 0 85px;\n}\n#menu .cart .col-6 .btn-light[data-v-2478efb1]:hover {\n  background-color: white;\n}\n#menu .cart .col-6 .btn-light span[data-v-2478efb1] {\n  color: black;\n  font-weight: 600;\n  font-size: 15px;\n  line-height: 30px;\n}\n#menu .cart .col-6 .btn-light span[data-v-2478efb1]:hover {\n  text-decoration: none;\n}\n#menu .cartButton[data-v-2478efb1] {\n  box-sizing: border-box;\n  width: 80px;\n  position: fixed;\n  top: 20px;\n  right: 25px;\n  z-index: 2;\n}\n#menu .cartButton .row[data-v-2478efb1] {\n  width: 100%;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2478efb1] {\n  height: 60px;\n  width: 60px;\n  border: 4px solid black;\n  border-radius: 50%;\n  background-color: white;\n}\n#menu .cartButton .row .col-1 .roundedCart img[data-v-2478efb1] {\n  height: 30px;\n  width: 30px;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  border: none;\n}", ""]);
+exports.push([module.i, "#menu .restaurant[data-v-2478efb1] {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n#menu .restaurant .row .col-12 h1[data-v-2478efb1] {\n  margin-bottom: 30px;\n  font-size: 50px;\n  font-weight: 900;\n  line-height: 50px;\n}\n#menu .menu[data-v-2478efb1] {\n  margin-top: 25px;\n  margin-bottom: 25px;\n}\n#menu .menu .row .col-12[data-v-2478efb1] {\n  margin: 20px 0px;\n  width: 100vw;\n}\n#menu .menu .row .col-12 .dish[data-v-2478efb1] {\n  padding: 20px 0;\n}\n#menu .menu .row .col-12 .dish .dishinfo[data-v-2478efb1] {\n  width: 60%;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishImg[data-v-2478efb1] {\n  width: 100px;\n  height: 100px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext[data-v-2478efb1] {\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h3[data-v-2478efb1] {\n  font-size: 25px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n#menu .menu .row .col-12 .dish .dishinfo .dishtext h5[data-v-2478efb1] {\n  font-size: 12px;\n  font-weight: 400;\n  color: #5f5c5c;\n}\n#menu .menu .row .col-12 .dish .price[data-v-2478efb1] {\n  width: 20%;\n  margin: 0 15px;\n}\n#menu .menu .row .col-12 .dish .price h1[data-v-2478efb1] {\n  font-size: 30px;\n  font-weight: 700;\n  color: #2dccbc;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1] {\n  margin: 0 50px;\n  height: 40px;\n  width: 20%;\n  background-color: black;\n  border-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box[data-v-2478efb1]:hover {\n  border: none;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter[data-v-2478efb1] {\n  width: 100%;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div[data-v-2478efb1] {\n  width: 70px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter div span[data-v-2478efb1] {\n  color: white;\n  height: 30px;\n  font-size: 30px;\n  font-weight: 500;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1] {\n  height: 40px;\n  border: none;\n  line-height: 40px;\n  text-align: center;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  line-height: 40px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt:hover span[data-v-2478efb1] {\n  color: black;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:first-child {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt[data-v-2478efb1]:hover:last-child {\n  border-top-right-radius: 30px;\n  border-bottom-right-radius: 30px;\n}\n#menu .menu .row .col-12 .dish .counter-box .counter .bt span[data-v-2478efb1] {\n  height: 30px;\n  font-size: 20px;\n  font-weight: 400;\n}\n#menu .cart[data-v-2478efb1] {\n  box-sizing: border-box;\n  min-width: 100vw;\n  height: 60vh;\n  background-color: black;\n  position: fixed;\n  bottom: 0;\n  overflow-y: scroll;\n  z-index: 3;\n}\n#menu .cart .row[data-v-2478efb1] {\n  padding: 50px 200px;\n}\n#menu .cart .row .col-12 .cartTitle[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .cartTitle h1[data-v-2478efb1] {\n  color: white;\n  font-size: 40px;\n  font-weight: 900;\n}\n#menu .cart .row .col-12 .close[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .close img[data-v-2478efb1] {\n  height: 30px;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1] {\n  padding: 30px 0px;\n  border-bottom: 1px solid white;\n  flex-basis: 47%;\n}\n#menu .cart .row .col-12 .order[data-v-2478efb1]:nth-child(n) {\n  margin-right: 20px;\n}\n#menu .cart .row .col-12 .order .dishes[data-v-2478efb1] {\n  width: 50%;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext[data-v-2478efb1] {\n  margin-left: 30px;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h3[data-v-2478efb1] {\n  color: white;\n  font-size: 18px;\n  font-weight: 600;\n}\n#menu .cart .row .col-12 .order .dishes .dishtext h6[data-v-2478efb1] {\n  color: white;\n  font-size: 15px;\n  font-weight: 300;\n}\n#menu .cart .row .col-12 .price[data-v-2478efb1] {\n  width: 30%;\n  margin: 0 10px;\n}\n#menu .cart .row .col-12 .price h1[data-v-2478efb1] {\n  color: #2fbcae;\n  font-size: 30px;\n  font-weight: 200;\n  line-height: 30px;\n}\n#menu .cart .row .col-12 .delete button[data-v-2478efb1] {\n  margin-left: 15px;\n  background: none;\n  color: white;\n  border: none;\n  font-size: 22px;\n  font-weight: 400;\n}\n#menu .cart .col-6[data-v-2478efb1] {\n  margin: 30px 0;\n}\n#menu .cart .col-6 h1[data-v-2478efb1] {\n  color: white;\n  font-size: 30px;\n  font-weight: 900;\n}\n#menu .cart .col-6 h1[data-v-2478efb1]:last-child {\n  color: #2fbcae;\n}\n#menu .cart .col-6 .btn-light[data-v-2478efb1] {\n  background-color: #b3f5fd;\n  border: none;\n  height: 40px;\n  border-radius: 30px;\n  padding: 0 85px;\n}\n#menu .cart .col-6 .btn-light[data-v-2478efb1]:hover {\n  background-color: white;\n}\n#menu .cart .col-6 .btn-light span[data-v-2478efb1] {\n  color: black;\n  font-weight: 600;\n  font-size: 15px;\n  line-height: 30px;\n}\n#menu .cart .col-6 .btn-light span[data-v-2478efb1]:hover {\n  text-decoration: none;\n}\n#menu .cartButton[data-v-2478efb1] {\n  box-sizing: border-box;\n  width: 80px;\n  position: fixed;\n  top: 20px;\n  right: 25px;\n  z-index: 2;\n}\n#menu .cartButton .row[data-v-2478efb1] {\n  width: 100%;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2478efb1] {\n  height: 60px;\n  width: 60px;\n  border: 4px solid black;\n  border-radius: 50%;\n  background-color: white;\n}\n#menu .cartButton .row .col-1 .roundedCart img[data-v-2478efb1] {\n  height: 30px;\n  width: 30px;\n}\n#menu .cartButton .row .col-1 .roundedCart[data-v-2478efb1]:hover {\n  background-color: #b3f5fd;\n  border: none;\n}", ""]);
 
 // exports
 
@@ -8463,7 +8502,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#icon{\r\n  height: 30px;\r\n  margin: 0;\r\n  width: auto;\n}\r\n", ""]);
+exports.push([module.i, "\n#icon{\n  height: 30px;\n  margin: 0;\n  width: auto;\n}\n", ""]);
 
 // exports
 
@@ -41149,7 +41188,7 @@ var render = function() {
                             [
                               _vm._v(
                                 "\n                  x" +
-                                  _vm._s(order.quantity) +
+                                  _vm._s(order.counter) +
                                   "\n                "
                               )
                             ]
@@ -41184,7 +41223,7 @@ var render = function() {
                           _vm._v(
                             _vm._s(order.dishPrice) +
                               " € x " +
-                              _vm._s(order.quantity) +
+                              _vm._s(order.counter) +
                               " ="
                           )
                         ])
@@ -41236,7 +41275,7 @@ var render = function() {
               [
                 _c("h1", [_vm._v("Totale ordine")]),
                 _vm._v(" "),
-                _c("h1", [_vm._v(_vm._s(_vm.totalPrice))])
+                _c("h1", [_vm._v(_vm._s(_vm.TotalPrice))])
               ]
             ),
             _vm._v(" "),
@@ -41393,7 +41432,7 @@ var render = function() {
                 [
                   _c("img", {
                     staticClass: "icon",
-                    attrs: { src: "../../../../" + genre.image_url, alt: "" }
+                    attrs: { src: "/" + genre.image_url, alt: "" }
                   }),
                   _vm._v(" "),
                   _c(
@@ -41453,7 +41492,7 @@ var render = function() {
                         _c("img", {
                           attrs: {
                             src: "/img/restaurant/" + dish.image_url,
-                            alt: "img_piatto"
+                            alt: ""
                           }
                         })
                       ])
@@ -41549,35 +41588,6 @@ var render = function() {
                       ]
                     )
                   ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "btn-black d-flex justify-content-center align-items-center",
-                    on: {
-                      click: function($event) {
-                        _vm.putInCart(i), _vm.activeCart()
-                      }
-                    }
-                  },
-                  [
-                    _c("img", {
-                      attrs: { src: "/images/cart-white.svg", alt: "" }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      {
-                        attrs: {
-                          ondragstart: "return false",
-                          onselectstart: "return false"
-                        }
-                      },
-                      [_vm._v("\n              Aggiungi +\n            ")]
-                    )
-                  ]
                 )
               ]
             )
@@ -41639,7 +41649,7 @@ var render = function() {
                             [
                               _vm._v(
                                 "\n                  x" +
-                                  _vm._s(order.quantity) +
+                                  _vm._s(order.counter) +
                                   "\n                "
                               )
                             ]
@@ -41674,7 +41684,7 @@ var render = function() {
                           _vm._v(
                             _vm._s(order.dishPrice) +
                               " € x " +
-                              _vm._s(order.quantity) +
+                              _vm._s(order.counter) +
                               " ="
                           )
                         ])
@@ -41688,7 +41698,7 @@ var render = function() {
                       staticClass:
                         "price d-flex justify-content-end align-items-center"
                     },
-                    [_c("h1", [_vm._v(_vm._s(order.totalPrice) + " €")])]
+                    [_c("h1", [_vm._v(_vm._s(order.dishPrice) + " €")])]
                   ),
                   _vm._v(" "),
                   _c(
@@ -41726,7 +41736,7 @@ var render = function() {
               [
                 _c("h1", [_vm._v("Totale ordine")]),
                 _vm._v(" "),
-                _c("h1", [_vm._v(_vm._s(_vm.totalPrice))])
+                _c("h1", [_vm._v(_vm._s(_vm.TotalPrice))])
               ]
             ),
             _vm._v(" "),

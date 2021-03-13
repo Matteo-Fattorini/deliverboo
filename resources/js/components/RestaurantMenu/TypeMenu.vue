@@ -1,5 +1,5 @@
 <template>
-  <div id="menu">
+     <div id="menu">
     <div class="container restaurant">
       <div class="row">
         <div class="col-12">
@@ -16,7 +16,7 @@
                 notselected: genre.name != categorySelect,
               }"
             >
-              <img class="icon" :src="'../../../../' + genre.image_url" alt="" />
+              <img class="icon" :src="'/'+genre.image_url" alt="" />
               <!-- ondragstart="return false" 
                          onselectstart="return false"
                          evita evidenziazione del testo -->
@@ -47,7 +47,7 @@
             >
               <div class="dishImg">
                 <div class="listImage dishImg">
-                  <img class="" :src="'/img/restaurant/' + dish.image_url" alt="img_piatto" />
+                  <img class="" :src="'/img/restaurant/' + dish.image_url" alt="" />
                 </div>
               </div>
               <div class="dishtext">
@@ -62,6 +62,7 @@
               class="counter-box d-flex justify-content-end align-items-center"
             >
               <div class="counter d-flex justify-content-between">
+      
                 <div class="bt" @click="changeCounter('-', i)">
                   <span ondragstart="return false" onselectstart="return false">
                     -
@@ -76,16 +77,6 @@
                   </span>
                 </div>
               </div>
-            </div>
-
-            <div
-              class="btn-black d-flex justify-content-center align-items-center"
-              @click="putInCart(i), activeCart()"
-            >
-              <img src="/images/cart-white.svg" alt="" />
-              <span ondragstart="return false" onselectstart="return false">
-                Aggiungi +
-              </span>
             </div>
           </div>
         </div>
@@ -117,7 +108,7 @@
                 <li class="notselected">
                   <img src="" alt="" />
                   <span ondragstart="return false" onselectstart="return false">
-                    x{{ order.quantity }}
+                    x{{ order.counter }}
                   </span>
                 </li>
               </ul>
@@ -130,11 +121,12 @@
               </div>
               <div class="dishtext">
                 <h3>{{ order.dishName }}</h3>
-                <h6>{{ order.dishPrice }} € x {{ order.quantity }} =</h6>
+                <h6>{{ order.dishPrice }} € x {{ order.counter }} =</h6>
               </div>
             </div>
             <div class="price d-flex justify-content-end align-items-center">
-              <h1>{{ order.totalPrice }} €</h1>
+             <!-- nel caso ritorna il filtro sarebbe order.totalPrice -->
+              <h1>{{ order.dishPrice}} €</h1>
             </div>
             <div class="delete d-flex justify-content-end align-items-center">
               <button @click.stop="deleteOrder(ind)">X</button>
@@ -145,7 +137,7 @@
           class="col-6 d-flex flex-column justify-content-center align-items-start"
         >
           <h1>Totale ordine</h1>
-          <h1>{{ totalPrice }}</h1>
+          <h1>{{ TotalPrice }}</h1>
         </div>
         <div class="col-6 d-flex justify-content-end align-items-center">
           <!-- @submit="goToPayment" -->
@@ -171,37 +163,41 @@
       </div>
     </div>
   </div>
-</template>
 
+
+</template>
 
 <script>
 export default {
-  name: "TypeMenu",
+  name:'MenuGenre',
   props: {
     data: String,
   },
-  data() {
-    return {
-      cartActive: false,
-      categorySelect: "",
-      nCounter: [],
-      cart: [],
-      restaurantData: [],
+  data(){
+    return{
       dishesImport: [],
       dishes: [],
-      genreList: [],
-      orders:[],
-      restaurantId: 0,
-      dishId:[],
-    };
+      genreList:[],
+      restaurantId:0,
+      categorySelect:'',
+      count: [],
+      orders: [],
+      cartActive: false,
+      // cartElements:[],
+      // cartFiltered:[],
+      cart:[],
+      total:0,
+      dishInCart:[],
+            
+    }
   },
-
-  mounted: function () {
+  mounted:function(){
 
     //DATI
     //importo ARRAY dei dati del ristorante
     var data = JSON.parse(this.data);
-    //estraggo ARRAY dei piatti del ristorante
+
+    
     this.dishesImport = data.get_dishes;
 
     //aggiungi oggetto counter per la quantità 
@@ -209,87 +205,58 @@ export default {
       this.elementUpgrade = { ...element, counter: 0 };
       return this.elementUpgrade;
     });
-  
+    //controllo ARRAY piatti
+    console.log('piatti');console.log(this.dishes);
+
     //estraggo ARRAY GENERI
     this.genreList = this.dishes.map((element) => {
-      this.genre = element.get_genre;
-      return this.genre;
-    }),
+            this.genre = element.get_genre;
+            return this.genre;
+          });
 
     //filtro per eliminare doppioni nell'ARRAY GENERI mi restituisce nomi e immagini
-      this.genreList = this.genreList.filter((genre,index,self)=>
-      index === self.findIndex((g)=>(
-      g.name === genre.name && g.image_url === genre.image_url
-      )));
+    this.genreList = this.genreList.filter((genre,index,self)=>
+                 index === self.findIndex((g)=>(
+                 g.name === genre.name && g.image_url === genre.image_url
+                 )));
+    //controllo ARRAY generi
+    console.log('generi');console.log(this.genreList);
 
-     //estraggo ID del ristorante
-      this.restaurantId = this.dishes.map(e =>{
-      this.id = e.restaurant_id;
-      return this.id});
-      //rendo univoco l'ID del ristoratore
-      this.restaurant_id = this.restaurantId.splice(1);
-
-      
-        //filtro ID per non avere doppioni
-      // this.dishId = this.dishId.filter((id,index,self)=>
-      // index === self.findIndex((i)=>(
-      // i.name === genre.name && g.image_url === genre.image_url
-      // )));
-
-
-
-
-    // CONTROLLO DATI
-     console.log('piatti');
-     console.log(this.dishes);
-     console.log('generi');
-     console.log(this.genreList);
-     console.log('ordini');
-     console.log(this.orders);
-     console.log('id ristorante');
-     console.log(this.restaurantId);
-     console.log('id piatti');
-     console.log(this.dishId);
+    //estraggo ARRAY RISTORANTE
+    this.restaurantId = this.dishes.map(e => {
+                 this.id = e.restaurant_id;
+                 return this.id });
+                 this.restaurant_id = this.restaurantId.splice(1); 
+    //controllo ID ristorante
+    console.log('ARRAY ID RISTORANTE');console.log(this.restaurantId)
+  
   },
+  computed:{
 
-  computed: {
-    filtered() {
-      return this.dishes.filter((e) => {
+    //FUNZIONE filtered crea virtualmente un ARRAY filtrato
+    //dei piatti  che hanno il genere uguale a quello selezionato 
+
+    filtered(){
+      return this.dishes.filter((e)=>{
         return e.get_genre.name.includes(this.categorySelect);
-      });
-    },
+      })},
+    
+    //calcola il totale del carrello e lo trasforma in formato prezzo
 
-    //calcola il totale del pagamento del carrello
+    TotalPrice(){
 
-    totalPrice(){
-      const total = this.cart.reduce(
-        (total, order) => total + order.totalPrice,
-        0 
-      );
       return new Intl.NumberFormat("it-IT", {
         style: "currency",
         currency: "EUR",
-      }).format(total);
+      }).format(this.total);
     },
+    
+
   },
+  methods:{
 
-  methods: {
-    //contatore
-    changeCounter(direction, index) {
-      this.filtered.forEach((dish, i) => {
-        if (direction == "+" && i === index) {
-          dish.counter++;
-        } else if (direction == "-" && i === index) {
-          if (dish.counter === 0) {
-            dish.counter = 0;
-          } else {
-            dish.counter--;
-          }
-        }
-      });
-    },
 
-    //ritona una categoria
+    //AL CLICK FILTRA PER CATEGORIA
     selectCategory(category) {
       return (
         (this.categorySelect = category),
@@ -301,52 +268,111 @@ export default {
       );
     },
 
-    // inserimento e cancellazione ordini nel carrello
-    putInCart(index) {
-      this.filtered.forEach((dish, i) => {
-        if (index === i && dish.counter != 0) {
-          this.cart.push({
-            dishId: [dish.id],
-            quantity: dish.counter,
-            dishName: dish.name,
-            dishImgUrl: dish.image_url,
-            dishPrice: dish.price,
-            totalPrice: parseFloat(dish.price) * dish.counter,
-          });
-          // this.dishId.push({ 
-          //     id: dish.id.slice(dish.counter)
-          // });
-          this.activeCart()
+    //CARRELLO
 
-          //estraggo ID dei piatti
-          this.saveCart();
-          console.log(this.total);
-          console.log('id piatti');
-          console.log(this.dishId);
-          console.log('carrello');
-          console.log(this.cart);
-        } else {
-          //carrello vuoto
+    //CONTATORE
+    changeCounter(direction, index){
+       this.filtered.forEach((dish, i) => {
+        if (direction == "+" && i === index) {
+          dish.counter++; //aumenta il contatore di 1
+          this.putInCart(i); //attiva funzione di creazione ordine e carrello
+          this.cartActive = true; //attiva la sezione carrello
+        } else if (direction == "-" && i === index) {
+            if (dish.counter === 0) { //blocca il counter a 0
+              this.cartActive = false; // chiude sezione carrello
+          } else {
+            dish.counter--; //decrementa il contatore
+            this.deleteOrder(i); //attiva funzione di cancellazione degli elementi
+          }
         }
       });
     },
 
-    
-    // cancella un ordine se non ci sono ordini chiude il carrello
+    //AGGIUNGE ELEMENTO AD UN CARRELLO NON FILTRATO
+
+    putInCart(index) {
+      this.filtered.forEach((dish, i) => {
+        if (index === i && dish.counter != 0 && dish.name) {
+          this.cart.push({ //se attivo filtro this.cart diventa this.cartElement
+            dishId:dish.id,
+            quantity: dish.counter,
+            dishName: dish.name,
+            dishImgUrl: dish.image_url,
+            dishPrice: dish.price,
+            // totalPrice: parseFloat(dish.price) * dish.counter,
+          });
+          this.orders.push({
+            dishId: dish.id,
+          });
+
+          //ID piatti nel carrello
+          this.dishInCart = this.orders.map(e=>{
+            this.order = e.dishId;
+            return this.order
+          })
+          console.log('ordine nel carrello');console.log(this.dishInCart);
+          
+          // DA RIVEDERE
+          //filtro carrello
+          this.cartFiltered = this.cart.filter((order,index,self)=>
+                 index === self.findIndex((o,) => (
+                 o.dishId === order.dishId
+                 )));
+          
+          
+
+
+
+          //TOTALE ORDINE
+          this.total = this.cart.reduce(
+          (total, order) => total + parseFloat(order.dishPrice),
+           0  );
+
+          //
+
+          this.saveCart();
+          this.saveDish();
+          this.saveRestaurant();
+          this.saveTotal();
+
+         
+          console.log('CART ELEMENTI'); console.log(this.cartElements);
+          console.log('CART FILTRO');console.log(this.cartFiltered);
+          console.log('CART FINALE');console.log(this.cart);
+          console.log('Dish');console.log(this.dishInCart);
+          console.log('Total');console.log(this.total);
+          } else {
+           
+        }
+      });
+    },
+
+    //ELIMINA UN ORDINE QUANDO VIENE CLICCATO - SUL CONTATORE
+
     deleteOrder: function (delIndex) {
       this.cart.splice(delIndex, 1);
       this.orders.splice(delIndex, 1);
-      this.saveCart();
+      this.total = this.cart.reduce(
+          (total, order) => total + parseFloat(order.dishPrice),
+           0  );
+      
+          this.saveCart();
+          this.saveDish();
+          this.saveRestaurant();
+          this.saveTotal();
       if (this.cart.length != 0) {
         this.cartActive = true;
-      } else {
+      } else  {
         this.cartActive = false;
       }
+      console.log('ORDER-DELETE');console.log(this.orders);
+      console.log('ORDER-DELETE');console.log(this.cart);
+      console.log('Total');console.log(this.total);
     },
 
-    // attivare o disattivare carrello
+    //ATTIVA CARRELLO{}
+    //PER RIEMPIMENTO CARRELLO
 
-    // attivazione per riempimento
     activeCart() {
       if (this.cart.length != 0) {
         this.cartActive = true;
@@ -355,7 +381,7 @@ export default {
       }
     },
 
-    // attivazione e disattivazione per click
+    //PER CLICK
     openAndClose() {
       if (this.cartActive === false) {
         this.cartActive = true;
@@ -364,44 +390,42 @@ export default {
       }
     },
 
-    //salva dati per il pagamento
+
+    //INVIO DATI
+
     saveCart() {
       const parsed = JSON.stringify(this.cart);
       localStorage.setItem("cart", parsed);
     },
+    saveDish() {
+      const parsed = JSON.stringify(this.dishInCart);
+      localStorage.setItem("orders", parsed);
+    },
+    saveRestaurant() {
+      const parsed = JSON.stringify(this.restaurantId);
+      localStorage.setItem("restaurantId", parsed);
+    },
+    saveTotal() {
+      const parsed = JSON.stringify(this.total);
+      localStorage.setItem("total", parsed);
+    },
 
-    // vai al pagamento
+
+    // Vai al pagamento
     goToPayment() {
       this.saveCart();
+      this.saveDish();
+      this.saveRestaurant();
+      this.saveTotal();
       location.replace("/infoClienti");
+    }
 
-      //   console.log('sono dati', data)
-      //   axios.get('/checkout', data)
-      //       .then(function (result ) {
-      //            console.log(result.data.response);
-      //            location.replace('/checkout');
-      //       })
 
-      //     axios.post("/checkout", {
-      //           cart: this.cart,
-      //       })
-      //     .then((response) => {
-      //        console.log(response);
-
-      //        location.replace("/checkout");
-
-      //     })
-      //     .catch(function(error){
-      //           console.log(error);
-      //     });
-    },
   },
 
-  //   props:{
-  //       dishesImport : Object,
-  //       dCategory: Object,
-  //   }
-};
+
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -430,7 +454,7 @@ export default {
         .dish {
           padding: 20px 0;
           .dishinfo {
-            width: 50%;
+            width: 60%;
             .dishImg {
               width: 100px;
               height: 100px;
@@ -450,7 +474,7 @@ export default {
             }
           }
           .price {
-            width: 10%;
+            width: 20%;
             margin: 0 15px;
             h1 {
               font-size: 30px;
@@ -462,7 +486,7 @@ export default {
             margin: 0 50px;
             height: 40px;
             width: 20%;
-            border: 1px solid black;
+            background-color: black;
             border-radius: 30px;
             &:hover {
               border: none;
@@ -475,6 +499,7 @@ export default {
                 width: 70px;
                 text-align: center;
                 span {
+                  color:white;
                   height: 30px;
                   font-size: 30px;
                   font-weight: 500;
@@ -489,6 +514,10 @@ export default {
                 &:hover {
                   background-color: #b3f5fd;
                   line-height: 40px;
+                  span{
+                  color: black;
+                  }
+                    
                 }
                 &:hover:first-child {
                   border-top-left-radius: 30px;
@@ -505,25 +534,6 @@ export default {
                   font-weight: 400;
                 }
               }
-            }
-          }
-          .btn-black {
-            background-color: black;
-            height: 40px;
-            width: 20%;
-            border-radius: 30px;
-            span {
-              color: white;
-              font-weight: 700;
-              font-size: 15px;
-              line-height: 40px;
-              &:hover {
-                text-decoration: none;
-              }
-            }
-            img {
-              height: 15px;
-              margin-right: 5px;
             }
           }
         }
@@ -611,6 +621,9 @@ export default {
         color: white;
         font-size: 30px;
         font-weight: 900;
+        &:last-child{
+          color: #2fbcae;
+        }
       }
       .btn-light {
         background-color: #b3f5fd;

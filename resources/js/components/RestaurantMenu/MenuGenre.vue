@@ -62,6 +62,7 @@
               class="counter-box d-flex justify-content-end align-items-center"
             >
               <div class="counter d-flex justify-content-between">
+      
                 <div class="bt" @click="changeCounter('-', i)">
                   <span ondragstart="return false" onselectstart="return false">
                     -
@@ -107,7 +108,7 @@
                 <li class="notselected">
                   <img src="" alt="" />
                   <span ondragstart="return false" onselectstart="return false">
-                    x{{ order.quantity }}
+                    x{{ order.counter }}
                   </span>
                 </li>
               </ul>
@@ -120,7 +121,7 @@
               </div>
               <div class="dishtext">
                 <h3>{{ order.dishName }}</h3>
-                <h6>{{ order.dishPrice }} € x {{ order.quantity }} =</h6>
+                <h6>{{ order.dishPrice }} € x {{ order.counter }} =</h6>
               </div>
             </div>
             <div class="price d-flex justify-content-end align-items-center">
@@ -136,7 +137,7 @@
           class="col-6 d-flex flex-column justify-content-center align-items-start"
         >
           <h1>Totale ordine</h1>
-          <h1>{{ totalPrice }}</h1>
+          <h1>{{ TotalPrice }}</h1>
         </div>
         <div class="col-6 d-flex justify-content-end align-items-center">
           <!-- @submit="goToPayment" -->
@@ -180,7 +181,7 @@ export default {
       genreList:[],
       restaurantId:0,
       categorySelect:'',
-      nCounter: [],
+      count: [],
       orders: [],
       cartActive: false,
       // cartElements:[],
@@ -228,20 +229,8 @@ export default {
                  return this.id });
                  this.restaurant_id = this.restaurantId.splice(1); 
     //controllo ID ristorante
-    console.log('ARRAY ID RISTORANTE');console.log(this.restaurantId);
-
-
-    //DATI CARRELLO
-
-    
-
-
-
-    //TOTALE DELL'ORDINE
-
-
-
-
+    console.log('ARRAY ID RISTORANTE');console.log(this.restaurantId)
+  
   },
   computed:{
 
@@ -256,15 +245,13 @@ export default {
     //calcola il totale del carrello e lo trasforma in formato prezzo
 
     TotalPrice(){
-      const total = this.cart.reduce(
-        (total, order) => total + order.totalPrice,
-        0 
-      );
+
       return new Intl.NumberFormat("it-IT", {
         style: "currency",
         currency: "EUR",
-      }).format(total);
+      }).format(this.total);
     },
+    
 
   },
   methods:{
@@ -282,37 +269,21 @@ export default {
       );
     },
 
-
-
-
     //CARRELLO
 
-    //CONTATORE + AGGIUNGI AL CARRELLO
-    //il contatore crea la quantità del prodotto
-    //preOrders salva i prodotti al click del contatore
+    //CONTATORE
     changeCounter(direction, index){
        this.filtered.forEach((dish, i) => {
         if (direction == "+" && i === index) {
-          dish.counter++;
-          this.orders.push({
-            dishId: dish.id,
-          });
-          this.putInCart(i);
-          this.cartActive = true;
-
-          //ID piatti nel carrello
-          this.dishInCart = this.orders.map(e=>{
-            this.order = e.dishId;
-            return this.order
-          })
-          console.log('ordine nel carrello');console.log(this.dishInCart);
-          
+          dish.counter++; //aumenta il contatore di 1
+          this.putInCart(i); //attiva funzione di creazione ordine e carrello
+          this.cartActive = true; //attiva la sezione carrello
         } else if (direction == "-" && i === index) {
-          if (dish.counter === 0) {
-            this.cartActive = false;
+            if (dish.counter === 0) { //blocca il counter a 0
+              this.cartActive = false; // chiude sezione carrello
           } else {
-            dish.counter--;
-            this.deleteOrder(i)
+            dish.counter--; //decrementa il contatore
+            this.deleteOrder(i); //attiva funzione di cancellazione degli elementi
           }
         }
       });
@@ -322,28 +293,35 @@ export default {
 
     putInCart(index) {
       this.filtered.forEach((dish, i) => {
-        if (index === i && dish.counter != 0) {
+        if (index === i && dish.counter != 0 && dish.name) {
           this.cart.push({ //se attivo filtro this.cart diventa this.cartElement
             dishId:dish.id,
-            quantity: 1,
+            quantity: dish.counter,
             dishName: dish.name,
             dishImgUrl: dish.image_url,
             dishPrice: dish.price,
             // totalPrice: parseFloat(dish.price) * dish.counter,
           });
+          this.orders.push({
+            dishId: dish.id,
+          });
 
+          //ID piatti nel carrello
+          this.dishInCart = this.orders.map(e=>{
+            this.order = e.dishId;
+            return this.order
+          })
+          console.log('ordine nel carrello');console.log(this.dishInCart);
+          
+          // DA RIVEDERE
+          //filtro carrello
+          this.cartFiltered = this.cart.filter((order,index,self)=>
+                 index === self.findIndex((o,) => (
+                 o.dishId === order.dishId
+                 )));
+          
           
 
-          // DA RIVEDERE
-          // //filtro carrello
-          // this.cartFiltered = this.cartElements.filter((order,index,self)=>
-          //        index === self.findIndex((o,i) => (
-          //        o.dishId === order.dishId
-          //        )));
-          // //implemento quantità e prezzo totale
-          // this.cart = this.cartFiltered.map((element,i) => {
-          // this.elementUpgrade = { ...element,quantity:dish.counter};
-          // return this.elementUpgrade});
 
 
           //TOTALE ORDINE
@@ -375,6 +353,9 @@ export default {
     deleteOrder: function (delIndex) {
       this.cart.splice(delIndex, 1);
       this.orders.splice(delIndex, 1);
+      this.total = this.cart.reduce(
+          (total, order) => total + parseFloat(order.dishPrice),
+           0  );
       
           this.saveCart();
           this.saveDish();
@@ -641,6 +622,9 @@ export default {
         color: white;
         font-size: 30px;
         font-weight: 900;
+        &:last-child{
+          color: #2fbcae;
+        }
       }
       .btn-light {
         background-color: #b3f5fd;
