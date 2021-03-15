@@ -811,8 +811,12 @@ export default {
 
           .dishes {
             width: 100%;
+            .dishImg{
+              width: 60px;
+            }
             .dishtext {
-              margin-left: 30px;
+              width: 30%;
+              margin-left: 5px;
               h3 {
                 color: white;
                 font-size: 15px;
@@ -1068,8 +1072,6 @@ export default {
           &:hover{
             border:none;
             background:#b3f5fd;
-
-          
             .dishes {
             .dishtext {
               h3 {
@@ -1115,7 +1117,7 @@ export default {
         
 
         .price {
-          margin: 0 10px;
+          margin: 0 5px;
           h1 {
             color: #2fbcae;
             font-size: 20px;
