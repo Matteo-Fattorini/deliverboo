@@ -35,3 +35,7 @@ Orders
 Restaurant Dashboard
 -------
 ![](dashboard.gif)
+
+Responsive Design
+-------
+![](responsive.gif)
