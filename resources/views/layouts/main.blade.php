@@ -52,7 +52,7 @@
                         </ul>
                     </div>
 
-                    <div class="col-6 d-xl-none d-flex justify-content-end align-items-center debug">
+                    <div class="col-6 offset-2 d-xl-none d-flex justify-content-end align-items-center">
                         <img src="/img/homepage/icon/menu.png" alt="" id="navbar-menu-icon">
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                         <li class="mb-4">
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <input type="submit" value="Logout" class="primary-button">
+                                <input id="media-logout" type="submit" value="Logout" class="primary-button">
                             </form>
                         </li>
                     @endif
@@ -126,5 +126,6 @@
 
     </script>
 </body>
+
 
 </html>
