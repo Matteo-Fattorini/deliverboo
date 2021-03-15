@@ -11156,6 +11156,12 @@ footer ul li {
   background-image: url(/images/background_header2.jpeg?be60f8781caa3703991e69402d1206d4);
 }
 
+@media screen and (max-width: 800px) {
+  #bg {
+    background-position-x: -390px;
+  }
+}
+
 .primary-button,
 .black-button,
 nav .black-button-navbar,

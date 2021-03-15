@@ -1,7 +1,7 @@
 <template>
   <section id="resturant-type">
     <div class="container mt-5 mb-5">
-      <div class="row m-4">
+      <div class="row m-4 media-text-center">
         <div class="col-lg-12">
           <h1>Seleziona una tipologia di ristorante</h1>
         </div>
@@ -34,5 +34,15 @@ ul {
 }
 .icon {
   height: 30px;
+}
+
+@media screen and (max-width:800px){
+  #resturants-buttons {
+    justify-content: center !important;
+  }
+
+  .media-text-center {
+    text-align: center;
+  }
 }
 </style>

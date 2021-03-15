@@ -15,7 +15,7 @@
             
           </div>
         </div>
-        <div v-else class="col-12 p-5">
+        <div v-else class="col-12 media-padded">
           <h1>
             Il tuo ristorante è online. <br />
             Inizia a vendere subito!
@@ -47,6 +47,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.media-padded {
+  padding: 3rem !important;
+}
 #becomePartner {
   height: 70vh;
   position:relative;
@@ -77,6 +80,9 @@ export default {
   .media-flex{
     flex-direction: column !important;
     gap: 30px !important;
+  }
+  .media-padded {
+    padding: 1rem !important;
   }
   
 }

@@ -218,6 +218,13 @@ footer {
     background-image: url("../../public/img/homepage/background_header2.jpeg");
 }
 
+@media screen and (max-width:800px){
+    #bg{
+        background-position-x: -390px;
+        
+    }
+}
+
 //CLASSI PREDEFINITE
 %button-colored {
     background-color: $primary-color;

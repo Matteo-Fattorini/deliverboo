@@ -8425,7 +8425,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#becomePartner[data-v-d8efec3c] {\n  height: 70vh;\n  position: relative;\n  background-size: cover;\n  background-position: center;\n  background-color: rgba(0, 0, 0, 0.6);\n  background-blend-mode: multiply;\n}\n#becomePartner h1[data-v-d8efec3c] {\n  color: #fff;\n}\n#becomePartner .container[data-v-d8efec3c] {\n  height: 100%;\n}\n#becomePartner span[data-v-d8efec3c] {\n  color: #fff;\n}\n@media screen and (max-width: 700px) {\n.media-flex[data-v-d8efec3c] {\n    flex-direction: column !important;\n    gap: 30px !important;\n}\n}", ""]);
+exports.push([module.i, ".media-padded[data-v-d8efec3c] {\n  padding: 3rem !important;\n}\n#becomePartner[data-v-d8efec3c] {\n  height: 70vh;\n  position: relative;\n  background-size: cover;\n  background-position: center;\n  background-color: rgba(0, 0, 0, 0.6);\n  background-blend-mode: multiply;\n}\n#becomePartner h1[data-v-d8efec3c] {\n  color: #fff;\n}\n#becomePartner .container[data-v-d8efec3c] {\n  height: 100%;\n}\n#becomePartner span[data-v-d8efec3c] {\n  color: #fff;\n}\n@media screen and (max-width: 700px) {\n.media-flex[data-v-d8efec3c] {\n    flex-direction: column !important;\n    gap: 30px !important;\n}\n.media-padded[data-v-d8efec3c] {\n    padding: 1rem !important;\n}\n}", ""]);
 
 // exports
 
@@ -8444,7 +8444,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "ul[data-v-583fcad8] {\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n}\n.icon[data-v-583fcad8] {\n  height: 30px;\n}", ""]);
+exports.push([module.i, "ul[data-v-583fcad8] {\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n}\n.icon[data-v-583fcad8] {\n  height: 30px;\n}\n@media screen and (max-width: 800px) {\n#resturants-buttons[data-v-583fcad8] {\n    justify-content: center !important;\n}\n.media-text-center[data-v-583fcad8] {\n    text-align: center;\n}\n}", ""]);
 
 // exports
 
@@ -42556,7 +42556,7 @@ var render = function() {
                     ]
                   )
                 ])
-              : _c("div", { staticClass: "col-12 p-5" }, [
+              : _c("div", { staticClass: "col-12 media-padded" }, [
                   _vm._m(1),
                   _vm._v(" "),
                   _c("div", { staticClass: "mt-5" }, [
@@ -42710,7 +42710,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row m-4" }, [
+    return _c("div", { staticClass: "row m-4 media-text-center" }, [
       _c("div", { staticClass: "col-lg-12" }, [
         _c("h1", [_vm._v("Seleziona una tipologia di ristorante")])
       ])
