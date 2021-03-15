@@ -14,14 +14,14 @@
         <nav>
             <div class="container">
                 <div class="row">
-                    <div class="col-6 d-flex justify-content-between align-items-center debug">
+                    <div class="col-4 d-flex justify-content-between align-items-center">
                         <a href="{{ route('restaurant.index') }}" id="navbar-logo">
                             <img src="/img/logo/logo_black@2x.png" alt="" >
                         </a>
                     </div>
-                    <div class="col-6 d-none d-xl-flex justify-content-end align-items-center">
+                    <div class="col-8 d-none d-xl-flex justify-content-end align-items-center">
                         <ul
-                            class="d-flex justify-content-between align-items-center d-flex justify-content-between align-items-center ">
+                            class="d-flex justify-content-between align-items-center ">
                             <li><a href="{{ route('restaurant.index') }}"><h5>Home</h5></a></li>
                             <li><a href="{{ route('restaurant.index') }}"><h5>Aiuto</h5></a></li>
                             @guest
@@ -37,8 +37,8 @@
                                         </a>
                                     </li>
                                 @else
-                                    <li><a href="{{ route('restaurant.create') }}">
-                                            <h5>Crea il tuo ristorante</h5>
+                                    <li><a  href="{{ route('restaurant.create') }}">
+                                            <h5>Crea ristorante</h5>
                                         </a></li>
                                 @endif
 

@@ -11135,7 +11135,7 @@ footer ul li {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-image: url(/images/background_header2.png?546f73a709163fb8bb678215e8888178);
+  background-image: url(/images/background_header2.jpeg?be60f8781caa3703991e69402d1206d4);
 }
 
 .primary-button,
@@ -11358,6 +11358,10 @@ nav .black-button-navbar {
   font-size: 50px;
 }
 
+.pl-10 {
+  padding-left: 10px;
+}
+
 .m-50 {
   margin: 50px;
 }
@@ -11457,7 +11461,7 @@ nav .black-button-navbar {
 
 .custom-input {
   width: 100%;
-  padding: 5px 25px;
+  padding: 15px 25px;
   margin: 5px 0px;
   border-radius: 20px;
   border: 1px solid black;

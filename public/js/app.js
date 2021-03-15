@@ -8377,7 +8377,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#infoSectionHome[data-v-a2af9f00] {\n  height: 60vh;\n}\nimg[data-v-a2af9f00] {\n  outline: none !important;\n}\nimg[data-v-a2af9f00]:hover {\n  outline: none !important;\n}\n@media (max-width: 576px) {\nimg[data-v-a2af9f00] {\n    height: 200px;\n}\n}\n@media (min-width: 577px) and (max-width: 768px) {\nimg[data-v-a2af9f00] {\n    height: 250px;\n}\n}\n@media (min-width: 769px) and (max-width: 992px) {\nimg[data-v-a2af9f00] {\n    height: 300px;\n}\n}\n@media (min-width: 1200px) {\nimg[data-v-a2af9f00] {\n    height: 350px;\n}\n}", ""]);
+exports.push([module.i, "img[data-v-a2af9f00] {\n  outline: none !important;\n}\nimg[data-v-a2af9f00]:hover {\n  outline: none !important;\n}\np[data-v-a2af9f00] {\n  text-align: center;\n}\n@media (max-width: 576px) {\nimg[data-v-a2af9f00] {\n    height: 200px;\n}\nh1[data-v-a2af9f00] {\n    text-align: center;\n}\np[data-v-a2af9f00] {\n    text-align: center;\n}\n}\n@media (min-width: 577px) and (max-width: 768px) {\nimg[data-v-a2af9f00] {\n    height: 250px;\n}\nh1[data-v-a2af9f00] {\n    text-align: center;\n}\np[data-v-a2af9f00] {\n    text-align: center;\n}\n}\n@media (min-width: 769px) and (max-width: 992px) {\nimg[data-v-a2af9f00] {\n    height: 250px;\n}\nh1[data-v-a2af9f00] {\n    text-align: center;\n}\np[data-v-a2af9f00] {\n    text-align: center;\n}\n}\n@media (min-width: 993px) and (max-width: 1199px) {\nimg[data-v-a2af9f00] {\n    height: 300px;\n}\nh1[data-v-a2af9f00] {\n    text-align: left;\n}\np[data-v-a2af9f00] {\n    text-align: left;\n}\n}\n@media (min-width: 1200px) {\nimg[data-v-a2af9f00] {\n    height: 350px;\n}\nh1[data-v-a2af9f00] {\n    text-align: left;\n}\np[data-v-a2af9f00] {\n    text-align: left;\n}\n}", ""]);
 
 // exports
 
@@ -8491,7 +8491,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#icon{\r\n  height: 30px;\r\n  margin: 0;\r\n  width: auto;\n}\r\n", ""]);
+exports.push([module.i, "\n#icon{\n  height: 30px;\n  margin: 0;\n  width: auto;\n}\n", ""]);
 
 // exports
 
@@ -42307,18 +42307,18 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { attrs: { id: "infoSectionHome" } }, [
-      _c("div", { staticClass: "container mt-5 mb-5" }, [
+      _c("div", { staticClass: "container mt-5 mb-50" }, [
         _c(
           "div",
           {
-            staticClass: "row d-flex justify-content-center align-items-center"
+            staticClass: "row d-flex justify-content-center align-items-center "
           },
           [
             _c(
               "div",
               {
                 staticClass:
-                  "col-sm-12 col-lg-6 d-flex justify-content-center align-items-center"
+                  "col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 d-flex justify-content-center align-items-center"
               },
               [
                 _c("img", {
@@ -42331,20 +42331,18 @@ var staticRenderFns = [
               "div",
               {
                 staticClass:
-                  "col-sm-12 col-lg-6 d-flex flex-column justify-content-center align-items-center"
+                  "col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 d-flex flex-column  justify-content-center  align-items-xs-center align-items-sm-center align-items-md-center align-items-lg-start align-items-xl-start "
               },
               [
                 _c("h1", [
-                  _vm._v("E' ora di mangiare. Prenota con Deliveboo.")
+                  _vm._v("E' ora di mangiare. "),
+                  _c("br"),
+                  _vm._v(" Prenota con Deliveboo.")
                 ]),
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
-                    "\n          La fame ti ha preso di sprovvista? Con pochi click puoi ordinare\n          direttamente dai tuoi ristoranti preferiti. "
-                  ),
-                  _c("br"),
-                  _vm._v(
-                    "\n          Il cibo arriverà direttamente a casa tua!\n        "
+                    "\n          La fame ti ha preso di sprovvista? Con pochi click puoi ordinare\n          direttamente dai tuoi ristoranti preferiti.\n          Il cibo arriverà direttamente a casa tua!\n        "
                   )
                 ])
               ]
@@ -42384,7 +42382,7 @@ var render = function() {
         _c("div", { attrs: { id: "bg" } }, [
           _c(
             "div",
-            { staticClass: "d-flex justify-content-center align-items-center" },
+            { staticClass: "d-flex justify-content-center align-items-end" },
             [
               _c("input", {
                 directives: [
@@ -56646,8 +56644,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\NoSync\deliverboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\NoSync\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/pierlucamariodussich/Desktop/boolean/vs-code/php-playground/deliverboo/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/pierlucamariodussich/Desktop/boolean/vs-code/php-playground/deliverboo/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

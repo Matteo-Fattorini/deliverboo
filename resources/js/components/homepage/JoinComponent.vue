@@ -2,7 +2,7 @@
   <div id="join-component">
     <header>
       <div id="bg">
-        <div class="d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-end">
           <input
             v-model="query"
             @keyup.enter="search()"
