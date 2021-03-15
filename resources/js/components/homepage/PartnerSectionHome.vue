@@ -2,7 +2,7 @@
   <section id="becomePartner" class="d-flex flex-column justify-content-end">
     <div class="container mt-5 mb-5 d-flex justify-content-start align-items-center" >
       <div class="row ">
-        <div v-if="auth != 1"  class="col-12 p-5 d-flex flex-column">
+        <div v-if="auth == ''"  class="col-12 p-5 d-flex flex-column">
           <h1>
             Sei un ristoratore? <br />
             Diventa nostro partner
@@ -41,7 +41,7 @@ export default {
     loginlink: String,
     registerlink: String,
     dashboardlink: String,
-    auth: Number,
+    auth: String,
   }
 };
 </script>

@@ -3522,7 +3522,7 @@ __webpack_require__.r(__webpack_exports__);
     loginlink: String,
     registerlink: String,
     dashboardlink: String,
-    auth: Number
+    auth: String
   }
 });
 
@@ -3611,6 +3611,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8453,7 +8460,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".orders-box[data-v-7ce16d59] {\n  border-radius: 20px;\n  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);\n}\n.icon[data-v-7ce16d59] {\n  height: 20px;\n  cursor: pointer;\n}\n.icon1X[data-v-7ce16d59] {\n  height: 30px;\n}\nh5[data-v-7ce16d59] {\n  margin: 0;\n}\n.visible[data-v-7ce16d59] {\n  opacity: 1;\n  height: auto;\n}\n.invisible[data-v-7ce16d59] {\n  transition: opacity 1s ease-out;\n  opacity: 0;\n  height: 0;\n  overflow: hidden;\n}", ""]);
+exports.push([module.i, ".orders-box[data-v-7ce16d59] {\n  border-radius: 20px;\n  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);\n}\n.icon[data-v-7ce16d59] {\n  height: 20px;\n  cursor: pointer;\n}\n.icon1X[data-v-7ce16d59] {\n  height: 30px;\n}\nh5[data-v-7ce16d59] {\n  margin: 0;\n}\n.visible[data-v-7ce16d59] {\n  opacity: 1;\n  height: auto;\n}\n.invisible[data-v-7ce16d59] {\n  transition: opacity 1s ease-out;\n  opacity: 0;\n  height: 0;\n  overflow: hidden;\n}\n.media-padding[data-v-7ce16d59] {\n  padding: 3rem !important;\n}\n.media-margin-bottom[data-v-7ce16d59] {\n  margin-bottom: 1.5rem !important;\n}\n@media screen and (max-width: 700px) {\n.media-text[data-v-7ce16d59] {\n    font-size: 0.9rem;\n}\n.media-text-small[data-v-7ce16d59] {\n    font-size: 0.5rem;\n}\n.word-break[data-v-7ce16d59] {\n    word-break: break-all;\n}\n.media-padding[data-v-7ce16d59] {\n    padding: 0.5rem !important;\n}\n.media-margin[data-v-7ce16d59] {\n    margin-top: 2rem !important;\n}\n.media-margin-bottom[data-v-7ce16d59] {\n    margin-bottom: 0.5rem !important;\n}\n.media-flex[data-v-7ce16d59] {\n    flex-wrap: nowrap;\n}\n}", ""]);
 
 // exports
 
@@ -42504,7 +42511,7 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "row " }, [
-            _vm.auth != 1
+            _vm.auth == ""
               ? _c("div", { staticClass: "col-12 p-5 d-flex flex-column" }, [
                   _vm._m(0),
                   _vm._v(" "),
@@ -42753,14 +42760,18 @@ var render = function() {
                   staticClass:
                     "col-3 d-flex justify-content-start align-items-center"
                 },
-                [_c("span", [_vm._v(_vm._s(order.created_at))])]
+                [
+                  _c("span", { staticClass: "media-text-small" }, [
+                    _vm._v(_vm._s(order.created_at))
+                  ])
+                ]
               ),
               _vm._v(" "),
               _c(
                 "div",
                 {
                   staticClass:
-                    "col-3 d-flex justify-content-start align-items-center"
+                    "col-3 d-flex justify-content-start align-items-center text-center"
                 },
                 [_c("span", [_vm._v(_vm._s(order.total) + " €")])]
               ),
@@ -42769,7 +42780,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "col-3 d-flex justify-content-center align-items-center"
+                    " col-3 d-flex justify-content-center align-items-center"
                 },
                 [
                   _c(
@@ -42794,7 +42805,7 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "col",
+                  staticClass: "col media-margin",
                   class: {
                     invisible: _vm.selectedOrder != order.id,
                     visible: _vm.selectedOrder == order.id
@@ -42802,7 +42813,7 @@ var render = function() {
                   attrs: { id: order.id }
                 },
                 [
-                  _c("div", { staticClass: "row p-5" }, [
+                  _c("div", { staticClass: "row media-padding" }, [
                     _c(
                       "div",
                       {
@@ -42813,6 +42824,7 @@ var render = function() {
                         _c(
                           "a",
                           {
+                            staticClass: "d-none d-md-block d-lg-block",
                             attrs: { href: "#" },
                             on: {
                               click: function($event) {
@@ -42829,7 +42841,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "col-lg-6 d-flex justify-content-start align-items-center mb-4"
+                          "col-lg-12 d-flex justify-content-start align-items-start mb-4"
                       },
                       [
                         _c("img", {
@@ -42903,7 +42915,7 @@ var render = function() {
                           }
                         }),
                         _vm._v(" "),
-                        _c("h6", { staticClass: "ml-3" }, [
+                        _c("h6", { staticClass: "ml-3 word-break" }, [
                           _vm._v(_vm._s(order.client_email))
                         ])
                       ]
@@ -42918,13 +42930,13 @@ var render = function() {
                         _vm._l(order.get_dishes, function(dish) {
                           return _c(
                             "div",
-                            { key: dish.id, staticClass: "row" },
+                            { key: dish.id, staticClass: "row media-flex" },
                             [
                               _c(
                                 "div",
                                 {
                                   staticClass:
-                                    "col-lg-6 d-flex justify-content-start align-items-center mb-4"
+                                    " col-lg-6 d-flex justify-content-start align-items-center media-margin-bottom"
                                 },
                                 [_c("p", [_vm._v(_vm._s(dish.name))])]
                               ),
@@ -42933,9 +42945,13 @@ var render = function() {
                                 "div",
                                 {
                                   staticClass:
-                                    "col-lg-6 d-flex justify-content-start align-items-center mb-4"
+                                    "col-lg-6 d-flex justify-content-start align-items-center media-margin-bottom"
                                 },
-                                [_c("p", [_vm._v(_vm._s(dish.price) + " €")])]
+                                [
+                                  _c("p", [
+                                    _vm._v("  " + _vm._s(dish.price) + " €")
+                                  ])
+                                ]
                               )
                             ]
                           )
@@ -42948,6 +42964,29 @@ var render = function() {
                         ])
                       ],
                       2
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col-lg-12 d-flex justify-content-end align-items-center"
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "d-block d-md-none d-lg-none",
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                _vm.selectedOrder = null
+                              }
+                            }
+                          },
+                          [_vm._v("CHIUDI")]
+                        )
+                      ]
                     )
                   ])
                 ]
@@ -42977,33 +43016,33 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "col-3 d-flex justify-content-start align-items-center"
+          staticClass: "col-3   d-flex justify-content-start align-items-center"
         },
-        [_c("h3", [_vm._v("ID")])]
+        [_c("h3", { staticClass: "media-text" }, [_vm._v("ID")])]
       ),
       _vm._v(" "),
       _c(
         "div",
         {
-          staticClass: "col-3 d-flex justify-content-start align-items-center"
+          staticClass: "col-3  d-flex justify-content-start align-items-center"
         },
-        [_c("h3", [_vm._v("Data")])]
+        [_c("h3", { staticClass: "media-text" }, [_vm._v("Data")])]
       ),
       _vm._v(" "),
       _c(
         "div",
         {
-          staticClass: "col-3 d-flex justify-content-start align-items-center"
+          staticClass: "col-3  d-flex justify-content-start align-items-center"
         },
-        [_c("h3", [_vm._v("Totale")])]
+        [_c("h3", { staticClass: "media-text" }, [_vm._v("Totale")])]
       ),
       _vm._v(" "),
       _c(
         "div",
         {
-          staticClass: "col-3 d-flex justify-content-center align-items-center"
+          staticClass: "col-3  d-flex justify-content-center align-items-center"
         },
-        [_c("h3", [_vm._v("Dettagli")])]
+        [_c("h3", { staticClass: "media-text" }, [_vm._v("Dettagli")])]
       )
     ])
   },

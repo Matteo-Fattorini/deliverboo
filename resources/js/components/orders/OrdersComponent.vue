@@ -5,21 +5,22 @@
         <h1>Riepilogo ordini</h1>
       </div>
       <div class="row mb-3 p-3">
-        <div class="col-3 d-flex justify-content-start align-items-center">
-          <h3>ID</h3>
+        <div class="col-3   d-flex justify-content-start align-items-center">
+          <h3 class="media-text">ID</h3>
         </div>
-        <div class="col-3 d-flex justify-content-start align-items-center">
-          <h3>Data</h3>
+        <div class="col-3  d-flex justify-content-start align-items-center">
+          <h3 class="media-text">Data</h3>
         </div>
-        <div class="col-3 d-flex justify-content-start align-items-center">
-          <h3>Totale</h3>
+        <div class="col-3  d-flex justify-content-start align-items-center">
+          <h3 class="media-text">Totale</h3>
         </div>
-        <div class="col-3 d-flex justify-content-center align-items-center">
-          <h3>Dettagli</h3>
+        <div class="col-3  d-flex justify-content-center align-items-center">
+          <h3 class="media-text">Dettagli</h3>
         </div>
       </div>
       <div
         class="row mb-5 p-3 orders-box"
+        
         v-for="order in orders"
         :key="order.id"
       >
@@ -27,12 +28,12 @@
           <span>{{ order.id }}</span>
         </div>
         <div class="col-3 d-flex justify-content-start align-items-center">
-          <span>{{ order.created_at }}</span>
+          <span class="media-text-small">{{ order.created_at }}</span>
         </div>
-        <div class="col-3 d-flex justify-content-start align-items-center">
+        <div class="col-3 d-flex justify-content-start align-items-center text-center">
           <span>{{ order.total }} €</span>
         </div>
-        <div class="col-3 d-flex justify-content-center align-items-center">
+        <div class=" col-3 d-flex justify-content-center align-items-center">
           <div @click="display(order)">
             <img src="/img/dashboard/icon/watch.png" alt="" class="icon" />
           </div>
@@ -40,7 +41,8 @@
 
         <!-- DROPDOWN -->
         <div
-          class="col"
+          
+          class="col media-margin"
           :id="order.id"
           :class="{
             invisible: selectedOrder != order.id,
@@ -48,14 +50,14 @@
           }"
         >
           <!-- Dati del cliente -->
-          <div class="row p-5">
+          <div class="row media-padding">
             <div
               class="col-lg-12 d-flex justify-content-end align-items-center"
             >
-              <a href="#" @click="selectedOrder = null">CHIUDI</a>
+              <a class="d-none d-md-block d-lg-block" href="#" @click="selectedOrder = null">CHIUDI</a>
             </div>
             <div
-              class="col-lg-6 d-flex justify-content-start align-items-center mb-4"
+              class="col-lg-12 d-flex justify-content-start align-items-start mb-4"
             >
               <img src="/img/dashboard/icon/cel.png" alt="" class="icon1X" />
               <h6 class="ml-3">{{ order.client_phone }}</h6>
@@ -82,7 +84,7 @@
               class="col-lg-6 d-flex justify-content-start align-items-center mb-4"
             >
               <img src="/img/dashboard/icon/email.png" alt="" class="icon1X" />
-              <h6 class="ml-3">{{ order.client_email }}</h6>
+              <h6 class="ml-3 word-break">{{ order.client_email }}</h6>
             </div>
             <div
               class="col-lg-12 d-flex justify-content-start align-items-center mb-4"
@@ -92,22 +94,27 @@
 
             <!-- Prodotti acquistati dal cliente -->
             <div class="col-lg-12">
-              <div class="row" v-for="dish in order.get_dishes" :key="dish.id">
+              <div class="row media-flex" v-for="dish in order.get_dishes" :key="dish.id">
                 <div
-                  class="col-lg-6 d-flex justify-content-start align-items-center mb-4"
+                  class=" col-lg-6 d-flex justify-content-start align-items-center media-margin-bottom"
                 >
                   <p>{{ dish.name }}</p>
                 </div>
                 <div
-                  class="col-lg-6 d-flex justify-content-start align-items-center mb-4"
+                  class="col-lg-6 d-flex justify-content-start align-items-center media-margin-bottom"
                 >
-                  <p>{{ dish.price }} €</p>
+                  <p>  {{ dish.price }} €</p>
                 </div>
               </div>
               <hr />
               <div class="col-lg-6 offset-lg-6">
                 <span>{{ order.total }} €</span>
               </div>
+            </div>
+            <div
+              class="col-lg-12 d-flex justify-content-end align-items-center"
+            >
+              <a class="d-block d-md-none d-lg-none" href="#" @click="selectedOrder = null">CHIUDI</a>
             </div>
           </div>
         </div>
@@ -187,5 +194,36 @@ h5 {
   opacity: 0;
   height: 0;
   overflow: hidden;
+}
+.media-padding{
+  padding: 3rem !important;
+}
+
+.media-margin-bottom{
+  margin-bottom: 1.5rem !important;
+}
+
+@media screen and (max-width:700px){
+  .media-text {
+    font-size: 0.9rem;
+  }
+  .media-text-small {
+    font-size: 0.5rem;
+  }
+  .word-break{
+    word-break: break-all;
+  }
+  .media-padding{
+  padding: 0.5rem !important;
+}
+.media-margin{
+  margin-top: 2rem !important;
+}
+.media-margin-bottom {
+  margin-bottom: 0.5rem !important;
+}
+.media-flex {
+  flex-wrap: nowrap;
+}
 }
 </style>

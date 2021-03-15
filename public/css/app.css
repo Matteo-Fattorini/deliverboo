@@ -11016,6 +11016,14 @@ nav .black-button-navbar {
   padding: 5px 15px;
 }
 
+nav .black-button-navbar:active {
+  outline: none;
+}
+
+nav .black-button-navbar:focus {
+  outline: none;
+}
+
 nav .row {
   height: 10vh;
 }
@@ -11112,6 +11120,16 @@ footer ul li {
   padding: 5px 0;
 }
 
+#new-dish button:active,
+#edit-dish button:active {
+  outline: none;
+}
+
+#new-dish button:focus,
+#edit-dish button:focus {
+  outline: none;
+}
+
 #show-dish #dish-show-img {
   height: 300px;
   width: auto;
@@ -11160,10 +11178,36 @@ nav .black-button-navbar:hover,
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
+.primary-button:active,
+.black-button:active,
+nav .black-button-navbar:active,
+#new-dish button:active,
+#edit-dish button:active {
+  outline: none;
+}
+
+.primary-button:focus,
+.black-button:focus,
+nav .black-button-navbar:focus,
+#new-dish button:focus,
+#edit-dish button:focus {
+  outline: none;
+}
+
 .black-button,
 nav .black-button-navbar {
   background-color: #000;
   color: #fff;
+}
+
+.black-button:active,
+nav .black-button-navbar:active {
+  outline: none;
+}
+
+.black-button:focus,
+nav .black-button-navbar:focus {
+  outline: none;
 }
 
 .oval-button {

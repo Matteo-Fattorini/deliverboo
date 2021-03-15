@@ -88,7 +88,12 @@ nav {
     .black-button-navbar{
         @extend %button-black;
         padding: 5px 15px;
-        
+        &:active {
+            outline: none;
+        }
+        &:focus {
+            outline: none;
+        }
     }
     .row {
         height: 10vh;
@@ -178,6 +183,12 @@ footer {
         @extend %button-colored;
         width: 100%;
         padding: 5px 0;
+        &:active {
+            outline: none;
+        }
+        &:focus {
+            outline: none;
+        }
     }
 }
 #show-dish {
@@ -220,11 +231,23 @@ footer {
     &:hover {
         box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     }
+    &:active {
+            outline: none;
+        }
+    &:focus {
+        outline: none;
+        }
 }
 %button-black {
     @extend %button-colored;
     background-color: #000;
     color: #fff;
+    &:active {
+        outline: none;
+        }
+    &:focus {
+        outline: none;
+        }
 }
 %oval-button {
     display: flex;
