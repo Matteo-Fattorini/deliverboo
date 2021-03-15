@@ -48,8 +48,8 @@
                             </label>
                         @endforeach
                     </div>
-                    <div class="col-lg-12">
-                        <button type="submit" class="button-colored">CREA IL NUOVO PIATTO</button>
+                    <div class="col-12 ">
+                        <button type="submit" class="primary-button">CREA IL NUOVO PIATTO</button>
                     </div>
                     @if ($errors->any())
                         <div class="alert alert-danger mt-5">

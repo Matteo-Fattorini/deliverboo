@@ -11108,7 +11108,8 @@ footer ul li {
 
 #new-dish button,
 #edit-dish button {
-  width: 20%;
+  width: 100%;
+  padding: 5px 0;
 }
 
 #show-dish #dish-show-img {
@@ -11180,6 +11181,7 @@ nav .black-button-navbar {
   justify-content: center;
   align-items: center;
   padding: 15px;
+  margin: 0 15px 0 0;
   border: 1px solid #bbbbbb;
   width: 70px;
   height: 120px;
@@ -11211,6 +11213,7 @@ nav .black-button-navbar {
   justify-content: center;
   align-items: center;
   padding: 15px;
+  margin: 0 15px 0 0;
   width: 70px;
   height: 120px;
   border-radius: 60px;
@@ -11260,6 +11263,83 @@ nav .black-button-navbar {
   color: #ffffff;
   font-size: 15px;
   font-weight: 600;
+  margin: 5px 0;
+}
+
+.buttonCategory {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #bbbbbb;
+  border-radius: 60px;
+  margin: 0 15px 5px 0;
+}
+
+.buttonCategory:hover {
+  background-color: #b3f5fd;
+  border: 0;
+}
+
+.buttonCategory button {
+  background-color: transparent;
+  border: none;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 70px;
+  height: 120px;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonCategory button:checked {
+  background-color: #b3f5fd;
+  border: 0;
+}
+
+.buttonCategory button img {
+  height: 30px;
+  margin: 5px 0;
+  pointer-events: none;
+}
+
+.buttonCategory button span {
+  font-size: 10px;
+  font-weight: 800;
+  margin: 5px 0;
+}
+
+.buttonCategorySelected {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #b3f5fd;
+  border: 0;
+  border-radius: 60px;
+  margin: 0 15px 5px 0;
+}
+
+.buttonCategorySelected button {
+  background-color: transparent;
+  border: none;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 70px;
+  height: 120px;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonCategorySelected button img {
+  height: 30px;
+  margin: 5px 0;
+  pointer-events: none;
+}
+
+.buttonCategorySelected button span {
+  font-size: 10px;
+  font-weight: 800;
   margin: 5px 0;
 }
 
