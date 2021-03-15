@@ -163,8 +163,8 @@ export default {
     display(order) {
       this.selectedOrder = order.id;
       let el = document.getElementById(this.selectedOrder);
-      el.scrollIntoView({ behavior: "smooth" });
-      console.log(this.selectedOrder);
+      // el.scrollIntoView({ behavior: "smooth" });
+      // console.log(this.selectedOrder);
     },
   },
 };

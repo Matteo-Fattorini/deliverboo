@@ -3762,11 +3762,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     display: function display(order) {
       this.selectedOrder = order.id;
-      var el = document.getElementById(this.selectedOrder);
-      el.scrollIntoView({
-        behavior: "smooth"
-      });
-      console.log(this.selectedOrder);
+      var el = document.getElementById(this.selectedOrder); // el.scrollIntoView({ behavior: "smooth" });
+      // console.log(this.selectedOrder);
     }
   }
 });
