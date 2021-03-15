@@ -2,16 +2,16 @@
   <section id="becomePartner" class="d-flex flex-column justify-content-end">
     <div class="container mt-5 mb-5 d-flex justify-content-start align-items-center" >
       <div class="row ">
-        <div v-if="auth != 1"  class="col-12 p-5">
+        <div v-if="auth != 1"  class="col-12 p-5 d-flex flex-column">
           <h1>
             Sei un ristoratore? <br />
             Diventa nostro partner
           </h1>
-          <div class="mt-5">
+          <div class="mt-5 d-flex media-flex align-items-center">
             
-            <a :href="loginlink" class="primary-button">Effettua il login</a>
-            <span> - o - </span> 
-            <a :href="registerlink" class="primary-button">Registrati Subito</a>
+            <a :href="loginlink" class="primary-button text-center">Effettua il login</a>
+            <span class="d-none d-lg-block d-xl-block d-md-block"> - o - </span> 
+            <a :href="registerlink" class="primary-button text-center">Registrati Subito</a>
             
           </div>
         </div>
@@ -72,5 +72,12 @@ export default {
   //   position:absolute;
   //   bottom: 0;
   // }
+}
+@media screen and (max-width:700px) {
+  .media-flex{
+    flex-direction: column !important;
+    gap: 30px !important;
+  }
+  
 }
 </style>

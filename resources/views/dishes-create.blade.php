@@ -91,7 +91,6 @@
 
 
 
-
     {{-- @foreach ($restaurants->getTypes as $type)
     @dd($type->getRestaurants)
     
