@@ -3,7 +3,7 @@
     <div class="container">
       <!-- Sezione ristorante -->
       <div class="row m-3">
-        <div class="col-lg-12 d-flex justify-content-start align-items-center">
+        <div class="col-lg-12 d-flex justify-content-start align-items-center media-flex-column">
           <div class="resturantImage m-5">
             <img :src="'/img/restaurant/' + restaurant.image_url" alt="" />
           </div>
@@ -14,7 +14,7 @@
         </div>
       </div>
 
-      <div class="row m-3">
+      <div class="row  media-font-size">
         <div
           class="col-lg-3 d-flex justify-content-center align-items-center new-dish-button"
         >
@@ -49,7 +49,7 @@
               class="d-flex flex-column justify-content-center align-items-center"
             >
               <img src="/img/dashboard/icon/statistic.png" alt="" />
-              <p>Visualizza le statistiche</p>
+              <p id="stats">Visualizza le statistiche</p>
             </div>
           </a>
         </div>
@@ -69,7 +69,7 @@
       </div>
 
       <!-- Sezione Menù -->
-      <div class="row m-3">
+      <div class="row m-3 mt-5">
         <div class="col-lg-12">
           <h1>Gestione Menù</h1>
           <input
@@ -97,8 +97,9 @@
             />
           </div>
         </div>
-        <div class="col-lg-3 d-flex justify-content-center align-items-center">
+        <div  class="col-lg-3 d-flex justify-content-center align-items-center">
           <div
+            
             class="d-flex flex-column justify-content-center align-items-start text-box"
           >
             <h4>
@@ -146,14 +147,15 @@
             />
           </div>
         </div>
-        <div class="col-lg-3 d-flex justify-content-start align-items-center">
+        <div id="media-flex-center" class="col-lg-3 d-flex justify-content-start align-items-center">
           <div
+            
             class="d-flex flex-column justify-content-center align-items-start text-box"
           >
             <h4>
               {{ dish.name }}
             </h4>
-            <p>
+            <p id="media-p">
               {{ dish.description }}
             </p>
           </div>
@@ -164,6 +166,7 @@
         <div class="col-lg-4 d-flex justify-content-center align-items-center">
           <ul
             class="list-style-none d-flex justify-content-between align-items-center items-buttons"
+            id="media-ul"
           >
             <li class="m-2">
               <a :href="'/dishes/' + dish.id"
@@ -249,4 +252,49 @@ export default {
     outline: none !important;
   }
 }
+
+@media (max-width:800px){
+  .media-flex-column{
+    flex-direction: column !important;
+  }
+  .custom-input{
+    width: 100% !important;
+  }
+
+  .container {
+    text-align: center !important;
+  }
+
+  .media-font-size {
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    flex-wrap: nowrap;
+    
+}
+
+#media-flex-center {
+   
+  justify-content:center !important;
+  margin-top: 30px;
+    
+}
+
+#media-ul {
+    width: 100%;
+    justify-content: flex-start !important;
+    margin-left: 25px;
+}
+
+#media-p {
+  text-align: left !important;
+  overflow: unset !important;
+  white-space: unset !important;
+
+}
+
+
+
+  }
+
 </style>

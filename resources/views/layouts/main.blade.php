@@ -62,7 +62,7 @@
                 <h6 id="close-button" class="d-none">CHIUDI</h6>
                 <ul class="d-none flex-column justify-content-center align-items-start" id="navbar-list">
                     <li class="mb-4"><a href="{{ route('restaurant.index') }}">
-                            <h5>Home</h5>
+                            <h5 id="home-margin">Home</h5>
                         </a></li>
                     @guest
                         <li class="mb-4"><a href="{{ route('login') }}">

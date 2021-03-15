@@ -3216,6 +3216,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "DashboardComponent",
   props: {
@@ -8365,7 +8368,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".items-buttons img[data-v-1c27d7e2] {\n  height: 30px;\n}\n.custom-input[data-v-1c27d7e2] {\n  width: 50%;\n}\n.new-dish-button img[data-v-1c27d7e2],\n.orders-button img[data-v-1c27d7e2] {\n  height: 30px;\n  width: auto;\n  margin: 0;\n}\n.text-box p[data-v-1c27d7e2] {\n  white-space: nowrap;\n  overflow: hidden !important;\n  text-overflow: ellipsis !important;\n  max-width: 200px;\n}\n.listImage[data-v-1c27d7e2] {\n  -o-object-fit: cover !important;\n     object-fit: cover !important;\n  outline: none !important;\n}\n.listImage[data-v-1c27d7e2]:hover {\n  outline: none !important;\n}", ""]);
+exports.push([module.i, ".items-buttons img[data-v-1c27d7e2] {\n  height: 30px;\n}\n.custom-input[data-v-1c27d7e2] {\n  width: 50%;\n}\n.new-dish-button img[data-v-1c27d7e2],\n.orders-button img[data-v-1c27d7e2] {\n  height: 30px;\n  width: auto;\n  margin: 0;\n}\n.text-box p[data-v-1c27d7e2] {\n  white-space: nowrap;\n  overflow: hidden !important;\n  text-overflow: ellipsis !important;\n  max-width: 200px;\n}\n.listImage[data-v-1c27d7e2] {\n  -o-object-fit: cover !important;\n     object-fit: cover !important;\n  outline: none !important;\n}\n.listImage[data-v-1c27d7e2]:hover {\n  outline: none !important;\n}\n@media (max-width: 800px) {\n.media-flex-column[data-v-1c27d7e2] {\n    flex-direction: column !important;\n}\n.custom-input[data-v-1c27d7e2] {\n    width: 100% !important;\n}\n.container[data-v-1c27d7e2] {\n    text-align: center !important;\n}\n.media-font-size[data-v-1c27d7e2] {\n    align-items: center;\n    justify-content: center;\n    font-size: 0.6rem;\n    flex-wrap: nowrap;\n}\n#media-flex-center[data-v-1c27d7e2] {\n    justify-content: center !important;\n    margin-top: 30px;\n}\n#media-ul[data-v-1c27d7e2] {\n    width: 100%;\n    justify-content: flex-start !important;\n    margin-left: 25px;\n}\n#media-p[data-v-1c27d7e2] {\n    text-align: left !important;\n    overflow: unset !important;\n    white-space: unset !important;\n}\n}", ""]);
 
 // exports
 
@@ -41826,7 +41829,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "col-lg-12 d-flex justify-content-start align-items-center"
+                "col-lg-12 d-flex justify-content-start align-items-center media-flex-column"
             },
             [
               _c("div", { staticClass: "resturantImage m-5" }, [
@@ -41847,7 +41850,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row m-3" }, [
+        _c("div", { staticClass: "row  media-font-size" }, [
           _c(
             "div",
             {
@@ -41886,7 +41889,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row m-3" }, [
+        _c("div", { staticClass: "row m-3 mt-5" }, [
           _c("div", { staticClass: "col-lg-12" }, [
             _c("h1", [_vm._v("Gestione Menù")]),
             _vm._v(" "),
@@ -42070,7 +42073,8 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "col-lg-3 d-flex justify-content-start align-items-center"
+                  "col-lg-3 d-flex justify-content-start align-items-center",
+                attrs: { id: "media-flex-center" }
               },
               [
                 _c(
@@ -42086,7 +42090,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("p", [
+                    _c("p", { attrs: { id: "media-p" } }, [
                       _vm._v(
                         "\n            " +
                           _vm._s(dish.description) +
@@ -42118,7 +42122,8 @@ var render = function() {
                   "ul",
                   {
                     staticClass:
-                      "list-style-none d-flex justify-content-between align-items-center items-buttons"
+                      "list-style-none d-flex justify-content-between align-items-center items-buttons",
+                    attrs: { id: "media-ul" }
                   },
                   [
                     _c("li", { staticClass: "m-2" }, [
@@ -42217,7 +42222,9 @@ var staticRenderFns = [
                 attrs: { src: "/img/dashboard/icon/statistic.png", alt: "" }
               }),
               _vm._v(" "),
-              _c("p", [_vm._v("Visualizza le statistiche")])
+              _c("p", { attrs: { id: "stats" } }, [
+                _vm._v("Visualizza le statistiche")
+              ])
             ]
           )
         ])
