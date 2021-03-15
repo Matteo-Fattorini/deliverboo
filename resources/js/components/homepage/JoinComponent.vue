@@ -12,7 +12,6 @@
             id=""
             placeholder="Cosa vuoi mangiare?"
           />
-
         </div>
       </div>
     </header>
@@ -125,11 +124,9 @@ div {
 }
 .custom-input {
   width: 50%;
-  // outline:none
+  font-weight: 900;
+  font-style: italic;
 }
-// .custom-input:focus, .custom-input:active {
-//   outline:none;
-// }
 </style>
 
 

@@ -2766,6 +2766,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return e.get_genre.name.includes(_this2.categorySelect);
       });
     },
+    filteredCart: function filteredCart() {
+      return this.cart.filter(function (order, index, self) {
+        return index === self.findIndex(function (o, i) {
+          return o.dishId === order.dishId;
+        });
+      });
+    },
     //calcola il totale del carrello e lo trasforma in formato prezzo
     TotalPrice: function TotalPrice() {
       return new Intl.NumberFormat("it-IT", {
@@ -2805,11 +2812,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this4 = this;
 
       this.filtered.forEach(function (dish, i) {
-        if (index === i && dish.counter != 0 && dish.name) {
+        if (index === i && dish.counter >= 0) {
           _this4.cart.push({
             //se attivo filtro this.cart diventa this.cartElement
             dishId: dish.id,
-            quantity: dish.counter,
             dishName: dish.name,
             dishImgUrl: dish.image_url,
             dishPrice: dish.price
@@ -2833,14 +2839,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             return _this4.order;
           });
           console.log('ordine nel carrello');
-          console.log(_this4.dishInCart); // DA RIVEDERE
-          //filtro carrello
-
-          _this4.cartFiltered = _this4.cart.filter(function (order, index, self) {
-            return index === self.findIndex(function (o) {
-              return o.dishId === order.dishId;
-            });
-          }); //TOTALE ORDINE
+          console.log(_this4.dishInCart); //TOTALE ORDINE
 
           _this4.total = _this4.cart.reduce(function (total, order) {
             return total + parseFloat(order.dishPrice);
@@ -2859,8 +2858,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           console.log('CART FILTRO');
           console.log(_this4.filteredCart);
           console.log('CART FINALE');
-          console.log('CART ELEMENTI');
-          console.log(_this4.cartElements);
           console.log(_this4.cart);
           console.log('Dish');
           console.log(_this4.dishInCart);
@@ -3350,7 +3347,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ResturantSectionHome_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ResturantSectionHome.vue */ "./resources/js/components/homepage/ResturantSectionHome.vue");
 /* harmony import */ var _ButtonsComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ButtonsComponent.vue */ "./resources/js/components/homepage/ButtonsComponent.vue");
 /* harmony import */ var _ResturantComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ResturantComponent.vue */ "./resources/js/components/homepage/ResturantComponent.vue");
-//
 //
 //
 //
@@ -8400,7 +8396,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "div[data-v-7c37c506] {\n  height: calc(100% - 100px);\n}\n.custom-input[data-v-7c37c506] {\n  width: 50%;\n}", ""]);
+exports.push([module.i, "div[data-v-7c37c506] {\n  height: calc(100% - 100px);\n}\n.custom-input[data-v-7c37c506] {\n  width: 50%;\n  font-weight: 900;\n  font-style: italic;\n}", ""]);
 
 // exports
 
@@ -42274,7 +42270,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "col-2 col-lg-1 mb-2 d-flex justify-content-center align-items-center oval-button"
+        "col-xs-4 col-sm-4 col-md-2 col-lg-1 mb-2 d-flex justify-content-center align-items-center oval-button"
     },
     [
       _c(
@@ -56648,8 +56644,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\NoSync\deliverboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\NoSync\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! F:\User Folders\Documenti\GitHub\deliverboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! F:\User Folders\Documenti\GitHub\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

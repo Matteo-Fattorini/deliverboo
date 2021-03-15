@@ -15,11 +15,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-6 d-flex justify-content-between align-items-center debug">
-                        <a href="{{ route('restaurant.index') }}">
-                            <img src="/img/logo/logo_black@2x.png" alt="" id="navbar-logo">
+                        <a href="{{ route('restaurant.index') }}" id="navbar-logo">
+                            <img src="/img/logo/logo_black@2x.png" alt="" >
                         </a>
                     </div>
-                    <div class="col-6 d-flex justify-content-end align-items-center">
+                    <div class="col-6 d-none d-xl-flex justify-content-end align-items-center">
                         <ul
                             class="d-flex justify-content-between align-items-center d-flex justify-content-between align-items-center ">
                             <li><a href="{{ route('restaurant.index') }}"><h5>Home</h5></a></li>
@@ -87,7 +87,7 @@
                         <li class="mb-4">
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <input type="submit" value="Logout" class="black-button-navbar">
+                                <input type="submit" value="Logout" class="primary-button">
                             </form>
                         </li>
                     @endif

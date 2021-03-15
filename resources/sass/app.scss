@@ -42,14 +42,19 @@ nav {
         position: absolute;
         top: 0;
         right: 0;
-        background-color: $white;
+        background-color: $black;
         z-index: 2;
         border-bottom-left-radius: 100%;
 
+        a{
+            color: $white;  
+        }
+
         #close-button {
             text-align: right;
+            font-weight: 900;
             cursor: pointer;
-            color: red;
+            color: $primary-color;
         }
     }
 
@@ -65,10 +70,9 @@ nav {
         transition: all 200ms ease-in-out;
     }
 
-    #navbar-logo {
-        height: auto;
+    #navbar-logo img{
+        height: 30px;
     }
-
     #navbar-menu-icon {
         cursor: pointer;
 
@@ -234,7 +238,7 @@ footer {
         justify-content: center;
         align-items: center;
         padding: 15px;
-        margin: 0 15px 0 0;
+        // margin: 0 15px 0 0;
         border: 1px solid #bbbbbb;
         width: 70px;
         height: 120px;
@@ -263,7 +267,7 @@ footer {
         justify-content: center;
         align-items: center;
         padding: 15px;
-        margin: 0 15px 0 0;
+        // margin: 0 15px 0 0;
         width: 70px;
         height: 120px;
         border-radius: 60px;

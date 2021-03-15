@@ -10966,15 +10966,20 @@ nav #route-menu {
   position: absolute;
   top: 0;
   right: 0;
-  background-color: #ffffff;
+  background-color: #000000;
   z-index: 2;
   border-bottom-left-radius: 100%;
 }
 
+nav #route-menu a {
+  color: #ffffff;
+}
+
 nav #route-menu #close-button {
   text-align: right;
+  font-weight: 900;
   cursor: pointer;
-  color: red;
+  color: #b3f5fd;
 }
 
 nav .visible {
@@ -10990,8 +10995,8 @@ nav .not-visible {
   transition: all 200ms ease-in-out;
 }
 
-nav #navbar-logo {
-  height: auto;
+nav #navbar-logo img {
+  height: 30px;
 }
 
 nav #navbar-menu-icon {
@@ -11175,7 +11180,6 @@ nav .black-button-navbar {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  margin: 0 15px 0 0;
   border: 1px solid #bbbbbb;
   width: 70px;
   height: 120px;
@@ -11207,7 +11211,6 @@ nav .black-button-navbar {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  margin: 0 15px 0 0;
   width: 70px;
   height: 120px;
   border-radius: 60px;

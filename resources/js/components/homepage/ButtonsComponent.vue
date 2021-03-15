@@ -1,5 +1,5 @@
 <template>
-<div class="col-2 col-lg-1 mb-2 d-flex justify-content-center align-items-center oval-button">
+<div class="col-xs-4 col-sm-4 col-md-2 col-lg-1 mb-2 d-flex justify-content-center align-items-center oval-button">
     <button class="notselected" :value="value" :id="id">
       <img class="icon" :src="categoryImg" alt="" />
       {{ categoryName }}

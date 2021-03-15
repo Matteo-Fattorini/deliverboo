@@ -10,7 +10,7 @@
           <div class="mt-5">
             
             <a :href="loginlink" class="primary-button">Effettua il login</a>
-            <span> - o - </span>
+            <span> - o - </span> 
             <a :href="registerlink" class="primary-button">Registrati Subito</a>
             
           </div>
