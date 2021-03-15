@@ -94,11 +94,10 @@ export default {
         this.check();
       }
       
-      if(!e.target.classList.contains("icon")){
-
-        e.target.classList.toggle("selected")
-      }
-      console.log(this.checked)
+       if(e.target.parentNode.classList.contains("buttonCategory")){
+        e.target.parentNode.classList.toggle("buttonCategorySelected")
+       }
+      console.log(e.target)
       
       
     },

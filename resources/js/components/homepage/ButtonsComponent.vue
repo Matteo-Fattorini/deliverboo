@@ -1,8 +1,8 @@
 <template>
-<div class="col-xs-4 col-sm-4 col-md-2 col-lg-1 mb-2 d-flex justify-content-center align-items-center oval-button">
-    <button class="notselected" :value="value" :id="id">
+<div class="buttonCategory">
+    <button class="" :value="value" :id="id">
       <img class="icon" :src="categoryImg" alt="" />
-      {{ categoryName }}
+      <span>{{ categoryName }}</span>
     </button>
 </div>
 </template>

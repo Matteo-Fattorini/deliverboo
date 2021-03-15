@@ -3444,11 +3444,11 @@ __webpack_require__.r(__webpack_exports__);
         this.check();
       }
 
-      if (!e.target.classList.contains("icon")) {
-        e.target.classList.toggle("selected");
+      if (e.target.parentNode.classList.contains("buttonCategory")) {
+        e.target.parentNode.classList.toggle("buttonCategorySelected");
       }
 
-      console.log(this.checked);
+      console.log(e.target);
     },
     check: function check(e) {
       var _this3 = this;
@@ -42266,26 +42266,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass:
-        "col-xs-4 col-sm-4 col-md-2 col-lg-1 mb-2 d-flex justify-content-center align-items-center oval-button"
-    },
-    [
-      _c(
-        "button",
-        { staticClass: "notselected", attrs: { value: _vm.value, id: _vm.id } },
-        [
-          _c("img", {
-            staticClass: "icon",
-            attrs: { src: _vm.categoryImg, alt: "" }
-          }),
-          _vm._v("\r\n      " + _vm._s(_vm.categoryName) + "\r\n    ")
-        ]
-      )
-    ]
-  )
+  return _c("div", { staticClass: "buttonCategory" }, [
+    _c("button", { attrs: { value: _vm.value, id: _vm.id } }, [
+      _c("img", {
+        staticClass: "icon",
+        attrs: { src: _vm.categoryImg, alt: "" }
+      }),
+      _vm._v(" "),
+      _c("span", [_vm._v(_vm._s(_vm.categoryName))])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
