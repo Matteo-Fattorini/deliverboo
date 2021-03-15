@@ -7,7 +7,7 @@ use Braintree;
 
 class PaymentsController extends Controller
 {
-      public function checkout(Request $request){
+    public function checkout(Request $request){
         $gateway = new Braintree\Gateway([
             'environment' => "sandbox",
             'merchantId' => "rbhzcjjb2rtjsx4j",

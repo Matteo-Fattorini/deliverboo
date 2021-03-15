@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <section id="payment">
         <Cart></Cart>
         <div class="container">
