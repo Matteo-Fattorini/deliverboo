@@ -2,7 +2,7 @@
 <section>
   <div class="container">
     <div class="row">
-      <div class="col-6 info d-flex p-0">
+      <div class="col-xl-6 col-lg-6 col-sm-12 info d-flex p-0">
         <div
           class="rst-info d-flex flex-column justify-content-start align-items-start"
         >
@@ -12,7 +12,7 @@
         </div>
       </div>
       <div
-        class="col-6 circle d-flex justify-content-center align-items-center p-0"
+        class="col-xl-6  col-lg-6 col-sm-12 circle d-flex justify-content-lg-center  justify-content-md-start justify-content-sm-start align-items-lg-center  align-items-md-center align-items-sm-start p-0"
       >
         <div class="resturantImage">
           <!--  <img class='m-0 p-0' :src="restaurantData.image_url" alt=""> -->
@@ -74,10 +74,11 @@ export default {
     }
     .info {
       .rst-info {
-        margin: 20px 0 0 20px;
+        margin: 70px 0 0 20px;
         padding-right: 0;
 
         h1 {
+          color: black;
           font-size: 50px;
           font-weight: 900;
           line-height: 50px;
@@ -93,4 +94,174 @@ export default {
     }
   }
 }
+
+@media (max-width: 576px) {
+
+ .container {
+  margin-bottom: 50px;
+  .row {
+    display: flex;
+    flex-direction: column-reverse;
+    .circle {
+      width: 250px;
+     
+      margin-left:20px;
+      margin-top: 50px;
+      padding: 0;
+      position: static;
+      z-index:0;
+      .resturantImage {
+      
+        margin: 0;
+        min-width: 200px;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 100%;
+        border: 6px solid black;
+          #restaurant_img {
+          width: 100%;
+          height: 100%;
+          border-radius: 100%;
+          margin: 0;
+          object-fit: cover;
+        
+          
+         }
+      }
+    }
+    .info {
+      .rst-info {
+        margin: 20px 0 0 20px;
+        padding-right: 0;
+
+        h1 {
+          font-size: 40px;
+          font-weight: 900;
+          line-height: 40px;
+        }
+        h5 {
+          font-size: 15px;
+          font-weight: 400;
+        }
+        .dist {
+          margin: 0 0;
+        }
+      }
+    }
+  }
+ }
+}
+
+
+@media (min-width:577px) and (max-width: 768px) {
+  .container {
+  margin-bottom: 50px;
+  .row {
+    display: flex;
+    flex-direction: column-reverse;
+    .circle {
+      width: 250px;
+      
+      margin-left:20px;
+      margin-top: 50px;
+      padding: 0;
+      position: static;
+      z-index:0;
+      .resturantImage {
+       
+        margin: 0;
+        min-width: 200px;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 100%;
+        border: 6px solid black;
+          #restaurant_img {
+          width: 100%;
+          height: 100%;
+          border-radius: 100%;
+          margin: 0;
+          object-fit: cover;
+        
+          
+         }
+      }
+    }
+    .info {
+      .rst-info {
+        margin: 20px 0 0 20px;
+        padding-right: 0;
+
+        h1 {
+          
+          font-size: 40px;
+          font-weight: 900;
+          line-height: 40px;
+        }
+        h5 {
+      
+          font-size: 15px;
+          font-weight: 400;
+        }
+        .dist {
+          margin: 0 0;
+        }
+      }
+    }
+  }
+ }
+}
+
+@media (min-width:769px) and (max-width: 992px){
+  .container {
+  margin-bottom: 50px;
+  .row {
+    display: flex;
+    flex-direction: column-reverse;
+    .circle {
+      width: 350px;
+      margin-left:20px;
+      margin-top: 50px;
+      padding: 0;
+      position: static;
+      z-index:0;
+      .resturantImage {
+        margin: 0;
+        min-width: 300px;
+        height: 300px;
+        overflow: hidden;
+        border-radius: 100%;
+        border: 6px solid black;
+          #restaurant_img {
+          width: 100%;
+          height: 100%;
+          border-radius: 100%;
+          margin: 0;
+          object-fit: cover;
+         }
+      }
+    }
+    .info {
+      .rst-info {
+        margin: 20px 0 0 20px;
+        padding-right: 0;
+
+        h1 {
+          font-size: 40px;
+          font-weight: 900;
+          line-height: 40px;
+        }
+        h5 {
+          font-size: 15px;
+          font-weight: 400;
+        }
+        .dist {
+          margin: 0 0;
+        }
+      }
+    }
+  }
+ }
+}
+@media (min-width: 1200px) {
+ }
 </style>

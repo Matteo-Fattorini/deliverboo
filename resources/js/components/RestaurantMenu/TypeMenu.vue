@@ -2,10 +2,10 @@
      <div id="menu">
     <div class="container restaurant">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 menuContainer">
           <h1>Menù</h1>
         </div>
-        <div class="col-12" >
+        <div class="col-12 dishContainer" >
           <ul class="oval-button">
             <li
               v-for="(genre, index) in genreList"
@@ -30,20 +30,14 @@
     </div>
     <div class="container menu">
       <div class="row">
-        <div class="col-12" v-if="$data.categoryDishes == true">
-          <!-- categoria -->
-          <h2>Pizza</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12 p-0">
+        <div class="dishContainer  p-0">
           <div
             class="dish d-flex justify-content-start align-items-center"
             v-for="(dish, i) in filtered"
             :key="i"
           >
             <div
-              class="dishinfo d-flex justify-content-start align-items-center"
+              class="dishinfo  col-xl-6  col-md-12 col-sm-12 d-flex justify-content-xl-start align-items-xl-center"
             >
               <div class="dishImg">
                 <div class="listImage dishImg">
@@ -55,29 +49,10 @@
                 <h5>{{ dish.description }}</h5>
               </div>
             </div>
-            <div class="price d-flex justify-content-center align-items-center">
+            <div class="price col-xl-3  col-md-6 col-sm-6 d-flex justify-content-xl-center align-items-xl-center">
               <h1>{{ dish.price }}€</h1>
             </div>
-            <!-- <div class="counter-box d-flex justify-content-end align-items-center">
-              <div class="counter d-flex justify-content-between">
-      
-                <div class="bt" @click="changeCounter('-', i)">
-                  <span ondragstart="return false" onselectstart="return false">
-                    -
-                  </span>
-                </div>
-                <div class=" ">
-                  <span> {{ dish.counter }} </span>
-                </div>
-                <div class="bt" @click="changeCounter('+', i)">
-                  <span ondragstart="return false" onselectstart="return false">
-                    +
-                  </span>
-                </div>
-
-              </div>
-            </div> -->
-            <div class="button">
+            <div class=" orderButton col-xl-3  col-md-5 col-sm-5">
               <button class="black-button" @click="putInCart(i)"> 
                 Ordina +
               </button>
@@ -88,22 +63,22 @@
     </div>
 
     <!-- carrello -->
-    <div class="container cart" v-if="cartActive === true">
+    <div class="container cart " v-if="cartActive === true">
       <div class="row">
-        <div class="col-12 d-flex">
+        <div class="col-12 cartContainer d-flex">
           <div
-            class="cartTitle d-flex justify-content-start align-items-center"
+            class="cartTitle  d-flex  justify-content-sm-start align-items-sm-start justify-content-xl-start align-items-xl-center"
           >
             <h1>Carrello</h1>
           </div>
           <div
-            class="close d-flex justify-content-end align-items-start"
+            class="close d-flex  justify-content-end align-items-start"
             @click="openAndClose()"
           >
             <img src="/images/close_white.png" alt="" />
           </div>
         </div>
-        <div class="col-12 d-flex flex-row flex-wrap ">
+        <div class=" col-12 cartContainer  d-flex flex-xl-row flex-xl-wrap ">
           <div class="order d-flex" v-for="(order, ind) in cart" :key="ind">
             <div class="dishes d-flex  justify-content-start align-items-center">
               <div class="dishImg">
@@ -115,22 +90,22 @@
                 <h3>{{ order.dishName }}</h3>
               </div>
             </div>
-            <div class="price d-flex justify-content-end align-items-center">
+            <div class="price d-flex justify-content-sm-end align-items-sm-center justify-content-xl-end align-items-xl-center">
              <!-- nel caso ritorna il filtro sarebbe order.totalPrice -->
               <h1>{{ order.dishPrice}} €</h1>
             </div>
-            <div class="delete d-flex justify-content-end align-items-center">
+            <div class="delete d-flex  justify-content-sm-end align-items-sm-center justify-content-xl-end align-items-xl-center">
               <button @click.stop="deleteOrder(ind)">X</button>
             </div>
           </div>
         </div>
         <div
-          class="col-6 d-flex flex-column justify-content-center align-items-start"
+          class="col-xl-6  col-sm-12 col-md-12 orderContainer d-flex flex-column justify-content-center align-items-start"
         >
           <h1>Totale ordine</h1>
           <h1>{{ TotalPrice }}</h1>
         </div>
-        <div class="col-6 d-flex justify-content-end align-items-center">
+        <div class="col-xl-6 col-sm-12 col-md-12  orderContainer d-flex justify-content-xl-end align-items-xl-center">
           <!-- @submit="goToPayment" -->
           <button class="btn-light" @click="goToPayment()">
             <span>VAI AL PAGAMENTO </span>
@@ -142,10 +117,10 @@
     <!-- attiva carrello -->
 
     <div class="container cartButton" >
-      <div class="row d-flex justify-content-center align-items-center">
-        <div class="col-1 ">
+      <div class="row d-flex justify-content-xl-center align-items-xl-center">
+        <div class="col-1 pull ">
           <div
-            class="roundedCart d-flex justify-content-center align-items-center"
+            class="roundedCart d-flex justify-content-xl-center align-items-xl-center"
             @click="openAndClose()"
           >
             <img src="/images/cart.svg" alt="" />
@@ -153,9 +128,23 @@
         </div>
       </div>
     </div>
-  </div>
+  
 
+  <!-- carrello mobile -->
+    <div class="container cartMobileButton" >
+      <div class="row">
+        <div class="buttonContainer col-1">
+          <div
+            class="roundedCart"
+            @click="openAndClose()"
+          >
+            <img src="/images/cart.svg" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
 
+</div>
 </template>
 
 <script>
@@ -427,13 +416,15 @@ export default {
 
 <style lang="scss" scoped>
 #menu {
+  
   .restaurant {
-    margin-top: 15px;
+    margin-top: 30px;
     margin-bottom: 15px;
     .row {
-      .col-12 {
+      .menuContainer {
         h1 {
-          margin-bottom: 30px;
+          color: black;
+          margin: 30px 0;
           font-size: 50px;
           font-weight: 900;
           line-height: 50px;
@@ -445,19 +436,20 @@ export default {
     margin-top: 25px;
     margin-bottom: 25px;
     .row {
-      .col-12 {
+      .dishContainer {
+        width: 100%;
         margin: 20px 0px;
-        width: 100vw;
         .dish {
           padding: 20px 0;
+          margin-bottom: 15px;
           .dishinfo {
-            width: 50%;
             .dishImg {
-              width: 100px;
-              height: 100px;
+              width: 80px;
+              height: 80px;
             }
             .dishtext {
-              margin: 0 15px;
+              margin: 0 15px 15px 15px;
+              width: 100%;
               h3 {
                 font-size: 25px;
                 font-weight: 700;
@@ -471,66 +463,11 @@ export default {
             }
           }
           .price {
-            width: 20%;
             margin: 0 15px;
             h1 {
               font-size: 30px;
               font-weight: 700;
               color: #2dccbc;
-            }
-          }
-          .counter-box {
-            margin: 0 50px;
-            height: 40px;
-            width: 20%;
-            background-color: black;
-            border-radius: 30px;
-            &:hover {
-              border: none;
-            }
-
-            .counter {
-              width: 100%;
-
-              div {
-                width: 70px;
-                text-align: center;
-                span {
-                  color:white;
-                  height: 30px;
-                  font-size: 30px;
-                  font-weight: 500;
-                  line-height: 40px;
-                }
-              }
-              .bt {
-                height: 40px;
-                border: none;
-                line-height: 40px;
-                text-align: center;
-                &:hover {
-                  background-color: #b3f5fd;
-                  line-height: 40px;
-                  span{
-                  color: black;
-                  }
-                    
-                }
-                &:hover:first-child {
-                  border-top-left-radius: 30px;
-                  border-bottom-left-radius: 30px;
-                }
-
-                &:hover:last-child {
-                  border-top-right-radius: 30px;
-                  border-bottom-right-radius: 30px;
-                }
-                span {
-                  height: 30px;
-                  font-size: 20px;
-                  font-weight: 400;
-                }
-              }
             }
           }
         }
@@ -540,7 +477,7 @@ export default {
   .cart {
     box-sizing: border-box;
     min-width: 100vw;
-    height: 50vh;
+    height: 40vh;
     background-color: black;
     position: fixed;
     bottom: 0;
@@ -548,7 +485,8 @@ export default {
     z-index: 3;
     .row {
       padding: 50px 200px;
-      .col-12 {
+      .cartContainer{
+        margin-bottom: 15px;
         .cartTitle {
           width: 50%;
           h1 {
@@ -641,7 +579,7 @@ export default {
       }
     }
 
-    .col-6 {
+    .orderContainer  {
       margin: 30px 0;
       h1 {
         color: white;
@@ -676,12 +614,12 @@ export default {
     box-sizing: border-box;
     width: 80px;
     position: fixed;
-    top: 50vh;
+    top: 20px;
     right: 25px;
     z-index: 2;
     .row {
       width:100%;
-      .col-1 {
+      .pull {
         .roundedCart {
           height: 60px;
           width: 60px;
@@ -700,5 +638,1184 @@ export default {
       }
     }
   }
+  .cartMobileButton{
+    visibility: hidden;
+    .row {
+      width:100%;
+      .buttonContainer {
+        .roundedCart {
+          height: 60px;
+          width: 60px;
+          border: 4px solid black;
+          border-radius: 50%;
+          background-color: white;
+          img {
+            height: 0px;
+            width: 0px;
+          }
+          &:hover {
+            background-color: #b3f5fd;
+            border: none;
+          }
+        }
+      }
+    }
+  }
 }
+
+@media (max-width: 576px) {
+  #menu {
+  .restaurant {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    .row {
+      .menuContainer {
+        h1 {
+          margin-bottom: 30px;
+          font-size: 50px;
+          font-weight: 900;
+          line-height: 50px;
+        }
+      }
+    }
+  }
+  .menu {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    .row {
+      .dishContainer {
+        margin: 20px 0px;
+        .dish {
+          flex-wrap: wrap;
+          flex-basis: 100%;
+          padding: 20px 0;
+          border-bottom: 1px solid black;
+          .dishinfo {
+            margin-bottom: 15px;
+            width: 100%;
+            .dishImg {
+    
+              width: 100px;
+              height: 100px;
+            }
+            .dishtext {
+             
+              margin: 0 15px;
+              h3 {
+                font-size: 25px;
+                font-weight: 700;
+                margin-bottom: 10px;
+              }
+              h5 {
+                font-size: 12px;
+                font-weight: 400;
+                color: #5f5c5c;
+              }
+            }
+          }
+          .price {
+            justify-content:center;
+            align-items: center;
+            width: 40%;
+            background-color: #b3f5fd;
+            border-top-right-radius: 30px ;
+            border-bottom-right-radius: 30px ;
+            h1 {
+              font-size: 30px;
+              font-weight: 700;
+              color: black;
+            }
+          }
+          .orderButton{
+            display: flex;
+            justify-content: center;
+            width: 50%;
+            
+          }
+        }
+          
+        
+      }
+    }
+  }
+  .cart {
+    width: 100vw;
+    height: 50vh;
+    position: fixed;
+    bottom:0;
+    background-color: black;
+    overflow-y: scroll;
+    z-index: 3;
+    .row {
+      padding:0;
+     
+      .cartContainer{
+        margin: 0;
+        padding: 30px;
+        width: 100%;
+        flex-wrap: wrap;
+        flex-basis: 100%;
+        .cartTitle {
+          
+          h1 {
+            color: white;
+            font-size: 40px;
+            font-weight: 900;
+          }
+        }
+        .close {
+          
+
+          img {
+            height: 30px;
+          }
+        }
+        .order {
+          
+          margin-bottom: 10px;
+          padding: 15px 30px;
+          border: 1px solid white;
+          border-radius: 50px;
+          flex-basis: 100%;
+          &:hover{
+            border:none;
+            background:#b3f5fd;
+
+          
+            .dishes {
+            .dishtext {
+              h3 {
+                color: black;
+              }
+              h6 {
+                color: black;
+              }
+            }
+          }
+          .price {
+            h1 {
+            color: black;
+            font-weight: 700;
+            }
+          }
+        .delete {
+          button {
+            color: black;
+            font-weight: 700;
+          }
+         }
+        }
+        &:nth-child(n) {
+            margin-right: 20px;
+        }
+
+          .dishes {
+            width: 100%;
+            .dishtext {
+              margin-left: 30px;
+              h3 {
+                color: white;
+                font-size: 15px;
+                font-weight: 600;
+              }
+              h6 {
+                color: white;
+                font-size: 15px;
+                font-weight: 300;
+              }
+            }
+          }
+        
+
+        .price {
+          margin: 0 10px;
+          h1 {
+            color: #2fbcae;
+            font-size: 20px;
+            font-weight: 200;
+            line-height: 50px;
+          }
+        }
+        .delete {
+          button {
+            margin-left: 15px;
+            background: none;
+            color: white;
+            border: none;
+            font-size: 18px;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+    
+
+    .orderContainer  {
+      margin: 30px 0;
+      padding:0 30px;
+      h1 {
+        color: white;
+        font-size: 30px;
+        font-weight: 900;
+        &:last-child{
+          color: #2fbcae;
+        }
+      }
+      .btn-light {
+        background-color: #b3f5fd;
+        border: none;
+        height: 40px;
+        border-radius: 30px;
+        padding: 0 85px;
+        &:hover {
+          background-color: white;
+        }
+        span {
+          color: black;
+          font-weight: 600;
+          font-size: 15px;
+          line-height: 30px;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+     }
+    }
+  }
+  .cartButton {
+    visibility: hidden;
+    box-sizing: border-box;
+    width: 80px;
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    z-index: 2;
+    .row {
+      width:100%;
+      .pull {
+        .roundedCart {
+          height: 60px;
+          width: 60px;
+          border: 4px solid black;
+          border-radius: 50%;
+          background-color: white;
+          img {
+            height: 30px;
+            width: 30px;
+          }
+          &:hover {
+            background-color: #b3f5fd;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+  .cartMobileButton{
+    visibility: visible;
+    box-sizing: border-box;
+    position: fixed;
+    bottom:0;
+    right:0;
+    width:120px;
+    height: 120px;
+    z-index: 2;
+    .row {
+      .buttonContainer {
+          
+        .roundedCart {
+          box-sizing: border-box;
+          height: 100px;
+          width: 100px;
+          border:5px solid black;
+          border-radius: 50%;
+          background-color:  white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            height: 30px;
+            width: 30px;
+          }
+          &:hover {
+            background-color: #b3f5fd;
+            border: none;
+            
+          }
+        }
+      }
+    }
+  }
+}
+}
+
+@media (min-width:577px) and (max-width: 768px) {
+   #menu {
+  .restaurant {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    .row {
+      .menuContainer {
+        h1 {
+          margin-bottom: 30px;
+          font-size: 50px;
+          font-weight: 900;
+          line-height: 50px;
+        }
+      }
+    }
+  }
+  .menu {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    .row {
+      .dishContainer {
+        margin: 20px 0px;
+        .dish {
+          flex-wrap: wrap;
+          flex-basis: 768px;
+          padding: 20px 0;
+          border-bottom: 1px solid black;
+
+          .dishinfo {
+            margin-bottom: 15px;
+           
+            width: 100%;
+            .dishImg {
+    
+              width: 100px;
+              height: 100px;
+            }
+            .dishtext {
+              margin: 0 15px;
+              h3 {
+                font-size: 25px;
+                font-weight: 700;
+                margin-bottom: 10px;
+              }
+              h5 {
+                font-size: 12px;
+                font-weight: 400;
+                color: #5f5c5c;
+              }
+            }
+          }
+          .price {
+        
+            width: 30%;
+            justify-content:center;
+            align-items: center;
+            background-color: #b3f5fd;
+            border-top-right-radius: 30px ;
+            border-bottom-right-radius: 30px ;
+            h1 {
+              font-size: 30px;
+              font-weight: 700;
+              color: black;
+            }
+          }
+          .orderButton{
+           
+            width: 50%;
+            
+          }
+        }
+          
+        
+      }
+    }
+  }
+  .cart {
+    width: 100vw;
+    height: 50vh;
+    position: fixed;
+    bottom:0;
+    background-color: black;
+    overflow-y: scroll;
+    z-index: 3;
+    .row {
+      padding:0;
+     
+      .cartContainer{
+        margin: 0;
+        padding: 30px;
+        width: 100%;
+        flex-wrap: wrap;
+        flex-basis: 100%;
+        .cartTitle {
+          
+          h1 {
+            color: white;
+            font-size: 40px;
+            font-weight: 900;
+          }
+        }
+        .close {
+          
+
+          img {
+            height: 30px;
+          }
+        }
+        .order {
+          
+          margin-bottom: 10px;
+          padding: 15px 30px;
+          border: 1px solid white;
+          border-radius: 50px;
+          flex-basis: 100%;
+          &:hover{
+            border:none;
+            background:#b3f5fd;
+
+          
+            .dishes {
+            .dishtext {
+              h3 {
+                color: black;
+              }
+              h6 {
+                color: black;
+              }
+            }
+          }
+          .price {
+            h1 {
+            color: black;
+            font-weight: 700;
+            }
+          }
+        .delete {
+          button {
+            color: black;
+            font-weight: 700;
+          }
+         }
+        }
+        &:nth-child(n) {
+            margin-right: 20px;
+        }
+          .dishes {
+            width: 100%;
+            .dishtext {
+              margin-left: 30px;
+              h3 {
+                color: white;
+                font-size: 15px;
+                font-weight: 600;
+              }
+              h6 {
+                color: white;
+                font-size: 15px;
+                font-weight: 300;
+              }
+            }
+          }
+        
+
+        .price {
+          margin: 0 10px;
+          h1 {
+            color: #2fbcae;
+            font-size: 20px;
+            font-weight: 200;
+            line-height: 50px;
+          }
+        }
+        .delete {
+          button {
+            margin-left: 15px;
+            background: none;
+            color: white;
+            border: none;
+            font-size: 18px;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+    
+
+    .orderContainer  {
+      margin: 30px 0;
+      padding:0 30px;
+      h1 {
+        color: white;
+        font-size: 30px;
+        font-weight: 900;
+        &:last-child{
+          color: #2fbcae;
+        }
+      }
+      .btn-light {
+        background-color: #b3f5fd;
+        border: none;
+        height: 40px;
+        border-radius: 30px;
+        padding: 0 85px;
+        &:hover {
+          background-color: white;
+        }
+        span {
+          color: black;
+          font-weight: 600;
+          font-size: 15px;
+          line-height: 30px;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+     }
+    }
+  }
+  .cartButton {
+    visibility: hidden;
+    box-sizing: border-box;
+    width: 80px;
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    z-index: 2;
+    .row {
+      width:100%;
+      .pull {
+        .roundedCart {
+          height: 60px;
+          width: 60px;
+          border: 4px solid black;
+          border-radius: 50%;
+          background-color: white;
+          img {
+            height: 30px;
+            width: 30px;
+          }
+          &:hover {
+            background-color: #b3f5fd;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+  .cartMobileButton{
+    visibility: visible;
+    box-sizing: border-box;
+    position: fixed;
+    bottom:0;
+    right:0;
+    width:120px;
+    height: 120px;
+    z-index: 2;
+    .row {
+      .buttonContainer {
+          
+        .roundedCart {
+          box-sizing: border-box;
+          height: 100px;
+          width: 100px;
+          border:5px solid black;
+          border-radius: 50%;
+          background-color:  white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            height: 30px;
+            width: 30px;
+          }
+          &:hover {
+            background-color: #b3f5fd;
+            border: none;
+            
+          }
+        }
+      }
+    }
+  }
+}
+}
+ 
+@media (min-width:769px) and (max-width: 992px){
+   #menu {
+  .restaurant {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    .row {
+      .menuContainer {
+        h1 {
+          margin-bottom: 30px;
+          font-size: 50px;
+          font-weight: 900;
+          line-height: 50px;
+        }
+      }
+    }
+  }
+  .menu {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    .row {
+      .dishContainer {
+        margin: 20px 0px;
+        .dish {
+          flex-wrap: wrap;
+          flex-basis: 100%;
+          padding: 20px 0;
+          border-bottom: 1px solid black;
+          .dishinfo {
+            margin-bottom: 15px;
+            width: 100%;
+            .dishImg {
+    
+              width: 100px;
+              height: 100px;
+            }
+            .dishtext {
+             
+              margin: 0 15px;
+              h3 {
+                font-size: 25px;
+                font-weight: 700;
+                margin-bottom: 10px;
+              }
+              h5 {
+                font-size: 12px;
+                font-weight: 400;
+                color: #5f5c5c;
+              }
+            }
+          }
+          .price {
+            justify-content:center;
+            align-items: center;
+            width: 40%;
+            background-color: #b3f5fd;
+            h1 {
+              font-size: 30px;
+              font-weight: 700;
+              color: black;
+            }
+          }
+          .orderButton{
+            display: flex;
+            justify-content: flex-end;
+            width: 50%;
+            
+          }
+        }
+          
+        
+      }
+    }
+  }
+  .cart {
+    width: 100vw;
+    height: 50vh;
+    position: fixed;
+    bottom:0;
+    background-color: black;
+    overflow-y: scroll;
+    z-index: 3;
+    .row {
+      padding:0;
+     
+      .cartContainer{
+        margin: 0;
+        padding: 30px;
+        width: 100%;
+        flex-wrap: wrap;
+        flex-basis: 100%;
+        .cartTitle {
+          
+          h1 {
+            color: white;
+            font-size: 40px;
+            font-weight: 900;
+          }
+        }
+        .close {
+          
+
+          img {
+            height: 30px;
+          }
+        }
+        .order {
+          
+          margin-bottom: 10px;
+          padding: 15px 30px;
+          border: 1px solid white;
+          border-radius: 50px;
+          flex-basis: 100%;
+          &:hover{
+            border:none;
+            background:#b3f5fd;
+
+          
+            .dishes {
+            .dishtext {
+              h3 {
+                color: black;
+              }
+              h6 {
+                color: black;
+              }
+            }
+          }
+          .price {
+            h1 {
+            color: black;
+            font-weight: 700;
+            }
+          }
+        .delete {
+          button {
+            color: black;
+            font-weight: 700;
+          }
+         }
+        }
+        &:nth-child(n) {
+            margin-right: 20px;
+        }
+
+          .dishes {
+            width: 100%;
+            .dishtext {
+              margin-left: 30px;
+              h3 {
+                color: white;
+                font-size: 15px;
+                font-weight: 600;
+              }
+              h6 {
+                color: white;
+                font-size: 15px;
+                font-weight: 300;
+              }
+            }
+          }
+        
+
+        .price {
+          margin: 0 10px;
+          h1 {
+            color: #2fbcae;
+            font-size: 20px;
+            font-weight: 200;
+            line-height: 50px;
+          }
+        }
+        .delete {
+          button {
+            margin-left: 15px;
+            background: none;
+            color: white;
+            border: none;
+            font-size: 18px;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+    
+
+    .orderContainer  {
+      margin: 30px 0;
+      padding:0 30px;
+      h1 {
+        color: white;
+        font-size: 30px;
+        font-weight: 900;
+        &:last-child{
+          color: #2fbcae;
+        }
+      }
+      .btn-light {
+        background-color: #b3f5fd;
+        border: none;
+        height: 40px;
+        border-radius: 30px;
+        padding: 0 85px;
+        &:hover {
+          background-color: white;
+        }
+        span {
+          color: black;
+          font-weight: 600;
+          font-size: 15px;
+          line-height: 30px;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+     }
+    }
+  }
+  .cartButton {
+    visibility: hidden;
+    box-sizing: border-box;
+    width: 80px;
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    z-index: 2;
+    .row {
+      width:100%;
+      .pull {
+        .roundedCart {
+          height: 60px;
+          width: 60px;
+          border: 4px solid black;
+          border-radius: 50%;
+          background-color: white;
+          img {
+            height: 30px;
+            width: 30px;
+          }
+          &:hover {
+            background-color: #b3f5fd;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+  .cartMobileButton{
+    visibility: visible;
+    box-sizing: border-box;
+    position: fixed;
+    bottom:0;
+    right:0;
+    width:120px;
+    height: 120px;
+    z-index: 2;
+    .row {
+      .buttonContainer {
+          
+        .roundedCart {
+          box-sizing: border-box;
+          height: 100px;
+          width: 100px;
+          border:5px solid black;
+          border-radius: 50%;
+          background-color:  white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            height: 30px;
+            width: 30px;
+          }
+          &:hover {
+            background-color: #b3f5fd;
+            border: none;
+            
+          }
+        }
+      }
+    }
+  }
+}
+} 
+@media (min-width:992px) and (max-width: 1199px){
+    #menu {
+  .restaurant {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    .row {
+      .menuContainer {
+        h1 {
+          margin-bottom: 30px;
+          font-size: 50px;
+          font-weight: 900;
+          line-height: 50px;
+        }
+      }
+    }
+  }
+  .menu {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    .row {
+      .dishContainer {
+        margin: 20px 0px;
+        .dish {
+          flex-wrap: wrap;
+          flex-basis: 100%; 
+          padding: 20px 0;
+          border-bottom: 1px solid black;
+          .dishinfo {
+            margin-bottom: 15px;
+            width: 100%;
+            .dishImg {
+    
+              width: 100px;
+              height: 100px;
+            }
+            .dishtext {
+             
+              margin: 0 15px;
+              h3 {
+                font-size: 25px;
+                font-weight: 700;
+                margin-bottom: 10px;
+              }
+              h5 {
+                font-size: 12px;
+                font-weight: 400;
+                color: #5f5c5c;
+              }
+            }
+          }
+          .price {
+            justify-content:center;
+            align-items: center;
+            width: 40%;
+            background-color: #b3f5fd;
+            border-top-right-radius: 30px ;
+            border-bottom-right-radius: 30px ;
+            h1 {
+              font-size: 30px;
+              font-weight: 700;
+              color: black;
+            }
+          }
+          .orderButton{
+            
+            width: 50%;
+            
+          }
+        }
+          
+        
+      }
+    }
+  }
+  .cart {
+    width: 100vw;
+    height: 50vh;
+    position: fixed;
+    bottom:0;
+    background-color: black;
+    overflow-y: scroll;
+    z-index: 3;
+    .row {
+      padding:0;
+     
+      .cartContainer{
+        margin: 0;
+        padding: 30px;
+        width: 100%;
+        flex-wrap: wrap;
+        flex-basis: 100%; 
+        .cartTitle {
+          
+          h1 {
+            color: white;
+            font-size: 40px;
+            font-weight: 900;
+          }
+        }
+        .close {
+          
+
+          img {
+            height: 30px;
+          }
+        }
+        .order {
+          
+          margin-bottom: 10px;
+          padding: 15px 30px;
+          border: 1px solid white;
+          border-radius: 50px;
+          flex-basis: 100%; 
+          &:hover{
+            border:none;
+            background:#b3f5fd;
+
+          
+            .dishes {
+            .dishtext {
+              h3 {
+                color: black;
+              }
+              h6 {
+                color: black;
+              }
+            }
+          }
+          .price {
+            h1 {
+            color: black;
+            font-weight: 700;
+            }
+          }
+        .delete {
+          button {
+            color: black;
+            font-weight: 700;
+          }
+         }
+        }
+        &:nth-child(n) {
+            margin-right: 20px;
+        }
+
+          .dishes {
+            width: 100%;
+            .dishtext {
+              margin-left: 30px;
+              h3 {
+                color: white;
+                font-size: 15px;
+                font-weight: 600;
+              }
+              h6 {
+                color: white;
+                font-size: 15px;
+                font-weight: 300;
+              }
+            }
+          }
+        
+
+        .price {
+          margin: 0 10px;
+          h1 {
+            color: #2fbcae;
+            font-size: 20px;
+            font-weight: 200;
+            line-height: 50px;
+          }
+        }
+        .delete {
+          button {
+            margin-left: 15px;
+            background: none;
+            color: white;
+            border: none;
+            font-size: 18px;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+    
+
+    .orderContainer  {
+      margin: 30px 0;
+      padding:0 30px;
+      h1 {
+        color: white;
+        font-size: 30px;
+        font-weight: 900;
+        &:last-child{
+          color: #2fbcae;
+        }
+      }
+      .btn-light {
+        background-color: #b3f5fd;
+        border: none;
+        height: 40px;
+        border-radius: 30px;
+        padding: 0 85px;
+        &:hover {
+          background-color: white;
+        }
+        span {
+          color: black;
+          font-weight: 600;
+          font-size: 15px;
+          line-height: 30px;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+     }
+    }
+  }
+  .cartButton {
+    visibility: hidden;
+    box-sizing: border-box;
+    width: 80px;
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    z-index: 2;
+    .row {
+      width:100%;
+      .pull {
+        .roundedCart {
+          height: 60px;
+          width: 60px;
+          border: 4px solid black;
+          border-radius: 50%;
+          background-color: white;
+          img {
+            height: 30px;
+            width: 30px;
+          }
+          &:hover {
+            background-color: #b3f5fd;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+  .cartMobileButton{
+    visibility: visible;
+    box-sizing: border-box;
+    position: fixed;
+    bottom:0;
+    right:0;
+    width:120px;
+    height: 120px;
+    z-index: 2;
+    .row {
+      .buttonContainer {
+          
+        .roundedCart {
+          box-sizing: border-box;
+          height: 100px;
+          width: 100px;
+          border:5px solid black;
+          border-radius: 50%;
+          background-color:  white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            height: 30px;
+            width: 30px;
+          }
+          &:hover {
+            background-color: #b3f5fd;
+            border: none;
+            
+          }
+        }
+      }
+    }
+  }
+}
+ 
+ }
+
+@media (min-width:1200px){
+
+}
+
+
+
+
+
+
+
 </style>
