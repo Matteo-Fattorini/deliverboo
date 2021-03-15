@@ -10,7 +10,7 @@ Requirement
 -------
 - Braintree
 - Mailtrap
-- A database called Deliverboo connected
+- A database called deliverboo connected
 
 Do a composer install and npm run watch and migrate:fresh --seed before starting.
 
@@ -28,4 +28,10 @@ Do a composer install and npm run watch and migrate:fresh --seed before starting
  
 ## A sample of what it can do
 
+Orders
+-------
 ![](design.gif)
+
+Restaurant Dashboard
+-------
+![](dashboard.gif)
