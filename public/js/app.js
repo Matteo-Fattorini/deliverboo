@@ -3522,7 +3522,7 @@ __webpack_require__.r(__webpack_exports__);
     loginlink: String,
     registerlink: String,
     dashboardlink: String,
-    auth: Number
+    auth: String
   }
 });
 
@@ -42341,7 +42341,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass:
-                  "col-sm-12 col-lg-6 d-flex flex-column justify-content-center align-items-center"
+                  "col-sm-12 col-lg-6 d-flex flex-column justify-content-center align-items-center text-center"
               },
               [
                 _c("h1", [
@@ -42516,7 +42516,7 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "row " }, [
-            _vm.auth != 1
+            _vm.auth == ""
               ? _c("div", { staticClass: "col-12 p-5 d-flex flex-column" }, [
                   _vm._m(0),
                   _vm._v(" "),

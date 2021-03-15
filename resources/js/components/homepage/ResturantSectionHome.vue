@@ -13,7 +13,7 @@
       <div class="row m-4">
         <slot name="resturant"></slot>
       </div>
-    </div>
+    
   </section>
 </template>
 

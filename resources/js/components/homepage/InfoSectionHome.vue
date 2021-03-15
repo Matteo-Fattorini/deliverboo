@@ -8,7 +8,7 @@
           <img src="img/homepage/logo_dev_2.png" alt="" />
         </div>
         <div
-          class="col-sm-12 col-lg-6 d-flex flex-column justify-content-center align-items-center"
+          class="col-sm-12 col-lg-6 d-flex flex-column justify-content-center align-items-center text-center"
         >
           <h1>E' ora di mangiare. Prenota con Deliveboo.</h1>
           <p>
