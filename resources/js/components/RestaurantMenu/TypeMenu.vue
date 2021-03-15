@@ -783,6 +783,9 @@ export default {
 
           
             .dishes {
+              .dishImg{
+              width: 60px;
+            }
             .dishtext {
               h3 {
                 color: black;
@@ -819,7 +822,7 @@ export default {
               margin-left: 5px;
               h3 {
                 color: white;
-                font-size: 15px;
+                font-size: 12px;
                 font-weight: 600;
               }
               h6 {
@@ -832,10 +835,10 @@ export default {
         
 
         .price {
-          margin: 0 10px;
+          margin: 0 2px;
           h1 {
             color: #2fbcae;
-            font-size: 20px;
+            font-size: 15px;
             font-weight: 200;
             line-height: 50px;
           }

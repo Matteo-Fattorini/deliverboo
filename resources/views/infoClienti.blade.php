@@ -17,7 +17,7 @@
             @method("POST")
             <label for="">INFORMAZIONI CLIENTE</label>
             <div class="form-group  row d-flex">
-                <div class="col-6 ">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-30">
                     <input id="name" placeholder="Nome" type="text" class="form-control @error('name') is-invalid @enderror"
                         name="client_name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
@@ -27,7 +27,7 @@
                         </span>
                     @enderror
                 </div>
-                <div class="col-6">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
                     <input id="surname" placeholder="Cognome" type="text"
                         class="form-control @error('surname') is-invalid @enderror" name="client_surname"
                         value="{{ old('surname') }}" required autocomplete="surname" autofocus>
@@ -41,7 +41,7 @@
             </div>
 
             <div class="form-group d-flex  row">
-                <div class="col-6">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-30">
                     <input id="email" placeholder="Email" type="email"
                         class="form-control @error('email') is-invalid @enderror" name="client_email"
                         value="{{ old('email') }}" required autocomplete="email">
@@ -53,7 +53,7 @@
                     @enderror
                 </div>
 
-                <div class="col-6">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-30">
                     <input id="tel" placeholder="Cellulare" type="text" class="form-control" name="client_phone" required
                         autocomplete="new-cel">
                 </div>
@@ -62,22 +62,22 @@
             <label for="">INDIRIZZO CONSEGNA</label>
 
             <div class="form-group  row">
-                <div class="col-12">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-15">
                     <input id="address" placeholder="Indirizzo" type="text" class="form-control" name="client_address"
                         required>
                 </div>
             </div>
             <div class="form-group  row">
 
-                <div class="col-2">
+                <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-xs-6 mb-30">
                     <input id="Cap" placeholder="CAP" type="" class="form-control" name="cap" required>
                 </div>
 
-                <div class="col-4">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-30">
                     <input id="city" placeholder="Città" type="text" class="form-control" name="city" required>
                 </div>
 
-                <div class="col-6">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-30">
                     <input id="Info" placeholder="Citofono, Interno, Piano" type="text" class="form-control" name="info"
                         required>
                 </div>

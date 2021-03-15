@@ -132,12 +132,6 @@ return{
             font-weight: 700;
           }
         }
-        .delete {
-          button {
-            color: black;
-            font-weight: 700;
-          }
-        }
         }
           &:nth-child(n) {
             margin-right: 20px;
@@ -169,16 +163,6 @@ return{
             font-size: 30px;
             font-weight: 200;
             line-height: 30px;
-          }
-        }
-        .delete {
-          button {
-            margin-left: 15px;
-            background: none;
-            color: white;
-            border: none;
-            font-size: 22px;
-            font-weight: 400;
           }
         }
       }
@@ -216,5 +200,450 @@ return{
     }
   
 }
+
+@media (max-width: 576px) {
+  .cart{
+    width: 100vw;
+    background-color: black;
+    .row {
+       padding: 30px 0;
+        .cartTitle {
+          width: 50%;
+          padding: 0 30px;
+          h1 {
+            color: white;
+            font-size: 30px;
+            font-weight: 900;
+          }
+        }
+    .col-12 {
+        .order {
+          margin: 20px;
+          padding: 15px 30px;
+          border: 1px solid white;
+          border-radius: 50px;
+          flex-basis: 100%;
+          &:hover{
+            border:none;
+            background:#b3f5fd;
+            .dishes {
+            .dishtext {
+
+              h3 {
+                color: black;
+              }
+              h6 {
+                color: black;
+              }
+            }
+          }
+          .price {
+          h1 {
+            color: black;
+            font-weight: 700;
+          }
+        }
+        }
+          &:nth-child(n) {
+            margin-right: 20px;
+          }
+
+          .dishes {
+            .dishtext {
+              margin-left: 10px;
+              h3 {
+                color: white;
+                font-size: 15px;
+                font-weight: 600;
+              }
+              h6 {
+                color: white;
+                font-size: 12px;
+                font-weight: 300;
+              }
+            }
+          }
+        }
+
+        .price {
+          margin: 0 10px;
+          h1 {
+            color: #2fbcae;
+            font-size: 30px;
+            font-weight: 200;
+            line-height: 30px;
+          }
+        }
+      }
+    }
+
+    .col-6 {
+      margin: 30px 0;
+      h1 {
+        color: white;
+        font-size: 30px;
+        font-weight: 900;
+        &:last-child{
+          color: #2fbcae;
+        }
+      }
+      .btn-light {
+        background-color: #b3f5fd;
+        border: none;
+        height: 40px;
+        border-radius: 30px;
+        padding: 0 85px;
+        &:hover {
+          background-color: white;
+        }
+        span {
+          color: black;
+          font-weight: 600;
+          font-size: 15px;
+          line-height: 30px;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  
+}
+  
+}
+@media (min-width:577px) and (max-width: 768px) {
+  .cart{
+    width: 100vw;
+    background-color: black;
+    .row {
+       padding: 30px 0;
+        .cartTitle {
+          width: 50%;
+          padding: 0 30px;
+          h1 {
+            color: white;
+            font-size: 30px;
+            font-weight: 900;
+          }
+        }
+    .col-12 {
+        .order {
+          margin: 20px;
+          padding: 15px 30px;
+          border: 1px solid white;
+          border-radius: 50px;
+          flex-basis: 100%;
+          &:hover{
+            border:none;
+            background:#b3f5fd;
+            .dishes {
+            .dishtext {
+
+              h3 {
+                color: black;
+              }
+              h6 {
+                color: black;
+              }
+            }
+          }
+          .price {
+          h1 {
+            color: black;
+            font-weight: 700;
+          }
+        }
+        }
+          &:nth-child(n) {
+            margin-right: 20px;
+          }
+
+          .dishes {
+            .dishtext {
+              margin-left: 10px;
+              h3 {
+                color: white;
+                font-size: 15px;
+                font-weight: 600;
+              }
+              h6 {
+                color: white;
+                font-size: 12px;
+                font-weight: 300;
+              }
+            }
+          }
+        }
+
+        .price {
+          margin: 0 10px;
+          h1 {
+            color: #2fbcae;
+            font-size: 30px;
+            font-weight: 200;
+            line-height: 30px;
+          }
+        }
+      }
+    }
+
+    .col-6 {
+      margin: 30px 0;
+      h1 {
+        color: white;
+        font-size: 30px;
+        font-weight: 900;
+        &:last-child{
+          color: #2fbcae;
+        }
+      }
+      .btn-light {
+        background-color: #b3f5fd;
+        border: none;
+        height: 40px;
+        border-radius: 30px;
+        padding: 0 85px;
+        &:hover {
+          background-color: white;
+        }
+        span {
+          color: black;
+          font-weight: 600;
+          font-size: 15px;
+          line-height: 30px;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  
+}
+  
+}
+@media (min-width:769px) and (max-width: 992px){
+  .cart{
+    width: 100vw;
+    background-color: black;
+    .row {
+       padding: 30px 0;
+        .cartTitle {
+          width: 50%;
+          padding: 0 30px;
+          h1 {
+            color: white;
+            font-size: 30px;
+            font-weight: 900;
+          }
+        }
+    .col-12 {
+        .order {
+          margin: 20px;
+          padding: 15px 30px;
+          border: 1px solid white;
+          border-radius: 50px;
+          flex-basis: 100%;
+          &:hover{
+            border:none;
+            background:#b3f5fd;
+            .dishes {
+            .dishtext {
+
+              h3 {
+                color: black;
+              }
+              h6 {
+                color: black;
+              }
+            }
+          }
+          .price {
+          h1 {
+            color: black;
+            font-weight: 700;
+          }
+        }
+        }
+          &:nth-child(n) {
+            margin-right: 20px;
+          }
+
+          .dishes {
+            .dishtext {
+              margin-left: 30px;
+              h3 {
+                color: white;
+                font-size: 18px;
+                font-weight: 600;
+              }
+              h6 {
+                color: white;
+                font-size: 15px;
+                font-weight: 300;
+              }
+            }
+          }
+        }
+
+        .price {
+          margin: 0 10px;
+          h1 {
+            color: #2fbcae;
+            font-size: 30px;
+            font-weight: 200;
+            line-height: 30px;
+          }
+        }
+      }
+    }
+
+    .col-6 {
+      margin: 30px 0;
+      h1 {
+        color: white;
+        font-size: 30px;
+        font-weight: 900;
+        &:last-child{
+          color: #2fbcae;
+        }
+      }
+      .btn-light {
+        background-color: #b3f5fd;
+        border: none;
+        height: 40px;
+        border-radius: 30px;
+        padding: 0 85px;
+        &:hover {
+          background-color: white;
+        }
+        span {
+          color: black;
+          font-weight: 600;
+          font-size: 15px;
+          line-height: 30px;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  
+}
+  
+}
+
+@media (min-width:992px) and (max-width: 1199px){
+  .cart{
+    width: 100vw;
+    background-color: black;
+    .row {
+       padding: 30px 0;
+        .cartTitle {
+          width: 50%;
+          padding: 0 30px;
+          h1 {
+            color: white;
+            font-size: 30px;
+            font-weight: 900;
+          }
+        }
+    .col-12 {
+        .order {
+          margin: 20px;
+          padding: 15px 30px;
+          border: 1px solid white;
+          border-radius: 50px;
+          flex-basis: 45%;
+          &:hover{
+            border:none;
+            background:#b3f5fd;
+            .dishes {
+            .dishtext {
+
+              h3 {
+                color: black;
+              }
+              h6 {
+                color: black;
+              }
+            }
+          }
+          .price {
+          h1 {
+            color: black;
+            font-weight: 700;
+          }
+        }
+        }
+          &:nth-child(n) {
+            margin-right: 20px;
+          }
+
+          .dishes {
+            .dishtext {
+              margin-left: 30px;
+              h3 {
+                color: white;
+                font-size: 18px;
+                font-weight: 600;
+              }
+              h6 {
+                color: white;
+                font-size: 15px;
+                font-weight: 300;
+              }
+            }
+          }
+        }
+
+        .price {
+          margin: 0 10px;
+          h1 {
+            color: #2fbcae;
+            font-size: 30px;
+            font-weight: 200;
+            line-height: 30px;
+          }
+        }
+      }
+    }
+
+    .col-6 {
+      margin: 30px 0;
+      h1 {
+        color: white;
+        font-size: 30px;
+        font-weight: 900;
+        &:last-child{
+          color: #2fbcae;
+        }
+      }
+      .btn-light {
+        background-color: #b3f5fd;
+        border: none;
+        height: 40px;
+        border-radius: 30px;
+        padding: 0 85px;
+        &:hover {
+          background-color: white;
+        }
+        span {
+          color: black;
+          font-weight: 600;
+          font-size: 15px;
+          line-height: 30px;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  
+}
+  
+}
+@media (min-width: 1200px) {
+  
+ }
 
 </style>
