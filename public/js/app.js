@@ -8482,7 +8482,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "*[data-v-52ff6fea] {\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n}\ndiv[data-v-52ff6fea] {\n  height: calc(100vh - 100px);\n  text-align: center;\n}\nh1[data-v-52ff6fea] {\n  color: black;\n  font-weight: 700;\n}\nh1[data-v-52ff6fea]:last-child {\n  color: black;\n  font-weight: 900;\n}", ""]);
+exports.push([module.i, "*[data-v-52ff6fea] {\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n}\ndiv[data-v-52ff6fea] {\n  height: calc(100vh - 100px);\n  text-align: center;\n}\nh1[data-v-52ff6fea] {\n  margin: 0 10px;\n  color: black;\n  font-weight: 700;\n}\nh1[data-v-52ff6fea]:last-child {\n  color: black;\n  font-weight: 900;\n}", ""]);
 
 // exports
 

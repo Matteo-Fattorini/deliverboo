@@ -28,6 +28,7 @@ div {
 }
 
 h1{
+  margin: 0 10px;
   color: black;
   font-weight: 700;
   &:last-child{
@@ -35,18 +36,8 @@ h1{
     font-weight: 900;
   }
 }
-
-@media (max-width: 576px) {
+@media screen and (max-width:800px){
   
 }
-@media (min-width:577px) and (max-width: 768px) {
-  
-}
-@media (min-width:769px) and (max-width: 992px){
- 
-}
 
-@media (min-width: 1200px) {
- 
- }
 </style>
