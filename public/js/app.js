@@ -8460,7 +8460,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".orders-box[data-v-7ce16d59] {\n  border-radius: 20px;\n  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);\n}\n.icon[data-v-7ce16d59] {\n  height: 20px;\n  cursor: pointer;\n}\n.icon1X[data-v-7ce16d59] {\n  height: 30px;\n}\nh5[data-v-7ce16d59] {\n  margin: 0;\n}\n.visible[data-v-7ce16d59] {\n  opacity: 1;\n  height: auto;\n}\n.invisible[data-v-7ce16d59] {\n  transition: opacity 1s ease-out;\n  opacity: 0;\n  height: 0;\n  overflow: hidden;\n}\n.media-padding[data-v-7ce16d59] {\n  padding: 3rem !important;\n}\n.media-margin-bottom[data-v-7ce16d59] {\n  margin-bottom: 1.5rem !important;\n}\n@media screen and (max-width: 700px) {\n.media-text[data-v-7ce16d59] {\n    font-size: 1rem;\n}\n.word-break[data-v-7ce16d59] {\n    word-break: break-all;\n}\n.media-padding[data-v-7ce16d59] {\n    padding: 0.5rem !important;\n}\n.media-margin[data-v-7ce16d59] {\n    margin-top: 2rem !important;\n}\n.media-margin-bottom[data-v-7ce16d59] {\n    margin-bottom: 0.5rem !important;\n}\n.media-flex[data-v-7ce16d59] {\n    flex-wrap: nowrap;\n}\n}", ""]);
+exports.push([module.i, ".orders-box[data-v-7ce16d59] {\n  border-radius: 20px;\n  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);\n}\n.icon[data-v-7ce16d59] {\n  height: 20px;\n  cursor: pointer;\n}\n.icon1X[data-v-7ce16d59] {\n  height: 30px;\n}\nh5[data-v-7ce16d59] {\n  margin: 0;\n}\n.visible[data-v-7ce16d59] {\n  opacity: 1;\n  height: auto;\n}\n.invisible[data-v-7ce16d59] {\n  transition: opacity 1s ease-out;\n  opacity: 0;\n  height: 0;\n  overflow: hidden;\n}\n.media-padding[data-v-7ce16d59] {\n  padding: 3rem !important;\n}\n.media-margin-bottom[data-v-7ce16d59] {\n  margin-bottom: 1.5rem !important;\n}\n@media screen and (max-width: 700px) {\n.media-text[data-v-7ce16d59] {\n    font-size: 0.9rem;\n}\n.media-text-small[data-v-7ce16d59] {\n    font-size: 0.5rem;\n}\n.word-break[data-v-7ce16d59] {\n    word-break: break-all;\n}\n.media-padding[data-v-7ce16d59] {\n    padding: 0.5rem !important;\n}\n.media-margin[data-v-7ce16d59] {\n    margin-top: 2rem !important;\n}\n.media-margin-bottom[data-v-7ce16d59] {\n    margin-bottom: 0.5rem !important;\n}\n.media-flex[data-v-7ce16d59] {\n    flex-wrap: nowrap;\n}\n}", ""]);
 
 // exports
 
@@ -42762,7 +42762,11 @@ var render = function() {
                   staticClass:
                     "col-3 d-flex justify-content-start align-items-center"
                 },
-                [_c("span", [_vm._v(_vm._s(order.created_at))])]
+                [
+                  _c("span", { staticClass: "media-text-small" }, [
+                    _vm._v(_vm._s(order.created_at))
+                  ])
+                ]
               ),
               _vm._v(" "),
               _c(

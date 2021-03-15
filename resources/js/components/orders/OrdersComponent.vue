@@ -28,7 +28,7 @@
           <span>{{ order.id }}</span>
         </div>
         <div class="col-3 d-flex justify-content-start align-items-center">
-          <span>{{ order.created_at }}</span>
+          <span class="media-text-small">{{ order.created_at }}</span>
         </div>
         <div class="col-3 d-flex justify-content-start align-items-center text-center">
           <span>{{ order.total }} €</span>
@@ -205,7 +205,10 @@ h5 {
 
 @media screen and (max-width:700px){
   .media-text {
-    font-size: 1rem;
+    font-size: 0.9rem;
+  }
+  .media-text-small {
+    font-size: 0.5rem;
   }
   .word-break{
     word-break: break-all;
