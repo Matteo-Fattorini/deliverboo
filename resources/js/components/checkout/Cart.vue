@@ -269,7 +269,7 @@ return{
           margin: 0 10px;
           h1 {
             color: #2fbcae;
-            font-size: 30px;
+            font-size: 18px;
             font-weight: 200;
             line-height: 30px;
           }
