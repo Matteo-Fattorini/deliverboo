@@ -11586,3 +11586,10 @@ nav .black-button-navbar:focus {
   padding-bottom: 10px;
 }
 
+@media screen and (max-width: 1200px) {
+  #media-logout {
+    padding: 4px 8px !important;
+    margin-left: 40px !important;
+  }
+}
+
