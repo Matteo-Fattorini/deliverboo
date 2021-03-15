@@ -11077,13 +11077,28 @@ footer ul li {
   background-size: cover;
 }
 
-#login .custom-input {
-  width: 50%;
+#login .login-box {
+  height: 60vh;
+  height: 60vh;
+  padding: 15vh 5vw;
+  background-color: white;
+  color: black;
+}
+
+#login .login-box .custom-input {
+  width: 80%;
+  margin: 10px 0;
 }
 
 #login .register-box {
+  height: 60vh;
+  padding: 15vh 5vw;
   background-color: #000;
   color: #ffffff;
+}
+
+#login .register-box h1:last-child {
+  padding-bottom: 50px;
 }
 
 #new-dish button,
@@ -11262,6 +11277,10 @@ nav .black-button-navbar {
 
 .m-50 {
   margin: 50px;
+}
+
+.p-50 {
+  padding: 50px;
 }
 
 .mt-50 {
