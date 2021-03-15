@@ -126,6 +126,14 @@ div {
   font-weight: 900;
   font-style: italic;
 }
+
+
+@media screen and (max-width:700px) {
+  .custom-input {
+  width: 80%;
+}
+  
+}
 </style>
 
 

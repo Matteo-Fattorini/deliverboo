@@ -8396,7 +8396,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "div[data-v-7c37c506] {\n  height: calc(100% - 100px);\n}\n.custom-input[data-v-7c37c506] {\n  width: 50%;\n  font-weight: 900;\n  font-style: italic;\n}", ""]);
+exports.push([module.i, "div[data-v-7c37c506] {\n  height: calc(100% - 100px);\n}\n.custom-input[data-v-7c37c506] {\n  width: 50%;\n  font-weight: 900;\n  font-style: italic;\n}\n@media screen and (max-width: 700px) {\n.custom-input[data-v-7c37c506] {\n    width: 80%;\n}\n}", ""]);
 
 // exports
 
@@ -8415,7 +8415,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#becomePartner[data-v-d8efec3c] {\n  height: 70vh;\n  position: relative;\n  background-size: cover;\n  background-position: center;\n  background-color: rgba(0, 0, 0, 0.6);\n  background-blend-mode: multiply;\n}\n#becomePartner h1[data-v-d8efec3c] {\n  color: #fff;\n}\n#becomePartner .container[data-v-d8efec3c] {\n  height: 100%;\n}\n#becomePartner span[data-v-d8efec3c] {\n  color: #fff;\n}", ""]);
+exports.push([module.i, "#becomePartner[data-v-d8efec3c] {\n  height: 70vh;\n  position: relative;\n  background-size: cover;\n  background-position: center;\n  background-color: rgba(0, 0, 0, 0.6);\n  background-blend-mode: multiply;\n}\n#becomePartner h1[data-v-d8efec3c] {\n  color: #fff;\n}\n#becomePartner .container[data-v-d8efec3c] {\n  height: 100%;\n}\n#becomePartner span[data-v-d8efec3c] {\n  color: #fff;\n}\n@media screen and (max-width: 700px) {\n.media-flex[data-v-d8efec3c] {\n    flex-direction: column !important;\n    gap: 30px !important;\n}\n}", ""]);
 
 // exports
 
@@ -8491,7 +8491,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#icon{\n  height: 30px;\n  margin: 0;\n  width: auto;\n}\n", ""]);
+exports.push([module.i, "\n#icon{\r\n  height: 30px;\r\n  margin: 0;\r\n  width: auto;\n}\r\n", ""]);
 
 // exports
 
@@ -42507,30 +42507,42 @@ var render = function() {
         [
           _c("div", { staticClass: "row " }, [
             _vm.auth != 1
-              ? _c("div", { staticClass: "col-12 p-5" }, [
+              ? _c("div", { staticClass: "col-12 p-5 d-flex flex-column" }, [
                   _vm._m(0),
                   _vm._v(" "),
-                  _c("div", { staticClass: "mt-5" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "primary-button",
-                        attrs: { href: _vm.loginlink }
-                      },
-                      [_vm._v("Effettua il login")]
-                    ),
-                    _vm._v(" "),
-                    _c("span", [_vm._v(" - o - ")]),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "primary-button",
-                        attrs: { href: _vm.registerlink }
-                      },
-                      [_vm._v("Registrati Subito")]
-                    )
-                  ])
+                  _c(
+                    "div",
+                    {
+                      staticClass: "mt-5 d-flex media-flex align-items-center"
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "primary-button text-center",
+                          attrs: { href: _vm.loginlink }
+                        },
+                        [_vm._v("Effettua il login")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticClass: "d-none d-lg-block d-xl-block d-md-block"
+                        },
+                        [_vm._v(" - o - ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "primary-button text-center",
+                          attrs: { href: _vm.registerlink }
+                        },
+                        [_vm._v("Registrati Subito")]
+                      )
+                    ]
+                  )
                 ])
               : _c("div", { staticClass: "col-12 p-5" }, [
                   _vm._m(1),
@@ -56634,8 +56646,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/pierlucamariodussich/Desktop/boolean/vs-code/php-playground/deliverboo/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/pierlucamariodussich/Desktop/boolean/vs-code/php-playground/deliverboo/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\NoSync\deliverboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\NoSync\deliverboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
