@@ -25,16 +25,13 @@ export default {
 div {
   height: calc(100vh - 100px);
   text-align: center;
-  img{
-    margin-bottom:30px;
-  }
 }
 
 h1{
-  font-weight: 700;
   color: black;
+  font-weight: 700;
   &:last-child{
-    color: green;
+    color: black;
     font-weight: 900;
   }
 }
@@ -48,9 +45,7 @@ h1{
 @media (min-width:769px) and (max-width: 992px){
  
 }
-@media (min-width:993px) and (max-width: 1199px){
- 
-}
+
 @media (min-width: 1200px) {
  
  }
