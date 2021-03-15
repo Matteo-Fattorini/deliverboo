@@ -880,7 +880,7 @@ export default {
         span {
           color: black;
           font-weight: 600;
-          font-size: 15px;
+          font-size: 10px;
           line-height: 30px;
           &:hover {
             text-decoration: none;
