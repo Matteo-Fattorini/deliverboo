@@ -54,7 +54,7 @@ export default {
   name: "FooterComponent",
   data() {
     return {
-      work: ["Diventa Raider", "Diventa nostro Partner", "Lavora con noi"],
+      work: ["Diventa Rider", "Diventa nostro Partner", "Lavora con noi"],
       legal: ["Termini & Condizioni", "Informativa sulla Privacy", "Cookies"],
       help: ["Contatti", "FAQ", "Tipi di cucina", "Mappa del sito"],
     };

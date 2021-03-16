@@ -12,9 +12,8 @@
         >
           <h1>E' ora di mangiare. <br> Prenota con Deliveboo.</h1>
           <p>
-            La fame ti ha preso di sprovvista? Con pochi click puoi ordinare
-            direttamente dai tuoi ristoranti preferiti.
-            Il cibo arriverà direttamente a casa tua!
+            La fame ti ha preso alla sprovvista? Ordina con Deliverboo e ricevi ciò che vuoi da ristoranti, pasticcerie e panetterie
+            nella tua città. Ordina Ora. Tutti i tuoi piatti preferiti in un unico portale.
           </p>
         </div>
       </div>

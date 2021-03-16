@@ -2010,7 +2010,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "FooterComponent",
   data: function data() {
     return {
-      work: ["Diventa Raider", "Diventa nostro Partner", "Lavora con noi"],
+      work: ["Diventa Rider", "Diventa nostro Partner", "Lavora con noi"],
       legal: ["Termini & Condizioni", "Informativa sulla Privacy", "Cookies"],
       help: ["Contatti", "FAQ", "Tipi di cucina", "Mappa del sito"]
     };
@@ -3308,7 +3308,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -42353,7 +42352,7 @@ var staticRenderFns = [
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
-                    "\n          La fame ti ha preso di sprovvista? Con pochi click puoi ordinare\n          direttamente dai tuoi ristoranti preferiti.\n          Il cibo arriverà direttamente a casa tua!\n        "
+                    "\n          La fame ti ha preso alla sprovvista? Ordina con Deliverboo e ricevi ciò che vuoi da ristoranti, pasticcerie e panetterie\n          nella tua città. Ordina Ora. Tutti i tuoi piatti preferiti in un unico portale.\n        "
                   )
                 ])
               ]
