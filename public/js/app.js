@@ -8365,7 +8365,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".items-buttons img[data-v-1c27d7e2] {\n  height: 30px;\n}\n.custom-input[data-v-1c27d7e2] {\n  width: 50%;\n}\n.new-dish-button img[data-v-1c27d7e2],\n.orders-button img[data-v-1c27d7e2] {\n  height: 30px;\n  width: auto;\n  margin: 0;\n}\n.text-box p[data-v-1c27d7e2] {\n  white-space: nowrap;\n  overflow: hidden !important;\n  text-overflow: ellipsis !important;\n  max-width: 200px;\n}\n.listImage[data-v-1c27d7e2] {\n  -o-object-fit: cover !important;\n     object-fit: cover !important;\n  outline: none !important;\n}\n.listImage[data-v-1c27d7e2]:hover {\n  outline: none !important;\n}\n@media (max-width: 800px) {\n.media-flex-column[data-v-1c27d7e2] {\n    flex-direction: column !important;\n}\n.custom-input[data-v-1c27d7e2] {\n    width: 100% !important;\n}\n.container[data-v-1c27d7e2] {\n    text-align: center !important;\n}\n.media-font-size[data-v-1c27d7e2] {\n    align-items: center;\n    justify-content: center;\n    font-size: 0.6rem;\n    flex-wrap: nowrap;\n}\n#media-flex-center[data-v-1c27d7e2] {\n    justify-content: center !important;\n    margin-top: 30px;\n}\n#media-ul[data-v-1c27d7e2] {\n    width: 100%;\n    justify-content: flex-start !important;\n    margin-left: 25px;\n}\n#media-p[data-v-1c27d7e2] {\n    text-align: left !important;\n    overflow: unset !important;\n    white-space: unset !important;\n}\n}", ""]);
+exports.push([module.i, ".items-buttons img[data-v-1c27d7e2] {\n  height: 30px;\n}\n.custom-input[data-v-1c27d7e2] {\n  width: 50%;\n}\n.new-dish-button img[data-v-1c27d7e2],\n.orders-button img[data-v-1c27d7e2] {\n  height: 30px;\n  width: auto;\n  margin: 0;\n}\n.text-box p[data-v-1c27d7e2] {\n  white-space: nowrap;\n  overflow: hidden !important;\n  text-overflow: ellipsis !important;\n  max-width: 200px;\n}\n.listImage[data-v-1c27d7e2] {\n  -o-object-fit: cover !important;\n     object-fit: cover !important;\n  outline: none !important;\n}\n.listImage[data-v-1c27d7e2]:hover {\n  outline: none !important;\n}\n@media (max-width: 993px) {\n.dish[data-v-1c27d7e2] {\n    border-bottom: 1px solid black;\n}\n.media-flex-column[data-v-1c27d7e2] {\n    flex-direction: column !important;\n}\n.custom-input[data-v-1c27d7e2] {\n    width: 100% !important;\n}\n.container[data-v-1c27d7e2] {\n    text-align: center !important;\n}\n.media-font-size[data-v-1c27d7e2] {\n    align-items: center;\n    justify-content: center;\n    font-size: 0.6rem;\n    flex-wrap: nowrap;\n}\n#media-flex-center[data-v-1c27d7e2] {\n    justify-content: center !important;\n    margin-top: 30px;\n}\n#media-flex-center .text-box[data-v-1c27d7e2] {\n    align-items: center !important;\n}\n#media-ul[data-v-1c27d7e2] {\n    width: 100%;\n    justify-content: flex-end !important;\n}\n#media-p[data-v-1c27d7e2] {\n    text-align: center !important;\n    overflow: unset !important;\n    white-space: unset !important;\n}\n}", ""]);
 
 // exports
 
@@ -42049,7 +42049,7 @@ var render = function() {
         _vm._m(4),
         _vm._v(" "),
         _vm._l(_vm.dishes, function(dish) {
-          return _c("div", { key: dish.id, staticClass: "row mb-5" }, [
+          return _c("div", { key: dish.id, staticClass: "row dish mb-5" }, [
             _c(
               "div",
               {

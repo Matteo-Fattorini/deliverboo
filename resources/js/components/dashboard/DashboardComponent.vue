@@ -137,7 +137,7 @@
         </div>
       </div>
 
-      <div class="row mb-5" v-for="dish in dishes" :key="dish.id">
+      <div class="row dish mb-5" v-for="dish in dishes" :key="dish.id">
         <div class="col-lg-2 d-flex justify-content-center align-items-center">
           <div>
             <img
@@ -253,7 +253,13 @@ export default {
   }
 }
 
-@media (max-width:800px){
+@media (max-width:993px){
+
+  .dish{
+    border-bottom:1px solid black;
+  }
+
+ 
   .media-flex-column{
     flex-direction: column !important;
   }
@@ -277,21 +283,26 @@ export default {
    
   justify-content:center !important;
   margin-top: 30px;
+  .text-box{
+    align-items:center !important;
+    
+  }
     
 }
 
 #media-ul {
     width: 100%;
-    justify-content: flex-start !important;
-    margin-left: 25px;
+    justify-content: flex-end !important;
 }
 
 #media-p {
-  text-align: left !important;
+  text-align: center !important;
   overflow: unset !important;
   white-space: unset !important;
+  
 
 }
+
 
 
 
