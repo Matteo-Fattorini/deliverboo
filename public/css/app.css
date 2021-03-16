@@ -10967,7 +10967,7 @@ nav #route-menu {
   top: 0;
   right: 0;
   background-color: #000000;
-  z-index: 2;
+  z-index: 999;
   border-bottom-left-radius: 100%;
 }
 
