@@ -11132,15 +11132,16 @@ footer ul li {
 
 #show-dish #dish-show-img {
   height: 300px;
-  width: auto;
-  margin: 0;
-  border-radius: 20px;
+  width: 300px;
+  margin: 30px 0;
+  border-radius: 100%;
+  border: 6px solid black;
 }
 
 #show-dish #icon-dish-show {
   height: 30px;
   width: auto;
-  margin: 0 10px 0 0;
+  margin-right: 10px;
 }
 
 #success {
